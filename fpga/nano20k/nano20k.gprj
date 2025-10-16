@@ -1,0 +1,16 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW2AR-18C" pn="GW2AR-LV18QN88PC8/I7">gw2ar18c-011</Device>
+    <FileList>
+        <File path="gowin_rpll/gowin_rpll.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_nano20k.sv" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/coralnpu_soc.sv" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/top_pkg.sv" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/top_racl_pkg.sv" type="file.verilog" enable="1"/>
+        <File path="nano20k.cst" type="file.cst" enable="1"/>
+        <File path="nano20k.sdc" type="file.sdc" enable="1"/>
+    </FileList>
+</Project>
