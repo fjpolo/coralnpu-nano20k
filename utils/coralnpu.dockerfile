@@ -61,4 +61,5 @@ RUN ln -snf "/usr/share/zoneinfo/${TZ}" /etc/localtime && \
     chown ${_USERNAME}:${_USERNAME} ${HOME}
 USER ${_USERNAME}
 WORKDIR /home/${_USERNAME}/
-RUN git clone https://github.com/google-coral/coralnpu.git
+# RUN git clone https://github.com/google-coral/coralnpu.git
+RUN git clone https://github.com/fjpolo/coralnpu-nano20k.git
