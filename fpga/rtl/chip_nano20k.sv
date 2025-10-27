@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import prim_mubi_pkg::*;
+
 module chip_nano20k
     #(parameter MemInitFile = "",
       parameter int ClockFrequencyMhz = 27)
@@ -67,7 +69,7 @@ module chip_nano20k
   logic spi_miso_probe_o;
 
   // PLL
-  owin_rPLL gowinPLL81MHz(
+  Gowin_rPLL gowinPLL81MHz(
         .clkout(clk_81MHz), //output clkout
         .clkin(sys_clk) //input clkin
     );
@@ -105,7 +107,7 @@ module chip_nano20k
     .spi_csb_i(spi_csb_i),
     .spi_mosi_i(spi_mosi_i),
     .spi_miso_o(spi_miso_o),
-    .scanmode_i('0),
+    .scanmode_i(prim_mubi_pkg::MuBi4False),
     .uart_sideband_i(uart_sideband_i),
     .uart_sideband_o(uart_sideband_o),
     .io_halted(io_halted),

@@ -45,11 +45,13 @@ RUN ln -snf "/usr/share/zoneinfo/${TZ}" /etc/localtime && \
     echo "deb [arch=$(dpkg-architecture -q DEB_HOST_ARCH) signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list && \
     apt update && \
     apt install bazel bazel-6.2.1 && \
-    echo "${_USERNAME} ALL=(ALL) NOPASSWD:/usr/bin/apt" >> /etc/sudoers.d/${_USERNAME} && \
-    echo "${_USERNAME} ALL=(ALL) NOPASSWD:/bin/mkdir" >> /etc/sudoers.d/${_USERNAME} && \
-    echo "${_USERNAME} ALL=(ALL) NOPASSWD:/bin/chown" >> /etc/sudoers.d/${_USERNAME} && \
-    echo "${_USERNAME} ALL=(ALL) NOPASSWD:/bin/ln" >> /etc/sudoers.d/${_USERNAME} && \
-    echo "${_USERNAME} ALL=(ALL) NOPASSWD:/usr/bin/xargs" >> /etc/sudoers.d/${_USERNAME} && \
+    \
+    # *** EDITED SECTION START ***\
+    # This grants the 'builder' user full passwordless sudo access (NOPASSWD:ALL).\
+    echo "${_USERNAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/${_USERNAME} && \
+    # The previous, restricted 'NOPASSWD' lines have been removed/replaced by the above.\
+    # *** EDITED SECTION END ***\
+    \
     addgroup --gid ${_GID} ${_USERNAME} && \
     adduser \
         --home ${HOME} \
@@ -61,5 +63,5 @@ RUN ln -snf "/usr/share/zoneinfo/${TZ}" /etc/localtime && \
     chown ${_USERNAME}:${_USERNAME} ${HOME}
 USER ${_USERNAME}
 WORKDIR /home/${_USERNAME}/
-# RUN git clone https://github.com/google-coral/coralnpu.git
-RUN git clone https://github.com/fjpolo/coralnpu-nano20k.git
+RUN git clone https://github.com/google-coral/coralnpu.git
+# RUN git clone https://github.com/fjpolo/coralnpu-nano20k.git

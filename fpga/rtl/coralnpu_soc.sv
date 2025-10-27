@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+import prim_mubi_pkg::*;
 
 module coralnpu_soc
     #(parameter MemInitFile = "",
@@ -123,7 +124,7 @@ module coralnpu_soc
                     .user_rsvd_o(),
                     .rerror_i(2'b0),
                     .compound_txn_in_progress_o(),
-                    .readback_en_i(4'b0),
+                    .readback_en_i(prim_mubi_pkg::MuBi4False),
                     .readback_error_o(),
                     .wr_collision_i(1'b0),
                     .write_pending_i(1'b0));
@@ -170,7 +171,7 @@ module coralnpu_soc
                      .user_rsvd_o(),
                      .rerror_i(2'b0),
                      .compound_txn_in_progress_o(),
-                     .readback_en_i(4'b0),
+                     .readback_en_i(prim_mubi_pkg::MuBi4False),
                      .readback_error_o(),
                      .wr_collision_i(1'b0),
                      .write_pending_i(1'b0));
@@ -186,6 +187,7 @@ module coralnpu_soc
              .rdata_o(sram_rdata),
              .rvalid_o(sram_rvalid));
 
+`ifdef CORAL_NPU_CHISEL_SUBSYSTEM
   CoralNPUChiselSubsystem i_chisel_subsystem (
     .io_clk_i(clk_i),
     .io_rst_ni(rst_ni),
@@ -305,4 +307,5 @@ module coralnpu_soc
     .io_external_ports_7(spi_mosi_i),     // spi_mosi
     .io_external_ports_8(spi_miso_o)      // spi_miso
   );
+`endif // CORAL_NPU_CHISEL_SUBSYSTEM
 endmodule
