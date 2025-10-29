@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+`define SYNTHESIS
+
 import prim_mubi_pkg::*;
 
 module chip_nano20k
