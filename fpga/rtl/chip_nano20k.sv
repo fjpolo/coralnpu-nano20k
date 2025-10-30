@@ -102,7 +102,11 @@ module chip_nano20k
   //              .clk_aon_o(clk_aon),
   //              .rst_no(rst_n));
 
-  coralnpu_soc i_coralnpu_soc (
+  coralnpu_soc #(
+    .MemInitFile(""),   // TODO: Add .elf file
+    .ClockFrequencyMhz(81)
+)
+i_coralnpu_soc (
     .clk_i(clk_81MHz),
     .rst_ni(rst_n),
     .spi_clk_i(spi_clk_i),
