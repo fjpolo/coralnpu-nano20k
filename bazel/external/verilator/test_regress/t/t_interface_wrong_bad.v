@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Using the wrong kind of interface in a portmap
 // should cause an error
 //

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 
 /*
  * Copyright (c) 2019 Xilinx Inc.

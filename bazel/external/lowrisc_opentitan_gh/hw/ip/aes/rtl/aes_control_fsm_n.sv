@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // Copyright lowRISC contributors (OpenTitan project).
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
@@ -11,6 +12,7 @@
 //   these signals, and
 // - inverting these signals between the regular FSM and the prim_buf synthesis barriers.
 // Synthesis tools will then push the inverters into the actual FSM.
+`define SYNTHESIS
 
 `include "prim_assert.sv"
 

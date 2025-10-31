@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Check initialisation of cloned clock variables
 //
 // This tests issue #1327 (Strange initialisation behaviour with

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: System Verilog test of array querying functions.
 //
 // This code instantiates a module that calls the various array querying

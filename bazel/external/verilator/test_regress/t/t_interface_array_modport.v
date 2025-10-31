@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Connecting an interface array slice to a module's portmap
 //
 // This file ONLY is placed into the Public Domain, for any use,

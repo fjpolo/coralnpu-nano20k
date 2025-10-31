@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // Copyright lowRISC contributors.
 // Copyright 2024 University of Oxford, see also CREDITS.md.
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.

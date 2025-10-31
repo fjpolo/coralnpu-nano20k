@@ -1,3 +1,4 @@
+`define SYNTHESIS
 //                              -*- Mode: Verilog -*-
 // Filename        : csrng_if.sv
 // Description     :

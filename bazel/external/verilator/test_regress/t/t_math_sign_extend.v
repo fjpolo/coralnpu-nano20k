@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 //
 //  This test demonstrates an issue with sign extension.

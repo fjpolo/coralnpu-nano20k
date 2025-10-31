@@ -1,3 +1,4 @@
+`define SYNTHESIS
 
 module xsim_smoke_tb ();
 

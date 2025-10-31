@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // Copyright lowRISC contributors (OpenTitan project).
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
@@ -7,6 +8,7 @@
 // This module controls the AES cipher core including the key expand module.
 
 `include "prim_assert.sv"
+`define SYNTHESIS
 
 module aes_cipher_control import aes_pkg::*;
 #(

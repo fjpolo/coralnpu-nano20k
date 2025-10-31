@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // Copyright 2020 Silicon Labs, Inc.
 //
 // This file, and derivatives thereof are licensed under the

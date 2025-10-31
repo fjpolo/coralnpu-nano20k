@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module for issue #1609
 //
 // This file ONLY is placed into the Public Domain, for any use,

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 // Ref. to  IEEE Std 1800-2017  11.4.14 & A.8.1
 //

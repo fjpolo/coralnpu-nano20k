@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // Copyright lowRISC contributors (OpenTitan project).
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
@@ -6,6 +7,7 @@
 //
 // This module contains the main control FSM handling the interplay of input/output registers and
 // the AES cipher core.
+`define SYNTHESIS
 
 `include "prim_assert.sv"
 

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Dotted reference that uses another dotted reference
 // as the select expression
 //

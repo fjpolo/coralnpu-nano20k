@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 //
 // This test examines Verilator against paramter definition with functions.

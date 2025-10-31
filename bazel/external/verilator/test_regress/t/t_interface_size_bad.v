@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Demonstrate deferred linking error messages
 //
 // This file ONLY is placed into the Public Domain, for any use,

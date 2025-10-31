@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 //
 // The code here is used to trigger Verilator internal error

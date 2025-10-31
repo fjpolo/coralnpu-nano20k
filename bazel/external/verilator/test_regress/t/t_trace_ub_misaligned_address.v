@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 //
 // When compiled using -fsanitize=address,undefined this triggered:

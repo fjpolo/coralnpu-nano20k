@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 //
 // This model counts from 0 to 10. It is instantiated twice in concurrent

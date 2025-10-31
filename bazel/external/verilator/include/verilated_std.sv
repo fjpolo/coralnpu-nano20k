@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: built-in packages and classes
 //
 // Code available from: https://verilator.org

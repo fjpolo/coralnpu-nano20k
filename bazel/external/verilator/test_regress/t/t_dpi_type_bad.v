@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 //
 // Copyright 2021 by Wilson Snyder. This program is free software; you can

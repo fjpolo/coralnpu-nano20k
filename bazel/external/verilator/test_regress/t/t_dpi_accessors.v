@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Test for using DPI as general accessors
 //
 // This file ONLY is placed into the Public Domain, for any use,

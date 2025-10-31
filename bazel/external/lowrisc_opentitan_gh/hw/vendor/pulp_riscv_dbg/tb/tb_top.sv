@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // Copyright 2017 Embecosm Limited <www.embecosm.com>
 // Copyright 2018 Robert Balas <balasr@student.ethz.ch>
 // Copyright 2020 ETH Zurich and University of Bologna.

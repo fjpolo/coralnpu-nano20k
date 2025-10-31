@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test for short-circuiting in generate "if"
 // that should not work.
 //

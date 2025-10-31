@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // This test shall generate a warning, but not an internal error.
 //
 // This file ONLY is placed under the Creative Commons Public Domain, for

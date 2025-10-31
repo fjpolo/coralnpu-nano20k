@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Test of selection with unsized Z.
 //
 // Test selecting Z when size is not explicit. Issue 510.

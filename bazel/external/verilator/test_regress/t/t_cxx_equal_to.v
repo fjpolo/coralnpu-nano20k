@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 //
 // On some platforms (i.e. FreeBSD 12) this triggered:

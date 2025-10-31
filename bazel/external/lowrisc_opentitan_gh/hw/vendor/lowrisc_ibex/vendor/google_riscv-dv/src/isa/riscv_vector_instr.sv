@@ -1,3 +1,4 @@
+`define SYNTHESIS
 /*
  * Copyright 2020 Google LLC
  * Copyright 2020 Andes Technology Co., Ltd.

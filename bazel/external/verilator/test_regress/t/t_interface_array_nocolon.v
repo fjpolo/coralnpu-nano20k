@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Functionally demonstrate an array of interfaces
 //
 // This file ONLY is placed into the Public Domain, for any use,

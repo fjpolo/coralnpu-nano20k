@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: $display() test for %l
 //
 // This file ONLY is placed into the Public Domain, for any use,

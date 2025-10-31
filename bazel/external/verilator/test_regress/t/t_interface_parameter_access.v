@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Interface parameter getter
 //
 // A test of the import parameter used with modport

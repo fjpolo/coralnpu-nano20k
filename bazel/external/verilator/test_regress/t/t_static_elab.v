@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Simple static elaboration case
 //
 // This file ONLY is placed into the Public Domain, for any use,

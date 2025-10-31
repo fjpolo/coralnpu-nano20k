@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Test generate index usage.
 //
 // The code illustrates a problem in Verilator's handling of constant

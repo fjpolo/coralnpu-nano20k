@@ -1,3 +1,4 @@
+`define SYNTHESIS
 
 module nested_module_0 (
     input logic clk,

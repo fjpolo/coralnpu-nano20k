@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Test symbol table scope map and general public
 // signal reflection
 //

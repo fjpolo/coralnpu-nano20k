@@ -1,3 +1,4 @@
+`define SYNTHESIS
 
 module weights_replay_top #(
     parameter string POLARITY = "ACTIVE_HIGH",

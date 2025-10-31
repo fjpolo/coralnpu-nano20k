@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test for short-circuiting in generate "if"
 //
 // The given generate loops should only access valid bits of mask, since that

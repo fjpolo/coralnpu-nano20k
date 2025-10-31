@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Check == and != operations performed on class objects
 //
 // This file ONLY is placed under the Creative Commons Public Domain, for

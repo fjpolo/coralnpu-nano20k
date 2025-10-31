@@ -1,3 +1,4 @@
+`define SYNTHESIS
 //-------------------------------------------------------------------------
 // This Verilog file was developed by Altera Corporation.  It may be
 // freely copied and/or distributed at no cost.  Any persons using this

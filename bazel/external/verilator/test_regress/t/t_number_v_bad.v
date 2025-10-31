@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Test of Verilog and SystemVerilog integer literal differences
 //
 // This file ONLY is placed under the Creative Commons Public Domain, for

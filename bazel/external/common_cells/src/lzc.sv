@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // Copyright (c) 2018 - 2019 ETH Zurich, University of Bologna
 // All rights reserved.
 //

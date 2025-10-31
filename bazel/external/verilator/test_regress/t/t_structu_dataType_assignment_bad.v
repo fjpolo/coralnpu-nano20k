@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module for specialized type default values
 //
 // This file ONLY is placed under the Creative Commons Public Domain, for

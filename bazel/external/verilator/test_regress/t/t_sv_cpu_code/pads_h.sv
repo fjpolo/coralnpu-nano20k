@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Large test for SystemVerilog
 
 // This file ONLY is placed into the Public Domain, for any use,

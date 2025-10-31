@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Dedupe optimization test.
 //
 // This file ONLY is placed into the Public Domain, for any use,

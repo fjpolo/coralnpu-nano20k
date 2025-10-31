@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Demonstrate deferred linking across module
 // bondaries
 //

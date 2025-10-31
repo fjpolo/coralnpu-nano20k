@@ -1,3 +1,4 @@
+`define SYNTHESIS
 /*
  * Copyright 2019 Google LLC
  *

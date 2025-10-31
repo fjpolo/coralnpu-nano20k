@@ -1,3 +1,4 @@
+`define SYNTHESIS
 /*
  * Copyright 2018 Google LLC
  * Copyright 2021 Silicon Labs, Inc.

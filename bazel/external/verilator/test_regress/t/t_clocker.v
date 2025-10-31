@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Simple test of CLkDATA
 //
 // Trigger the CLKDATA detection

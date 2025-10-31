@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Test of select from constant
 //
 // This file ONLY is placed under the Creative Commons Public Domain, for

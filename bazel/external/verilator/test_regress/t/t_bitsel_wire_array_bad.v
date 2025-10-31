@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Test of select from constant
 //
 // This tests issue #509, bit select of constant fails

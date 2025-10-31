@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 //
 // We see Verilator assumes a 1-bit parameter is a scalar rather than a 1-bit

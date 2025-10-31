@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // Copyright lowRISC contributors (OpenTitan project).
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
@@ -89,6 +90,7 @@
 // - KEY_SHARE0_5 32h'{  .    .    .    .  }
 // - KEY_SHARE0_6 32h'{  .    .    .    .  }
 // - KEY_SHARE0_7 32h'{ b31, b30, b29, b28 } .
+`define SYNTHESIS
 
 `include "prim_assert.sv"
 

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 //*************************************************************************
 //
 // Code available from: https://verilator.org

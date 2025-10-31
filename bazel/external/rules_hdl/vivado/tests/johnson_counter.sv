@@ -1,3 +1,4 @@
+`define SYNTHESIS
 module johnson_counter #(
     parameter int COUNTER_BITS = 3
 ) (

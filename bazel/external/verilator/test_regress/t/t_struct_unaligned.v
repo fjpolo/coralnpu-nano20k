@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator:
 //  Test an error where a shift amount was out of bounds and the compiler treats the
 //  value as undefined (issue #803)

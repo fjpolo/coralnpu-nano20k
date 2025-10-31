@@ -1,3 +1,4 @@
+`define SYNTHESIS
 /*
  * Copyright 2019 Google LLC
  * Copyright 2019 Mellanox Technologies Ltd

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 //-----------------------------------------------------------------------------
 
 // Title         : test random vectors for a few different input widths

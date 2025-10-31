@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module for issue #3817
 // addDriver() was causing use-after-free and segfaulting during Verilation
 //

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 /*
  * Wrapper around the UMI memory agent.
  *

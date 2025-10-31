@@ -1,3 +1,4 @@
+`define SYNTHESIS
 
 module weights_replay #(
     parameter int COUNTER_BITS = 3

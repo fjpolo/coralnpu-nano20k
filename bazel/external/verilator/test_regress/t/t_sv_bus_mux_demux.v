@@ -1,3 +1,4 @@
+`define SYNTHESIS
 ////////////////////////////////////////////////////////////////////////////////
 //                                                                            //
 // This file is placed into the Public Domain, for any use, without warranty. //

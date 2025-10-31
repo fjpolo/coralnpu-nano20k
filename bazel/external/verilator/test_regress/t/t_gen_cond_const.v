@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test for generate IF constants
 //
 // The given generate loop should have a constant expression as argument. This

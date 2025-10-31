@@ -1,3 +1,4 @@
+`define SYNTHESIS
 
 module load_and_count (
     input logic clk,

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Test for warning (not error) on improperly width'ed
 // default function argument
 //

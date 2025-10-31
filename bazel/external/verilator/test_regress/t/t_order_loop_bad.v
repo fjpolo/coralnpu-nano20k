@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Non-cutable edge in loop
 //
 // This code (stripped down from a much larger application) has a loop between

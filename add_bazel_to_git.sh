@@ -5447,7 +5447,7 @@ git add bazel/external/verilator/test_regress/t/t_order_comboclkloop.v
 git add bazel/external/verilator/test_regress/t/t_order_comboloop.v
 git add bazel/external/verilator/test_regress/t/t_order_doubleloop.v
 git add bazel/external/verilator/test_regress/t/t_order_dpi_export_1.v
-bazel/external/verilator/test_regress/t/t_order_dpi_export_2.v
+git add bazel/external/verilator/test_regress/t/t_order_dpi_export_2.v
 git add bazel/external/verilator/test_regress/t/t_order_dpi_export_3.v
 git add bazel/external/verilator/test_regress/t/t_order_dpi_export_4.v
 git add bazel/external/verilator/test_regress/t/t_order_dpi_export_5.v

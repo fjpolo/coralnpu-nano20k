@@ -1,3 +1,4 @@
+`define SYNTHESIS
 module weights_ram #(
     parameter int RAM_DEPTH = 8,
     parameter int COUNTER_BITS = 3

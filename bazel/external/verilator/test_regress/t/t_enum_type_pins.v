@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: System Verilog test of enumerated type methods
 //
 // This code exercises the various enumeration methods

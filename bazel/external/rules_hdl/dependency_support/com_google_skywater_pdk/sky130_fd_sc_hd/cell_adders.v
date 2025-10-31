@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // File copy form OpenRAOD-flow-scripts@dd552435616bcc18fb2dba0b221f682d9e873fb1
 // Works only with sky130_fd_sc_hd
 (* techmap_celltype = "$fa" *)

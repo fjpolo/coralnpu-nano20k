@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 //
 // IEEE 1800-2009 requires that any local definitions take precedence over

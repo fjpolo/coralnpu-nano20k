@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 //
 // Copyright 2020 by Geza Lore. This program is free software; you can

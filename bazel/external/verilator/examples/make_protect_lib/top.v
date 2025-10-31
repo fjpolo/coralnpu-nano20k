@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: --protect-lib example module
 //
 // This file ONLY is placed under the Creative Commons Public Domain, for

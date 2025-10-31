@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // Copyright 2019 ETH Zurich and University of Bologna.
 //
 // Copyright and related rights are licensed under the Solderpad Hardware

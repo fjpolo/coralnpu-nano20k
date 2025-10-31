@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // Copyright 2018 Robert Balas <balasr@student.ethz.ch>
 // Copyright and related rights are licensed under the Solderpad Hardware
 // License, Version 0.51 (the "License"); you may not use this file except in

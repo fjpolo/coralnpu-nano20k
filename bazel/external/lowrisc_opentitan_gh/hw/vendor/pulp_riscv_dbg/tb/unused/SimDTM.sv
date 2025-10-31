@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // See LICENSE.SiFive for license details.
 //VCS coverage exclude_file
 

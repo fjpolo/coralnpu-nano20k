@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Simple test of unoptflat
 //
 // This file ONLY is placed into the Public Domain, for any use,

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: initial edge issue
 //
 // The module initial_edge drives the output "res" high when the reset signal,

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 /*
  * Copyright (c) 2005-2024 Imperas Software Ltd., www.imperas.com
  *

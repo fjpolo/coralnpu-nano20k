@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module for SystemVerilog 'alias'
 //
 // Simple bi-directional alias test.

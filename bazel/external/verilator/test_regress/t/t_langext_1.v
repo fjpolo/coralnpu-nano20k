@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 //
 // A test of the +verilog1995ext+ and +verilog2001ext+ flags.

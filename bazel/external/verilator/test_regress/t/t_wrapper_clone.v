@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module for prepareClone/atClone APIs
 //
 // This model counts from 0 to 8. It forks a child process (in C++) at 6

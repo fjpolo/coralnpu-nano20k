@@ -1,3 +1,4 @@
+`define SYNTHESIS
 /*
     This testbench tests if the IP blocks inside of IP blocks are properly imported.
 */

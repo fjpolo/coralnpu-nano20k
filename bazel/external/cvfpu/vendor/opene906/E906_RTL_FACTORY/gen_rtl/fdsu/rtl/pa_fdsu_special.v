@@ -1,3 +1,4 @@
+`define SYNTHESIS
 /*Copyright 2020-2021 T-Head Semiconductor Co., Ltd.
 
 Licensed under the Apache License, Version 2.0 (the "License");

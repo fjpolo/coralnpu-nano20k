@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Verilog Test module
 // This file ONLY is placed under the Creative Commons Public Domain, for
 // any use, without warranty, 2010 by Wilson Snyder.

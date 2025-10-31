@@ -1,3 +1,4 @@
+`define SYNTHESIS
 `include "axifull_dev_S00_AXI.v"
 
 `timescale 1 ns / 1 ps

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 /*
  * Copyright (c) 2020 Xilinx Inc.
  * Written by Heramb Aligave.

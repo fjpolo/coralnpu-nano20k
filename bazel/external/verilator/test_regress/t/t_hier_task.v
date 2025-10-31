@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Test for issue #2267
 //
 // This file ONLY is placed into the Public Domain, for any use,

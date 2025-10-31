@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: System Verilog test of case and if
 //
 // This code instantiates and runs a simple CPU written in System Verilog.

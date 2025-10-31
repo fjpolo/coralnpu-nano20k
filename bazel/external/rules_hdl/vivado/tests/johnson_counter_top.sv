@@ -1,3 +1,4 @@
+`define SYNTHESIS
 module johnson_counter_top (
     output logic [7:0] led
 );

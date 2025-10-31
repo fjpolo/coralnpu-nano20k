@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Simple test of unoptflat
 //
 // Demonstration of an UNOPTFLAT combinatorial loop using 3 bits and looping

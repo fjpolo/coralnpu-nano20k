@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // This test read all trace CSV, and collect functional coverage from the instruction trace
 class riscv_instr_cov_test extends uvm_test;
 

@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Test that slice assignment overflows are handled correctly,
 // i.e. that if you assign to a slice such that some of the bits you assign to
 // do not actually exist, that those bits get correctly discarded.

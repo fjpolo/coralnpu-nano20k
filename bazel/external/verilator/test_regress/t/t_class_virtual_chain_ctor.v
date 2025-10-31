@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Check that an abstract class' contstructor
 // can be called indirectly from a constructor of a derived class.
 //

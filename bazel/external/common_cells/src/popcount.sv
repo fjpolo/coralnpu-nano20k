@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // Copyright (C) 2013-2018 ETH Zurich, University of Bologna
 // Copyright and related rights are licensed under the Solderpad Hardware
 // License, Version 0.51 (the "License"); you may not use this file except in

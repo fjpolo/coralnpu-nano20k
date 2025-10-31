@@ -1,3 +1,4 @@
+`define SYNTHESIS
 // DESCRIPTION: Verilator: Test of gated clock detection
 //
 // The code as shown generates a result by a delayed assignment from PC. The
