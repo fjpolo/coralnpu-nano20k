@@ -1,0 +1,28 @@
+[
+ {
+  "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/console60k/src/gowin_pll/gowin_pll.v",
+  "InstLine" : 1,
+  "InstName" : "Gowin_PLL",
+  "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/console60k/src/gowin_pll/gowin_pll.v",
+  "ModuleLine" : 1,
+  "ModuleName" : "Gowin_PLL",
+  "SubInsts" : [
+   {
+    "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/console60k/src/gowin_pll/gowin_pll.v",
+    "InstLine" : 21,
+    "InstName" : "u_pll",
+    "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/console60k/src/gowin_pll/gowin_pll_mod.v",
+    "ModuleLine" : 10,
+    "ModuleName" : "Gowin_PLL_MOD"
+   },
+   {
+    "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/console60k/src/gowin_pll/gowin_pll.v",
+    "InstLine" : 34,
+    "InstName" : "u_pll_init",
+    "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/console60k/src/pll_init.v",
+    "ModuleLine" : 4,
+    "ModuleName" : "PLL_INIT"
+   }
+  ]
+ }
+]
