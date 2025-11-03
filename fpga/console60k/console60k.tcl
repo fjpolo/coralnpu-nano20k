@@ -1,1 +1,1 @@
-set_option -define SYNTHESIS
+# add_options "-define SYNTHESIS"
