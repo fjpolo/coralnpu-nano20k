@@ -25,7 +25,7 @@ module prim_rom import prim_rom_pkg::*; #(
 
   if (MemInitFile != "") begin : gen_generic
 
-    logic [Width-1:0] mem [Depth];
+    logic [Width-1:0] mem [Depth] /*synthesis syn_ramstyle="block_ram"*/;
 
     always_ff @(posedge clk_i) begin
       if (req_i) begin

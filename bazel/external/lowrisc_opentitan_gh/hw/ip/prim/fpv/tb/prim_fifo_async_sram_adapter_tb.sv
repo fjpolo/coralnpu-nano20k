@@ -132,7 +132,7 @@ if (FpgaSram == 1) begin : g_sram_fpga
     .cfg_rsp_o ()
   );
 end else begin : g_sram_ff
-  logic [SramDw-1:0] mem [2**SramAw];
+  logic [SramDw-1:0] mem [2**SramAw] /*synthesis syn_ramstyle="block_ram"*/;
 
   always_ff @(posedge clk_wr_i) begin
     if (w_sram_req && w_sram_write) begin

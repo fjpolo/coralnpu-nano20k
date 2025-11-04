@@ -35,7 +35,7 @@ module prim_ram_1p import prim_ram_1p_pkg::*; #(
     // to be the full bit mask
     localparam int MaskWidth = Width / DataBitsPerMask;
 
-    logic [Width-1:0]     mem [Depth];
+    logic [Width-1:0]     mem [Depth] /*synthesis syn_ramstyle="block_ram"*/;
     logic [MaskWidth-1:0] wmask;
 
     for (genvar k = 0; k < MaskWidth; k++) begin : gen_wmask

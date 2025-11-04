@@ -23,7 +23,7 @@ module prim_rom import prim_rom_pkg::*; #(
   logic unused_signals;
   assign unused_signals = ^{cfg_i, rst_ni};
 
-  logic [Width-1:0] mem [Depth];
+  logic [Width-1:0] mem [Depth] /*synthesis syn_ramstyle="block_ram"*/;
 
   always_ff @(posedge clk_i) begin
     if (req_i) begin

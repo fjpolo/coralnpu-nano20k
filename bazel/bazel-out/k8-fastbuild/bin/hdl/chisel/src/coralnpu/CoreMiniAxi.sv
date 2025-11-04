@@ -10476,7 +10476,7 @@ module Queue1_MluStage1(
   output [3:0] io_deq_bits_sel
 );
 
-  reg [11:0] ram;
+  reg [11:0] ram /*synthesis syn_ramstyle="block_ram"*/;
   reg        full;
   always @(posedge clock or posedge reset) begin
     if (reset)
@@ -10528,7 +10528,7 @@ module Queue1_MluStage2(
   output [65:0] io_deq_bits_prod
 );
 
-  reg [73:0] ram;
+  reg [73:0] ram /*synthesis syn_ramstyle="block_ram"*/;
   reg        full;
   always @(posedge clock or posedge reset) begin
     if (reset)
@@ -11055,7 +11055,7 @@ module Queue1_FloatInstruction(
   output        io_count
 );
 
-  reg  [98:0] ram;
+  reg  [98:0] ram /*synthesis syn_ramstyle="block_ram"*/;
   wire        io_enq_ready;
   reg         full;
   wire        do_enq = io_enq_ready & io_enq_valid;
@@ -11143,7 +11143,7 @@ module ram_2x37(
   input  [36:0] W0_data
 );
 
-  reg [36:0] Memory[0:1];
+  reg [36:0] Memory[0:1] /*synthesis syn_ramstyle="block_ram"*/;
   always @(posedge W0_clk) begin
     if (W0_en & 1'h1)
       Memory[W0_addr] <= W0_data;
