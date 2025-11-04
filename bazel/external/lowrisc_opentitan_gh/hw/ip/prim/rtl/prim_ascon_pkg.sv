@@ -5,7 +5,7 @@
 
 package prim_ascon_pkg;
 
-parameter int AsconRoundCountW = 4;
+localparam int AsconRoundCountW = 4;
 
 // Due to Ascon's round constants the current_round
 // contains an offset:
@@ -19,7 +19,7 @@ typedef enum logic [3:0] {
   P6  = 4'b0110
 } perm_offset_e;
 
-parameter int DUPLEX_OP_WIDTH = 3;
+localparam int DUPLEX_OP_WIDTH = 3;
 
 typedef enum logic [DUPLEX_OP_WIDTH-1:0] {
   ASCON_ENC  = 3'b001,
@@ -27,7 +27,7 @@ typedef enum logic [DUPLEX_OP_WIDTH-1:0] {
   ASCON_HASH = 3'b100
 } duplex_op_e;
 
-parameter int DUPLEX_VARIANT_WIDTH = 2;
+localparam int DUPLEX_VARIANT_WIDTH = 2;
 
 typedef enum logic [DUPLEX_VARIANT_WIDTH-1:0] {
   ASCON_128  = 2'b01,
@@ -61,19 +61,19 @@ function automatic logic [7:0] get_ascon_rcon(logic [3:0] round);
   return result;
 endfunction
 
-parameter int KEY_HI_LOW_MUX_WIDTH = 1;
+localparam int KEY_HI_LOW_MUX_WIDTH = 1;
 typedef enum logic [KEY_HI_LOW_MUX_WIDTH-1:0] {
   KEY_LOW = 1'b0,
   KEY_HI  = 1'b1
 } key_hi_low_mux_e;
 
-parameter int WORD_LOW_KEY_HI_MUX_WIDTH = 1;
+localparam int WORD_LOW_KEY_HI_MUX_WIDTH = 1;
 typedef enum logic [WORD_LOW_KEY_HI_MUX_WIDTH-1:0] {
   WORD = 1'b0,
   KEY  = 1'b1
 } word_low_key_hi_mux_e;
 
-parameter int ASCON_WORD_MUX_WIDTH = 2;
+localparam int ASCON_WORD_MUX_WIDTH = 2;
 typedef enum logic [ASCON_WORD_MUX_WIDTH-1:0] {
   INIT   = 2'b00,
   ABSORB = 2'b01,
@@ -81,13 +81,13 @@ typedef enum logic [ASCON_WORD_MUX_WIDTH-1:0] {
   ROUND  = 2'b11
 } ascon_word_mux_e;
 
-parameter int ROUND_INPUT_MUX_WIDTH = 1;
+localparam int ROUND_INPUT_MUX_WIDTH = 1;
 typedef enum logic [ROUND_INPUT_MUX_WIDTH-1:0] {
   STATE    = 1'b0,
   BLINDING = 1'b1
 } ascon_round_input_mux_e;
 
-parameter int PADDING_MUX_WIDTH = 2;
+localparam int PADDING_MUX_WIDTH = 2;
 typedef enum logic [PADDING_MUX_WIDTH-1:0] {
   DATA_IN_PAD  = 2'b00,
   DATA_OUT_PAD = 2'b01,

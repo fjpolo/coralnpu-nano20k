@@ -2102,7 +2102,7 @@
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_frontend.sv",
+   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_sram.sv",
    "Type" : "verilog"
   }
  ],

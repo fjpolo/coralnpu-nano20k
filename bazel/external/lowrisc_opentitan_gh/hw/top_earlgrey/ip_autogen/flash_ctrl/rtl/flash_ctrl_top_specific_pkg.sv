@@ -19,64 +19,64 @@ package flash_ctrl_top_specific_pkg;
   export flash_ctrl_pkg::keymgr_flash_t;
 
   // design parameters that can be altered through topgen
-  parameter int unsigned NumBanks        = flash_ctrl_reg_pkg::RegNumBanks;
-  parameter int unsigned PagesPerBank    = flash_ctrl_reg_pkg::RegPagesPerBank;
-  parameter int unsigned BusPgmResBytes  = flash_ctrl_reg_pkg::RegBusPgmResBytes;
+  localparam int unsigned NumBanks        = flash_ctrl_reg_pkg::RegNumBanks;
+  localparam int unsigned PagesPerBank    = flash_ctrl_reg_pkg::RegPagesPerBank;
+  localparam int unsigned BusPgmResBytes  = flash_ctrl_reg_pkg::RegBusPgmResBytes;
   // How many types of info per bank
-  parameter int InfoTypes                = flash_ctrl_reg_pkg::NumInfoTypes;
+  localparam int InfoTypes                = flash_ctrl_reg_pkg::NumInfoTypes;
 
   // fixed parameters of flash derived from topgen parameters
-  parameter int DataWidth       = 64;
-  parameter int MetaDataWidth   = 12;
+  localparam int DataWidth       = 64;
+  localparam int MetaDataWidth   = 12;
 
 // The following hard-wired values are there to work-around verilator.
 // For some reason if the values are assigned through parameters verilator thinks
 // they are not constant
-  parameter int InfoTypeSize [InfoTypes] = '{
+  localparam int InfoTypeSize [InfoTypes] = '{
     flash_ctrl_reg_pkg::NumInfos0,
     flash_ctrl_reg_pkg::NumInfos1,
     flash_ctrl_reg_pkg::NumInfos2
   };
-  parameter int InfosPerBank    = max_info_pages(InfoTypeSize);
-  parameter int WordsPerPage    = 256; // Number of flash words per page
-  parameter int BusWidth        = top_pkg::TL_DW;
-  parameter int BusIntgWidth    = tlul_pkg::DataIntgWidth;
-  parameter int BusFullWidth    = BusWidth + BusIntgWidth;
-  parameter int MpRegions       = 8;  // flash controller protection regions
-  //parameter int FifoDepth       = 16; // rd / prog fifos
-  parameter int InfoTypesWidth  = prim_util_pkg::vbits(InfoTypes);
+  localparam int InfosPerBank    = max_info_pages(InfoTypeSize);
+  localparam int WordsPerPage    = 256; // Number of flash words per page
+  localparam int BusWidth        = top_pkg::TL_DW;
+  localparam int BusIntgWidth    = tlul_pkg::DataIntgWidth;
+  localparam int BusFullWidth    = BusWidth + BusIntgWidth;
+  localparam int MpRegions       = 8;  // flash controller protection regions
+  //localparam int FifoDepth       = 16; // rd / prog fifos
+  localparam int InfoTypesWidth  = prim_util_pkg::vbits(InfoTypes);
 
   // flash phy parameters
-  parameter int DataByteWidth   = prim_util_pkg::vbits(DataWidth / 8);
-  parameter int BankW           = prim_util_pkg::vbits(NumBanks);
-  parameter int InfoPageW       = prim_util_pkg::vbits(InfosPerBank);
-  parameter int PageW           = prim_util_pkg::vbits(PagesPerBank);
-  parameter int WordW           = prim_util_pkg::vbits(WordsPerPage);
-  parameter int AddrW           = BankW + PageW + WordW; // all flash range
-  parameter int BankAddrW       = PageW + WordW;         // 1 bank of flash range
-  parameter int AllPagesW       = BankW + PageW;
+  localparam int DataByteWidth   = prim_util_pkg::vbits(DataWidth / 8);
+  localparam int BankW           = prim_util_pkg::vbits(NumBanks);
+  localparam int InfoPageW       = prim_util_pkg::vbits(InfosPerBank);
+  localparam int PageW           = prim_util_pkg::vbits(PagesPerBank);
+  localparam int WordW           = prim_util_pkg::vbits(WordsPerPage);
+  localparam int AddrW           = BankW + PageW + WordW; // all flash range
+  localparam int BankAddrW       = PageW + WordW;         // 1 bank of flash range
+  localparam int AllPagesW       = BankW + PageW;
 
   // flash ctrl / bus parameters
   // flash / bus width may be different from actual flash word width
-  parameter int BusBytes        = BusWidth / 8;
-  parameter int BusByteWidth    = prim_util_pkg::vbits(BusBytes);
-  parameter int WidthMultiple   = DataWidth / BusWidth;
+  localparam int BusBytes        = BusWidth / 8;
+  localparam int BusByteWidth    = prim_util_pkg::vbits(BusBytes);
+  localparam int WidthMultiple   = DataWidth / BusWidth;
   // Number of bus words that can be programmed at once
-  parameter int BusPgmRes       = BusPgmResBytes / BusBytes;
-  parameter int BusPgmResWidth  = prim_util_pkg::vbits(BusPgmRes);
-  parameter int BusWordsPerPage = WordsPerPage * WidthMultiple;
-  parameter int BusWordW        = prim_util_pkg::vbits(BusWordsPerPage);
-  parameter int BusAddrW        = BankW + PageW + BusWordW;
-  parameter int BusAddrByteW    = BusAddrW + BusByteWidth;
-  parameter int BusBankAddrW    = PageW + BusWordW;
-  parameter int PhyAddrStart    = BusWordW - WordW;
+  localparam int BusPgmRes       = BusPgmResBytes / BusBytes;
+  localparam int BusPgmResWidth  = prim_util_pkg::vbits(BusPgmRes);
+  localparam int BusWordsPerPage = WordsPerPage * WidthMultiple;
+  localparam int BusWordW        = prim_util_pkg::vbits(BusWordsPerPage);
+  localparam int BusAddrW        = BankW + PageW + BusWordW;
+  localparam int BusAddrByteW    = BusAddrW + BusByteWidth;
+  localparam int BusBankAddrW    = PageW + BusWordW;
+  localparam int PhyAddrStart    = BusWordW - WordW;
 
   // fifo parameters
-  //parameter int FifoDepthW      = prim_util_pkg::vbits(FifoDepth+1);
+  //localparam int FifoDepthW      = prim_util_pkg::vbits(FifoDepth+1);
 
   // The end address in bus words for each kind of partition in each bank
-  parameter logic [PageW-1:0] DataPartitionEndAddr = PageW'(PagesPerBank - 1);
-  parameter logic [PageW-1:0] InfoPartitionEndAddr [InfoTypes] = '{
+  localparam logic [PageW-1:0] DataPartitionEndAddr = PageW'(PagesPerBank - 1);
+  localparam logic [PageW-1:0] InfoPartitionEndAddr [InfoTypes] = '{
     PageW'(InfoTypeSize[0] - 1),
     PageW'(InfoTypeSize[1] - 1),
     PageW'(InfoTypeSize[2] - 1)
@@ -101,16 +101,16 @@ package flash_ctrl_top_specific_pkg;
   ////////////////////////////
 
   // parameters for connected components
-  parameter int EdnWidth  = edn_pkg::ENDPOINT_BUS_WIDTH;
+  localparam int EdnWidth  = edn_pkg::ENDPOINT_BUS_WIDTH;
 
   // Default Lfsr configurations
   // These LFSR parameters have been generated with
   // $ util/design/gen-lfsr-seed.py --width 32 --seed 1274809145 --prefix ""
-  parameter int LfsrWidth = 32;
+  localparam int LfsrWidth = 32;
   typedef logic [LfsrWidth-1:0] lfsr_seed_t;
   typedef logic [LfsrWidth-1:0][$clog2(LfsrWidth)-1:0] lfsr_perm_t;
-  parameter lfsr_seed_t RndCnstLfsrSeedDefault = 32'ha8cee782;
-  parameter lfsr_perm_t RndCnstLfsrPermDefault = {
+  localparam lfsr_seed_t RndCnstLfsrSeedDefault = 32'ha8cee782;
+  localparam lfsr_perm_t RndCnstLfsrPermDefault = {
     160'hd60bc7d86445da9347e0ccdd05b281df95238bb5
   };
 
@@ -192,17 +192,17 @@ package flash_ctrl_top_specific_pkg;
   // One page for creator seeds
   // One page for owner seeds
   // One page for isolated flash page
-  parameter bit [BankW-1:0] SeedBank = 0;
-  parameter bit [InfoTypesWidth-1:0] SeedInfoSel = 0;
-  parameter bit [PageW-1:0] CreatorInfoPage = 1;
-  parameter bit [PageW-1:0] OwnerInfoPage = 2;
-  parameter bit [PageW-1:0] IsolatedInfoPage = 3;
+  localparam bit [BankW-1:0] SeedBank = 0;
+  localparam bit [InfoTypesWidth-1:0] SeedInfoSel = 0;
+  localparam bit [PageW-1:0] CreatorInfoPage = 1;
+  localparam bit [PageW-1:0] OwnerInfoPage = 2;
+  localparam bit [PageW-1:0] IsolatedInfoPage = 3;
 
-  parameter int TotalSeedWidth = SeedWidth * NumSeeds;
+  localparam int TotalSeedWidth = SeedWidth * NumSeeds;
   typedef logic [TotalSeedWidth-1:0] all_seeds_t;
 
   // which page of which info type of which bank for seed selection
-  parameter page_addr_t SeedInfoPageSel [NumSeeds] = '{
+  localparam page_addr_t SeedInfoPageSel [NumSeeds] = '{
     '{
       sel:  SeedInfoSel,
       addr: {SeedBank, CreatorInfoPage}
@@ -215,16 +215,16 @@ package flash_ctrl_top_specific_pkg;
   };
 
   // which page of which info type of which bank for isolated partition
-  parameter page_addr_t IsolatedPageSel = '{
+  localparam page_addr_t IsolatedPageSel = '{
     sel:  SeedInfoSel,
     addr: {SeedBank, IsolatedInfoPage}
   };
 
   // hardware interface memory protection rules
-  parameter int HwInfoRules = 5;
-  parameter int HwDataRules = 1;
+  localparam int HwInfoRules = 5;
+  localparam int HwDataRules = 1;
 
-  parameter info_page_cfg_t CfgAllowRead = '{
+  localparam info_page_cfg_t CfgAllowRead = '{
     en:          MuBi4True,
     rd_en:       MuBi4True,
     prog_en:     MuBi4False,
@@ -234,7 +234,7 @@ package flash_ctrl_top_specific_pkg;
     he_en:       MuBi4True
   };
 
-  parameter info_page_cfg_t CfgAllowReadProgErase = '{
+  localparam info_page_cfg_t CfgAllowReadProgErase = '{
     en:          MuBi4True,
     rd_en:       MuBi4True,
     prog_en:     MuBi4True,
@@ -244,7 +244,7 @@ package flash_ctrl_top_specific_pkg;
     he_en:       MuBi4True   // HW assumes high endurance
   };
 
-  parameter info_page_cfg_t CfgInfoDisable = '{
+  localparam info_page_cfg_t CfgInfoDisable = '{
     en:          MuBi4False,
     rd_en:       MuBi4False,
     prog_en:     MuBi4False,
@@ -254,7 +254,7 @@ package flash_ctrl_top_specific_pkg;
     he_en:       MuBi4False
   };
 
-  parameter info_page_attr_t HwInfoPageAttr[HwInfoRules] = '{
+  localparam info_page_attr_t HwInfoPageAttr[HwInfoRules] = '{
     '{
        page:  SeedInfoPageSel[CreatorSeedIdx],
        phase: PhaseSeed,
@@ -286,7 +286,7 @@ package flash_ctrl_top_specific_pkg;
      }
   };
 
-  parameter data_region_attr_t HwDataAttr[HwDataRules] = '{
+  localparam data_region_attr_t HwDataAttr[HwDataRules] = '{
     '{
        phase: PhaseRma,
        cfg:   '{
@@ -307,11 +307,11 @@ package flash_ctrl_top_specific_pkg;
   ////////////////////////////
   // Design time constants
   ////////////////////////////
-  parameter flash_key_t RndCnstAddrKeyDefault =
+  localparam flash_key_t RndCnstAddrKeyDefault =
     128'h5d707f8a2d01d400928fa691c6a6e0a4;
-  parameter flash_key_t RndCnstDataKeyDefault =
+  localparam flash_key_t RndCnstDataKeyDefault =
     128'h39953618f2ca6f674af39f64975ea1f5;
-  parameter all_seeds_t RndCnstAllSeedsDefault = {
+  localparam all_seeds_t RndCnstAllSeedsDefault = {
     256'h3528874c0d9e481ead4d240eb6238a2c6218896f5315edb5ccefe029a6d04091,
     256'h9cde77e25a313a76984ab0ebf990983432b03b48186dcd556565fe721b447477
   };
@@ -334,7 +334,7 @@ package flash_ctrl_top_specific_pkg;
     FlashProgNormal = 0,
     FlashProgRepair = 1
   } flash_prog_e;
-  parameter int ProgTypes = 2;
+  localparam int ProgTypes = 2;
 
   // Flash Erase Operations Supported
   typedef enum logic  {
@@ -391,7 +391,7 @@ package flash_ctrl_top_specific_pkg;
   } flash_req_t;
 
   // default value of flash_req_t (for dangling ports)
-  parameter flash_req_t FLASH_REQ_DEFAULT = '{
+  localparam flash_req_t FLASH_REQ_DEFAULT = '{
     req:           '0,
     scramble_en:   '0,
     ecc_en:        '0,
@@ -443,7 +443,7 @@ package flash_ctrl_top_specific_pkg;
   } flash_rsp_t;
 
   // default value of flash_rsp_t (for dangling ports)
-  parameter flash_rsp_t FLASH_RSP_DEFAULT = '{
+  localparam flash_rsp_t FLASH_RSP_DEFAULT = '{
     prog_type_avail:    {ProgTypes{1'b1}},
     rd_done:            1'b0,
     prog_done:          1'b0,
@@ -475,8 +475,8 @@ package flash_ctrl_top_specific_pkg;
   } rma_wipe_entry_t;
 
   // entries to be wiped
-  parameter int WipeEntries = 5;
-  parameter rma_wipe_entry_t RmaWipeEntries[WipeEntries] = '{
+  localparam int WipeEntries = 5;
+  localparam rma_wipe_entry_t RmaWipeEntries[WipeEntries] = '{
     '{
        bank: SeedBank,
        part: FlashPartInfo,

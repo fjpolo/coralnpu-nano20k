@@ -14,18 +14,18 @@ package otp_ctrl_macro_pkg;
   // OTP-macro specific
 
   // The bit-width of the macro words.
-  parameter int OtpWidth         = 16;
+  localparam int OtpWidth         = 16;
   // The total number of words.
-  parameter int OtpDepth         = 1024;
+  localparam int OtpDepth         = 1024;
   // The macro can transfer up to 4 native words per request, which is encoded
   // in 2 bits.
-  parameter int OtpSizeWidth     = 2;
-  parameter int OtpPwrSeqWidth   = 2;
+  localparam int OtpSizeWidth     = 2;
+  localparam int OtpPwrSeqWidth   = 2;
 
-  parameter int OtpAddrWidth     = 10;
-  parameter int OtpIfWidth       = 2**OtpSizeWidth*OtpWidth;
+  localparam int OtpAddrWidth     = 10;
+  localparam int OtpIfWidth       = 2**OtpSizeWidth*OtpWidth;
   // Number of Byte address bits to cut off in order to get the native OTP word address.
-  parameter int OtpAddrShift     = 1;
+  localparam int OtpAddrShift     = 1;
 
   typedef logic [OtpSizeWidth-1:0] otp_macro_size_t;
   typedef logic [OtpAddrWidth-1:0] otp_macro_addr_t;
@@ -34,7 +34,7 @@ package otp_ctrl_macro_pkg;
   // Command codes
 
   // The command is sparsely encoded to make it more difficult to tamper with.
-  parameter int OtpCmdWidth = 7;
+  localparam int OtpCmdWidth = 7;
 
   // Encoding generated with:
   // $ ./util/design/sparse-fsm-encode.py -d 4 -m 5 -n 7   //     -s 696743973 --language=sv
@@ -63,7 +63,7 @@ package otp_ctrl_macro_pkg;
     WriteRaw = 7'b1100010,
     Init     = 7'b0101100
   } cmd_e;
-  parameter int OtpErrWidth      = 3;
+  localparam int OtpErrWidth      = 3;
 
   // Error codes
   typedef enum logic [OtpErrWidth-1:0] {

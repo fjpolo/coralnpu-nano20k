@@ -10,12 +10,12 @@ package csrng_pkg;
   // Application Interfaces
   //-------------------------
 
-  parameter int unsigned GENBITS_BUS_WIDTH = 128;
-  parameter int unsigned CSRNG_CMD_WIDTH = 32;
-  parameter int unsigned FIPS_GENBITS_BUS_WIDTH = entropy_src_pkg::FIPS_BUS_WIDTH +
+  localparam int unsigned GENBITS_BUS_WIDTH = 128;
+  localparam int unsigned CSRNG_CMD_WIDTH = 32;
+  localparam int unsigned FIPS_GENBITS_BUS_WIDTH = entropy_src_pkg::FIPS_BUS_WIDTH +
                          GENBITS_BUS_WIDTH;
-  parameter int unsigned MainSmStateWidth = 8;
-  parameter int unsigned CSRNG_CMD_STS_WIDTH = 3;
+  localparam int unsigned MainSmStateWidth = 8;
+  localparam int unsigned CSRNG_CMD_STS_WIDTH = 3;
 
   // instantiation interface
   typedef struct packed {
@@ -42,8 +42,8 @@ package csrng_pkg;
     logic [GENBITS_BUS_WIDTH-1:0] genbits_bus;
   } csrng_rsp_t;
 
-  parameter csrng_req_t CSRNG_REQ_DEFAULT = '{default: '0};
-  parameter csrng_rsp_t CSRNG_RSP_DEFAULT = '0;
+  localparam csrng_req_t CSRNG_REQ_DEFAULT = '{default: '0};
+  localparam csrng_rsp_t CSRNG_RSP_DEFAULT = '0;
 
   typedef enum logic [2:0] {
     INV  = 3'h0,
@@ -105,7 +105,7 @@ package csrng_pkg;
     MainSmError         = 8'b01111000  // error state, results in fatal alert
   } main_sm_state_e;
 
-  parameter int CsKeymgrDivWidth = 384;
+  localparam int CsKeymgrDivWidth = 384;
   typedef logic [CsKeymgrDivWidth-1:0] cs_keymgr_div_t;
 
 endpackage : csrng_pkg

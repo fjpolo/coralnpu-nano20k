@@ -8,14 +8,14 @@
 package csrng_reg_pkg;
 
   // Param list
-  parameter int NumApps = 3;
-  parameter int NumAlerts = 2;
+  localparam int NumApps = 3;
+  localparam int NumAlerts = 2;
 
   // Address widths within the block
-  parameter int BlockAw = 7;
+  localparam int BlockAw = 7;
 
   // Number of registers for every interface
-  parameter int NumRegs = 24;
+  localparam int NumRegs = 24;
 
   ////////////////////////////
   // Typedefs for registers //
@@ -377,49 +377,49 @@ package csrng_reg_pkg;
   } csrng_hw2reg_t;
 
   // Register offsets
-  parameter logic [BlockAw-1:0] CSRNG_INTR_STATE_OFFSET = 7'h 0;
-  parameter logic [BlockAw-1:0] CSRNG_INTR_ENABLE_OFFSET = 7'h 4;
-  parameter logic [BlockAw-1:0] CSRNG_INTR_TEST_OFFSET = 7'h 8;
-  parameter logic [BlockAw-1:0] CSRNG_ALERT_TEST_OFFSET = 7'h c;
-  parameter logic [BlockAw-1:0] CSRNG_REGWEN_OFFSET = 7'h 10;
-  parameter logic [BlockAw-1:0] CSRNG_CTRL_OFFSET = 7'h 14;
-  parameter logic [BlockAw-1:0] CSRNG_CMD_REQ_OFFSET = 7'h 18;
-  parameter logic [BlockAw-1:0] CSRNG_RESEED_INTERVAL_OFFSET = 7'h 1c;
-  parameter logic [BlockAw-1:0] CSRNG_RESEED_COUNTER_0_OFFSET = 7'h 20;
-  parameter logic [BlockAw-1:0] CSRNG_RESEED_COUNTER_1_OFFSET = 7'h 24;
-  parameter logic [BlockAw-1:0] CSRNG_RESEED_COUNTER_2_OFFSET = 7'h 28;
-  parameter logic [BlockAw-1:0] CSRNG_SW_CMD_STS_OFFSET = 7'h 2c;
-  parameter logic [BlockAw-1:0] CSRNG_GENBITS_VLD_OFFSET = 7'h 30;
-  parameter logic [BlockAw-1:0] CSRNG_GENBITS_OFFSET = 7'h 34;
-  parameter logic [BlockAw-1:0] CSRNG_INT_STATE_READ_ENABLE_OFFSET = 7'h 38;
-  parameter logic [BlockAw-1:0] CSRNG_INT_STATE_READ_ENABLE_REGWEN_OFFSET = 7'h 3c;
-  parameter logic [BlockAw-1:0] CSRNG_INT_STATE_NUM_OFFSET = 7'h 40;
-  parameter logic [BlockAw-1:0] CSRNG_INT_STATE_VAL_OFFSET = 7'h 44;
-  parameter logic [BlockAw-1:0] CSRNG_FIPS_FORCE_OFFSET = 7'h 48;
-  parameter logic [BlockAw-1:0] CSRNG_HW_EXC_STS_OFFSET = 7'h 4c;
-  parameter logic [BlockAw-1:0] CSRNG_RECOV_ALERT_STS_OFFSET = 7'h 50;
-  parameter logic [BlockAw-1:0] CSRNG_ERR_CODE_OFFSET = 7'h 54;
-  parameter logic [BlockAw-1:0] CSRNG_ERR_CODE_TEST_OFFSET = 7'h 58;
-  parameter logic [BlockAw-1:0] CSRNG_MAIN_SM_STATE_OFFSET = 7'h 5c;
+  localparam logic [BlockAw-1:0] CSRNG_INTR_STATE_OFFSET = 7'h 0;
+  localparam logic [BlockAw-1:0] CSRNG_INTR_ENABLE_OFFSET = 7'h 4;
+  localparam logic [BlockAw-1:0] CSRNG_INTR_TEST_OFFSET = 7'h 8;
+  localparam logic [BlockAw-1:0] CSRNG_ALERT_TEST_OFFSET = 7'h c;
+  localparam logic [BlockAw-1:0] CSRNG_REGWEN_OFFSET = 7'h 10;
+  localparam logic [BlockAw-1:0] CSRNG_CTRL_OFFSET = 7'h 14;
+  localparam logic [BlockAw-1:0] CSRNG_CMD_REQ_OFFSET = 7'h 18;
+  localparam logic [BlockAw-1:0] CSRNG_RESEED_INTERVAL_OFFSET = 7'h 1c;
+  localparam logic [BlockAw-1:0] CSRNG_RESEED_COUNTER_0_OFFSET = 7'h 20;
+  localparam logic [BlockAw-1:0] CSRNG_RESEED_COUNTER_1_OFFSET = 7'h 24;
+  localparam logic [BlockAw-1:0] CSRNG_RESEED_COUNTER_2_OFFSET = 7'h 28;
+  localparam logic [BlockAw-1:0] CSRNG_SW_CMD_STS_OFFSET = 7'h 2c;
+  localparam logic [BlockAw-1:0] CSRNG_GENBITS_VLD_OFFSET = 7'h 30;
+  localparam logic [BlockAw-1:0] CSRNG_GENBITS_OFFSET = 7'h 34;
+  localparam logic [BlockAw-1:0] CSRNG_INT_STATE_READ_ENABLE_OFFSET = 7'h 38;
+  localparam logic [BlockAw-1:0] CSRNG_INT_STATE_READ_ENABLE_REGWEN_OFFSET = 7'h 3c;
+  localparam logic [BlockAw-1:0] CSRNG_INT_STATE_NUM_OFFSET = 7'h 40;
+  localparam logic [BlockAw-1:0] CSRNG_INT_STATE_VAL_OFFSET = 7'h 44;
+  localparam logic [BlockAw-1:0] CSRNG_FIPS_FORCE_OFFSET = 7'h 48;
+  localparam logic [BlockAw-1:0] CSRNG_HW_EXC_STS_OFFSET = 7'h 4c;
+  localparam logic [BlockAw-1:0] CSRNG_RECOV_ALERT_STS_OFFSET = 7'h 50;
+  localparam logic [BlockAw-1:0] CSRNG_ERR_CODE_OFFSET = 7'h 54;
+  localparam logic [BlockAw-1:0] CSRNG_ERR_CODE_TEST_OFFSET = 7'h 58;
+  localparam logic [BlockAw-1:0] CSRNG_MAIN_SM_STATE_OFFSET = 7'h 5c;
 
   // Reset values for hwext registers and their fields
-  parameter logic [3:0] CSRNG_INTR_TEST_RESVAL = 4'h 0;
-  parameter logic [0:0] CSRNG_INTR_TEST_CS_CMD_REQ_DONE_RESVAL = 1'h 0;
-  parameter logic [0:0] CSRNG_INTR_TEST_CS_ENTROPY_REQ_RESVAL = 1'h 0;
-  parameter logic [0:0] CSRNG_INTR_TEST_CS_HW_INST_EXC_RESVAL = 1'h 0;
-  parameter logic [0:0] CSRNG_INTR_TEST_CS_FATAL_ERR_RESVAL = 1'h 0;
-  parameter logic [1:0] CSRNG_ALERT_TEST_RESVAL = 2'h 0;
-  parameter logic [0:0] CSRNG_ALERT_TEST_RECOV_ALERT_RESVAL = 1'h 0;
-  parameter logic [0:0] CSRNG_ALERT_TEST_FATAL_ALERT_RESVAL = 1'h 0;
-  parameter logic [31:0] CSRNG_RESEED_COUNTER_0_RESVAL = 32'h 0;
-  parameter logic [31:0] CSRNG_RESEED_COUNTER_0_RESEED_COUNTER_0_RESVAL = 32'h 0;
-  parameter logic [31:0] CSRNG_RESEED_COUNTER_1_RESVAL = 32'h 0;
-  parameter logic [31:0] CSRNG_RESEED_COUNTER_1_RESEED_COUNTER_1_RESVAL = 32'h 0;
-  parameter logic [31:0] CSRNG_RESEED_COUNTER_2_RESVAL = 32'h 0;
-  parameter logic [31:0] CSRNG_RESEED_COUNTER_2_RESEED_COUNTER_2_RESVAL = 32'h 0;
-  parameter logic [1:0] CSRNG_GENBITS_VLD_RESVAL = 2'h 0;
-  parameter logic [31:0] CSRNG_GENBITS_RESVAL = 32'h 0;
-  parameter logic [31:0] CSRNG_INT_STATE_VAL_RESVAL = 32'h 0;
+  localparam logic [3:0] CSRNG_INTR_TEST_RESVAL = 4'h 0;
+  localparam logic [0:0] CSRNG_INTR_TEST_CS_CMD_REQ_DONE_RESVAL = 1'h 0;
+  localparam logic [0:0] CSRNG_INTR_TEST_CS_ENTROPY_REQ_RESVAL = 1'h 0;
+  localparam logic [0:0] CSRNG_INTR_TEST_CS_HW_INST_EXC_RESVAL = 1'h 0;
+  localparam logic [0:0] CSRNG_INTR_TEST_CS_FATAL_ERR_RESVAL = 1'h 0;
+  localparam logic [1:0] CSRNG_ALERT_TEST_RESVAL = 2'h 0;
+  localparam logic [0:0] CSRNG_ALERT_TEST_RECOV_ALERT_RESVAL = 1'h 0;
+  localparam logic [0:0] CSRNG_ALERT_TEST_FATAL_ALERT_RESVAL = 1'h 0;
+  localparam logic [31:0] CSRNG_RESEED_COUNTER_0_RESVAL = 32'h 0;
+  localparam logic [31:0] CSRNG_RESEED_COUNTER_0_RESEED_COUNTER_0_RESVAL = 32'h 0;
+  localparam logic [31:0] CSRNG_RESEED_COUNTER_1_RESVAL = 32'h 0;
+  localparam logic [31:0] CSRNG_RESEED_COUNTER_1_RESEED_COUNTER_1_RESVAL = 32'h 0;
+  localparam logic [31:0] CSRNG_RESEED_COUNTER_2_RESVAL = 32'h 0;
+  localparam logic [31:0] CSRNG_RESEED_COUNTER_2_RESEED_COUNTER_2_RESVAL = 32'h 0;
+  localparam logic [1:0] CSRNG_GENBITS_VLD_RESVAL = 2'h 0;
+  localparam logic [31:0] CSRNG_GENBITS_RESVAL = 32'h 0;
+  localparam logic [31:0] CSRNG_INT_STATE_VAL_RESVAL = 32'h 0;
 
   // Register index
   typedef enum int {
@@ -450,7 +450,7 @@ package csrng_reg_pkg;
   } csrng_id_e;
 
   // Register width information to check illegal writes
-  parameter logic [3:0] CSRNG_PERMIT [24] = '{
+  localparam logic [3:0] CSRNG_PERMIT [24] = '{
     4'b 0001, // index[ 0] CSRNG_INTR_STATE
     4'b 0001, // index[ 1] CSRNG_INTR_ENABLE
     4'b 0001, // index[ 2] CSRNG_INTR_TEST

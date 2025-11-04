@@ -21,17 +21,17 @@ package otp_ctrl_top_specific_pkg;
   ////////////////////////
 
   // Width of entropy input
-  parameter int EdnDataWidth = 64;
+  localparam int EdnDataWidth = 64;
 
-  parameter int NumPartWidth = vbits(NumPart);
+  localparam int NumPartWidth = vbits(NumPart);
 
-  parameter int SwWindowAddrWidth = vbits(NumSwCfgWindowWords);
+  localparam int SwWindowAddrWidth = vbits(NumSwCfgWindowWords);
 
   // Background check timer LFSR width.
-  parameter int LfsrWidth = 40;
+  localparam int LfsrWidth = 40;
   // The LFSR will be reseeded once LfsrUsageThreshold
   // values have been drawn from it.
-  parameter int LfsrUsageThreshold = 16;
+  localparam int LfsrUsageThreshold = 16;
 
   // Redundantly encoded and complementary values are used to for signalling to the partition
   // controller FSMs and the DAI whether a partition is locked or not. Any other value than
@@ -41,7 +41,7 @@ package otp_ctrl_top_specific_pkg;
     prim_mubi_pkg::mubi8_t write_lock;
   } part_access_t;
 
-  parameter int DaiCmdWidth = 3;
+  localparam int DaiCmdWidth = 3;
   typedef enum logic [DaiCmdWidth-1:0] {
     DaiRead   = 3'b001,
     DaiWrite  = 3'b010,
@@ -64,8 +64,8 @@ package otp_ctrl_top_specific_pkg;
   // Typedefs for OTP Scrambling //
   /////////////////////////////////
 
-  parameter int NumPresentRounds = 31;
-  parameter int ScrmblBlockHalfWords = ScrmblBlockWidth / OtpWidth;
+  localparam int NumPresentRounds = 31;
+  localparam int ScrmblBlockHalfWords = ScrmblBlockWidth / OtpWidth;
 
   typedef enum logic [2:0] {
     Decrypt,

@@ -7,22 +7,22 @@
 package rstmgr_pkg;
 
   // Power domain parameters
-  parameter int PowerDomains = 2;
-  parameter int DomainAonSel = 0;
-  parameter int Domain0Sel = 1;
+  localparam int PowerDomains = 2;
+  localparam int DomainAonSel = 0;
+  localparam int Domain0Sel = 1;
 
   // Number of non-always-on domains
-  parameter int OffDomains = PowerDomains-1;
+  localparam int OffDomains = PowerDomains-1;
 
   // positions of software controllable reset bits
-  parameter int SPI_DEVICE = 0;
-  parameter int SPI_HOST0 = 1;
-  parameter int SPI_HOST1 = 2;
-  parameter int USB = 3;
-  parameter int USB_AON = 4;
-  parameter int I2C0 = 5;
-  parameter int I2C1 = 6;
-  parameter int I2C2 = 7;
+  localparam int SPI_DEVICE = 0;
+  localparam int SPI_HOST0 = 1;
+  localparam int SPI_HOST1 = 2;
+  localparam int USB = 3;
+  localparam int USB_AON = 4;
+  localparam int I2C0 = 5;
+  localparam int I2C1 = 6;
+  localparam int I2C2 = 7;
 
   // resets generated and broadcast
   // SEC_CM: LEAF.RST.SHADOW
@@ -81,7 +81,7 @@ package rstmgr_pkg;
     prim_mubi_pkg::mubi4_t [PowerDomains-1:0] i2c2;
   } rstmgr_rst_en_t;
 
-  parameter int NumOutputRst = 24 * PowerDomains;
+  localparam int NumOutputRst = 24 * PowerDomains;
 
   // cpu reset requests and status
   typedef struct packed {
@@ -91,7 +91,7 @@ package rstmgr_pkg;
   // exported resets
 
   // default value for rstmgr_ast_rsp_t (for dangling ports)
-  parameter rstmgr_cpu_t RSTMGR_CPU_DEFAULT = '{
+  localparam rstmgr_cpu_t RSTMGR_CPU_DEFAULT = '{
     ndmreset_req: '0
   };
 

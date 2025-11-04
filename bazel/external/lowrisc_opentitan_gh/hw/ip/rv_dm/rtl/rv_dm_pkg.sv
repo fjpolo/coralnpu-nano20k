@@ -8,6 +8,6 @@ package rv_dm_pkg;
 
   typedef logic [31:0] next_dm_addr_t;
 
-  parameter next_dm_addr_t NEXT_DM_ADDR_DEFAULT = '0;
+  localparam next_dm_addr_t NEXT_DM_ADDR_DEFAULT = '0;
 
 endpackage : rv_dm_pkg

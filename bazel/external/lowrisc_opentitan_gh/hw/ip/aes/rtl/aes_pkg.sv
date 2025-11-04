@@ -9,43 +9,43 @@ package aes_pkg;
 
 // If this parameter is set, fatal alerts clear all status and trigger bits to zero. By
 // default, it's not set, i.e., no clearing is happening, in order to simplify debugging.
-parameter bit ClearStatusOnFatalAlert = 1'b0;
+localparam bit ClearStatusOnFatalAlert = 1'b0;
 
 // The initial key is always provided in two shares, independently whether the cipher core is
 // masked or not.
-parameter int unsigned NumSharesKey = 2;
+localparam int unsigned NumSharesKey = 2;
 
 // Software updates IV in chunks of 32 bits, the counter updates 16 bits at a time.
-parameter int unsigned SliceSizeCtr = 16;
-parameter int unsigned NumSlicesCtr = aes_reg_pkg::NumRegsIv * 32 / SliceSizeCtr;
-parameter int unsigned SliceIdxWidth = prim_util_pkg::vbits(NumSlicesCtr);
+localparam int unsigned SliceSizeCtr = 16;
+localparam int unsigned NumSlicesCtr = aes_reg_pkg::NumRegsIv * 32 / SliceSizeCtr;
+localparam int unsigned SliceIdxWidth = prim_util_pkg::vbits(NumSlicesCtr);
 
 // Widths of signals carrying pseudo-random data for clearing
-parameter int unsigned WidthPRDClearing = 64;
-parameter int unsigned NumChunksPRDClearing128 = 128/WidthPRDClearing;
-parameter int unsigned NumChunksPRDClearing256 = 256/WidthPRDClearing;
+localparam int unsigned WidthPRDClearing = 64;
+localparam int unsigned NumChunksPRDClearing128 = 128/WidthPRDClearing;
+localparam int unsigned NumChunksPRDClearing256 = 256/WidthPRDClearing;
 
 // Widths of signals carrying pseudo-random data for masking
-parameter int unsigned WidthPRDSBox     = 8;  // Number PRD bits per S-Box. This includes the
+localparam int unsigned WidthPRDSBox     = 8;  // Number PRD bits per S-Box. This includes the
                                               // 8 bits for the output mask when using any of the
                                               // masked Canright S-Box implementations.
-parameter int unsigned WidthPRDData     = 16*WidthPRDSBox; // 16 S-Boxes for the data path
-parameter int unsigned WidthPRDKey      = 4*WidthPRDSBox;  // 4 S-Boxes for the key expand
-parameter int unsigned WidthPRDMasking  = WidthPRDData + WidthPRDKey;
+localparam int unsigned WidthPRDData     = 16*WidthPRDSBox; // 16 S-Boxes for the data path
+localparam int unsigned WidthPRDKey      = 4*WidthPRDSBox;  // 4 S-Boxes for the key expand
+localparam int unsigned WidthPRDMasking  = WidthPRDData + WidthPRDKey;
 
 // Clearing PRNG default LFSR seed and permutation
-// These LFSR parameters have been generated with
+// These LFSR localparams have been generated with
 // $ util/design/gen-lfsr-seed.py --width 64 --seed 31468618 --prefix "Clearing"
-parameter int ClearingLfsrWidth = 64;
+localparam int ClearingLfsrWidth = 64;
 typedef logic [ClearingLfsrWidth-1:0] clearing_lfsr_seed_t;
 typedef logic [ClearingLfsrWidth-1:0][$clog2(ClearingLfsrWidth)-1:0] clearing_lfsr_perm_t;
-parameter clearing_lfsr_seed_t RndCnstClearingLfsrSeedDefault = 64'hc32d580f74f1713a;
-parameter clearing_lfsr_perm_t RndCnstClearingLfsrPermDefault = {
+localparam clearing_lfsr_seed_t RndCnstClearingLfsrSeedDefault = 64'hc32d580f74f1713a;
+localparam clearing_lfsr_perm_t RndCnstClearingLfsrPermDefault = {
   128'hb33fdfc81deb6292c21f8a3102585067,
   256'h9c2f4be1bbe937b4b7c9d7f4e57568d99c8ae291a899143e0d8459d31b143223
 };
 // A second permutation is needed for the second share.
-parameter clearing_lfsr_perm_t RndCnstClearingSharePermDefault = {
+localparam clearing_lfsr_perm_t RndCnstClearingSharePermDefault = {
   128'hf66fd61b27847edc2286706fb3a2e900,
   256'h9736b95ac3f3b5205caf8dc536aad73605d393c8dd94476e830e97891d4828d0
 };
@@ -54,9 +54,9 @@ parameter clearing_lfsr_perm_t RndCnstClearingSharePermDefault = {
 // The output width is 160 bits (WidthPRDMasking = WidthPRDSBox * (16 + 4)).
 // These LFSR parameters have been generated with
 // $ util/design/gen-lfsr-seed.py --width 160 --seed 31468618 --prefix "Masking"
-parameter int MaskingLfsrWidth = 160; // = WidthPRDMasking = WidthPRDSBox * (16 + 4)
+localparam int MaskingLfsrWidth = 160; // = WidthPRDMasking = WidthPRDSBox * (16 + 4)
 typedef logic [MaskingLfsrWidth-1:0][$clog2(MaskingLfsrWidth)-1:0] masking_lfsr_perm_t;
-parameter masking_lfsr_perm_t RndCnstMaskingLfsrPermDefault = {
+localparam masking_lfsr_perm_t RndCnstMaskingLfsrPermDefault = {
   256'h17261943423e4c5c03872194050c7e5f8497081d96666d406f4b606473303469,
   256'h8e7c721c8832471f59919e0b128f067b25622768462e554d8970815d490d7f44,
   256'h048c867d907a239b20220f6c79071a852d76485452189f14091b1e744e396737,
@@ -66,9 +66,9 @@ parameter masking_lfsr_perm_t RndCnstMaskingLfsrPermDefault = {
 // The state width is 177 bits (Bivium) but the primitive expects a 288-bit seed (Trivium).
 // These LFSR parameters have been generated with
 // $ util/design/gen-lfsr-seed.py --width 288 --seed 31468618 --prefix "Masking"
-parameter int MaskingPrngStateWidth = 288;
+localparam int MaskingPrngStateWidth = 288;
 typedef logic [MaskingPrngStateWidth-1:0] masking_lfsr_seed_t;
-parameter masking_lfsr_seed_t RndCnstMaskingLfsrSeedDefault = {
+localparam masking_lfsr_seed_t RndCnstMaskingLfsrSeedDefault = {
   32'h758a4420,
   256'h31e1c461_6ea343ec_153282a3_0c132b57_23c5a4cf_4743b3c7_c32d580f_74f1713a
 };
@@ -86,10 +86,10 @@ typedef enum integer {
 
 
 // Parameters used for controlgroups in the coverage
-parameter int AES_OP_WIDTH             = 2;
-parameter int AES_MODE_WIDTH           = 6;
-parameter int AES_KEYLEN_WIDTH         = 3;
-parameter int AES_PRNGRESEEDRATE_WIDTH = 3;
+localparam int AES_OP_WIDTH             = 2;
+localparam int AES_MODE_WIDTH           = 6;
+localparam int AES_KEYLEN_WIDTH         = 3;
+localparam int AES_PRNGRESEEDRATE_WIDTH = 3;
 
 // SEC_CM: MAIN.CONFIG.SPARSE
 typedef enum logic [AES_OP_WIDTH-1:0] {
@@ -125,7 +125,7 @@ typedef enum logic [AES_PRNGRESEEDRATE_WIDTH-1:0] {
   PER_64 = 3'b010,
   PER_8K = 3'b100
 } prs_rate_e;
-parameter int unsigned BlockCtrWidth = 13;
+localparam int unsigned BlockCtrWidth = 13;
 
 typedef struct packed {
   logic [31:7] unused;
@@ -247,7 +247,7 @@ typedef struct packed {
 // Minimum Hamming weight: 1
 // Maximum Hamming weight: 2
 //
-parameter int Mux2SelWidth = 3;
+localparam int Mux2SelWidth = 3;
 typedef enum logic [Mux2SelWidth-1:0] {
   MUX2_SEL_0 = 3'b011,
   MUX2_SEL_1 = 3'b100
@@ -269,7 +269,7 @@ typedef enum logic [Mux2SelWidth-1:0] {
 // Minimum Hamming distance: 3
 // Maximum Hamming distance: 4
 //
-parameter int Mux3SelWidth = 5;
+localparam int Mux3SelWidth = 5;
 typedef enum logic [Mux3SelWidth-1:0] {
   MUX3_SEL_0 = 5'b01110,
   MUX3_SEL_1 = 5'b11000,
@@ -292,7 +292,7 @@ typedef enum logic [Mux3SelWidth-1:0] {
 // Minimum Hamming distance: 3
 // Maximum Hamming distance: 4
 //
-parameter int Mux4SelWidth = 5;
+localparam int Mux4SelWidth = 5;
 typedef enum logic [Mux4SelWidth-1:0] {
   MUX4_SEL_0 = 5'b01110,
   MUX4_SEL_1 = 5'b11000,
@@ -316,7 +316,7 @@ typedef enum logic [Mux4SelWidth-1:0] {
 // Minimum Hamming distance: 3
 // Maximum Hamming distance: 5
 //
-parameter int Mux6SelWidth = 6;
+localparam int Mux6SelWidth = 6;
 typedef enum logic [Mux6SelWidth-1:0] {
   MUX6_SEL_0 = 6'b011101,
   MUX6_SEL_1 = 6'b110000,
@@ -328,53 +328,53 @@ typedef enum logic [Mux6SelWidth-1:0] {
 
 // Mux selector signal types. These use the generic types defined above.
 
-parameter int DIPSelNum = 2;
-parameter int DIPSelWidth = Mux2SelWidth;
+localparam int DIPSelNum = 2;
+localparam int DIPSelWidth = Mux2SelWidth;
 typedef enum logic [DIPSelWidth-1:0] {
   DIP_DATA_IN = MUX2_SEL_0,
   DIP_CLEAR   = MUX2_SEL_1
 } dip_sel_e;
 
-parameter int SISelNum = 2;
-parameter int SISelWidth = Mux2SelWidth;
+localparam int SISelNum = 2;
+localparam int SISelWidth = Mux2SelWidth;
 typedef enum logic [SISelWidth-1:0] {
   SI_ZERO = MUX2_SEL_0,
   SI_DATA = MUX2_SEL_1
 } si_sel_e;
 
-parameter int AddSISelNum = 2;
-parameter int AddSISelWidth = Mux2SelWidth;
+localparam int AddSISelNum = 2;
+localparam int AddSISelWidth = Mux2SelWidth;
 typedef enum logic [AddSISelWidth-1:0] {
   ADD_SI_ZERO = MUX2_SEL_0,
   ADD_SI_IV   = MUX2_SEL_1
 } add_si_sel_e;
 
-parameter int StateSelNum = 3;
-parameter int StateSelWidth = Mux3SelWidth;
+localparam int StateSelNum = 3;
+localparam int StateSelWidth = Mux3SelWidth;
 typedef enum logic [StateSelWidth-1:0] {
   STATE_INIT  = MUX3_SEL_0,
   STATE_ROUND = MUX3_SEL_1,
   STATE_CLEAR = MUX3_SEL_2
 } state_sel_e;
 
-parameter int AddRKSelNum = 3;
-parameter int AddRKSelWidth = Mux3SelWidth;
+localparam int AddRKSelNum = 3;
+localparam int AddRKSelWidth = Mux3SelWidth;
 typedef enum logic [AddRKSelWidth-1:0] {
   ADD_RK_INIT  = MUX3_SEL_0,
   ADD_RK_ROUND = MUX3_SEL_1,
   ADD_RK_FINAL = MUX3_SEL_2
 } add_rk_sel_e;
 
-parameter int KeyInitSelNum = 3;
-parameter int KeyInitSelWidth = Mux3SelWidth;
+localparam int KeyInitSelNum = 3;
+localparam int KeyInitSelWidth = Mux3SelWidth;
 typedef enum logic [KeyInitSelWidth-1:0] {
   KEY_INIT_INPUT  = MUX3_SEL_0,
   KEY_INIT_KEYMGR = MUX3_SEL_1,
   KEY_INIT_CLEAR  = MUX3_SEL_2
 } key_init_sel_e;
 
-parameter int IVSelNum = 6;
-parameter int IVSelWidth = Mux6SelWidth;
+localparam int IVSelNum = 6;
+localparam int IVSelWidth = Mux6SelWidth;
 typedef enum logic [IVSelWidth-1:0] {
   IV_INPUT        = MUX6_SEL_0,
   IV_DATA_OUT     = MUX6_SEL_1,
@@ -384,8 +384,8 @@ typedef enum logic [IVSelWidth-1:0] {
   IV_CLEAR        = MUX6_SEL_5
 } iv_sel_e;
 
-parameter int KeyFullSelNum = 4;
-parameter int KeyFullSelWidth = Mux4SelWidth;
+localparam int KeyFullSelNum = 4;
+localparam int KeyFullSelWidth = Mux4SelWidth;
 typedef enum logic [KeyFullSelWidth-1:0] {
   KEY_FULL_ENC_INIT = MUX4_SEL_0,
   KEY_FULL_DEC_INIT = MUX4_SEL_1,
@@ -393,15 +393,15 @@ typedef enum logic [KeyFullSelWidth-1:0] {
   KEY_FULL_CLEAR    = MUX4_SEL_3
 } key_full_sel_e;
 
-parameter int KeyDecSelNum = 2;
-parameter int KeyDecSelWidth = Mux2SelWidth;
+localparam int KeyDecSelNum = 2;
+localparam int KeyDecSelWidth = Mux2SelWidth;
 typedef enum logic [KeyDecSelWidth-1:0] {
   KEY_DEC_EXPAND = MUX2_SEL_0,
   KEY_DEC_CLEAR  = MUX2_SEL_1
 } key_dec_sel_e;
 
-parameter int KeyWordsSelNum = 4;
-parameter int KeyWordsSelWidth = Mux4SelWidth;
+localparam int KeyWordsSelNum = 4;
+localparam int KeyWordsSelWidth = Mux4SelWidth;
 typedef enum logic [KeyWordsSelWidth-1:0] {
   KEY_WORDS_0123 = MUX4_SEL_0,
   KEY_WORDS_2345 = MUX4_SEL_1,
@@ -409,15 +409,15 @@ typedef enum logic [KeyWordsSelWidth-1:0] {
   KEY_WORDS_ZERO = MUX4_SEL_3
 } key_words_sel_e;
 
-parameter int RoundKeySelNum = 2;
-parameter int RoundKeySelWidth = Mux2SelWidth;
+localparam int RoundKeySelNum = 2;
+localparam int RoundKeySelWidth = Mux2SelWidth;
 typedef enum logic [RoundKeySelWidth-1:0] {
   ROUND_KEY_DIRECT = MUX2_SEL_0,
   ROUND_KEY_MIXED  = MUX2_SEL_1
 } round_key_sel_e;
 
-parameter int AddSOSelNum = 3;
-parameter int AddSOSelWidth = Mux3SelWidth;
+localparam int AddSOSelNum = 3;
+localparam int AddSOSelWidth = Mux3SelWidth;
 typedef enum logic [AddSOSelWidth-1:0] {
   ADD_SO_ZERO = MUX3_SEL_0,
   ADD_SO_IV   = MUX3_SEL_1,
@@ -425,15 +425,15 @@ typedef enum logic [AddSOSelWidth-1:0] {
 } add_so_sel_e;
 
 // Sparse two-value signal type sp2v_e
-parameter int Sp2VNum = 2;
-parameter int Sp2VWidth = Mux2SelWidth;
+localparam int Sp2VNum = 2;
+localparam int Sp2VWidth = Mux2SelWidth;
 typedef enum logic [Sp2VWidth-1:0] {
   SP2V_HIGH = MUX2_SEL_0,
   SP2V_LOW  = MUX2_SEL_1
 } sp2v_e;
 
 typedef logic [Sp2VWidth-1:0] sp2v_logic_t;
-parameter sp2v_logic_t SP2V_LOGIC_HIGH = {SP2V_HIGH};
+localparam sp2v_logic_t SP2V_LOGIC_HIGH = {SP2V_HIGH};
 
 // Control register type
 typedef struct packed {
@@ -445,7 +445,7 @@ typedef struct packed {
   aes_op_e   operation;
 } ctrl_reg_t;
 
-parameter ctrl_reg_t CTRL_RESET = '{
+localparam ctrl_reg_t CTRL_RESET = '{
   manual_operation: aes_reg_pkg::AES_CTRL_SHADOWED_MANUAL_OPERATION_RESVAL,
   prng_reseed_rate: prs_rate_e'(aes_reg_pkg::AES_CTRL_SHADOWED_PRNG_RESEED_RATE_RESVAL),
   sideload:         aes_reg_pkg::AES_CTRL_SHADOWED_SIDELOAD_RESVAL,

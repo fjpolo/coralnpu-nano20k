@@ -9,49 +9,49 @@
 package flash_phy_pkg;
 
   // flash phy parameters
-  parameter int unsigned NumBanks       = flash_ctrl_top_specific_pkg::NumBanks;
-  parameter int unsigned InfosPerBank   = flash_ctrl_top_specific_pkg::InfosPerBank;
-  parameter int unsigned PagesPerBank   = flash_ctrl_top_specific_pkg::PagesPerBank;
-  parameter int unsigned WordsPerPage   = flash_ctrl_top_specific_pkg::WordsPerPage;
-  parameter int unsigned BankW          = flash_ctrl_top_specific_pkg::BankW;
-  parameter int unsigned PageW          = flash_ctrl_top_specific_pkg::PageW;
-  parameter int unsigned WordW          = flash_ctrl_top_specific_pkg::WordW;
-  parameter int unsigned BankAddrW      = flash_ctrl_top_specific_pkg::BankAddrW;
-  parameter int unsigned DataWidth      = flash_ctrl_top_specific_pkg::DataWidth;
-  parameter int unsigned EccWidth       = 8;
-  parameter int unsigned MetaDataWidth  = flash_ctrl_top_specific_pkg::MetaDataWidth;
-  parameter int unsigned WidthMultiple  = flash_ctrl_top_specific_pkg::WidthMultiple;
-  parameter int unsigned NumBuf         = 4; // number of flash read buffers
-  parameter int unsigned RspOrderDepth  = 2; // this should be DataWidth / BusWidth
+  localparam int unsigned NumBanks       = flash_ctrl_top_specific_pkg::NumBanks;
+  localparam int unsigned InfosPerBank   = flash_ctrl_top_specific_pkg::InfosPerBank;
+  localparam int unsigned PagesPerBank   = flash_ctrl_top_specific_pkg::PagesPerBank;
+  localparam int unsigned WordsPerPage   = flash_ctrl_top_specific_pkg::WordsPerPage;
+  localparam int unsigned BankW          = flash_ctrl_top_specific_pkg::BankW;
+  localparam int unsigned PageW          = flash_ctrl_top_specific_pkg::PageW;
+  localparam int unsigned WordW          = flash_ctrl_top_specific_pkg::WordW;
+  localparam int unsigned BankAddrW      = flash_ctrl_top_specific_pkg::BankAddrW;
+  localparam int unsigned DataWidth      = flash_ctrl_top_specific_pkg::DataWidth;
+  localparam int unsigned EccWidth       = 8;
+  localparam int unsigned MetaDataWidth  = flash_ctrl_top_specific_pkg::MetaDataWidth;
+  localparam int unsigned WidthMultiple  = flash_ctrl_top_specific_pkg::WidthMultiple;
+  localparam int unsigned NumBuf         = 4; // number of flash read buffers
+  localparam int unsigned RspOrderDepth  = 2; // this should be DataWidth / BusWidth
                                              // will switch to this after bus widening
-  parameter int unsigned PlainIntgWidth = MetaDataWidth - EccWidth;
-  parameter int unsigned PlainDataWidth = DataWidth + PlainIntgWidth;
-  //parameter int unsigned ScrDataWidth   = DataWidth + EccWidth;
-  parameter int unsigned FullDataWidth  = DataWidth + MetaDataWidth;
-  parameter int unsigned InfoTypes      = flash_ctrl_top_specific_pkg::InfoTypes;
-  parameter int unsigned InfoTypesWidth = flash_ctrl_top_specific_pkg::InfoTypesWidth;
+  localparam int unsigned PlainIntgWidth = MetaDataWidth - EccWidth;
+  localparam int unsigned PlainDataWidth = DataWidth + PlainIntgWidth;
+  //localparam int unsigned ScrDataWidth   = DataWidth + EccWidth;
+  localparam int unsigned FullDataWidth  = DataWidth + MetaDataWidth;
+  localparam int unsigned InfoTypes      = flash_ctrl_top_specific_pkg::InfoTypes;
+  localparam int unsigned InfoTypesWidth = flash_ctrl_top_specific_pkg::InfoTypesWidth;
 
   // flash ctrl / bus parameters
-  parameter int unsigned BusWidth       = flash_ctrl_top_specific_pkg::BusWidth;
-  parameter int unsigned BusFullWidth   = flash_ctrl_top_specific_pkg::BusFullWidth;
-  parameter int unsigned BusBankAddrW   = flash_ctrl_top_specific_pkg::BusBankAddrW;
-  parameter int unsigned BusWordW       = flash_ctrl_top_specific_pkg::BusWordW;
-  parameter int unsigned ProgTypes      = flash_ctrl_top_specific_pkg::ProgTypes;
+  localparam int unsigned BusWidth       = flash_ctrl_top_specific_pkg::BusWidth;
+  localparam int unsigned BusFullWidth   = flash_ctrl_top_specific_pkg::BusFullWidth;
+  localparam int unsigned BusBankAddrW   = flash_ctrl_top_specific_pkg::BusBankAddrW;
+  localparam int unsigned BusWordW       = flash_ctrl_top_specific_pkg::BusWordW;
+  localparam int unsigned ProgTypes      = flash_ctrl_top_specific_pkg::ProgTypes;
 
   // address bits remain must be 0
-  parameter int unsigned AddrBitsRemain = DataWidth % BusWidth;
+  localparam int unsigned AddrBitsRemain = DataWidth % BusWidth;
 
   // base index
   // This is the lsb position of the prim flash address when looking at the bus address
-  parameter int unsigned LsbAddrBit    = $clog2(WidthMultiple);
-  parameter int unsigned WordSelW      = WidthMultiple == 1 ? 1 : LsbAddrBit;
+  localparam int unsigned LsbAddrBit    = $clog2(WidthMultiple);
+  localparam int unsigned WordSelW      = WidthMultiple == 1 ? 1 : LsbAddrBit;
 
   // scramble / de-scramble parameters
   // Number of cycles the gf_mult is given to complete
-  parameter int unsigned KeySize       = 128;
-  parameter int unsigned GfMultCycles  = 2;
+  localparam int unsigned KeySize       = 128;
+  localparam int unsigned GfMultCycles  = 2;
   // If this value is greater than 1, constraints must be updated for multicycle paths
-  parameter int unsigned CipherCycles  = 2;
+  localparam int unsigned CipherCycles  = 2;
 
   // GF(2) irreducible polynomial for flash XEX scrambling scheme.
   // We use the NIST 800-38B recommendation for block cipher modes of operation.
@@ -59,7 +59,7 @@ package flash_phy_pkg;
   // https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-38B.pdf
   // Specifically, we use the polynomial: x^64 + x^4 + x^3 + x + 1. Note, the
   // MSB get clipped off below.
-  parameter bit[DataWidth-1:0] ScrambleIPoly = DataWidth'(1'b1) << 4 |
+  localparam bit[DataWidth-1:0] ScrambleIPoly = DataWidth'(1'b1) << 4 |
                                                DataWidth'(1'b1) << 3 |
                                                DataWidth'(1'b1) << 1 |
                                                DataWidth'(1'b1) << 0;
@@ -87,7 +87,7 @@ package flash_phy_pkg;
     logic intg_ecc_en;
   } rsp_fifo_entry_t;
 
-  parameter int RspOrderFifoWidth = $bits(rsp_fifo_entry_t);
+  localparam int RspOrderFifoWidth = $bits(rsp_fifo_entry_t);
 
   typedef struct packed {
     logic [BankAddrW-1:0] addr;

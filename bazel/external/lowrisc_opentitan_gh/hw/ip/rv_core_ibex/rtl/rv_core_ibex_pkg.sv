@@ -28,7 +28,7 @@ package rv_core_ibex_pkg;
   } cpu_pwrmgr_t;
 
   // default value (for dangling ports)
-  parameter cpu_pwrmgr_t CPU_PWRMGR_DEFAULT = '{
+  localparam cpu_pwrmgr_t CPU_PWRMGR_DEFAULT = '{
     core_sleeping: 1'b0
   };
 

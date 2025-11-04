@@ -36,6 +36,13 @@ table.detail_table td.label { min-width: 100px; width: 8%;}
 <li><a href="#utilization" style=" font-size: 14px;">Resource Utilization Summary</a></li>
 </ul>
 </li>
+<li><a href="#timing" style=" font-size: 16px;">Timing</a>
+<ul>
+<li><a href="#clock" style=" font-size: 14px;">Clock Summary</a></li>
+<li><a href="#performance" style=" font-size: 14px;">Max Frequency Summary</a></li>
+<li><a href="#detail timing" style=" font-size: 14px;">Detail Timing Paths Informations</a></li>
+</ul>
+</li>
 </ul>
 </div><!-- catalog -->
 </div><!-- catalog_wrapper -->
@@ -573,7 +580,7 @@ C:\Workspace\FPGA\coralnpu-nano20k\fpga\ip\sram\Sram.sv<br>
 C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\coralnpu_soc.sv<br>
 C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\top_pkg.sv<br>
 C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\top_racl_pkg.sv<br>
-C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\chip_console60k_frontend.sv<br>
+C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\chip_console60k_sram.sv<br>
 </td>
 </tr>
 <tr>
@@ -598,7 +605,7 @@ C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\chip_console60k_frontend.sv<br>
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Mon Nov  3 18:36:40 2025
+<td>Tue Nov  4 13:27:27 2025
 </td>
 </tr>
 <tr>
@@ -610,15 +617,15 @@ C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\chip_console60k_frontend.sv<br>
 <table class="summary_table">
 <tr>
 <td class="label">Top Level Module</td>
-<td>chip_console60k_frontend</td>
+<td>chip_console60k_sram</td>
 </tr>
 <tr>
 <td class="label">Synthesis Process</td>
-<td>Running parser:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0.656s, Elapsed time = 0h 0m 2s, Peak memory usage = 15313.039MB<br/>Running netlist conversion:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 0MB<br/>Running device independent optimization:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 0: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 15313.039MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 1: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 15313.039MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 2: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 15313.039MB<br/>Running inference:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 0: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 15313.039MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 1: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 15313.039MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 2: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 15313.039MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 15313.039MB<br/>Running technical mapping:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 0: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 15313.039MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 1: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 15313.039MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 2: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 15313.039MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0.025s, Peak memory usage = 15313.039MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 4: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 15313.039MB<br/>Generate output files:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0.005s, Peak memory usage = 15313.039MB<br/></td>
+<td>Running parser:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0.078s, Elapsed time = 0h 0m 2s, Peak memory usage = 312.648MB<br/>Running netlist conversion:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 0MB<br/>Running device independent optimization:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 0: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0.046s, Peak memory usage = 312.648MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 1: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 312.648MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Optimizing Phase 2: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0.001s, Peak memory usage = 312.648MB<br/>Running inference:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 0: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0.001s, Peak memory usage = 312.648MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 1: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 312.648MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 2: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 312.648MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Inferring Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 312.648MB<br/>Running technical mapping:<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 0: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0.001s, Peak memory usage = 312.648MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 1: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 312.648MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 2: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s, Peak memory usage = 312.648MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0.147s, Peak memory usage = 312.648MB<br/>&nbsp;&nbsp;&nbsp;&nbsp;Tech-Mapping Phase 4: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0.001s, Peak memory usage = 312.648MB<br/>Generate output files:<br/>&nbsp;&nbsp;&nbsp;&nbsp;CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0.04s, Peak memory usage = 312.648MB<br/></td>
 </tr>
 <tr>
 <td class="label">Total Time and Memory Usage</td>
-<td>CPU time = 0h 0m 0.656s, Elapsed time = 0h 0m 2s, Peak memory usage = 15313.039MB</td>
+<td>CPU time = 0h 0m 0.078s, Elapsed time = 0h 0m 2s, Peak memory usage = 312.648MB</td>
 </tr>
 </table>
 <h1><a name="resource">Resource</a></h1>
@@ -630,15 +637,59 @@ C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\chip_console60k_frontend.sv<br>
 </tr>
 <tr>
 <td class="label"><b>I/O Port </b></td>
-<td>8</td>
+<td>24</td>
 </tr>
 <tr>
 <td class="label"><b>I/O Buf </b></td>
-<td>2</td>
+<td>21</td>
+</tr>
+<tr>
+<td class="label">&nbsp&nbsp&nbsp&nbspIBUF</td>
+<td>11</td>
+</tr>
+<tr>
+<td class="label">&nbsp&nbsp&nbsp&nbspOBUF</td>
+<td>8</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp&nbsp&nbspTBUF</td>
 <td>2</td>
+</tr>
+<tr>
+<td class="label"><b>Register </b></td>
+<td>25</td>
+</tr>
+<tr>
+<td class="label">&nbsp&nbsp&nbsp&nbspDFFRE</td>
+<td>25</td>
+</tr>
+<tr>
+<td class="label"><b>LUT </b></td>
+<td>29</td>
+</tr>
+<tr>
+<td class="label">&nbsp&nbsp&nbsp&nbspLUT2</td>
+<td>16</td>
+</tr>
+<tr>
+<td class="label">&nbsp&nbsp&nbsp&nbspLUT4</td>
+<td>13</td>
+</tr>
+<tr>
+<td class="label"><b>BSRAM </b></td>
+<td>1</td>
+</tr>
+<tr>
+<td class="label">&nbsp&nbsp&nbsp&nbspSDPB</td>
+<td>1</td>
+</tr>
+<tr>
+<td class="label"><b>CLOCK </b></td>
+<td>1</td>
+</tr>
+<tr>
+<td class="label">&nbsp&nbsp&nbsp&nbspPLLA</td>
+<td>1</td>
 </tr>
 </table>
 <h2><a name="utilization">Resource Utilization Summary</a></h2>
@@ -650,13 +701,13 @@ C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\chip_console60k_frontend.sv<br>
 </tr>
 <tr>
 <td class="label">Logic</td>
-<td>0(0 LUT, 0 ALU) / 59904</td>
-<td>0%</td>
+<td>29(29 LUT, 0 ALU) / 59904</td>
+<td><1%</td>
 </tr>
 <tr>
 <td class="label">Register</td>
-<td>0 / 60780</td>
-<td>0%</td>
+<td>25 / 60780</td>
+<td><1%</td>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp--Register as Latch</td>
@@ -665,15 +716,67 @@ C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\chip_console60k_frontend.sv<br>
 </tr>
 <tr>
 <td class="label">&nbsp&nbsp--Register as FF</td>
-<td>0 / 60780</td>
-<td>0%</td>
+<td>25 / 60780</td>
+<td><1%</td>
 </tr>
 <tr>
 <td class="label">BSRAM</td>
-<td>0 / 118</td>
-<td>0%</td>
+<td>1 / 118</td>
+<td><1%</td>
 </tr>
 </table>
+<h1><a name="timing">Timing</a></h1>
+<h2><a name="clock">Clock Summary:</a></h2>
+<table class="summary_table">
+<tr>
+<th>NO.</th>
+<th>Clock Name</th>
+<th>Type</th>
+<th>Period</th>
+<th>Frequency(MHz)</th>
+<th>Rise</th>
+<th>Fall</th>
+<th>Source</th>
+<th>Master</th>
+<th>Object</th>
+</tr>
+<tr>
+<td>1</td>
+<td>sys_clk</td>
+<td>Base</td>
+<td>37.037</td>
+<td>27.000</td>
+<td>0.000</td>
+<td>18.519</td>
+<td> </td>
+<td> </td>
+<td>sys_clk_ibuf/I </td>
+</tr>
+<tr>
+<td>2</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>Generated</td>
+<td>2.500</td>
+<td>400.000</td>
+<td>0.000</td>
+<td>1.250</td>
+<td>sys_clk_ibuf/I</td>
+<td>sys_clk</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0 </td>
+</tr>
+</table>
+<h2><a name="performance">Max Frequency Summary:</a></h2>
+<table class="summary_table">
+<tr>
+<th>NO.</th>
+<th>Clock Name</th>
+<th>Constraint</th>
+<th>Actual Fmax</th>
+<th>Logic Level</th>
+<th>Entity</th>
+</tr>
+</table>
+<h2><a name="performance">No timing path found in the </a><a name="detail timing">netlist</a>.</h2><br/>
 </div><!-- content -->
 </div><!-- main_wrapper -->
 </body>

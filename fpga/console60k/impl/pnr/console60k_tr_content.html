@@ -55,7 +55,7 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Created Time</td>
-<td>Mon Nov  3 18:37:05 2025
+<td>Tue Nov  4 13:27:50 2025
 </td>
 </tr>
 <tr>
@@ -76,11 +76,11 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 </tr>
 <tr>
 <td class="label">Numbers of Paths Analyzed</td>
-<td>0</td>
+<td>90</td>
 </tr>
 <tr>
 <td class="label">Numbers of Endpoints Analyzed</td>
-<td>2</td>
+<td>125</td>
 </tr>
 <tr>
 <td class="label">Numbers of Falling Endpoints</td>
@@ -109,6 +109,30 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <th class="label">Master</th>
 <th class="label">Objects</th>
 </tr>
+<tr>
+<td>1</td>
+<td>sys_clk</td>
+<td>Base</td>
+<td>37.037</td>
+<td>27.000
+<td>0.000</td>
+<td>18.519</td>
+<td></td>
+<td></td>
+<td>sys_clk_ibuf/I </td>
+</tr>
+<tr>
+<td>2</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>Generated</td>
+<td>2.500</td>
+<td>400.000
+<td>0.000</td>
+<td>1.250</td>
+<td>sys_clk_ibuf/I</td>
+<td>sys_clk</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0 </td>
+</tr>
 </table>
 <h2><a name="Max_Frequency_Report">Max Frequency Summary:</a></h2>
 <table>
@@ -121,6 +145,8 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <th>Entity</th>
 </tr>
 </table>
+<h4>No timing paths to get frequency of sys_clk!</h4>
+<h4>No timing paths to get frequency of gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk!</h4>
 <h2><a name="Total_Negative_Slack_Report">Total Negative Slack Summary:</a></h2>
 <table class="detail_table">
 <tr>
@@ -128,6 +154,30 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <th class="label">Analysis Type</th>
 <th class="label">Endpoints TNS</th>
 <th class="label">Number of Endpoints</th>
+</tr>
+<tr>
+<td>sys_clk</td>
+<td>Setup</td>
+<td>0.000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>sys_clk</td>
+<td>Hold</td>
+<td>0.000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>Setup</td>
+<td>0.000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>Hold</td>
+<td>0.000</td>
+<td>0</td>
 </tr>
 </table>
 <h1><a name="Detail">Timing Details</a></h1>
@@ -156,7 +206,96 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <th class="label">Objects</th>
 </tr>
 <h4>Report Command:report_min_pulse_width -nworst 10 -detail</h4>
-<h4>Nothing to report!</h4>
+<tr>
+<td>1</td>
+<td>-1.673</td>
+<td>-0.673</td>
+<td>1.000</td>
+<td>Low Pulse Width</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>i_write_data_buffer_sram_256x128/Memory_Memory_0_0_s</td>
+</tr>
+<tr>
+<td>2</td>
+<td>-1.672</td>
+<td>-0.672</td>
+<td>1.000</td>
+<td>High Pulse Width</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>i_write_data_buffer_sram_256x128/Memory_Memory_0_0_s</td>
+</tr>
+<tr>
+<td>3</td>
+<td>-0.934</td>
+<td>-0.684</td>
+<td>0.250</td>
+<td>Low Pulse Width</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>o_pmod0_d_2_s1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>-0.934</td>
+<td>-0.684</td>
+<td>0.250</td>
+<td>Low Pulse Width</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>o_pmod0_d_4_s1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>-0.932</td>
+<td>-0.682</td>
+<td>0.250</td>
+<td>High Pulse Width</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>o_pmod0_d_2_s1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>-0.932</td>
+<td>-0.682</td>
+<td>0.250</td>
+<td>High Pulse Width</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>o_pmod0_d_4_s1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>-0.928</td>
+<td>-0.678</td>
+<td>0.250</td>
+<td>Low Pulse Width</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>o_pmod0_d_5_s1</td>
+</tr>
+<tr>
+<td>8</td>
+<td>-0.928</td>
+<td>-0.678</td>
+<td>0.250</td>
+<td>Low Pulse Width</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>o_pmod0_d_6_s1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>-0.928</td>
+<td>-0.678</td>
+<td>0.250</td>
+<td>Low Pulse Width</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>o_pmod0_d_7_s1</td>
+</tr>
+<tr>
+<td>10</td>
+<td>-0.928</td>
+<td>-0.678</td>
+<td>0.250</td>
+<td>Low Pulse Width</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+<td>o_pmod0_d_0_s1</td>
+</tr>
 </table>
 <h2><a name="Timing_Report_by_Analysis_Type">Timing Report By Analysis Type:</a></h2>
 <h3><a name="Setup_Analysis">Setup Analysis Report</a></h3>
@@ -173,7 +312,1046 @@ table.detail_table th.label {  min-width: 8%; width: 8%; }
 <h4>No removal paths to report!</h4>
 <h2><a name="Minimum_Pulse_Width_Report">Minimum Pulse Width Report:</a></h2>
 <h4>Report Command:report_min_pulse_width -nworst 10 -detail</h4>
-<h4>Nothing to report!</h4>
+<h3>MPW1</h3>
+<p><b>MPW Summary:</b></p>
+<table class="summary_table">
+<tr>
+<td class="label">Slack:</td>
+<td>-1.673</td>
+</tr>
+<tr>
+<td class="label">Actual Width:</td>
+<td>-0.673</td>
+</tr>
+<tr>
+<td class="label">Required Width:</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td class="label">Type:</td>
+<td>Low Pulse Width</td>
+</tr>
+<tr>
+<td class="label">Clock:</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td class="label">Objects:</td>
+<td>i_write_data_buffer_sram_256x128/Memory_Memory_0_0_s</td>
+</tr>
+</table>
+<p><b>Late clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.195</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>FF</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>7.140</td>
+<td>2.945</td>
+<td>tNET</td>
+<td>FF</td>
+<td>i_write_data_buffer_sram_256x128/Memory_Memory_0_0_s/CLKB</td>
+</tr>
+</table>
+<p><b>Early clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>5.445</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>RR</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>6.467</td>
+<td>1.022</td>
+<td>tNET</td>
+<td>RR</td>
+<td>i_write_data_buffer_sram_256x128/Memory_Memory_0_0_s/CLKB</td>
+</tr>
+</table>
+<h3>MPW2</h3>
+<p><b>MPW Summary:</b></p>
+<table class="summary_table">
+<tr>
+<td class="label">Slack:</td>
+<td>-1.672</td>
+</tr>
+<tr>
+<td class="label">Actual Width:</td>
+<td>-0.672</td>
+</tr>
+<tr>
+<td class="label">Required Width:</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td class="label">Type:</td>
+<td>High Pulse Width</td>
+</tr>
+<tr>
+<td class="label">Clock:</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td class="label">Objects:</td>
+<td>i_write_data_buffer_sram_256x128/Memory_Memory_0_0_s</td>
+</tr>
+</table>
+<p><b>Late clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>0.000</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>0.000</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>2.945</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>RR</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>5.894</td>
+<td>2.949</td>
+<td>tNET</td>
+<td>RR</td>
+<td>i_write_data_buffer_sram_256x128/Memory_Memory_0_0_s/CLKB</td>
+</tr>
+</table>
+<p><b>Early clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.195</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>FF</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>5.222</td>
+<td>1.027</td>
+<td>tNET</td>
+<td>FF</td>
+<td>i_write_data_buffer_sram_256x128/Memory_Memory_0_0_s/CLKB</td>
+</tr>
+</table>
+<h3>MPW3</h3>
+<p><b>MPW Summary:</b></p>
+<table class="summary_table">
+<tr>
+<td class="label">Slack:</td>
+<td>-0.934</td>
+</tr>
+<tr>
+<td class="label">Actual Width:</td>
+<td>-0.684</td>
+</tr>
+<tr>
+<td class="label">Required Width:</td>
+<td>0.250</td>
+</tr>
+<tr>
+<td class="label">Type:</td>
+<td>Low Pulse Width</td>
+</tr>
+<tr>
+<td class="label">Clock:</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td class="label">Objects:</td>
+<td>o_pmod0_d_2_s1</td>
+</tr>
+</table>
+<p><b>Late clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.195</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>FF</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>7.159</td>
+<td>2.964</td>
+<td>tNET</td>
+<td>FF</td>
+<td>o_pmod0_d_2_s1/CLK</td>
+</tr>
+</table>
+<p><b>Early clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>5.445</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>RR</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>6.475</td>
+<td>1.030</td>
+<td>tNET</td>
+<td>RR</td>
+<td>o_pmod0_d_2_s1/CLK</td>
+</tr>
+</table>
+<h3>MPW4</h3>
+<p><b>MPW Summary:</b></p>
+<table class="summary_table">
+<tr>
+<td class="label">Slack:</td>
+<td>-0.934</td>
+</tr>
+<tr>
+<td class="label">Actual Width:</td>
+<td>-0.684</td>
+</tr>
+<tr>
+<td class="label">Required Width:</td>
+<td>0.250</td>
+</tr>
+<tr>
+<td class="label">Type:</td>
+<td>Low Pulse Width</td>
+</tr>
+<tr>
+<td class="label">Clock:</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td class="label">Objects:</td>
+<td>o_pmod0_d_4_s1</td>
+</tr>
+</table>
+<p><b>Late clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.195</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>FF</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>7.159</td>
+<td>2.964</td>
+<td>tNET</td>
+<td>FF</td>
+<td>o_pmod0_d_4_s1/CLK</td>
+</tr>
+</table>
+<p><b>Early clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>5.445</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>RR</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>6.475</td>
+<td>1.030</td>
+<td>tNET</td>
+<td>RR</td>
+<td>o_pmod0_d_4_s1/CLK</td>
+</tr>
+</table>
+<h3>MPW5</h3>
+<p><b>MPW Summary:</b></p>
+<table class="summary_table">
+<tr>
+<td class="label">Slack:</td>
+<td>-0.932</td>
+</tr>
+<tr>
+<td class="label">Actual Width:</td>
+<td>-0.682</td>
+</tr>
+<tr>
+<td class="label">Required Width:</td>
+<td>0.250</td>
+</tr>
+<tr>
+<td class="label">Type:</td>
+<td>High Pulse Width</td>
+</tr>
+<tr>
+<td class="label">Clock:</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td class="label">Objects:</td>
+<td>o_pmod0_d_2_s1</td>
+</tr>
+</table>
+<p><b>Late clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>0.000</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>0.000</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>2.945</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>RR</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>5.913</td>
+<td>2.967</td>
+<td>tNET</td>
+<td>RR</td>
+<td>o_pmod0_d_2_s1/CLK</td>
+</tr>
+</table>
+<p><b>Early clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.195</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>FF</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>5.230</td>
+<td>1.035</td>
+<td>tNET</td>
+<td>FF</td>
+<td>o_pmod0_d_2_s1/CLK</td>
+</tr>
+</table>
+<h3>MPW6</h3>
+<p><b>MPW Summary:</b></p>
+<table class="summary_table">
+<tr>
+<td class="label">Slack:</td>
+<td>-0.932</td>
+</tr>
+<tr>
+<td class="label">Actual Width:</td>
+<td>-0.682</td>
+</tr>
+<tr>
+<td class="label">Required Width:</td>
+<td>0.250</td>
+</tr>
+<tr>
+<td class="label">Type:</td>
+<td>High Pulse Width</td>
+</tr>
+<tr>
+<td class="label">Clock:</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td class="label">Objects:</td>
+<td>o_pmod0_d_4_s1</td>
+</tr>
+</table>
+<p><b>Late clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>0.000</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>0.000</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>2.945</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>RR</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>5.913</td>
+<td>2.967</td>
+<td>tNET</td>
+<td>RR</td>
+<td>o_pmod0_d_4_s1/CLK</td>
+</tr>
+</table>
+<p><b>Early clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.195</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>FF</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>5.230</td>
+<td>1.035</td>
+<td>tNET</td>
+<td>FF</td>
+<td>o_pmod0_d_4_s1/CLK</td>
+</tr>
+</table>
+<h3>MPW7</h3>
+<p><b>MPW Summary:</b></p>
+<table class="summary_table">
+<tr>
+<td class="label">Slack:</td>
+<td>-0.928</td>
+</tr>
+<tr>
+<td class="label">Actual Width:</td>
+<td>-0.678</td>
+</tr>
+<tr>
+<td class="label">Required Width:</td>
+<td>0.250</td>
+</tr>
+<tr>
+<td class="label">Type:</td>
+<td>Low Pulse Width</td>
+</tr>
+<tr>
+<td class="label">Clock:</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td class="label">Objects:</td>
+<td>o_pmod0_d_5_s1</td>
+</tr>
+</table>
+<p><b>Late clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.195</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>FF</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>7.149</td>
+<td>2.954</td>
+<td>tNET</td>
+<td>FF</td>
+<td>o_pmod0_d_5_s1/CLK</td>
+</tr>
+</table>
+<p><b>Early clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>5.445</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>RR</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>6.471</td>
+<td>1.026</td>
+<td>tNET</td>
+<td>RR</td>
+<td>o_pmod0_d_5_s1/CLK</td>
+</tr>
+</table>
+<h3>MPW8</h3>
+<p><b>MPW Summary:</b></p>
+<table class="summary_table">
+<tr>
+<td class="label">Slack:</td>
+<td>-0.928</td>
+</tr>
+<tr>
+<td class="label">Actual Width:</td>
+<td>-0.678</td>
+</tr>
+<tr>
+<td class="label">Required Width:</td>
+<td>0.250</td>
+</tr>
+<tr>
+<td class="label">Type:</td>
+<td>Low Pulse Width</td>
+</tr>
+<tr>
+<td class="label">Clock:</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td class="label">Objects:</td>
+<td>o_pmod0_d_6_s1</td>
+</tr>
+</table>
+<p><b>Late clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.195</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>FF</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>7.149</td>
+<td>2.954</td>
+<td>tNET</td>
+<td>FF</td>
+<td>o_pmod0_d_6_s1/CLK</td>
+</tr>
+</table>
+<p><b>Early clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>5.445</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>RR</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>6.471</td>
+<td>1.026</td>
+<td>tNET</td>
+<td>RR</td>
+<td>o_pmod0_d_6_s1/CLK</td>
+</tr>
+</table>
+<h3>MPW9</h3>
+<p><b>MPW Summary:</b></p>
+<table class="summary_table">
+<tr>
+<td class="label">Slack:</td>
+<td>-0.928</td>
+</tr>
+<tr>
+<td class="label">Actual Width:</td>
+<td>-0.678</td>
+</tr>
+<tr>
+<td class="label">Required Width:</td>
+<td>0.250</td>
+</tr>
+<tr>
+<td class="label">Type:</td>
+<td>Low Pulse Width</td>
+</tr>
+<tr>
+<td class="label">Clock:</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td class="label">Objects:</td>
+<td>o_pmod0_d_7_s1</td>
+</tr>
+</table>
+<p><b>Late clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.195</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>FF</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>7.149</td>
+<td>2.954</td>
+<td>tNET</td>
+<td>FF</td>
+<td>o_pmod0_d_7_s1/CLK</td>
+</tr>
+</table>
+<p><b>Early clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>5.445</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>RR</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>6.471</td>
+<td>1.026</td>
+<td>tNET</td>
+<td>RR</td>
+<td>o_pmod0_d_7_s1/CLK</td>
+</tr>
+</table>
+<h3>MPW10</h3>
+<p><b>MPW Summary:</b></p>
+<table class="summary_table">
+<tr>
+<td class="label">Slack:</td>
+<td>-0.928</td>
+</tr>
+<tr>
+<td class="label">Actual Width:</td>
+<td>-0.678</td>
+</tr>
+<tr>
+<td class="label">Required Width:</td>
+<td>0.250</td>
+</tr>
+<tr>
+<td class="label">Type:</td>
+<td>Low Pulse Width</td>
+</tr>
+<tr>
+<td class="label">Clock:</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td class="label">Objects:</td>
+<td>o_pmod0_d_0_s1</td>
+</tr>
+</table>
+<p><b>Late clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>1.250</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>4.195</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>FF</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>7.149</td>
+<td>2.954</td>
+<td>tNET</td>
+<td>FF</td>
+<td>o_pmod0_d_0_s1/CLK</td>
+</tr>
+</table>
+<p><b>Early clock Path:</b></p>
+<table class="detail_table">
+<tr>
+<th class="label">AT</th>
+<th class="label">DELAY</th>
+<th class="label">TYPE</th>
+<th class="label">RF</th>
+<th>NODE</th>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>active clock edge time</td>
+</tr>
+<tr>
+<td>2.500</td>
+<td>0.000</td>
+<td></td>
+<td></td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0.default_gen_clk</td>
+</tr>
+<tr>
+<td>5.445</td>
+<td>2.945</td>
+<td>tCL</td>
+<td>RR</td>
+<td>gowinPLL81MHz/u_pll/PLLA_inst/CLKOUT0</td>
+</tr>
+<tr>
+<td>6.471</td>
+<td>1.026</td>
+<td>tNET</td>
+<td>RR</td>
+<td>o_pmod0_d_0_s1/CLK</td>
+</tr>
+</table>
 <h2><a name="High_Fanout_Nets_Report">High Fanout Nets Report:</a></h2>
 <h4>Report Command:report_high_fanout_nets -max_nets 10</h4>
 <table class="detail_table">

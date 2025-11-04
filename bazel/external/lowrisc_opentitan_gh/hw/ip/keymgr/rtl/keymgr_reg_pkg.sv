@@ -8,17 +8,17 @@
 package keymgr_reg_pkg;
 
   // Param list
-  parameter int NumSaltReg = 8;
-  parameter int NumSwBindingReg = 8;
-  parameter int NumOutReg = 8;
-  parameter int NumKeyVersion = 1;
-  parameter int NumAlerts = 2;
+  localparam int NumSaltReg = 8;
+  localparam int NumSwBindingReg = 8;
+  localparam int NumOutReg = 8;
+  localparam int NumKeyVersion = 1;
+  localparam int NumAlerts = 2;
 
   // Address widths within the block
-  parameter int BlockAw = 8;
+  localparam int BlockAw = 8;
 
   // Number of registers for every interface
-  parameter int NumRegs = 63;
+  localparam int NumRegs = 63;
 
   ////////////////////////////
   // Typedefs for registers //
@@ -330,80 +330,80 @@ package keymgr_reg_pkg;
   } keymgr_hw2reg_t;
 
   // Register offsets
-  parameter logic [BlockAw-1:0] KEYMGR_INTR_STATE_OFFSET = 8'h 0;
-  parameter logic [BlockAw-1:0] KEYMGR_INTR_ENABLE_OFFSET = 8'h 4;
-  parameter logic [BlockAw-1:0] KEYMGR_INTR_TEST_OFFSET = 8'h 8;
-  parameter logic [BlockAw-1:0] KEYMGR_ALERT_TEST_OFFSET = 8'h c;
-  parameter logic [BlockAw-1:0] KEYMGR_CFG_REGWEN_OFFSET = 8'h 10;
-  parameter logic [BlockAw-1:0] KEYMGR_START_OFFSET = 8'h 14;
-  parameter logic [BlockAw-1:0] KEYMGR_CONTROL_SHADOWED_OFFSET = 8'h 18;
-  parameter logic [BlockAw-1:0] KEYMGR_SIDELOAD_CLEAR_OFFSET = 8'h 1c;
-  parameter logic [BlockAw-1:0] KEYMGR_RESEED_INTERVAL_REGWEN_OFFSET = 8'h 20;
-  parameter logic [BlockAw-1:0] KEYMGR_RESEED_INTERVAL_SHADOWED_OFFSET = 8'h 24;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_BINDING_REGWEN_OFFSET = 8'h 28;
-  parameter logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_0_OFFSET = 8'h 2c;
-  parameter logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_1_OFFSET = 8'h 30;
-  parameter logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_2_OFFSET = 8'h 34;
-  parameter logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_3_OFFSET = 8'h 38;
-  parameter logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_4_OFFSET = 8'h 3c;
-  parameter logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_5_OFFSET = 8'h 40;
-  parameter logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_6_OFFSET = 8'h 44;
-  parameter logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_7_OFFSET = 8'h 48;
-  parameter logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_0_OFFSET = 8'h 4c;
-  parameter logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_1_OFFSET = 8'h 50;
-  parameter logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_2_OFFSET = 8'h 54;
-  parameter logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_3_OFFSET = 8'h 58;
-  parameter logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_4_OFFSET = 8'h 5c;
-  parameter logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_5_OFFSET = 8'h 60;
-  parameter logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_6_OFFSET = 8'h 64;
-  parameter logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_7_OFFSET = 8'h 68;
-  parameter logic [BlockAw-1:0] KEYMGR_SALT_0_OFFSET = 8'h 6c;
-  parameter logic [BlockAw-1:0] KEYMGR_SALT_1_OFFSET = 8'h 70;
-  parameter logic [BlockAw-1:0] KEYMGR_SALT_2_OFFSET = 8'h 74;
-  parameter logic [BlockAw-1:0] KEYMGR_SALT_3_OFFSET = 8'h 78;
-  parameter logic [BlockAw-1:0] KEYMGR_SALT_4_OFFSET = 8'h 7c;
-  parameter logic [BlockAw-1:0] KEYMGR_SALT_5_OFFSET = 8'h 80;
-  parameter logic [BlockAw-1:0] KEYMGR_SALT_6_OFFSET = 8'h 84;
-  parameter logic [BlockAw-1:0] KEYMGR_SALT_7_OFFSET = 8'h 88;
-  parameter logic [BlockAw-1:0] KEYMGR_KEY_VERSION_OFFSET = 8'h 8c;
-  parameter logic [BlockAw-1:0] KEYMGR_MAX_CREATOR_KEY_VER_REGWEN_OFFSET = 8'h 90;
-  parameter logic [BlockAw-1:0] KEYMGR_MAX_CREATOR_KEY_VER_SHADOWED_OFFSET = 8'h 94;
-  parameter logic [BlockAw-1:0] KEYMGR_MAX_OWNER_INT_KEY_VER_REGWEN_OFFSET = 8'h 98;
-  parameter logic [BlockAw-1:0] KEYMGR_MAX_OWNER_INT_KEY_VER_SHADOWED_OFFSET = 8'h 9c;
-  parameter logic [BlockAw-1:0] KEYMGR_MAX_OWNER_KEY_VER_REGWEN_OFFSET = 8'h a0;
-  parameter logic [BlockAw-1:0] KEYMGR_MAX_OWNER_KEY_VER_SHADOWED_OFFSET = 8'h a4;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_0_OFFSET = 8'h a8;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_1_OFFSET = 8'h ac;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_2_OFFSET = 8'h b0;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_3_OFFSET = 8'h b4;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_4_OFFSET = 8'h b8;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_5_OFFSET = 8'h bc;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_6_OFFSET = 8'h c0;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_7_OFFSET = 8'h c4;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_0_OFFSET = 8'h c8;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_1_OFFSET = 8'h cc;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_2_OFFSET = 8'h d0;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_3_OFFSET = 8'h d4;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_4_OFFSET = 8'h d8;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_5_OFFSET = 8'h dc;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_6_OFFSET = 8'h e0;
-  parameter logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_7_OFFSET = 8'h e4;
-  parameter logic [BlockAw-1:0] KEYMGR_WORKING_STATE_OFFSET = 8'h e8;
-  parameter logic [BlockAw-1:0] KEYMGR_OP_STATUS_OFFSET = 8'h ec;
-  parameter logic [BlockAw-1:0] KEYMGR_ERR_CODE_OFFSET = 8'h f0;
-  parameter logic [BlockAw-1:0] KEYMGR_FAULT_STATUS_OFFSET = 8'h f4;
-  parameter logic [BlockAw-1:0] KEYMGR_DEBUG_OFFSET = 8'h f8;
+  localparam logic [BlockAw-1:0] KEYMGR_INTR_STATE_OFFSET = 8'h 0;
+  localparam logic [BlockAw-1:0] KEYMGR_INTR_ENABLE_OFFSET = 8'h 4;
+  localparam logic [BlockAw-1:0] KEYMGR_INTR_TEST_OFFSET = 8'h 8;
+  localparam logic [BlockAw-1:0] KEYMGR_ALERT_TEST_OFFSET = 8'h c;
+  localparam logic [BlockAw-1:0] KEYMGR_CFG_REGWEN_OFFSET = 8'h 10;
+  localparam logic [BlockAw-1:0] KEYMGR_START_OFFSET = 8'h 14;
+  localparam logic [BlockAw-1:0] KEYMGR_CONTROL_SHADOWED_OFFSET = 8'h 18;
+  localparam logic [BlockAw-1:0] KEYMGR_SIDELOAD_CLEAR_OFFSET = 8'h 1c;
+  localparam logic [BlockAw-1:0] KEYMGR_RESEED_INTERVAL_REGWEN_OFFSET = 8'h 20;
+  localparam logic [BlockAw-1:0] KEYMGR_RESEED_INTERVAL_SHADOWED_OFFSET = 8'h 24;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_BINDING_REGWEN_OFFSET = 8'h 28;
+  localparam logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_0_OFFSET = 8'h 2c;
+  localparam logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_1_OFFSET = 8'h 30;
+  localparam logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_2_OFFSET = 8'h 34;
+  localparam logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_3_OFFSET = 8'h 38;
+  localparam logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_4_OFFSET = 8'h 3c;
+  localparam logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_5_OFFSET = 8'h 40;
+  localparam logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_6_OFFSET = 8'h 44;
+  localparam logic [BlockAw-1:0] KEYMGR_SEALING_SW_BINDING_7_OFFSET = 8'h 48;
+  localparam logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_0_OFFSET = 8'h 4c;
+  localparam logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_1_OFFSET = 8'h 50;
+  localparam logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_2_OFFSET = 8'h 54;
+  localparam logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_3_OFFSET = 8'h 58;
+  localparam logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_4_OFFSET = 8'h 5c;
+  localparam logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_5_OFFSET = 8'h 60;
+  localparam logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_6_OFFSET = 8'h 64;
+  localparam logic [BlockAw-1:0] KEYMGR_ATTEST_SW_BINDING_7_OFFSET = 8'h 68;
+  localparam logic [BlockAw-1:0] KEYMGR_SALT_0_OFFSET = 8'h 6c;
+  localparam logic [BlockAw-1:0] KEYMGR_SALT_1_OFFSET = 8'h 70;
+  localparam logic [BlockAw-1:0] KEYMGR_SALT_2_OFFSET = 8'h 74;
+  localparam logic [BlockAw-1:0] KEYMGR_SALT_3_OFFSET = 8'h 78;
+  localparam logic [BlockAw-1:0] KEYMGR_SALT_4_OFFSET = 8'h 7c;
+  localparam logic [BlockAw-1:0] KEYMGR_SALT_5_OFFSET = 8'h 80;
+  localparam logic [BlockAw-1:0] KEYMGR_SALT_6_OFFSET = 8'h 84;
+  localparam logic [BlockAw-1:0] KEYMGR_SALT_7_OFFSET = 8'h 88;
+  localparam logic [BlockAw-1:0] KEYMGR_KEY_VERSION_OFFSET = 8'h 8c;
+  localparam logic [BlockAw-1:0] KEYMGR_MAX_CREATOR_KEY_VER_REGWEN_OFFSET = 8'h 90;
+  localparam logic [BlockAw-1:0] KEYMGR_MAX_CREATOR_KEY_VER_SHADOWED_OFFSET = 8'h 94;
+  localparam logic [BlockAw-1:0] KEYMGR_MAX_OWNER_INT_KEY_VER_REGWEN_OFFSET = 8'h 98;
+  localparam logic [BlockAw-1:0] KEYMGR_MAX_OWNER_INT_KEY_VER_SHADOWED_OFFSET = 8'h 9c;
+  localparam logic [BlockAw-1:0] KEYMGR_MAX_OWNER_KEY_VER_REGWEN_OFFSET = 8'h a0;
+  localparam logic [BlockAw-1:0] KEYMGR_MAX_OWNER_KEY_VER_SHADOWED_OFFSET = 8'h a4;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_0_OFFSET = 8'h a8;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_1_OFFSET = 8'h ac;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_2_OFFSET = 8'h b0;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_3_OFFSET = 8'h b4;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_4_OFFSET = 8'h b8;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_5_OFFSET = 8'h bc;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_6_OFFSET = 8'h c0;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE0_OUTPUT_7_OFFSET = 8'h c4;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_0_OFFSET = 8'h c8;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_1_OFFSET = 8'h cc;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_2_OFFSET = 8'h d0;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_3_OFFSET = 8'h d4;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_4_OFFSET = 8'h d8;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_5_OFFSET = 8'h dc;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_6_OFFSET = 8'h e0;
+  localparam logic [BlockAw-1:0] KEYMGR_SW_SHARE1_OUTPUT_7_OFFSET = 8'h e4;
+  localparam logic [BlockAw-1:0] KEYMGR_WORKING_STATE_OFFSET = 8'h e8;
+  localparam logic [BlockAw-1:0] KEYMGR_OP_STATUS_OFFSET = 8'h ec;
+  localparam logic [BlockAw-1:0] KEYMGR_ERR_CODE_OFFSET = 8'h f0;
+  localparam logic [BlockAw-1:0] KEYMGR_FAULT_STATUS_OFFSET = 8'h f4;
+  localparam logic [BlockAw-1:0] KEYMGR_DEBUG_OFFSET = 8'h f8;
 
   // Reset values for hwext registers and their fields
-  parameter logic [0:0] KEYMGR_INTR_TEST_RESVAL = 1'h 0;
-  parameter logic [0:0] KEYMGR_INTR_TEST_OP_DONE_RESVAL = 1'h 0;
-  parameter logic [1:0] KEYMGR_ALERT_TEST_RESVAL = 2'h 0;
-  parameter logic [0:0] KEYMGR_ALERT_TEST_RECOV_OPERATION_ERR_RESVAL = 1'h 0;
-  parameter logic [0:0] KEYMGR_ALERT_TEST_FATAL_FAULT_ERR_RESVAL = 1'h 0;
-  parameter logic [0:0] KEYMGR_CFG_REGWEN_RESVAL = 1'h 1;
-  parameter logic [0:0] KEYMGR_CFG_REGWEN_EN_RESVAL = 1'h 1;
-  parameter logic [0:0] KEYMGR_SW_BINDING_REGWEN_RESVAL = 1'h 1;
-  parameter logic [0:0] KEYMGR_SW_BINDING_REGWEN_EN_RESVAL = 1'h 1;
+  localparam logic [0:0] KEYMGR_INTR_TEST_RESVAL = 1'h 0;
+  localparam logic [0:0] KEYMGR_INTR_TEST_OP_DONE_RESVAL = 1'h 0;
+  localparam logic [1:0] KEYMGR_ALERT_TEST_RESVAL = 2'h 0;
+  localparam logic [0:0] KEYMGR_ALERT_TEST_RECOV_OPERATION_ERR_RESVAL = 1'h 0;
+  localparam logic [0:0] KEYMGR_ALERT_TEST_FATAL_FAULT_ERR_RESVAL = 1'h 0;
+  localparam logic [0:0] KEYMGR_CFG_REGWEN_RESVAL = 1'h 1;
+  localparam logic [0:0] KEYMGR_CFG_REGWEN_EN_RESVAL = 1'h 1;
+  localparam logic [0:0] KEYMGR_SW_BINDING_REGWEN_RESVAL = 1'h 1;
+  localparam logic [0:0] KEYMGR_SW_BINDING_REGWEN_EN_RESVAL = 1'h 1;
 
   // Register index
   typedef enum int {
@@ -473,7 +473,7 @@ package keymgr_reg_pkg;
   } keymgr_id_e;
 
   // Register width information to check illegal writes
-  parameter logic [3:0] KEYMGR_PERMIT [63] = '{
+  localparam logic [3:0] KEYMGR_PERMIT [63] = '{
     4'b 0001, // index[ 0] KEYMGR_INTR_STATE
     4'b 0001, // index[ 1] KEYMGR_INTR_ENABLE
     4'b 0001, // index[ 2] KEYMGR_INTR_TEST

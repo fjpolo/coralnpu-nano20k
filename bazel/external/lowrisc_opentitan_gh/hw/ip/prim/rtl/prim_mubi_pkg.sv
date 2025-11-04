@@ -19,7 +19,7 @@ package prim_mubi_pkg;
   // 4 Bit Multibit Type and Functions //
   //////////////////////////////////////////////
 
-  parameter int MuBi4Width = 4;
+  localparam int MuBi4Width = 4;
   typedef enum logic [MuBi4Width-1:0] {
     MuBi4True = 4'h6, // enabled
     MuBi4False = 4'h9  // disabled
@@ -158,7 +158,7 @@ package prim_mubi_pkg;
   // 8 Bit Multibit Type and Functions //
   //////////////////////////////////////////////
 
-  parameter int MuBi8Width = 8;
+  localparam int MuBi8Width = 8;
   typedef enum logic [MuBi8Width-1:0] {
     MuBi8True = 8'h96, // enabled
     MuBi8False = 8'h69  // disabled
@@ -297,7 +297,7 @@ package prim_mubi_pkg;
   // 12 Bit Multibit Type and Functions //
   //////////////////////////////////////////////
 
-  parameter int MuBi12Width = 12;
+  localparam int MuBi12Width = 12;
   typedef enum logic [MuBi12Width-1:0] {
     MuBi12True = 12'h696, // enabled
     MuBi12False = 12'h969  // disabled
@@ -436,7 +436,7 @@ package prim_mubi_pkg;
   // 16 Bit Multibit Type and Functions //
   //////////////////////////////////////////////
 
-  parameter int MuBi16Width = 16;
+  localparam int MuBi16Width = 16;
   typedef enum logic [MuBi16Width-1:0] {
     MuBi16True = 16'h9696, // enabled
     MuBi16False = 16'h6969  // disabled
@@ -575,7 +575,7 @@ package prim_mubi_pkg;
   // 20 Bit Multibit Type and Functions //
   //////////////////////////////////////////////
 
-  parameter int MuBi20Width = 20;
+  localparam int MuBi20Width = 20;
   typedef enum logic [MuBi20Width-1:0] {
     MuBi20True = 20'h69696, // enabled
     MuBi20False = 20'h96969  // disabled
@@ -714,7 +714,7 @@ package prim_mubi_pkg;
   // 24 Bit Multibit Type and Functions //
   //////////////////////////////////////////////
 
-  parameter int MuBi24Width = 24;
+  localparam int MuBi24Width = 24;
   typedef enum logic [MuBi24Width-1:0] {
     MuBi24True = 24'h969696, // enabled
     MuBi24False = 24'h696969  // disabled
@@ -853,7 +853,7 @@ package prim_mubi_pkg;
   // 28 Bit Multibit Type and Functions //
   //////////////////////////////////////////////
 
-  parameter int MuBi28Width = 28;
+  localparam int MuBi28Width = 28;
   typedef enum logic [MuBi28Width-1:0] {
     MuBi28True = 28'h6969696, // enabled
     MuBi28False = 28'h9696969  // disabled
@@ -992,7 +992,7 @@ package prim_mubi_pkg;
   // 32 Bit Multibit Type and Functions //
   //////////////////////////////////////////////
 
-  parameter int MuBi32Width = 32;
+  localparam int MuBi32Width = 32;
   typedef enum logic [MuBi32Width-1:0] {
     MuBi32True = 32'h96969696, // enabled
     MuBi32False = 32'h69696969  // disabled

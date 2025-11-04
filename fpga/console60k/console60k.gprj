@@ -541,7 +541,9 @@
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/ip/coralnpu_tlul/coralnpu_tlul_pkg_32.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/ip/sram/Sram.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k.sv" type="file.verilog" enable="0"/>
-        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_frontend.sv" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_frontend.sv" type="file.verilog" enable="0"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_sram.sv" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_vector_unit.sv" type="file.verilog" enable="0"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/coralnpu_soc.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/top_pkg.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/top_racl_pkg.sv" type="file.verilog" enable="1"/>

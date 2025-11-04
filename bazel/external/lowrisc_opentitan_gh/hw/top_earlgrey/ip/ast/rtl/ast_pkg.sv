@@ -22,36 +22,36 @@
 
 package ast_pkg;
 
-parameter int unsigned NumIoRails = 2;
+localparam int unsigned NumIoRails = 2;
 // Alerts
-parameter int unsigned NumAlerts  = 11;
-parameter int unsigned AsSel      = 0;
-parameter int unsigned CgSel      = 1;
-parameter int unsigned GdSel      = 2;
-parameter int unsigned TsHiSel    = 3;
-parameter int unsigned TsLoSel    = 4;
-parameter int unsigned Ot0Sel     = 5;
-parameter int unsigned Ot1Sel     = 6;
-parameter int unsigned Ot2Sel     = 7;
-parameter int unsigned Ot3Sel     = 8;
-parameter int unsigned Ot4Sel     = 9;
-parameter int unsigned Ot5Sel     = 10;
+localparam int unsigned NumAlerts  = 11;
+localparam int unsigned AsSel      = 0;
+localparam int unsigned CgSel      = 1;
+localparam int unsigned GdSel      = 2;
+localparam int unsigned TsHiSel    = 3;
+localparam int unsigned TsLoSel    = 4;
+localparam int unsigned Ot0Sel     = 5;
+localparam int unsigned Ot1Sel     = 6;
+localparam int unsigned Ot2Sel     = 7;
+localparam int unsigned Ot3Sel     = 8;
+localparam int unsigned Ot4Sel     = 9;
+localparam int unsigned Ot5Sel     = 10;
 //
-parameter int unsigned Lc2HcTrCyc = 112;  // ((109+1)+(3+1))x5 = 570 us
-parameter int unsigned Hc2LcTrCyc = 142;  // ((139+1)+(3+1))x5 = 720 us
+localparam int unsigned Lc2HcTrCyc = 112;  // ((109+1)+(3+1))x5 = 570 us
+localparam int unsigned Hc2LcTrCyc = 142;  // ((139+1)+(3+1))x5 = 720 us
 //
-parameter int unsigned EntropyStreams   = 4;
-parameter int unsigned AdcChannels      = 2;
-parameter int unsigned AdcDataWidth     = 10;
-parameter int unsigned UsbCalibWidth    = 20;
-parameter int unsigned Ast2PadOutWidth  = 9;
-parameter int unsigned Pad2AstInWidth   = 8;
+localparam int unsigned EntropyStreams   = 4;
+localparam int unsigned AdcChannels      = 2;
+localparam int unsigned AdcDataWidth     = 10;
+localparam int unsigned UsbCalibWidth    = 20;
+localparam int unsigned Ast2PadOutWidth  = 9;
+localparam int unsigned Pad2AstInWidth   = 8;
 //
 // AstRegsNum is the number of AST registers programmed during initialization. It includes
 // the register that marks the finalization of init, which asserts the ast_init_done_o.
-// The offset of this register is represented with the AstLastRegOffset parameter.
-parameter int unsigned AstRegsNum       = 39;
-parameter int unsigned AstLastRegOffset = (AstRegsNum-1)*4;
+// The offset of this register is represented with the AstLastRegOffset localparam.
+localparam int unsigned AstRegsNum       = 39;
+localparam int unsigned AstLastRegOffset = (AstRegsNum-1)*4;
 
 // Memories Read-Write Margin Interface
 typedef struct packed {
@@ -99,7 +99,7 @@ typedef struct packed {
   logic aon_pok;
 } ast_rst_t;
 
-parameter ast_rst_t AST_RST_DEFAULT = '{
+localparam ast_rst_t AST_RST_DEFAULT = '{
   aon_pok: 1'b1
 };
 

@@ -8,16 +8,16 @@
 package clkmgr_reg_pkg;
 
   // Param list
-  parameter int NumGroups = 7;
-  parameter int NumSwGateableClocks = 4;
-  parameter int NumHintableClocks = 4;
-  parameter int NumAlerts = 2;
+  localparam int NumGroups = 7;
+  localparam int NumSwGateableClocks = 4;
+  localparam int NumHintableClocks = 4;
+  localparam int NumAlerts = 2;
 
   // Address widths within the block
-  parameter int BlockAw = 7;
+  localparam int BlockAw = 7;
 
   // Number of registers for every interface
-  parameter int NumRegs = 22;
+  localparam int NumRegs = 22;
 
   ////////////////////////////
   // Typedefs for registers //
@@ -309,35 +309,35 @@ package clkmgr_reg_pkg;
   } clkmgr_hw2reg_t;
 
   // Register offsets
-  parameter logic [BlockAw-1:0] CLKMGR_ALERT_TEST_OFFSET = 7'h 0;
-  parameter logic [BlockAw-1:0] CLKMGR_EXTCLK_CTRL_REGWEN_OFFSET = 7'h 4;
-  parameter logic [BlockAw-1:0] CLKMGR_EXTCLK_CTRL_OFFSET = 7'h 8;
-  parameter logic [BlockAw-1:0] CLKMGR_EXTCLK_STATUS_OFFSET = 7'h c;
-  parameter logic [BlockAw-1:0] CLKMGR_JITTER_REGWEN_OFFSET = 7'h 10;
-  parameter logic [BlockAw-1:0] CLKMGR_JITTER_ENABLE_OFFSET = 7'h 14;
-  parameter logic [BlockAw-1:0] CLKMGR_CLK_ENABLES_OFFSET = 7'h 18;
-  parameter logic [BlockAw-1:0] CLKMGR_CLK_HINTS_OFFSET = 7'h 1c;
-  parameter logic [BlockAw-1:0] CLKMGR_CLK_HINTS_STATUS_OFFSET = 7'h 20;
-  parameter logic [BlockAw-1:0] CLKMGR_MEASURE_CTRL_REGWEN_OFFSET = 7'h 24;
-  parameter logic [BlockAw-1:0] CLKMGR_IO_MEAS_CTRL_EN_OFFSET = 7'h 28;
-  parameter logic [BlockAw-1:0] CLKMGR_IO_MEAS_CTRL_SHADOWED_OFFSET = 7'h 2c;
-  parameter logic [BlockAw-1:0] CLKMGR_IO_DIV2_MEAS_CTRL_EN_OFFSET = 7'h 30;
-  parameter logic [BlockAw-1:0] CLKMGR_IO_DIV2_MEAS_CTRL_SHADOWED_OFFSET = 7'h 34;
-  parameter logic [BlockAw-1:0] CLKMGR_IO_DIV4_MEAS_CTRL_EN_OFFSET = 7'h 38;
-  parameter logic [BlockAw-1:0] CLKMGR_IO_DIV4_MEAS_CTRL_SHADOWED_OFFSET = 7'h 3c;
-  parameter logic [BlockAw-1:0] CLKMGR_MAIN_MEAS_CTRL_EN_OFFSET = 7'h 40;
-  parameter logic [BlockAw-1:0] CLKMGR_MAIN_MEAS_CTRL_SHADOWED_OFFSET = 7'h 44;
-  parameter logic [BlockAw-1:0] CLKMGR_USB_MEAS_CTRL_EN_OFFSET = 7'h 48;
-  parameter logic [BlockAw-1:0] CLKMGR_USB_MEAS_CTRL_SHADOWED_OFFSET = 7'h 4c;
-  parameter logic [BlockAw-1:0] CLKMGR_RECOV_ERR_CODE_OFFSET = 7'h 50;
-  parameter logic [BlockAw-1:0] CLKMGR_FATAL_ERR_CODE_OFFSET = 7'h 54;
+  localparam logic [BlockAw-1:0] CLKMGR_ALERT_TEST_OFFSET = 7'h 0;
+  localparam logic [BlockAw-1:0] CLKMGR_EXTCLK_CTRL_REGWEN_OFFSET = 7'h 4;
+  localparam logic [BlockAw-1:0] CLKMGR_EXTCLK_CTRL_OFFSET = 7'h 8;
+  localparam logic [BlockAw-1:0] CLKMGR_EXTCLK_STATUS_OFFSET = 7'h c;
+  localparam logic [BlockAw-1:0] CLKMGR_JITTER_REGWEN_OFFSET = 7'h 10;
+  localparam logic [BlockAw-1:0] CLKMGR_JITTER_ENABLE_OFFSET = 7'h 14;
+  localparam logic [BlockAw-1:0] CLKMGR_CLK_ENABLES_OFFSET = 7'h 18;
+  localparam logic [BlockAw-1:0] CLKMGR_CLK_HINTS_OFFSET = 7'h 1c;
+  localparam logic [BlockAw-1:0] CLKMGR_CLK_HINTS_STATUS_OFFSET = 7'h 20;
+  localparam logic [BlockAw-1:0] CLKMGR_MEASURE_CTRL_REGWEN_OFFSET = 7'h 24;
+  localparam logic [BlockAw-1:0] CLKMGR_IO_MEAS_CTRL_EN_OFFSET = 7'h 28;
+  localparam logic [BlockAw-1:0] CLKMGR_IO_MEAS_CTRL_SHADOWED_OFFSET = 7'h 2c;
+  localparam logic [BlockAw-1:0] CLKMGR_IO_DIV2_MEAS_CTRL_EN_OFFSET = 7'h 30;
+  localparam logic [BlockAw-1:0] CLKMGR_IO_DIV2_MEAS_CTRL_SHADOWED_OFFSET = 7'h 34;
+  localparam logic [BlockAw-1:0] CLKMGR_IO_DIV4_MEAS_CTRL_EN_OFFSET = 7'h 38;
+  localparam logic [BlockAw-1:0] CLKMGR_IO_DIV4_MEAS_CTRL_SHADOWED_OFFSET = 7'h 3c;
+  localparam logic [BlockAw-1:0] CLKMGR_MAIN_MEAS_CTRL_EN_OFFSET = 7'h 40;
+  localparam logic [BlockAw-1:0] CLKMGR_MAIN_MEAS_CTRL_SHADOWED_OFFSET = 7'h 44;
+  localparam logic [BlockAw-1:0] CLKMGR_USB_MEAS_CTRL_EN_OFFSET = 7'h 48;
+  localparam logic [BlockAw-1:0] CLKMGR_USB_MEAS_CTRL_SHADOWED_OFFSET = 7'h 4c;
+  localparam logic [BlockAw-1:0] CLKMGR_RECOV_ERR_CODE_OFFSET = 7'h 50;
+  localparam logic [BlockAw-1:0] CLKMGR_FATAL_ERR_CODE_OFFSET = 7'h 54;
 
   // Reset values for hwext registers and their fields
-  parameter logic [1:0] CLKMGR_ALERT_TEST_RESVAL = 2'h 0;
-  parameter logic [0:0] CLKMGR_ALERT_TEST_RECOV_FAULT_RESVAL = 1'h 0;
-  parameter logic [0:0] CLKMGR_ALERT_TEST_FATAL_FAULT_RESVAL = 1'h 0;
-  parameter logic [3:0] CLKMGR_EXTCLK_STATUS_RESVAL = 4'h 9;
-  parameter logic [3:0] CLKMGR_EXTCLK_STATUS_ACK_RESVAL = 4'h 9;
+  localparam logic [1:0] CLKMGR_ALERT_TEST_RESVAL = 2'h 0;
+  localparam logic [0:0] CLKMGR_ALERT_TEST_RECOV_FAULT_RESVAL = 1'h 0;
+  localparam logic [0:0] CLKMGR_ALERT_TEST_FATAL_FAULT_RESVAL = 1'h 0;
+  localparam logic [3:0] CLKMGR_EXTCLK_STATUS_RESVAL = 4'h 9;
+  localparam logic [3:0] CLKMGR_EXTCLK_STATUS_ACK_RESVAL = 4'h 9;
 
   // Register index
   typedef enum int {
@@ -366,7 +366,7 @@ package clkmgr_reg_pkg;
   } clkmgr_id_e;
 
   // Register width information to check illegal writes
-  parameter logic [3:0] CLKMGR_PERMIT [22] = '{
+  localparam logic [3:0] CLKMGR_PERMIT [22] = '{
     4'b 0001, // index[ 0] CLKMGR_ALERT_TEST
     4'b 0001, // index[ 1] CLKMGR_EXTCLK_CTRL_REGWEN
     4'b 0001, // index[ 2] CLKMGR_EXTCLK_CTRL

@@ -529,7 +529,7 @@
         <File path="C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\coralnpu_soc.sv" type="verilog"/>
         <File path="C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\top_pkg.sv" type="verilog"/>
         <File path="C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\top_racl_pkg.sv" type="verilog"/>
-        <File path="C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\chip_console60k_frontend.sv" type="verilog"/>
+        <File path="C:\Workspace\FPGA\coralnpu-nano20k\fpga\rtl\chip_console60k_sram.sv" type="verilog"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="0"/>
@@ -539,7 +539,7 @@
         <Option type="output_file" value="C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\impl\gwsynthesis\console60k.vg"/>
         <Option type="print_all_synthesis_warning" value="1"/>
         <Option type="ram_rw_check" value="1"/>
-        <Option type="top_module" value="chip_console60k_frontend"/>
+        <Option type="top_module" value="chip_console60k_sram"/>
         <Option type="vcc" value="0.9"/>
         <Option type="verilog_language" value="sysv-2017"/>
         <Option type="vhdl_language" value="vhdl-1993"/>

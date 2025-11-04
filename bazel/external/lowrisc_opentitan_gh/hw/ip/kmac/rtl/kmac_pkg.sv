@@ -6,8 +6,8 @@
 // kmac_pkg
 
 package kmac_pkg;
-  parameter int MsgWidth = sha3_pkg::MsgWidth;
-  parameter int MsgStrbW = sha3_pkg::MsgStrbW;
+  localparam int MsgWidth = sha3_pkg::MsgWidth;
+  localparam int MsgStrbW = sha3_pkg::MsgStrbW;
 
   // Message FIFO depth
   //
@@ -26,35 +26,35 @@ package kmac_pkg;
   // So Message FIFO doesn't need full block size except the KMAC case, which
   // is delayed the operation by processing Function Name N, customization S,
   // and secret keys. But KMAC doesn't need high throughput anyway (72Mb/s).
-  parameter int RegIntfWidth = 32; // 32bit interface
-  parameter int RegLatency   = 5;  // 5 cycle to write one Word
-  parameter int Sha3Latency  = 72; // Expected masked sha3 processing time 24x3
+  localparam int RegIntfWidth = 32; // 32bit interface
+  localparam int RegLatency   = 5;  // 5 cycle to write one Word
+  localparam int Sha3Latency  = 72; // Expected masked sha3 processing time 24x3
 
   // Total required buffer size while SHA3 is in processing
-  parameter int BufferCycles   = (Sha3Latency + RegLatency - 1)/RegLatency;
-  parameter int BufferSizeBits = RegIntfWidth * BufferCycles;
+  localparam int BufferCycles   = (Sha3Latency + RegLatency - 1)/RegLatency;
+  localparam int BufferSizeBits = RegIntfWidth * BufferCycles;
 
   // Required MsgFifoDepth. Adding slightly more buffer for margin
-  parameter int MsgFifoDepth   = 2 + ((BufferSizeBits + MsgWidth - 1)/MsgWidth);
-  parameter int MsgFifoDepthW  = $clog2(MsgFifoDepth+1);
+  localparam int MsgFifoDepth   = 2 + ((BufferSizeBits + MsgWidth - 1)/MsgWidth);
+  localparam int MsgFifoDepthW  = $clog2(MsgFifoDepth+1);
 
-  parameter int MsgWindowWidth = 32; // Register width
-  parameter int MsgWindowDepth = 512; // 2kB space
+  localparam int MsgWindowWidth = 32; // Register width
+  localparam int MsgWindowDepth = 512; // 2kB space
 
   // Key related definitions
   // If this value is changed, please modify the logic inside kmac_core
   // that assigns the value into `encoded_key`
-  parameter int MaxKeyLen = 512;
+  localparam int MaxKeyLen = 512;
 
   // size of encode_string(Key)
   // $ceil($clog2(MaxKeyLen+1)/8)
-  parameter int MaxEncodedKeyLenW = $clog2(MaxKeyLen+1);
-  parameter int MaxEncodedKeyLenByte = (MaxEncodedKeyLenW + 8 - 1) / 8;
-  parameter int MaxEncodedKeyLenSize = MaxEncodedKeyLenByte * 8;
+  localparam int MaxEncodedKeyLenW = $clog2(MaxKeyLen+1);
+  localparam int MaxEncodedKeyLenByte = (MaxEncodedKeyLenW + 8 - 1) / 8;
+  localparam int MaxEncodedKeyLenSize = MaxEncodedKeyLenByte * 8;
 
   //                             Secret Key  left_encode(len(Key))
   //                             ----------  ------------------------
-  parameter int MaxEncodedKeyW = MaxKeyLen + MaxEncodedKeyLenSize + 8;
+  localparam int MaxEncodedKeyW = MaxKeyLen + MaxEncodedKeyLenSize + 8;
 
   // key_len is SW configurable CSR.
   // Current KMAC allows 5 key length options.
@@ -106,8 +106,8 @@ package kmac_pkg;
   } kmac_cmd_e;
 
   // Timer
-  parameter int unsigned TimerPrescalerW = 10;
-  parameter int unsigned EdnWaitTimerW   = 16;
+  localparam int unsigned TimerPrescalerW = 10;
+  localparam int unsigned EdnWaitTimerW   = 16;
 
   // Entropy Mode Selection : Should be matched to register package Enum value
   typedef enum logic [1:0] {
@@ -117,13 +117,13 @@ package kmac_pkg;
   } entropy_mode_e;
 
   // PRNG (kmac_entropy)
-  parameter int unsigned EntropyOutputW = 800;
-  parameter int unsigned EntropyStateW = 288;
+  localparam int unsigned EntropyOutputW = 800;
+  localparam int unsigned EntropyStateW = 288;
 
   // These LFSR parameters have been generated with
   // $ ./util/design/gen-lfsr-seed.py --width 288 --seed 31468618 --prefix ""
   typedef logic [EntropyStateW-1:0] lfsr_seed_t;
-  parameter lfsr_seed_t RndCnstLfsrSeedDefault = {
+  localparam lfsr_seed_t RndCnstLfsrSeedDefault = {
     32'h758a4420,
     256'h31e1c461_6ea343ec_153282a3_0c132b57_23c5a4cf_4743b3c7_c32d580f_74f1713a
   };
@@ -132,7 +132,7 @@ package kmac_pkg;
   // These LFSR parameters have been generated with
   // $ ./util/design/gen-lfsr-seed.py --width 800 --seed 3369807298 --prefix ""
   typedef logic [EntropyOutputW-1:0][$clog2(EntropyOutputW)-1:0] lfsr_perm_t;
-  parameter lfsr_perm_t RndCnstLfsrPermDefault = {
+  localparam lfsr_perm_t RndCnstLfsrPermDefault = {
     64'hb1a3e87aeb4e69f0,
     256'h2d8a6ee2c9ac567b2aa401a639a2a8ea2553614c0a8daf672c06546fc0d35267,
     256'hc4572024bc116458dd0f1c10a8aef5c4ad9a788968d0d7ca7345c6b8f277a5d3,
@@ -170,7 +170,7 @@ package kmac_pkg;
   // These LFSR parameters have been generated with
   // $ ./util/design/gen-lfsr-seed.py --width 800 --seed 31468618 --prefix "Buffer"
   typedef logic [EntropyOutputW-1:0] buffer_lfsr_seed_t;
-  parameter buffer_lfsr_seed_t RndCnstBufferLfsrSeedDefault = {
+  localparam buffer_lfsr_seed_t RndCnstBufferLfsrSeedDefault = {
     32'h292603b4,
     256'hf1d83863_e0bd0634_4544ad28_a91d8668_24b66efd_92ad8123_5381f2bc_3d65392c,
     256'h83c01ea5_d8be84f1_e2588917_11849a07_5a71f35f_e9b31605_f9077a6b_758a4420,
@@ -182,7 +182,7 @@ package kmac_pkg;
   // $ ./util/design/gen-lfsr-seed.py --width 64 --seed 1201202158 --prefix ""
   // And changed the type name from lfsr_perm_t to msg_perm_t
   typedef logic [MsgWidth-1:0][$clog2(MsgWidth)-1:0] msg_perm_t;
-  parameter msg_perm_t RndCnstMsgPermDefault = {
+  localparam msg_perm_t RndCnstMsgPermDefault = {
     128'h382af41849db4cfb9c885f72f118c102,
     256'hcb5526978defac799192f65f54148379af21d7e10d82a5a33c3f31a1eaf964b8
   };
@@ -199,7 +199,7 @@ package kmac_pkg;
     AppSHA3   = 0,
 
     // In CShake/ KMAC mode, the Prefix can be determined by the compile-time
-    // parameter or through CSRs.
+    // localparam or through CSRs.
     AppCShake = 1,
 
     // In KMAC mode, the secret key always comes from sideload.
@@ -209,13 +209,13 @@ package kmac_pkg;
   } app_mode_e;
 
   // Predefined encoded_string
-  parameter logic [15:0] EncodedStringEmpty   = 16'h                     0001;
-  parameter logic [47:0] EncodedStringKMAC    = 48'h           4341_4D4B_2001;
+  localparam logic [15:0] EncodedStringEmpty   = 16'h                     0001;
+  localparam logic [47:0] EncodedStringKMAC    = 48'h           4341_4D4B_2001;
   // encoded_string("LC_CTRL")
-  parameter logic [71:0] EncodedStringLcCtrl  = 72'h   4c_5254_435f_434C_3801;
+  localparam logic [71:0] EncodedStringLcCtrl  = 72'h   4c_5254_435f_434C_3801;
   // encoded_string("ROM_CTRL")
-  parameter logic [79:0] EncodedStringRomCtrl = 80'h 4c52_5443_5f4d_4f52_4001;
-  parameter int unsigned NSPrefixW = sha3_pkg::NSRegisterSize*8;
+  localparam logic [79:0] EncodedStringRomCtrl = 80'h 4c52_5443_5f4d_4f52_4001;
+  localparam int unsigned NSPrefixW = sha3_pkg::NSRegisterSize*8;
 
   typedef struct packed {
     app_mode_e Mode;
@@ -224,7 +224,7 @@ package kmac_pkg;
 
     // PrefixMode determines the origin value of Prefix that is used in KMAC
     // and cSHAKE operations.
-    // Choose **0** for CSRs (!!PREFIX), or **1** to use `Prefix` parameter
+    // Choose **0** for CSRs (!!PREFIX), or **1** to use `Prefix` localparam
     // below.
     bit PrefixMode;
 
@@ -233,26 +233,26 @@ package kmac_pkg;
     logic [NSPrefixW-1:0] Prefix;
   } app_config_t;
 
-  parameter app_config_t AppCfgKeyMgr = '{
+  localparam app_config_t AppCfgKeyMgr = '{
     Mode: AppKMAC, // KeyMgr uses KMAC operation
     KeccakStrength: sha3_pkg::L256,
-    PrefixMode: 1'b1,   // Use prefix parameter
+    PrefixMode: 1'b1,   // Use prefix localparam
     // {fname: encoded_string("KMAC"), custom_str: encoded_string("")}
     Prefix: NSPrefixW'({EncodedStringEmpty, EncodedStringKMAC})
   };
 
-  parameter app_config_t AppCfgLcCtrl= '{
+  localparam app_config_t AppCfgLcCtrl= '{
     Mode: AppCShake,
     KeccakStrength: sha3_pkg::L128,
-    PrefixMode: 1'b1,     // Use prefix parameter
+    PrefixMode: 1'b1,     // Use prefix localparam
     // {fname: encode_string(""), custom_str: encode_string("LC_CTRL")}
     Prefix: NSPrefixW'({EncodedStringLcCtrl, EncodedStringEmpty})
   };
 
-  parameter app_config_t AppCfgRomCtrl = '{
+  localparam app_config_t AppCfgRomCtrl = '{
     Mode: AppCShake,
     KeccakStrength: sha3_pkg::L256,
-    PrefixMode: 1'b1,     // Use prefix parameter
+    PrefixMode: 1'b1,     // Use prefix localparam
     // {fname: encode_string(""), custom_str: encode_string("ROM_CTRL")}
     Prefix: NSPrefixW'({EncodedStringRomCtrl, EncodedStringEmpty})
   };
@@ -325,7 +325,7 @@ package kmac_pkg;
     // When absorbed by SHA3 core, the logic sends digest to the requested App
     // and right next cycle, it triggers done command to downstream.
 
-    // In StAppCfg state, it latches the cfg from AppCfg parameter to determine
+    // In StAppCfg state, it latches the cfg from AppCfg localparam to determine
     // the kmac_mode, sha3_mode, keccak strength.
     StAppCfg = 10'b1010101101,
 
@@ -358,8 +358,8 @@ package kmac_pkg;
 
   // MsgWidth : 64
   // MsgStrbW : 8
-  parameter int unsigned AppDigestW = 384;
-  parameter int unsigned AppKeyW = 256;
+  localparam int unsigned AppDigestW = 384;
+  localparam int unsigned AppKeyW = 256;
 
   typedef struct packed {
     logic valid;
@@ -379,13 +379,13 @@ package kmac_pkg;
     logic error;
   } app_rsp_t;
 
-  parameter app_req_t APP_REQ_DEFAULT = '{
+  localparam app_req_t APP_REQ_DEFAULT = '{
     valid: 1'b 0,
     data: '0,
     strb: '0,
     last: 1'b 0
   };
-  parameter app_rsp_t APP_RSP_DEFAULT = '{
+  localparam app_rsp_t APP_RSP_DEFAULT = '{
     ready: 1'b1,
     done:  1'b1,
     digest_share0: AppDigestW'(32'hDEADBEEF),
@@ -458,7 +458,7 @@ package kmac_pkg;
     err_code_e   code; // Type of error
     logic [23:0] info; // Additional Debug info
   } err_t;
-  parameter int unsigned ErrInfoW = 24 ; // err_t::info
+  localparam int unsigned ErrInfoW = 24 ; // err_t::info
 
   typedef struct packed {
     logic [AppDigestW-1:0] digest_share0;

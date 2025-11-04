@@ -8,17 +8,17 @@
 package edn_reg_pkg;
 
   // Param list
-  parameter logic [31:0] EdnBootInsCmdResval = 32'h901;
-  parameter logic [31:0] EdnBootGenCmdResval = 32'hfff003;
-  parameter logic [31:0] CtrlResval = 32'h9999;
-  parameter logic [31:0] MaxNumReqsBetweenReseedsResval = 32'h0;
-  parameter int NumAlerts = 2;
+  localparam logic [31:0] EdnBootInsCmdResval = 32'h901;
+  localparam logic [31:0] EdnBootGenCmdResval = 32'hfff003;
+  localparam logic [31:0] CtrlResval = 32'h9999;
+  localparam logic [31:0] MaxNumReqsBetweenReseedsResval = 32'h0;
+  localparam int NumAlerts = 2;
 
   // Address widths within the block
-  parameter int BlockAw = 7;
+  localparam int BlockAw = 7;
 
   // Number of registers for every interface
-  parameter int NumRegs = 18;
+  localparam int NumRegs = 18;
 
   ////////////////////////////
   // Typedefs for registers //
@@ -259,35 +259,35 @@ package edn_reg_pkg;
   } edn_hw2reg_t;
 
   // Register offsets
-  parameter logic [BlockAw-1:0] EDN_INTR_STATE_OFFSET = 7'h 0;
-  parameter logic [BlockAw-1:0] EDN_INTR_ENABLE_OFFSET = 7'h 4;
-  parameter logic [BlockAw-1:0] EDN_INTR_TEST_OFFSET = 7'h 8;
-  parameter logic [BlockAw-1:0] EDN_ALERT_TEST_OFFSET = 7'h c;
-  parameter logic [BlockAw-1:0] EDN_REGWEN_OFFSET = 7'h 10;
-  parameter logic [BlockAw-1:0] EDN_CTRL_OFFSET = 7'h 14;
-  parameter logic [BlockAw-1:0] EDN_BOOT_INS_CMD_OFFSET = 7'h 18;
-  parameter logic [BlockAw-1:0] EDN_BOOT_GEN_CMD_OFFSET = 7'h 1c;
-  parameter logic [BlockAw-1:0] EDN_SW_CMD_REQ_OFFSET = 7'h 20;
-  parameter logic [BlockAw-1:0] EDN_SW_CMD_STS_OFFSET = 7'h 24;
-  parameter logic [BlockAw-1:0] EDN_HW_CMD_STS_OFFSET = 7'h 28;
-  parameter logic [BlockAw-1:0] EDN_RESEED_CMD_OFFSET = 7'h 2c;
-  parameter logic [BlockAw-1:0] EDN_GENERATE_CMD_OFFSET = 7'h 30;
-  parameter logic [BlockAw-1:0] EDN_MAX_NUM_REQS_BETWEEN_RESEEDS_OFFSET = 7'h 34;
-  parameter logic [BlockAw-1:0] EDN_RECOV_ALERT_STS_OFFSET = 7'h 38;
-  parameter logic [BlockAw-1:0] EDN_ERR_CODE_OFFSET = 7'h 3c;
-  parameter logic [BlockAw-1:0] EDN_ERR_CODE_TEST_OFFSET = 7'h 40;
-  parameter logic [BlockAw-1:0] EDN_MAIN_SM_STATE_OFFSET = 7'h 44;
+  localparam logic [BlockAw-1:0] EDN_INTR_STATE_OFFSET = 7'h 0;
+  localparam logic [BlockAw-1:0] EDN_INTR_ENABLE_OFFSET = 7'h 4;
+  localparam logic [BlockAw-1:0] EDN_INTR_TEST_OFFSET = 7'h 8;
+  localparam logic [BlockAw-1:0] EDN_ALERT_TEST_OFFSET = 7'h c;
+  localparam logic [BlockAw-1:0] EDN_REGWEN_OFFSET = 7'h 10;
+  localparam logic [BlockAw-1:0] EDN_CTRL_OFFSET = 7'h 14;
+  localparam logic [BlockAw-1:0] EDN_BOOT_INS_CMD_OFFSET = 7'h 18;
+  localparam logic [BlockAw-1:0] EDN_BOOT_GEN_CMD_OFFSET = 7'h 1c;
+  localparam logic [BlockAw-1:0] EDN_SW_CMD_REQ_OFFSET = 7'h 20;
+  localparam logic [BlockAw-1:0] EDN_SW_CMD_STS_OFFSET = 7'h 24;
+  localparam logic [BlockAw-1:0] EDN_HW_CMD_STS_OFFSET = 7'h 28;
+  localparam logic [BlockAw-1:0] EDN_RESEED_CMD_OFFSET = 7'h 2c;
+  localparam logic [BlockAw-1:0] EDN_GENERATE_CMD_OFFSET = 7'h 30;
+  localparam logic [BlockAw-1:0] EDN_MAX_NUM_REQS_BETWEEN_RESEEDS_OFFSET = 7'h 34;
+  localparam logic [BlockAw-1:0] EDN_RECOV_ALERT_STS_OFFSET = 7'h 38;
+  localparam logic [BlockAw-1:0] EDN_ERR_CODE_OFFSET = 7'h 3c;
+  localparam logic [BlockAw-1:0] EDN_ERR_CODE_TEST_OFFSET = 7'h 40;
+  localparam logic [BlockAw-1:0] EDN_MAIN_SM_STATE_OFFSET = 7'h 44;
 
   // Reset values for hwext registers and their fields
-  parameter logic [1:0] EDN_INTR_TEST_RESVAL = 2'h 0;
-  parameter logic [0:0] EDN_INTR_TEST_EDN_CMD_REQ_DONE_RESVAL = 1'h 0;
-  parameter logic [0:0] EDN_INTR_TEST_EDN_FATAL_ERR_RESVAL = 1'h 0;
-  parameter logic [1:0] EDN_ALERT_TEST_RESVAL = 2'h 0;
-  parameter logic [0:0] EDN_ALERT_TEST_RECOV_ALERT_RESVAL = 1'h 0;
-  parameter logic [0:0] EDN_ALERT_TEST_FATAL_ALERT_RESVAL = 1'h 0;
-  parameter logic [31:0] EDN_SW_CMD_REQ_RESVAL = 32'h 0;
-  parameter logic [31:0] EDN_RESEED_CMD_RESVAL = 32'h 0;
-  parameter logic [31:0] EDN_GENERATE_CMD_RESVAL = 32'h 0;
+  localparam logic [1:0] EDN_INTR_TEST_RESVAL = 2'h 0;
+  localparam logic [0:0] EDN_INTR_TEST_EDN_CMD_REQ_DONE_RESVAL = 1'h 0;
+  localparam logic [0:0] EDN_INTR_TEST_EDN_FATAL_ERR_RESVAL = 1'h 0;
+  localparam logic [1:0] EDN_ALERT_TEST_RESVAL = 2'h 0;
+  localparam logic [0:0] EDN_ALERT_TEST_RECOV_ALERT_RESVAL = 1'h 0;
+  localparam logic [0:0] EDN_ALERT_TEST_FATAL_ALERT_RESVAL = 1'h 0;
+  localparam logic [31:0] EDN_SW_CMD_REQ_RESVAL = 32'h 0;
+  localparam logic [31:0] EDN_RESEED_CMD_RESVAL = 32'h 0;
+  localparam logic [31:0] EDN_GENERATE_CMD_RESVAL = 32'h 0;
 
   // Register index
   typedef enum int {
@@ -312,7 +312,7 @@ package edn_reg_pkg;
   } edn_id_e;
 
   // Register width information to check illegal writes
-  parameter logic [3:0] EDN_PERMIT [18] = '{
+  localparam logic [3:0] EDN_PERMIT [18] = '{
     4'b 0001, // index[ 0] EDN_INTR_STATE
     4'b 0001, // index[ 1] EDN_INTR_ENABLE
     4'b 0001, // index[ 2] EDN_INTR_TEST

@@ -12,7 +12,7 @@ package tlul_pkg;
   // is not critical, whereas BINTREE is favorable when timing pressure is high (but this
   // may also result in a larger implementation). on FPGA targets, BINTREE is favorable
   // both in terms of area and timing.
-  parameter ArbiterImpl = "PPC";
+  localparam ArbiterImpl = "PPC";
 
   typedef enum logic [2:0] {
     PutFullData    = 3'h 0,
@@ -25,24 +25,24 @@ package tlul_pkg;
     AccessAckData = 3'h 1
   } tl_d_op_e;
 
-  parameter int H2DCmdMaxWidth  = 57;
-  parameter int H2DCmdIntgWidth = 7;
-  parameter int H2DCmdFullWidth = H2DCmdMaxWidth + H2DCmdIntgWidth;
-  parameter int D2HRspMaxWidth  = 57;
-  parameter int D2HRspIntgWidth = 7;
-  parameter int D2HRspFullWidth = D2HRspMaxWidth + D2HRspIntgWidth;
-  parameter int DataMaxWidth    = 32;
-  parameter int DataIntgWidth   = 7;
-  parameter int DataFullWidth   = DataMaxWidth + DataIntgWidth;
-  parameter int RsvdWidth       = top_pkg::TL_AUW - prim_mubi_pkg::MuBi4Width -
+  localparam int H2DCmdMaxWidth  = 57;
+  localparam int H2DCmdIntgWidth = 7;
+  localparam int H2DCmdFullWidth = H2DCmdMaxWidth + H2DCmdIntgWidth;
+  localparam int D2HRspMaxWidth  = 57;
+  localparam int D2HRspIntgWidth = 7;
+  localparam int D2HRspFullWidth = D2HRspMaxWidth + D2HRspIntgWidth;
+  localparam int DataMaxWidth    = 32;
+  localparam int DataIntgWidth   = 7;
+  localparam int DataFullWidth   = DataMaxWidth + DataIntgWidth;
+  localparam int RsvdWidth       = top_pkg::TL_AUW - prim_mubi_pkg::MuBi4Width -
                                   H2DCmdIntgWidth - DataIntgWidth;
 
   // Data that is returned upon an a TL-UL error belonging to an instruction fetch.
   // Note that this data will be returned with the correct bus integrity value.
-  parameter logic [top_pkg::TL_DW-1:0] DataWhenInstrError = '0;
+  localparam logic [top_pkg::TL_DW-1:0] DataWhenInstrError = '0;
   // Data that is returned upon an a TL-UL error not belonging to an instruction fetch.
   // Note that this data will be returned with the correct bus integrity value.
-  parameter logic [top_pkg::TL_DW-1:0] DataWhenError      = {top_pkg::TL_DW{1'b1}};
+  localparam logic [top_pkg::TL_DW-1:0] DataWhenError      = {top_pkg::TL_DW{1'b1}};
 
   typedef struct packed {
     logic [RsvdWidth-1:0]       rsvd;
@@ -51,7 +51,7 @@ package tlul_pkg;
     logic [DataIntgWidth-1:0]   data_intg;
   } tl_a_user_t;
 
-  parameter tl_a_user_t TL_A_USER_DEFAULT = '{
+  localparam tl_a_user_t TL_A_USER_DEFAULT = '{
     rsvd: '0,
     instr_type: prim_mubi_pkg::MuBi4False,
     cmd_intg:  {H2DCmdIntgWidth{1'b1}},
@@ -100,7 +100,7 @@ package tlul_pkg;
     logic [DataIntgWidth-1:0]      data_intg;
   } tl_d_user_t;
 
-  parameter tl_d_user_t TL_D_USER_DEFAULT = '{
+  localparam tl_d_user_t TL_D_USER_DEFAULT = '{
     rsp_intg: {D2HRspIntgWidth{1'b1}},
     data_intg: {DataIntgWidth{1'b1}}
   };

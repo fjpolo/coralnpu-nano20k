@@ -8,26 +8,26 @@
 package lc_ctrl_reg_pkg;
 
   // Param list
-  parameter int SiliconCreatorIdWidth = 16;
-  parameter int ProductIdWidth = 16;
-  parameter int RevisionIdWidth = 8;
-  parameter int NumTokenWords = 4;
-  parameter int CsrLcStateWidth = 30;
-  parameter int CsrLcCountWidth = 5;
-  parameter int CsrLcIdStateWidth = 32;
-  parameter int CsrOtpTestCtrlWidth = 32;
-  parameter int CsrOtpTestStatusWidth = 32;
-  parameter int NumDeviceIdWords = 8;
-  parameter int NumManufStateWords = 8;
-  parameter int NumAlerts = 3;
+  localparam int SiliconCreatorIdWidth = 16;
+  localparam int ProductIdWidth = 16;
+  localparam int RevisionIdWidth = 8;
+  localparam int NumTokenWords = 4;
+  localparam int CsrLcStateWidth = 30;
+  localparam int CsrLcCountWidth = 5;
+  localparam int CsrLcIdStateWidth = 32;
+  localparam int CsrOtpTestCtrlWidth = 32;
+  localparam int CsrOtpTestStatusWidth = 32;
+  localparam int NumDeviceIdWords = 8;
+  localparam int NumManufStateWords = 8;
+  localparam int NumAlerts = 3;
 
   // Address widths within the block
-  parameter int RegsAw = 8;
-  parameter int DmiAw = 12;
+  localparam int RegsAw = 8;
+  localparam int DmiAw = 12;
 
   // Number of registers for every interface
-  parameter int NumRegsRegs = 35;
-  parameter int NumRegsDmi = 0;
+  localparam int NumRegsRegs = 35;
+  localparam int NumRegsDmi = 0;
 
   ///////////////////////////////////////////////
   // Typedefs for registers for regs interface //
@@ -225,83 +225,83 @@ package lc_ctrl_reg_pkg;
   } lc_ctrl_regs_hw2reg_t;
 
   // Register offsets for regs interface
-  parameter logic [RegsAw-1:0] LC_CTRL_ALERT_TEST_OFFSET = 8'h 0;
-  parameter logic [RegsAw-1:0] LC_CTRL_STATUS_OFFSET = 8'h 4;
-  parameter logic [RegsAw-1:0] LC_CTRL_CLAIM_TRANSITION_IF_REGWEN_OFFSET = 8'h 8;
-  parameter logic [RegsAw-1:0] LC_CTRL_CLAIM_TRANSITION_IF_OFFSET = 8'h c;
-  parameter logic [RegsAw-1:0] LC_CTRL_TRANSITION_REGWEN_OFFSET = 8'h 10;
-  parameter logic [RegsAw-1:0] LC_CTRL_TRANSITION_CMD_OFFSET = 8'h 14;
-  parameter logic [RegsAw-1:0] LC_CTRL_TRANSITION_CTRL_OFFSET = 8'h 18;
-  parameter logic [RegsAw-1:0] LC_CTRL_TRANSITION_TOKEN_0_OFFSET = 8'h 1c;
-  parameter logic [RegsAw-1:0] LC_CTRL_TRANSITION_TOKEN_1_OFFSET = 8'h 20;
-  parameter logic [RegsAw-1:0] LC_CTRL_TRANSITION_TOKEN_2_OFFSET = 8'h 24;
-  parameter logic [RegsAw-1:0] LC_CTRL_TRANSITION_TOKEN_3_OFFSET = 8'h 28;
-  parameter logic [RegsAw-1:0] LC_CTRL_TRANSITION_TARGET_OFFSET = 8'h 2c;
-  parameter logic [RegsAw-1:0] LC_CTRL_OTP_VENDOR_TEST_CTRL_OFFSET = 8'h 30;
-  parameter logic [RegsAw-1:0] LC_CTRL_OTP_VENDOR_TEST_STATUS_OFFSET = 8'h 34;
-  parameter logic [RegsAw-1:0] LC_CTRL_LC_STATE_OFFSET = 8'h 38;
-  parameter logic [RegsAw-1:0] LC_CTRL_LC_TRANSITION_CNT_OFFSET = 8'h 3c;
-  parameter logic [RegsAw-1:0] LC_CTRL_LC_ID_STATE_OFFSET = 8'h 40;
-  parameter logic [RegsAw-1:0] LC_CTRL_HW_REVISION0_OFFSET = 8'h 44;
-  parameter logic [RegsAw-1:0] LC_CTRL_HW_REVISION1_OFFSET = 8'h 48;
-  parameter logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_0_OFFSET = 8'h 4c;
-  parameter logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_1_OFFSET = 8'h 50;
-  parameter logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_2_OFFSET = 8'h 54;
-  parameter logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_3_OFFSET = 8'h 58;
-  parameter logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_4_OFFSET = 8'h 5c;
-  parameter logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_5_OFFSET = 8'h 60;
-  parameter logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_6_OFFSET = 8'h 64;
-  parameter logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_7_OFFSET = 8'h 68;
-  parameter logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_0_OFFSET = 8'h 6c;
-  parameter logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_1_OFFSET = 8'h 70;
-  parameter logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_2_OFFSET = 8'h 74;
-  parameter logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_3_OFFSET = 8'h 78;
-  parameter logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_4_OFFSET = 8'h 7c;
-  parameter logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_5_OFFSET = 8'h 80;
-  parameter logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_6_OFFSET = 8'h 84;
-  parameter logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_7_OFFSET = 8'h 88;
+  localparam logic [RegsAw-1:0] LC_CTRL_ALERT_TEST_OFFSET = 8'h 0;
+  localparam logic [RegsAw-1:0] LC_CTRL_STATUS_OFFSET = 8'h 4;
+  localparam logic [RegsAw-1:0] LC_CTRL_CLAIM_TRANSITION_IF_REGWEN_OFFSET = 8'h 8;
+  localparam logic [RegsAw-1:0] LC_CTRL_CLAIM_TRANSITION_IF_OFFSET = 8'h c;
+  localparam logic [RegsAw-1:0] LC_CTRL_TRANSITION_REGWEN_OFFSET = 8'h 10;
+  localparam logic [RegsAw-1:0] LC_CTRL_TRANSITION_CMD_OFFSET = 8'h 14;
+  localparam logic [RegsAw-1:0] LC_CTRL_TRANSITION_CTRL_OFFSET = 8'h 18;
+  localparam logic [RegsAw-1:0] LC_CTRL_TRANSITION_TOKEN_0_OFFSET = 8'h 1c;
+  localparam logic [RegsAw-1:0] LC_CTRL_TRANSITION_TOKEN_1_OFFSET = 8'h 20;
+  localparam logic [RegsAw-1:0] LC_CTRL_TRANSITION_TOKEN_2_OFFSET = 8'h 24;
+  localparam logic [RegsAw-1:0] LC_CTRL_TRANSITION_TOKEN_3_OFFSET = 8'h 28;
+  localparam logic [RegsAw-1:0] LC_CTRL_TRANSITION_TARGET_OFFSET = 8'h 2c;
+  localparam logic [RegsAw-1:0] LC_CTRL_OTP_VENDOR_TEST_CTRL_OFFSET = 8'h 30;
+  localparam logic [RegsAw-1:0] LC_CTRL_OTP_VENDOR_TEST_STATUS_OFFSET = 8'h 34;
+  localparam logic [RegsAw-1:0] LC_CTRL_LC_STATE_OFFSET = 8'h 38;
+  localparam logic [RegsAw-1:0] LC_CTRL_LC_TRANSITION_CNT_OFFSET = 8'h 3c;
+  localparam logic [RegsAw-1:0] LC_CTRL_LC_ID_STATE_OFFSET = 8'h 40;
+  localparam logic [RegsAw-1:0] LC_CTRL_HW_REVISION0_OFFSET = 8'h 44;
+  localparam logic [RegsAw-1:0] LC_CTRL_HW_REVISION1_OFFSET = 8'h 48;
+  localparam logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_0_OFFSET = 8'h 4c;
+  localparam logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_1_OFFSET = 8'h 50;
+  localparam logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_2_OFFSET = 8'h 54;
+  localparam logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_3_OFFSET = 8'h 58;
+  localparam logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_4_OFFSET = 8'h 5c;
+  localparam logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_5_OFFSET = 8'h 60;
+  localparam logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_6_OFFSET = 8'h 64;
+  localparam logic [RegsAw-1:0] LC_CTRL_DEVICE_ID_7_OFFSET = 8'h 68;
+  localparam logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_0_OFFSET = 8'h 6c;
+  localparam logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_1_OFFSET = 8'h 70;
+  localparam logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_2_OFFSET = 8'h 74;
+  localparam logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_3_OFFSET = 8'h 78;
+  localparam logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_4_OFFSET = 8'h 7c;
+  localparam logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_5_OFFSET = 8'h 80;
+  localparam logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_6_OFFSET = 8'h 84;
+  localparam logic [RegsAw-1:0] LC_CTRL_MANUF_STATE_7_OFFSET = 8'h 88;
 
   // Reset values for hwext registers and their fields for regs interface
-  parameter logic [2:0] LC_CTRL_ALERT_TEST_RESVAL = 3'h 0;
-  parameter logic [0:0] LC_CTRL_ALERT_TEST_FATAL_PROG_ERROR_RESVAL = 1'h 0;
-  parameter logic [0:0] LC_CTRL_ALERT_TEST_FATAL_STATE_ERROR_RESVAL = 1'h 0;
-  parameter logic [0:0] LC_CTRL_ALERT_TEST_FATAL_BUS_INTEG_ERROR_RESVAL = 1'h 0;
-  parameter logic [11:0] LC_CTRL_STATUS_RESVAL = 12'h 0;
-  parameter logic [7:0] LC_CTRL_CLAIM_TRANSITION_IF_RESVAL = 8'h 69;
-  parameter logic [7:0] LC_CTRL_CLAIM_TRANSITION_IF_MUTEX_RESVAL = 8'h 69;
-  parameter logic [0:0] LC_CTRL_TRANSITION_REGWEN_RESVAL = 1'h 0;
-  parameter logic [0:0] LC_CTRL_TRANSITION_REGWEN_TRANSITION_REGWEN_RESVAL = 1'h 0;
-  parameter logic [0:0] LC_CTRL_TRANSITION_CMD_RESVAL = 1'h 0;
-  parameter logic [1:0] LC_CTRL_TRANSITION_CTRL_RESVAL = 2'h 0;
-  parameter logic [31:0] LC_CTRL_TRANSITION_TOKEN_0_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_TRANSITION_TOKEN_1_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_TRANSITION_TOKEN_2_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_TRANSITION_TOKEN_3_RESVAL = 32'h 0;
-  parameter logic [29:0] LC_CTRL_TRANSITION_TARGET_RESVAL = 30'h 0;
-  parameter logic [31:0] LC_CTRL_OTP_VENDOR_TEST_CTRL_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_OTP_VENDOR_TEST_STATUS_RESVAL = 32'h 0;
-  parameter logic [29:0] LC_CTRL_LC_STATE_RESVAL = 30'h 0;
-  parameter logic [4:0] LC_CTRL_LC_TRANSITION_CNT_RESVAL = 5'h 0;
-  parameter logic [31:0] LC_CTRL_LC_ID_STATE_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_HW_REVISION0_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_HW_REVISION1_RESVAL = 32'h 0;
-  parameter logic [23:0] LC_CTRL_HW_REVISION1_RESERVED_RESVAL = 24'h 0;
-  parameter logic [31:0] LC_CTRL_DEVICE_ID_0_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_DEVICE_ID_1_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_DEVICE_ID_2_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_DEVICE_ID_3_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_DEVICE_ID_4_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_DEVICE_ID_5_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_DEVICE_ID_6_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_DEVICE_ID_7_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_MANUF_STATE_0_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_MANUF_STATE_1_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_MANUF_STATE_2_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_MANUF_STATE_3_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_MANUF_STATE_4_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_MANUF_STATE_5_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_MANUF_STATE_6_RESVAL = 32'h 0;
-  parameter logic [31:0] LC_CTRL_MANUF_STATE_7_RESVAL = 32'h 0;
+  localparam logic [2:0] LC_CTRL_ALERT_TEST_RESVAL = 3'h 0;
+  localparam logic [0:0] LC_CTRL_ALERT_TEST_FATAL_PROG_ERROR_RESVAL = 1'h 0;
+  localparam logic [0:0] LC_CTRL_ALERT_TEST_FATAL_STATE_ERROR_RESVAL = 1'h 0;
+  localparam logic [0:0] LC_CTRL_ALERT_TEST_FATAL_BUS_INTEG_ERROR_RESVAL = 1'h 0;
+  localparam logic [11:0] LC_CTRL_STATUS_RESVAL = 12'h 0;
+  localparam logic [7:0] LC_CTRL_CLAIM_TRANSITION_IF_RESVAL = 8'h 69;
+  localparam logic [7:0] LC_CTRL_CLAIM_TRANSITION_IF_MUTEX_RESVAL = 8'h 69;
+  localparam logic [0:0] LC_CTRL_TRANSITION_REGWEN_RESVAL = 1'h 0;
+  localparam logic [0:0] LC_CTRL_TRANSITION_REGWEN_TRANSITION_REGWEN_RESVAL = 1'h 0;
+  localparam logic [0:0] LC_CTRL_TRANSITION_CMD_RESVAL = 1'h 0;
+  localparam logic [1:0] LC_CTRL_TRANSITION_CTRL_RESVAL = 2'h 0;
+  localparam logic [31:0] LC_CTRL_TRANSITION_TOKEN_0_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_TRANSITION_TOKEN_1_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_TRANSITION_TOKEN_2_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_TRANSITION_TOKEN_3_RESVAL = 32'h 0;
+  localparam logic [29:0] LC_CTRL_TRANSITION_TARGET_RESVAL = 30'h 0;
+  localparam logic [31:0] LC_CTRL_OTP_VENDOR_TEST_CTRL_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_OTP_VENDOR_TEST_STATUS_RESVAL = 32'h 0;
+  localparam logic [29:0] LC_CTRL_LC_STATE_RESVAL = 30'h 0;
+  localparam logic [4:0] LC_CTRL_LC_TRANSITION_CNT_RESVAL = 5'h 0;
+  localparam logic [31:0] LC_CTRL_LC_ID_STATE_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_HW_REVISION0_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_HW_REVISION1_RESVAL = 32'h 0;
+  localparam logic [23:0] LC_CTRL_HW_REVISION1_RESERVED_RESVAL = 24'h 0;
+  localparam logic [31:0] LC_CTRL_DEVICE_ID_0_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_DEVICE_ID_1_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_DEVICE_ID_2_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_DEVICE_ID_3_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_DEVICE_ID_4_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_DEVICE_ID_5_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_DEVICE_ID_6_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_DEVICE_ID_7_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_MANUF_STATE_0_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_MANUF_STATE_1_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_MANUF_STATE_2_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_MANUF_STATE_3_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_MANUF_STATE_4_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_MANUF_STATE_5_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_MANUF_STATE_6_RESVAL = 32'h 0;
+  localparam logic [31:0] LC_CTRL_MANUF_STATE_7_RESVAL = 32'h 0;
 
   // Register index for regs interface
   typedef enum int {
@@ -343,7 +343,7 @@ package lc_ctrl_reg_pkg;
   } lc_ctrl_regs_id_e;
 
   // Register width information to check illegal writes for regs interface
-  parameter logic [3:0] LC_CTRL_REGS_PERMIT [35] = '{
+  localparam logic [3:0] LC_CTRL_REGS_PERMIT [35] = '{
     4'b 0001, // index[ 0] LC_CTRL_ALERT_TEST
     4'b 0011, // index[ 1] LC_CTRL_STATUS
     4'b 0001, // index[ 2] LC_CTRL_CLAIM_TRANSITION_IF_REGWEN
@@ -382,8 +382,8 @@ package lc_ctrl_reg_pkg;
   };
 
   // Window parameters for dmi interface
-  parameter logic [DmiAw-1:0] LC_CTRL_DMI_OFFSET = 12'h 0;
-  parameter int unsigned      LC_CTRL_DMI_SIZE   = 'h 1000;
-  parameter int unsigned      LC_CTRL_DMI_IDX    = 0;
+  localparam logic [DmiAw-1:0] LC_CTRL_DMI_OFFSET = 12'h 0;
+  localparam int unsigned      LC_CTRL_DMI_SIZE   = 'h 1000;
+  localparam int unsigned      LC_CTRL_DMI_IDX    = 0;
 
 endpackage

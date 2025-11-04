@@ -27,15 +27,15 @@ package rvviApiPkg;
 import uvm_pkg::*;
 `endif
 
-parameter RVVI_API_VERSION_MAJOR = 1;
-parameter RVVI_API_VERSION_MINOR = 34;
-parameter RVVI_TRUE = 1;
-parameter RVVI_FALSE = 0;
-parameter RVVI_INVALID_INDEX = -1;
-parameter RVVI_MEMORY_PRIVILEGE_READ = 1;
-parameter RVVI_MEMORY_PRIVILEGE_WRITE = 2;
-parameter RVVI_MEMORY_PRIVILEGE_EXEC = 4;
-parameter RVVI_API_VERSION = ((RVVI_API_VERSION_MAJOR << 24) | RVVI_API_VERSION_MINOR);
+localparam RVVI_API_VERSION_MAJOR = 1;
+localparam RVVI_API_VERSION_MINOR = 34;
+localparam RVVI_TRUE = 1;
+localparam RVVI_FALSE = 0;
+localparam RVVI_INVALID_INDEX = -1;
+localparam RVVI_MEMORY_PRIVILEGE_READ = 1;
+localparam RVVI_MEMORY_PRIVILEGE_WRITE = 2;
+localparam RVVI_MEMORY_PRIVILEGE_EXEC = 4;
+localparam RVVI_API_VERSION = ((RVVI_API_VERSION_MAJOR << 24) | RVVI_API_VERSION_MINOR);
 
 typedef enum {
     RVVI_METRIC_RETIRES = 0,

@@ -8,14 +8,14 @@
 package ast_reg_pkg;
 
   // Param list
-  parameter int NumRegsB = 5;
-  parameter int NumUsbBeaconPulses = 8;
+  localparam int NumRegsB = 5;
+  localparam int NumUsbBeaconPulses = 8;
 
   // Address widths within the block
-  parameter int BlockAw = 10;
+  localparam int BlockAw = 10;
 
   // Number of registers for every interface
-  parameter int NumRegs = 44;
+  localparam int NumRegs = 44;
 
   ////////////////////////////
   // Typedefs for registers //
@@ -236,54 +236,54 @@ package ast_reg_pkg;
   } ast_hw2reg_t;
 
   // Register offsets
-  parameter logic [BlockAw-1:0] AST_REGA0_OFFSET = 10'h 0;
-  parameter logic [BlockAw-1:0] AST_REGA1_OFFSET = 10'h 4;
-  parameter logic [BlockAw-1:0] AST_REGA2_OFFSET = 10'h 8;
-  parameter logic [BlockAw-1:0] AST_REGA3_OFFSET = 10'h c;
-  parameter logic [BlockAw-1:0] AST_REGA4_OFFSET = 10'h 10;
-  parameter logic [BlockAw-1:0] AST_REGA5_OFFSET = 10'h 14;
-  parameter logic [BlockAw-1:0] AST_REGA6_OFFSET = 10'h 18;
-  parameter logic [BlockAw-1:0] AST_REGA7_OFFSET = 10'h 1c;
-  parameter logic [BlockAw-1:0] AST_REGA8_OFFSET = 10'h 20;
-  parameter logic [BlockAw-1:0] AST_REGA9_OFFSET = 10'h 24;
-  parameter logic [BlockAw-1:0] AST_REGA10_OFFSET = 10'h 28;
-  parameter logic [BlockAw-1:0] AST_REGA11_OFFSET = 10'h 2c;
-  parameter logic [BlockAw-1:0] AST_REGA12_OFFSET = 10'h 30;
-  parameter logic [BlockAw-1:0] AST_REGA13_OFFSET = 10'h 34;
-  parameter logic [BlockAw-1:0] AST_REGA14_OFFSET = 10'h 38;
-  parameter logic [BlockAw-1:0] AST_REGA15_OFFSET = 10'h 3c;
-  parameter logic [BlockAw-1:0] AST_REGA16_OFFSET = 10'h 40;
-  parameter logic [BlockAw-1:0] AST_REGA17_OFFSET = 10'h 44;
-  parameter logic [BlockAw-1:0] AST_REGA18_OFFSET = 10'h 48;
-  parameter logic [BlockAw-1:0] AST_REGA19_OFFSET = 10'h 4c;
-  parameter logic [BlockAw-1:0] AST_REGA20_OFFSET = 10'h 50;
-  parameter logic [BlockAw-1:0] AST_REGA21_OFFSET = 10'h 54;
-  parameter logic [BlockAw-1:0] AST_REGA22_OFFSET = 10'h 58;
-  parameter logic [BlockAw-1:0] AST_REGA23_OFFSET = 10'h 5c;
-  parameter logic [BlockAw-1:0] AST_REGA24_OFFSET = 10'h 60;
-  parameter logic [BlockAw-1:0] AST_REGA25_OFFSET = 10'h 64;
-  parameter logic [BlockAw-1:0] AST_REGA26_OFFSET = 10'h 68;
-  parameter logic [BlockAw-1:0] AST_REGA27_OFFSET = 10'h 6c;
-  parameter logic [BlockAw-1:0] AST_REGA28_OFFSET = 10'h 70;
-  parameter logic [BlockAw-1:0] AST_REGA29_OFFSET = 10'h 74;
-  parameter logic [BlockAw-1:0] AST_REGA30_OFFSET = 10'h 78;
-  parameter logic [BlockAw-1:0] AST_REGA31_OFFSET = 10'h 7c;
-  parameter logic [BlockAw-1:0] AST_REGA32_OFFSET = 10'h 80;
-  parameter logic [BlockAw-1:0] AST_REGA33_OFFSET = 10'h 84;
-  parameter logic [BlockAw-1:0] AST_REGA34_OFFSET = 10'h 88;
-  parameter logic [BlockAw-1:0] AST_REGA35_OFFSET = 10'h 8c;
-  parameter logic [BlockAw-1:0] AST_REGA36_OFFSET = 10'h 90;
-  parameter logic [BlockAw-1:0] AST_REGA37_OFFSET = 10'h 94;
-  parameter logic [BlockAw-1:0] AST_REGAL_OFFSET = 10'h 98;
-  parameter logic [BlockAw-1:0] AST_REGB_0_OFFSET = 10'h 200;
-  parameter logic [BlockAw-1:0] AST_REGB_1_OFFSET = 10'h 204;
-  parameter logic [BlockAw-1:0] AST_REGB_2_OFFSET = 10'h 208;
-  parameter logic [BlockAw-1:0] AST_REGB_3_OFFSET = 10'h 20c;
-  parameter logic [BlockAw-1:0] AST_REGB_4_OFFSET = 10'h 210;
+  localparam logic [BlockAw-1:0] AST_REGA0_OFFSET = 10'h 0;
+  localparam logic [BlockAw-1:0] AST_REGA1_OFFSET = 10'h 4;
+  localparam logic [BlockAw-1:0] AST_REGA2_OFFSET = 10'h 8;
+  localparam logic [BlockAw-1:0] AST_REGA3_OFFSET = 10'h c;
+  localparam logic [BlockAw-1:0] AST_REGA4_OFFSET = 10'h 10;
+  localparam logic [BlockAw-1:0] AST_REGA5_OFFSET = 10'h 14;
+  localparam logic [BlockAw-1:0] AST_REGA6_OFFSET = 10'h 18;
+  localparam logic [BlockAw-1:0] AST_REGA7_OFFSET = 10'h 1c;
+  localparam logic [BlockAw-1:0] AST_REGA8_OFFSET = 10'h 20;
+  localparam logic [BlockAw-1:0] AST_REGA9_OFFSET = 10'h 24;
+  localparam logic [BlockAw-1:0] AST_REGA10_OFFSET = 10'h 28;
+  localparam logic [BlockAw-1:0] AST_REGA11_OFFSET = 10'h 2c;
+  localparam logic [BlockAw-1:0] AST_REGA12_OFFSET = 10'h 30;
+  localparam logic [BlockAw-1:0] AST_REGA13_OFFSET = 10'h 34;
+  localparam logic [BlockAw-1:0] AST_REGA14_OFFSET = 10'h 38;
+  localparam logic [BlockAw-1:0] AST_REGA15_OFFSET = 10'h 3c;
+  localparam logic [BlockAw-1:0] AST_REGA16_OFFSET = 10'h 40;
+  localparam logic [BlockAw-1:0] AST_REGA17_OFFSET = 10'h 44;
+  localparam logic [BlockAw-1:0] AST_REGA18_OFFSET = 10'h 48;
+  localparam logic [BlockAw-1:0] AST_REGA19_OFFSET = 10'h 4c;
+  localparam logic [BlockAw-1:0] AST_REGA20_OFFSET = 10'h 50;
+  localparam logic [BlockAw-1:0] AST_REGA21_OFFSET = 10'h 54;
+  localparam logic [BlockAw-1:0] AST_REGA22_OFFSET = 10'h 58;
+  localparam logic [BlockAw-1:0] AST_REGA23_OFFSET = 10'h 5c;
+  localparam logic [BlockAw-1:0] AST_REGA24_OFFSET = 10'h 60;
+  localparam logic [BlockAw-1:0] AST_REGA25_OFFSET = 10'h 64;
+  localparam logic [BlockAw-1:0] AST_REGA26_OFFSET = 10'h 68;
+  localparam logic [BlockAw-1:0] AST_REGA27_OFFSET = 10'h 6c;
+  localparam logic [BlockAw-1:0] AST_REGA28_OFFSET = 10'h 70;
+  localparam logic [BlockAw-1:0] AST_REGA29_OFFSET = 10'h 74;
+  localparam logic [BlockAw-1:0] AST_REGA30_OFFSET = 10'h 78;
+  localparam logic [BlockAw-1:0] AST_REGA31_OFFSET = 10'h 7c;
+  localparam logic [BlockAw-1:0] AST_REGA32_OFFSET = 10'h 80;
+  localparam logic [BlockAw-1:0] AST_REGA33_OFFSET = 10'h 84;
+  localparam logic [BlockAw-1:0] AST_REGA34_OFFSET = 10'h 88;
+  localparam logic [BlockAw-1:0] AST_REGA35_OFFSET = 10'h 8c;
+  localparam logic [BlockAw-1:0] AST_REGA36_OFFSET = 10'h 90;
+  localparam logic [BlockAw-1:0] AST_REGA37_OFFSET = 10'h 94;
+  localparam logic [BlockAw-1:0] AST_REGAL_OFFSET = 10'h 98;
+  localparam logic [BlockAw-1:0] AST_REGB_0_OFFSET = 10'h 200;
+  localparam logic [BlockAw-1:0] AST_REGB_1_OFFSET = 10'h 204;
+  localparam logic [BlockAw-1:0] AST_REGB_2_OFFSET = 10'h 208;
+  localparam logic [BlockAw-1:0] AST_REGB_3_OFFSET = 10'h 20c;
+  localparam logic [BlockAw-1:0] AST_REGB_4_OFFSET = 10'h 210;
 
   // Reset values for hwext registers and their fields
-  parameter logic [31:0] AST_REGAL_RESVAL = 32'h 26;
-  parameter logic [31:0] AST_REGAL_REG32_RESVAL = 32'h 26;
+  localparam logic [31:0] AST_REGAL_RESVAL = 32'h 26;
+  localparam logic [31:0] AST_REGAL_REG32_RESVAL = 32'h 26;
 
   // Register index
   typedef enum int {
@@ -334,7 +334,7 @@ package ast_reg_pkg;
   } ast_id_e;
 
   // Register width information to check illegal writes
-  parameter logic [3:0] AST_PERMIT [44] = '{
+  localparam logic [3:0] AST_PERMIT [44] = '{
     4'b 1111, // index[ 0] AST_REGA0
     4'b 1111, // index[ 1] AST_REGA1
     4'b 1111, // index[ 2] AST_REGA2

@@ -23,8 +23,8 @@ package prim_pad_wrapper_pkg;
   } scan_role_e;
 
   // Pad attributes
-  parameter int DriveStrDw = 4;
-  parameter int SlewRateDw = 2;
+  localparam int DriveStrDw = 4;
+  localparam int SlewRateDw = 2;
 
   typedef struct packed {
     logic [DriveStrDw-1:0] drive_strength; // Drive strength (0000: weakest, 1111: strongest).
@@ -39,10 +39,10 @@ package prim_pad_wrapper_pkg;
     logic invert;                          // Input/output inversion.
   } pad_attr_t;
 
-  parameter int AttrDw = $bits(pad_attr_t);
+  localparam int AttrDw = $bits(pad_attr_t);
 
   // Power OK signals (library dependent)
-  parameter int PokDw = 8;
+  localparam int PokDw = 8;
 
   typedef logic [PokDw-1:0] pad_pok_t;
 

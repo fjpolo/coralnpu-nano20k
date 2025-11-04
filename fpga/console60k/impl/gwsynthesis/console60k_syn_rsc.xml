@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="chip_console60k_frontend"/>
+<Module name="chip_console60k_sram" Register="16" Lut="29" T_Register="25(16)" T_Lut="29(29)" T_Bsram="1(0)">
+ <SubModule name="gowinPLL81MHz">
+  <SubModule name="u_pll"/>
+ </SubModule>
+ <SubModule name="i_write_data_buffer_sram_256x128" Register="9" Bsram="1" T_Register="9(9)" T_Bsram="1(1)"/>
+</Module>

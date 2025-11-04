@@ -23,7 +23,7 @@ package lc_ctrl_pkg;
   } pwr_lc_rsp_t;
 
   // default value (for dangling ports)
-  parameter pwr_lc_rsp_t PWR_LC_RSP_DEFAULT = '{
+  localparam pwr_lc_rsp_t PWR_LC_RSP_DEFAULT = '{
     lc_done: 1'b1,
     lc_idle: 1'b1
   };
@@ -32,8 +32,8 @@ package lc_ctrl_pkg;
   // Netlist Constants (Hashed Tokens) //
   ///////////////////////////////////////
 
-  parameter int NumTokens = 6;
-  parameter int TokenIdxWidth = vbits(NumTokens);
+  localparam int NumTokens = 6;
+  localparam int TokenIdxWidth = vbits(NumTokens);
   typedef enum logic [TokenIdxWidth-1:0] {
     // This is the index for the hashed all-zero constant.
     // All unconditional transitions use this token.
@@ -47,14 +47,14 @@ package lc_ctrl_pkg;
     InvalidTokenIdx    = 3'h5
   } token_idx_e;
 
-  parameter int TokenMuxBits = 2**TokenIdxWidth*LcTokenWidth;
+  localparam int TokenMuxBits = 2**TokenIdxWidth*LcTokenWidth;
   typedef logic [TokenMuxBits-1:0] lc_token_mux_t;
 
   ////////////////////////////////
   // Typedefs for LC Interfaces //
   ////////////////////////////////
 
-  parameter int TxWidth = 4;
+  localparam int TxWidth = 4;
 
   // Note that changing this encoding has implications on isolation cell
   // values in RTL. Do not change this unless absolutely needed.
@@ -62,13 +62,13 @@ package lc_ctrl_pkg;
     On  = 4'b0101,
     Off = 4'b1010
   } lc_tx_t;
-  parameter lc_tx_t LC_TX_DEFAULT = lc_tx_t'(Off);
+  localparam lc_tx_t LC_TX_DEFAULT = lc_tx_t'(Off);
 
-  parameter int RmaSeedWidth = 32;
+  localparam int RmaSeedWidth = 32;
   typedef logic [RmaSeedWidth-1:0] lc_flash_rma_seed_t;
-  parameter lc_flash_rma_seed_t LC_FLASH_RMA_SEED_DEFAULT = '0;
+  localparam lc_flash_rma_seed_t LC_FLASH_RMA_SEED_DEFAULT = '0;
 
-  parameter int LcKeymgrDivWidth = 128;
+  localparam int LcKeymgrDivWidth = 128;
   typedef logic [LcKeymgrDivWidth-1:0] lc_keymgr_div_t;
 
   typedef struct packed {
@@ -335,7 +335,7 @@ package lc_ctrl_pkg;
   // The token index matrix below encodes 1) which transition edges are valid and 2) which token
   // to use for a given transition edge. Note that unconditional but otherwise valid transitions
   // are assigned the ZeroTokenIdx, whereas invalid transitions are assigned an InvalidTokenIdx.
-  parameter token_idx_e [NumLcStates-1:0][NumLcStates-1:0] TransTokenIdxMatrix = {
+  localparam token_idx_e [NumLcStates-1:0][NumLcStates-1:0] TransTokenIdxMatrix = {
     // SCRAP
     {21{InvalidTokenIdx}}, // -> TEST_LOCKED0-6, TEST_UNLOCKED0-7, DEV, PROD, PROD_END, RMA, SCRAP
     // RMA

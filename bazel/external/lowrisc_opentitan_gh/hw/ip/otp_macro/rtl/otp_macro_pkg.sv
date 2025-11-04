@@ -6,10 +6,10 @@
 
 package otp_macro_pkg;
 
-  parameter int OtpPwrSeqWidth     = 2;
-  parameter int OtpTestCtrlWidth   = 32;
-  parameter int OtpTestStatusWidth = 32;
-  parameter int OtpTestVectWidth   = 8;
+  localparam int OtpPwrSeqWidth     = 2;
+  localparam int OtpTestCtrlWidth   = 32;
+  localparam int OtpTestStatusWidth = 32;
+  localparam int OtpTestVectWidth   = 8;
 
   // AST Interface
 
@@ -35,7 +35,7 @@ package otp_macro_pkg;
 
   typedef logic [OtpTestVectWidth-1:0] otp_test_vect_t;
 
-  parameter otp_test_req_t OTP_TEST_DEFAULT = '0;
+  localparam otp_test_req_t OTP_TEST_DEFAULT = '0;
 
   // Config interface
   typedef struct packed {
@@ -46,6 +46,6 @@ package otp_macro_pkg;
     logic done;
   } otp_cfg_rsp_t;
 
-  parameter otp_cfg_t OTP_CFG_DEFAULT = '0;
+  localparam otp_cfg_t OTP_CFG_DEFAULT = '0;
 
 endpackage : otp_macro_pkg

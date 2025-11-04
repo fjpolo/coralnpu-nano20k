@@ -11,34 +11,34 @@ package sha3_pkg;
   // As Sha3 assume the state value as 1600, this shouldn't be modified.
   // Note that keccak_round is flexible. It can have any values defined in SHA3
   // specification. But sha3pad logic assumes the value as 1600.
-  parameter int StateW = 1600;
+  localparam int StateW = 1600;
 
   // Function Name (N) and Customization String (S) shall be
   // smaller than 2**256 bits and integer divisible by 8.
-  parameter int FnWidth = 32;  // up to 32bit Function Name
-  parameter int CsWidth = 256; // up to 256bit Customization Input
+  localparam int FnWidth = 32;  // up to 32bit Function Name
+  localparam int CsWidth = 256; // up to 256bit Customization Input
 
   // Calculate left_encode(len( X )) bit size.
   // Assume the enc_8(n) is always 1 (up to 255 byte of len(S) size)
   // e.g) 248bit --> two bytes , 256bit --> three bytes
   //  round8bit(clog2(X+1))/8
 
-  parameter int MaxFnEncodeSize = ($clog2(FnWidth+1) + 8 - 1) / 8 + 1;
-  parameter int MaxCsEncodeSize = ($clog2(CsWidth+1) + 8 - 1) / 8 + 1;
+  localparam int MaxFnEncodeSize = ($clog2(FnWidth+1) + 8 - 1) / 8 + 1;
+  localparam int MaxCsEncodeSize = ($clog2(CsWidth+1) + 8 - 1) / 8 + 1;
 
-  parameter int NSRegisterSizePre = FnWidth/8       + CsWidth/8
+  localparam int NSRegisterSizePre = FnWidth/8       + CsWidth/8
                                   + MaxFnEncodeSize + MaxCsEncodeSize;
   // Round up to 32bit word base
-  parameter int NSRegisterSize = ((NSRegisterSizePre + 4 - 1 ) / 4) * 4;
+  localparam int NSRegisterSize = ((NSRegisterSizePre + 4 - 1 ) / 4) * 4;
 
   // Prefix represents bytepad(encode_string(N) || encode_string(S), 168 or 136)
   // +2 represents left_encoding(168 or 136) which could be either:
   // 10000000 || 00010101 // 168
   // 10000000 || 00010001 // 136
-  parameter int PrefixSize = NSRegisterSize + 2;
+  localparam int PrefixSize = NSRegisterSize + 2;
 
   // index width for `N` and `S`
-  parameter int PrefixIndexW = $clog2(PrefixSize/64);
+  localparam int PrefixIndexW = $clog2(PrefixSize/64);
 
   // Datapath width in KMAC, this also affects the output of MSG_FIFO
   // This is assumed as 64 in KMAC design. If this value is changed, some parts
@@ -50,8 +50,8 @@ package sha3_pkg;
   //    changed, the logic also need to be revised.
   // 3. kmac core logic also has fixed size mux for appending output length.
   //    Revise the case statement to fit into revised MsgWidth value.
-  parameter int MsgWidth = 64;
-  parameter int MsgStrbW = MsgWidth / 8;
+  localparam int MsgWidth = 64;
+  localparam int MsgStrbW = MsgWidth / 8;
 
   // Keccak module supports SHA3, SHAKE, cSHAKE function.
   // This mode determines if the module uses encoded N and S or not.
@@ -83,7 +83,7 @@ package sha3_pkg;
     L512 = 3'b 100  // rate:  576 bit / capacity: 1024 bit Keccak[1024](, 512)
   } keccak_strength_e;
 
-  parameter int unsigned KeccakRate [5] = '{
+  localparam int unsigned KeccakRate [5] = '{
     1344/MsgWidth,  // 21 depth := (1600 - 128*2)
     1152/MsgWidth,  // 18 depth := (1600 - 224*2)
     1088/MsgWidth,  // 17 depth := (1600 - 256*2)
@@ -91,7 +91,7 @@ package sha3_pkg;
      576/MsgWidth   //  9 depth := (1600 - 512*2)
   };
 
-  parameter int unsigned KeccakBitCapacity [5] = '{
+  localparam int unsigned KeccakBitCapacity [5] = '{
     2 * 128, // capacity for L128
     2 * 224, // capacity for L224
     2 * 256, // capacity for L256
@@ -99,12 +99,12 @@ package sha3_pkg;
     2 * 512  // capacity for L512
   };
 
-  parameter int unsigned MaxBlockSize = KeccakRate[0];
+  localparam int unsigned MaxBlockSize = KeccakRate[0];
 
-  parameter int unsigned KeccakEntries = 1600/MsgWidth;
-  parameter int unsigned KeccakMsgAddrW = $clog2(KeccakEntries);
+  localparam int unsigned KeccakEntries = 1600/MsgWidth;
+  localparam int unsigned KeccakMsgAddrW = $clog2(KeccakEntries);
 
-  parameter int unsigned KeccakCountW = $clog2(KeccakEntries+1);
+  localparam int unsigned KeccakCountW = $clog2(KeccakEntries+1);
 
   // SHA3 core state. This state value is used in sha3core module
   // and also in KMAC top module and the register interface for sw to track the

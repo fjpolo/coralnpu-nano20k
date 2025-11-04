@@ -21,28 +21,28 @@ package prim_cipher_pkg;
   // PRINCE Cipher //
   ///////////////////
 
-  parameter logic [15:0][3:0] PRINCE_SBOX4 = {4'h4, 4'hD, 4'h5, 4'hE,
+  localparam logic [15:0][3:0] PRINCE_SBOX4 = {4'h4, 4'hD, 4'h5, 4'hE,
                                               4'h0, 4'h8, 4'h7, 4'h6,
                                               4'h1, 4'h9, 4'hC, 4'hA,
                                               4'h2, 4'h3, 4'hF, 4'hB};
 
-  parameter logic [15:0][3:0] PRINCE_SBOX4_INV = {4'h1, 4'hC, 4'hE, 4'h5,
+  localparam logic [15:0][3:0] PRINCE_SBOX4_INV = {4'h1, 4'hC, 4'hE, 4'h5,
                                                   4'h0, 4'h4, 4'h6, 4'hA,
                                                   4'h9, 4'h8, 4'hD, 4'hF,
                                                   4'h2, 4'h3, 4'h7, 4'hB};
   // nibble permutations
-  parameter logic [15:0][3:0] PRINCE_SHIFT_ROWS64  = '{4'hF, 4'hA, 4'h5, 4'h0,
+  localparam logic [15:0][3:0] PRINCE_SHIFT_ROWS64  = '{4'hF, 4'hA, 4'h5, 4'h0,
                                                        4'hB, 4'h6, 4'h1, 4'hC,
                                                        4'h7, 4'h2, 4'hD, 4'h8,
                                                        4'h3, 4'hE, 4'h9, 4'h4};
 
-  parameter logic [15:0][3:0] PRINCE_SHIFT_ROWS64_INV = '{4'hF, 4'h2, 4'h5, 4'h8,
+  localparam logic [15:0][3:0] PRINCE_SHIFT_ROWS64_INV = '{4'hF, 4'h2, 4'h5, 4'h8,
                                                           4'hB, 4'hE, 4'h1, 4'h4,
                                                           4'h7, 4'hA, 4'hD, 4'h0,
                                                           4'h3, 4'h6, 4'h9, 4'hC};
 
   // these are the round constants
-  parameter logic [11:0][63:0] PRINCE_ROUND_CONST = {64'hC0AC29B7C97C50DD,
+  localparam logic [11:0][63:0] PRINCE_ROUND_CONST = {64'hC0AC29B7C97C50DD,
                                                      64'hD3B5A399CA0C2399,
                                                      64'h64A51195E0E3610D,
                                                      64'hC882D32F25323C54,
@@ -56,13 +56,13 @@ package prim_cipher_pkg;
                                                      64'h0000000000000000};
 
   // tweak constant for key modification between enc/dec modes
-  parameter logic [63:0] PRINCE_ALPHA_CONST = 64'hC0AC29B7C97C50DD;
+  localparam logic [63:0] PRINCE_ALPHA_CONST = 64'hC0AC29B7C97C50DD;
 
   // masking constants for shift rows function below
-  parameter logic [15:0] PRINCE_SHIFT_ROWS_CONST0 = 16'h7BDE;
-  parameter logic [15:0] PRINCE_SHIFT_ROWS_CONST1 = 16'hBDE7;
-  parameter logic [15:0] PRINCE_SHIFT_ROWS_CONST2 = 16'hDE7B;
-  parameter logic [15:0] PRINCE_SHIFT_ROWS_CONST3 = 16'hE7BD;
+  localparam logic [15:0] PRINCE_SHIFT_ROWS_CONST0 = 16'h7BDE;
+  localparam logic [15:0] PRINCE_SHIFT_ROWS_CONST1 = 16'hBDE7;
+  localparam logic [15:0] PRINCE_SHIFT_ROWS_CONST2 = 16'hDE7B;
+  localparam logic [15:0] PRINCE_SHIFT_ROWS_CONST3 = 16'hE7BD;
 
   // nibble shifts
   function automatic logic [31:0] prince_shiftrows_32bit(logic [31:0]      state_in,
@@ -139,19 +139,19 @@ package prim_cipher_pkg;
   ////////////////////
 
   // this is the sbox from the present cipher
-  parameter logic [15:0][3:0] PRESENT_SBOX4 = {4'h2, 4'h1, 4'h7, 4'h4,
+  localparam logic [15:0][3:0] PRESENT_SBOX4 = {4'h2, 4'h1, 4'h7, 4'h4,
                                                4'h8, 4'hF, 4'hE, 4'h3,
                                                4'hD, 4'hA, 4'h0, 4'h9,
                                                4'hB, 4'h6, 4'h5, 4'hC};
 
-  parameter logic [15:0][3:0] PRESENT_SBOX4_INV = {4'hA, 4'h9, 4'h7, 4'h0,
+  localparam logic [15:0][3:0] PRESENT_SBOX4_INV = {4'hA, 4'h9, 4'h7, 4'h0,
                                                    4'h3, 4'h6, 4'h4, 4'hB,
                                                    4'hD, 4'h2, 4'h1, 4'hC,
                                                    4'h8, 4'hF, 4'hE, 4'h5};
 
   // these are modified permutation indices for a 32bit version that
   // follow the same pattern as for the 64bit version
-  parameter logic [31:0][4:0] PRESENT_PERM32 = {5'd31, 5'd23, 5'd15, 5'd07,
+  localparam logic [31:0][4:0] PRESENT_PERM32 = {5'd31, 5'd23, 5'd15, 5'd07,
                                                 5'd30, 5'd22, 5'd14, 5'd06,
                                                 5'd29, 5'd21, 5'd13, 5'd05,
                                                 5'd28, 5'd20, 5'd12, 5'd04,
@@ -160,7 +160,7 @@ package prim_cipher_pkg;
                                                 5'd25, 5'd17, 5'd09, 5'd01,
                                                 5'd24, 5'd16, 5'd08, 5'd00};
 
-  parameter logic [31:0][4:0] PRESENT_PERM32_INV = {5'd31, 5'd27, 5'd23, 5'd19,
+  localparam logic [31:0][4:0] PRESENT_PERM32_INV = {5'd31, 5'd27, 5'd23, 5'd19,
                                                     5'd15, 5'd11, 5'd07, 5'd03,
                                                     5'd30, 5'd26, 5'd22, 5'd18,
                                                     5'd14, 5'd10, 5'd06, 5'd02,
@@ -170,7 +170,7 @@ package prim_cipher_pkg;
                                                     5'd12, 5'd08, 5'd04, 5'd00};
 
   // these are the permutation indices of the present cipher
-  parameter logic [63:0][5:0] PRESENT_PERM64 = {6'd63, 6'd47, 6'd31, 6'd15,
+  localparam logic [63:0][5:0] PRESENT_PERM64 = {6'd63, 6'd47, 6'd31, 6'd15,
                                                 6'd62, 6'd46, 6'd30, 6'd14,
                                                 6'd61, 6'd45, 6'd29, 6'd13,
                                                 6'd60, 6'd44, 6'd28, 6'd12,
@@ -187,7 +187,7 @@ package prim_cipher_pkg;
                                                 6'd49, 6'd33, 6'd17, 6'd01,
                                                 6'd48, 6'd32, 6'd16, 6'd00};
 
-  parameter logic [63:0][5:0] PRESENT_PERM64_INV = {6'd63, 6'd59, 6'd55, 6'd51,
+  localparam logic [63:0][5:0] PRESENT_PERM64_INV = {6'd63, 6'd59, 6'd55, 6'd51,
                                                     6'd47, 6'd43, 6'd39, 6'd35,
                                                     6'd31, 6'd27, 6'd23, 6'd19,
                                                     6'd15, 6'd11, 6'd07, 6'd03,

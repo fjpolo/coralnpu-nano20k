@@ -21,6 +21,6 @@ package prim_ram_1p_pkg;
     logic done;
   } ram_1p_cfg_rsp_t;
 
-  parameter ram_1p_cfg_t RAM_1P_CFG_DEFAULT = '0;
+  localparam ram_1p_cfg_t RAM_1P_CFG_DEFAULT = '0;
 
 endpackage // prim_ram_1p_pkg

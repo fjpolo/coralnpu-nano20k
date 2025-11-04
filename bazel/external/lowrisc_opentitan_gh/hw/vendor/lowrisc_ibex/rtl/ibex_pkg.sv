@@ -30,7 +30,7 @@ package ibex_pkg;
   } core2rf_t;
 
   /////////////////////
-  // Parameter Enums //
+  // localparam Enums //
   /////////////////////
 
   typedef enum integer {
@@ -365,34 +365,34 @@ package ibex_pkg;
   } dbg_cause_e;
 
   // ICache constants
-  parameter int unsigned ADDR_W           = 32;
-  parameter int unsigned BUS_SIZE         = 32;
-  parameter int unsigned BUS_BYTES        = BUS_SIZE/8;
-  parameter int unsigned BUS_W            = $clog2(BUS_BYTES);
-  parameter int unsigned IC_SIZE_BYTES    = 4096;
-  parameter int unsigned IC_NUM_WAYS      = 2;
-  parameter int unsigned IC_LINE_SIZE     = 64;
-  parameter int unsigned IC_LINE_BYTES    = IC_LINE_SIZE/8;
-  parameter int unsigned IC_LINE_W        = $clog2(IC_LINE_BYTES);
-  parameter int unsigned IC_NUM_LINES     = IC_SIZE_BYTES / IC_NUM_WAYS / IC_LINE_BYTES;
-  parameter int unsigned IC_LINE_BEATS    = IC_LINE_BYTES / BUS_BYTES;
-  parameter int unsigned IC_LINE_BEATS_W  = $clog2(IC_LINE_BEATS);
-  parameter int unsigned IC_INDEX_W       = $clog2(IC_NUM_LINES);
-  parameter int unsigned IC_INDEX_HI      = IC_INDEX_W + IC_LINE_W - 1;
-  parameter int unsigned IC_TAG_SIZE      = ADDR_W - IC_INDEX_W - IC_LINE_W + 1; // 1 valid bit
-  parameter int unsigned IC_OUTPUT_BEATS  = (BUS_BYTES / 2); // number of halfwords
+  localparam int unsigned ADDR_W           = 32;
+  localparam int unsigned BUS_SIZE         = 32;
+  localparam int unsigned BUS_BYTES        = BUS_SIZE/8;
+  localparam int unsigned BUS_W            = $clog2(BUS_BYTES);
+  localparam int unsigned IC_SIZE_BYTES    = 4096;
+  localparam int unsigned IC_NUM_WAYS      = 2;
+  localparam int unsigned IC_LINE_SIZE     = 64;
+  localparam int unsigned IC_LINE_BYTES    = IC_LINE_SIZE/8;
+  localparam int unsigned IC_LINE_W        = $clog2(IC_LINE_BYTES);
+  localparam int unsigned IC_NUM_LINES     = IC_SIZE_BYTES / IC_NUM_WAYS / IC_LINE_BYTES;
+  localparam int unsigned IC_LINE_BEATS    = IC_LINE_BYTES / BUS_BYTES;
+  localparam int unsigned IC_LINE_BEATS_W  = $clog2(IC_LINE_BEATS);
+  localparam int unsigned IC_INDEX_W       = $clog2(IC_NUM_LINES);
+  localparam int unsigned IC_INDEX_HI      = IC_INDEX_W + IC_LINE_W - 1;
+  localparam int unsigned IC_TAG_SIZE      = ADDR_W - IC_INDEX_W - IC_LINE_W + 1; // 1 valid bit
+  localparam int unsigned IC_OUTPUT_BEATS  = (BUS_BYTES / 2); // number of halfwords
   // ICache Scrambling Parameters
-  parameter int unsigned SCRAMBLE_KEY_W   = 128;
-  parameter int unsigned SCRAMBLE_NONCE_W = 64;
+  localparam int unsigned SCRAMBLE_KEY_W   = 128;
+  localparam int unsigned SCRAMBLE_NONCE_W = 64;
 
   // PMP constants
-  parameter int unsigned PMP_MAX_REGIONS      = 16;
-  parameter int unsigned PMP_CFG_W            = 8;
+  localparam int unsigned PMP_MAX_REGIONS      = 16;
+  localparam int unsigned PMP_CFG_W            = 8;
 
   // PMP acces type
-  parameter int unsigned PMP_I  = 0;
-  parameter int unsigned PMP_I2 = 1;
-  parameter int unsigned PMP_D  = 2;
+  localparam int unsigned PMP_I  = 0;
+  localparam int unsigned PMP_I2 = 1;
+  localparam int unsigned PMP_D  = 2;
 
   typedef enum logic [1:0] {
     PMP_ACC_EXEC    = 2'b00,
@@ -592,31 +592,31 @@ package ibex_pkg;
   } csr_num_e;
 
   // CSR pmp-related offsets
-  parameter logic [11:0] CSR_OFF_PMP_CFG  = 12'h3A0; // pmp_cfg  @ 12'h3a0 - 12'h3a3
-  parameter logic [11:0] CSR_OFF_PMP_ADDR = 12'h3B0; // pmp_addr @ 12'h3b0 - 12'h3bf
+  localparam logic [11:0] CSR_OFF_PMP_CFG  = 12'h3A0; // pmp_cfg  @ 12'h3a0 - 12'h3a3
+  localparam logic [11:0] CSR_OFF_PMP_ADDR = 12'h3B0; // pmp_addr @ 12'h3b0 - 12'h3bf
 
   // CSR status bits
-  parameter int unsigned CSR_MSTATUS_MIE_BIT      = 3;
-  parameter int unsigned CSR_MSTATUS_MPIE_BIT     = 7;
-  parameter int unsigned CSR_MSTATUS_MPP_BIT_LOW  = 11;
-  parameter int unsigned CSR_MSTATUS_MPP_BIT_HIGH = 12;
-  parameter int unsigned CSR_MSTATUS_MPRV_BIT     = 17;
-  parameter int unsigned CSR_MSTATUS_TW_BIT       = 21;
+  localparam int unsigned CSR_MSTATUS_MIE_BIT      = 3;
+  localparam int unsigned CSR_MSTATUS_MPIE_BIT     = 7;
+  localparam int unsigned CSR_MSTATUS_MPP_BIT_LOW  = 11;
+  localparam int unsigned CSR_MSTATUS_MPP_BIT_HIGH = 12;
+  localparam int unsigned CSR_MSTATUS_MPRV_BIT     = 17;
+  localparam int unsigned CSR_MSTATUS_TW_BIT       = 21;
 
   // CSR machine ISA
-  parameter logic [1:0] CSR_MISA_MXL = 2'd1; // M-XLEN: XLEN in M-Mode for RV32
+  localparam logic [1:0] CSR_MISA_MXL = 2'd1; // M-XLEN: XLEN in M-Mode for RV32
 
   // CSR interrupt pending/enable bits
-  parameter int unsigned CSR_MSIX_BIT      = 3;
-  parameter int unsigned CSR_MTIX_BIT      = 7;
-  parameter int unsigned CSR_MEIX_BIT      = 11;
-  parameter int unsigned CSR_MFIX_BIT_LOW  = 16;
-  parameter int unsigned CSR_MFIX_BIT_HIGH = 30;
+  localparam int unsigned CSR_MSIX_BIT      = 3;
+  localparam int unsigned CSR_MTIX_BIT      = 7;
+  localparam int unsigned CSR_MEIX_BIT      = 11;
+  localparam int unsigned CSR_MFIX_BIT_LOW  = 16;
+  localparam int unsigned CSR_MFIX_BIT_HIGH = 30;
 
   // CSR Machine Security Configuration bits
-  parameter int unsigned CSR_MSECCFG_MML_BIT  = 0;
-  parameter int unsigned CSR_MSECCFG_MMWP_BIT = 1;
-  parameter int unsigned CSR_MSECCFG_RLB_BIT  = 2;
+  localparam int unsigned CSR_MSECCFG_MML_BIT  = 0;
+  localparam int unsigned CSR_MSECCFG_MMWP_BIT = 1;
+  localparam int unsigned CSR_MSECCFG_RLB_BIT  = 2;
 
   // Architecture ID
   // Top bit is unset to indicate an open source project. The lower bits are an ID allocated by the
@@ -631,29 +631,29 @@ package ibex_pkg;
 
   // These LFSR parameters have been generated with
   // $ opentitan/util/design/gen-lfsr-seed.py --width 32 --seed 2480124384 --prefix ""
-  parameter int LfsrWidth = 32;
+  localparam int LfsrWidth = 32;
   typedef logic [LfsrWidth-1:0] lfsr_seed_t;
   typedef logic [LfsrWidth-1:0][$clog2(LfsrWidth)-1:0] lfsr_perm_t;
-  parameter lfsr_seed_t RndCnstLfsrSeedDefault = 32'hac533bf4;
-  parameter lfsr_perm_t RndCnstLfsrPermDefault = {
+  localparam lfsr_seed_t RndCnstLfsrSeedDefault = 32'hac533bf4;
+  localparam lfsr_perm_t RndCnstLfsrPermDefault = {
     160'h1e35ecba467fd1b12e958152c04fa43878a8daed
   };
-  parameter logic [SCRAMBLE_KEY_W-1:0]   RndCnstIbexKeyDefault =
+  localparam logic [SCRAMBLE_KEY_W-1:0]   RndCnstIbexKeyDefault =
       128'h14e8cecae3040d5e12286bb3cc113298;
-  parameter logic [SCRAMBLE_NONCE_W-1:0] RndCnstIbexNonceDefault =
+  localparam logic [SCRAMBLE_NONCE_W-1:0] RndCnstIbexNonceDefault =
       64'hf79780bc735f3843;
 
   // Mult-bit signal used for security hardening. For non-secure implementation all bits other than
   // the bottom bit are ignored.
-  parameter int IbexMuBiWidth = 4;
+  localparam int IbexMuBiWidth = 4;
   typedef logic [IbexMuBiWidth-1:0] ibex_mubi_t;
 
   // Note that if adjusting these parameters it is assumed the bottom bit is set for On and unset
   // for Off. This allows the use of IbexMuBiOn/IbexMuBiOff to work for both secure and non-secure
   // Ibex. If this assumption is broken the RTL that uses ibex_mubi_t types such as the fetch_enable
   // and core_busy signals within `ibex_core` may need adjusting.
-  parameter ibex_mubi_t IbexMuBiOn  = 4'b0101;
-  parameter ibex_mubi_t IbexMuBiOff = 4'b1010;
+  localparam ibex_mubi_t IbexMuBiOn  = 4'b0101;
+  localparam ibex_mubi_t IbexMuBiOff = 4'b1010;
 
   // Default reset values for PMP CSRs. Where the number of regions
   // (PMPNumRegions) is less than 16 the reset values for the higher numbered
@@ -662,7 +662,7 @@ package ibex_pkg;
   // See the Ibex Reference Guide (Custom Reset Values under Physical Memory
   // Protection) for more information.
 
-  parameter pmp_cfg_t PmpCfgRst[16] = '{
+  localparam pmp_cfg_t PmpCfgRst[16] = '{
     '{lock: 1'b0, mode: PMP_MODE_OFF, exec: 1'b0, write: 1'b0, read: 1'b0}, // region 0
     '{lock: 1'b0, mode: PMP_MODE_OFF, exec: 1'b0, write: 1'b0, read: 1'b0}, // region 1
     '{lock: 1'b0, mode: PMP_MODE_OFF, exec: 1'b0, write: 1'b0, read: 1'b0}, // region 2
@@ -684,7 +684,7 @@ package ibex_pkg;
   // Addresses are given in byte granularity for readibility. A minimum of two
   // bits will be stripped off the bottom (PMPGranularity == 0) with more stripped
   // off at coarser granularities.
-  parameter logic [33:0] PmpAddrRst[16] = '{
+  localparam logic [33:0] PmpAddrRst[16] = '{
     34'h0, // region 0
     34'h0, // region 1
     34'h0, // region 2
@@ -703,5 +703,5 @@ package ibex_pkg;
     34'h0  // region 15
   };
 
-  parameter pmp_mseccfg_t PmpMseccfgRst = '{rlb : 1'b0, mmwp: 1'b0, mml: 1'b0};
+  localparam pmp_mseccfg_t PmpMseccfgRst = '{rlb : 1'b0, mmwp: 1'b0, mml: 1'b0};
 endpackage

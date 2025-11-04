@@ -53,7 +53,7 @@ package alert_handler_pkg;
   } alert_crashdump_t;
 
   // Default for dangling connection
-  parameter alert_crashdump_t ALERT_CRASHDUMP_DEFAULT = '{
+  localparam alert_crashdump_t ALERT_CRASHDUMP_DEFAULT = '{
     alert_cause: '0,
     loc_alert_cause: '0,
     class_accum_cnt: '0,

@@ -8,9 +8,9 @@ package pinmux_pkg;
   import pinmux_reg_pkg::*;
   import prim_pad_wrapper_pkg::*;
 
-  parameter int NumIOs     = NMioPads + NDioPads;
-  parameter int NDFTStraps = 2;
-  parameter int NTapStraps = 2;
+  localparam int NumIOs     = NMioPads + NDioPads;
+  localparam int NDFTStraps = 2;
+  localparam int NTapStraps = 2;
 
   // Since the target-specific top-levels often have slightly different debug signal positions, we
   // need a way to pass this info from the target specific top-level into the pinmux logic. The
@@ -35,7 +35,7 @@ package pinmux_pkg;
     scan_role_e [NMioPads-1:0] mio_scan_role;
   } target_cfg_t;
 
-  parameter target_cfg_t DefaultTargetCfg = '{
+  localparam target_cfg_t DefaultTargetCfg = '{
     tck_idx:           0,
     tms_idx:           0,
     trst_idx:          0,

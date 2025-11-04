@@ -12,18 +12,18 @@ package otp_ctrl_pkg;
   // General Parameters //
   ////////////////////////
 
-  parameter int DeviceIdWidth = 256;
+  localparam int DeviceIdWidth = 256;
   typedef logic [DeviceIdWidth-1:0] otp_device_id_t;
 
-  parameter int ManufStateWidth = 256;
+  localparam int ManufStateWidth = 256;
   typedef logic [ManufStateWidth-1:0] otp_manuf_state_t;
 
   /////////////////////////////////
   // Typedefs for OTP Scrambling //
   /////////////////////////////////
 
-  parameter int ScrmblKeyWidth   = 128;
-  parameter int ScrmblBlockWidth = 64;
+  localparam int ScrmblKeyWidth   = 128;
+  localparam int ScrmblBlockWidth = 64;
 
   ///////////////////////////////
   // Typedefs for LC Interface //
@@ -58,7 +58,7 @@ package otp_ctrl_pkg;
   // Note that we put the life cycle into
   // TEST_UNLOCKED0 by default such that top levels without
   // the OTP controller can still function.
-  parameter otp_lc_data_t OTP_LC_DATA_DEFAULT = '{
+  localparam otp_lc_data_t OTP_LC_DATA_DEFAULT = '{
     valid: 1'b1,
     error: 1'b0,
     state: lc_ctrl_state_pkg::LcStTestUnlocked0,
@@ -86,14 +86,14 @@ package otp_ctrl_pkg;
   // Typedefs for Key Broadcast //
   ////////////////////////////////
 
-  parameter int FlashKeySeedWidth = 256;
-  parameter int SramKeySeedWidth  = 128;
-  parameter int KeyMgrKeyWidth    = 256;
-  parameter int FlashKeyWidth     = 128;
-  parameter int SramKeyWidth      = 128;
-  parameter int SramNonceWidth    = 128;
-  parameter int OtbnKeyWidth      = 128;
-  parameter int OtbnNonceWidth    = 64;
+  localparam int FlashKeySeedWidth = 256;
+  localparam int SramKeySeedWidth  = 128;
+  localparam int KeyMgrKeyWidth    = 256;
+  localparam int FlashKeyWidth     = 128;
+  localparam int SramKeyWidth      = 128;
+  localparam int SramNonceWidth    = 128;
+  localparam int OtbnKeyWidth      = 128;
+  localparam int OtbnNonceWidth    = 64;
 
   typedef logic [SramKeyWidth-1:0]   sram_key_t;
   typedef logic [SramNonceWidth-1:0] sram_nonce_t;
@@ -115,7 +115,7 @@ package otp_ctrl_pkg;
     logic owner_seed_valid;
   } otp_keymgr_key_t;
 
-  parameter otp_keymgr_key_t OTP_KEYMGR_KEY_DEFAULT = '{
+  localparam otp_keymgr_key_t OTP_KEYMGR_KEY_DEFAULT = '{
     creator_root_key_share0: 256'hefb7ea7ee90093cf4affd9aaa2d6c0ec446cfdf5f2d5a0bfd7e2d93edc63a102,
     creator_root_key_share0_valid: 1'b1,
     creator_root_key_share1: 256'h56d24a00181de99e0f690b447a8dde2a1ffb8bc306707107aa6e2410f15cfc37,
@@ -149,7 +149,7 @@ package otp_ctrl_pkg;
   } flash_otp_key_rsp_t;
 
   // Default for dangling connection
-  parameter flash_otp_key_rsp_t FLASH_OTP_KEY_RSP_DEFAULT = '{
+  localparam flash_otp_key_rsp_t FLASH_OTP_KEY_RSP_DEFAULT = '{
     data_ack: 1'b1,
     addr_ack: 1'b1,
     key: '0,
@@ -165,7 +165,7 @@ package otp_ctrl_pkg;
   } sram_otp_key_rsp_t;
 
   // Default for dangling connection
-  parameter sram_otp_key_rsp_t SRAM_OTP_KEY_RSP_DEFAULT = '{
+  localparam sram_otp_key_rsp_t SRAM_OTP_KEY_RSP_DEFAULT = '{
     ack: 1'b1,
     key: '0,
     nonce: '0,

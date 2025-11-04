@@ -19,7 +19,7 @@ package prim_ram_2p_pkg;
     cfg_t b_ram_lcfg;  // configuration for b port
   } ram_2p_cfg_t;
 
-  parameter ram_2p_cfg_t RAM_2P_CFG_DEFAULT = '0;
+  localparam ram_2p_cfg_t RAM_2P_CFG_DEFAULT = '0;
 
   typedef struct packed {
     logic done;

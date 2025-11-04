@@ -17,17 +17,17 @@ package top_racl_pkg;
 
   // This is a placeholder file.
   // Toplevel RAC-L constants for the CoralNPU SoC will be added here.
-  parameter int unsigned NrRaclPolicies = 1;
+  localparam int unsigned NrRaclPolicies = 1;
 
   // RACL Policy selector bits
-  parameter int unsigned RaclPolicySelLen =
+  localparam int unsigned RaclPolicySelLen =
                              prim_util_pkg::vbits(NrRaclPolicies);
 
   // Number of RACL bits transferred
-  parameter int unsigned NrRaclBits = 1;
+  localparam int unsigned NrRaclBits = 1;
 
   // Number of CTN UID bits transferred
-  parameter int unsigned NrCtnUidBits = 1;
+  localparam int unsigned NrCtnUidBits = 1;
   // CTN UID assigned the bus originator
   typedef logic[NrCtnUidBits - 1 : 0] ctn_uid_t;
 

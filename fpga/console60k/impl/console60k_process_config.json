@@ -79,7 +79,7 @@
  "Show_All_Warnings" : false,
  "Synthesize_tool" : "GowinSyn",
  "TclPre" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/console60k/console60k.tcl",
- "TopModule" : "chip_console60k_frontend",
+ "TopModule" : "chip_console60k_sram",
  "USERCODE" : "default",
  "Unused_Pin" : "As_input_tri_stated_with_pull_up",
  "VCC" : "0.9",

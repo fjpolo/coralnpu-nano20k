@@ -34957,7 +34957,7 @@ endmodule  // ClockGate
 // Example:
 // valid_in = [0, 1, 0, 1], data_in = [A, B, C, D]
 // valid_out = [1, 1, 0, 0], data_out = [B, D, X, X]
-module Aligner#(type T=logic [7:0], parameter N = 8)
+module Aligner#(type T=logic [7:0], localparam N = 8)
 (
   // Command input.
   input logic [N-1:0] valid_in,
@@ -35331,8 +35331,8 @@ package cf_math_pkg;
     /// Ensures that the minimum width if an index signal is `1`, regardless of parametrization.
     ///
     /// Sample usage in type definition:
-    /// As parameter:
-    ///   `parameter type idx_t = logic[cf_math_pkg::idx_width(NumIdx)-1:0]`
+    /// As localparam:
+    ///   `localparam type idx_t = logic[cf_math_pkg::idx_width(NumIdx)-1:0]`
     /// As typedef:
     ///   `typedef logic [cf_math_pkg::idx_width(NumIdx)-1:0] idx_t`
     function automatic integer unsigned idx_width (input integer unsigned num_idx);
@@ -35369,13 +35369,13 @@ endpackage
 /// This speeds up simulation significantly.
 module lzc #(
   /// The width of the input vector.
-  parameter int unsigned WIDTH = 2,
+  localparam int unsigned WIDTH = 2,
   /// Mode selection: 0 -> trailing zero, 1 -> leading zero
-  parameter bit          MODE  = 1'b0,
-  /// Dependent parameter. Do **not** change!
+  localparam bit          MODE  = 1'b0,
+  /// Dependent localparam. Do **not** change!
   ///
   /// Width of the output signal with the zero count.
-  parameter int unsigned CNT_WIDTH = cf_math_pkg::idx_width(WIDTH)
+  localparam int unsigned CNT_WIDTH = cf_math_pkg::idx_width(WIDTH)
 ) (
   /// Input vector to be counted.
   input  logic [WIDTH-1:0]     in_i,
@@ -35482,7 +35482,7 @@ endmodule : lzc
 /// This module has an internal state `rr_q` which defines the highest priority input. (When
 /// `ExtPrio` is `1'b1` this state is provided from the outside.) The arbitration tree will
 /// choose the input with the same index as currently defined by the state if it has an active
-/// request. Otherwise a *random* other active input is selected. The parameter `FairArb` is used
+/// request. Otherwise a *random* other active input is selected. The localparam `FairArb` is used
 /// to distinguish between two methods of calculating the next state.
 /// * `1'b0`: The next state is calculated by advancing the current state by one. This leads to the
 ///           state being calculated without the context of the active request. Leading to an
@@ -35499,49 +35499,49 @@ endmodule : lzc
 /// * The `rr_arb_tree` data multiplexing scales with Log(`NumIn`). This means that the input to output
 ///   timing path of this module also scales scales with Log(`NumIn`).
 /// This implies that in this module the input to output path is always longer than the input to
-/// register path. As the output data usually also terminates in a register the parameter `FairArb`
+/// register path. As the output data usually also terminates in a register the localparam `FairArb`
 /// only has implications on the area. When it is `1'b0` a static plus one adder is instantiated.
 /// If it is `1'b1` two `lzc`, a masking logic stage and a two input multiplexer are instantiated.
 /// However these are small in respect of the data multiplexers needed, as the width of the `req_i`
 /// signal is usually less as than `DataWidth`.
 module rr_arb_tree #(
   /// Number of inputs to be arbitrated.
-  parameter int unsigned NumIn      = 64,
+  localparam int unsigned NumIn      = 64,
   /// Data width of the payload in bits. Not needed if `DataType` is overwritten.
-  parameter int unsigned DataWidth  = 32,
+  localparam int unsigned DataWidth  = 32,
   /// Data type of the payload, can be overwritten with custom type. Only use of `DataWidth`.
-  parameter type         DataType   = logic [DataWidth-1:0],
+  localparam type         DataType   = logic [DataWidth-1:0],
   /// The `ExtPrio` option allows to override the internal round robin counter via the
   /// `rr_i` signal. This can be useful in case multiple arbiters need to have
   /// rotating priorities that are operating in lock-step. If static priority arbitration
   /// is needed, just connect `rr_i` to '0.
   ///
   /// Set to 1'b1 to enable.
-  parameter bit          ExtPrio    = 1'b0,
+  localparam bit          ExtPrio    = 1'b0,
   /// If `AxiVldRdy` is set, the req/gnt signals are compliant with the AXI style vld/rdy
   /// handshake. Namely, upstream vld (req) must not depend on rdy (gnt), as it can be deasserted
   /// again even though vld is asserted. Enabling `AxiVldRdy` leads to a reduction of arbiter
   /// delay and area.
   ///
   /// Set to `1'b1` to treat req/gnt as vld/rdy.
-  parameter bit          AxiVldRdy  = 1'b0,
+  localparam bit          AxiVldRdy  = 1'b0,
   /// The `LockIn` option prevents the arbiter from changing the arbitration
   /// decision when the arbiter is disabled. I.e., the index of the first request
   /// that wins the arbitration will be locked in case the destination is not
   /// able to grant the request in the same cycle.
   ///
   /// Set to `1'b1` to enable.
-  parameter bit          LockIn     = 1'b0,
+  localparam bit          LockIn     = 1'b0,
   /// When set, ensures that throughput gets distributed evenly between all inputs.
   ///
   /// Set to `1'b0` to disable.
-  parameter bit          FairArb    = 1'b1,
-  /// Dependent parameter, do **not** overwrite.
+  localparam bit          FairArb    = 1'b1,
+  /// Dependent localparam, do **not** overwrite.
   /// Width of the arbitration priority signal and the arbitrated index.
-  parameter int unsigned IdxWidth   = (NumIn > 32'd1) ? unsigned'($clog2(NumIn)) : 32'd1,
-  /// Dependent parameter, do **not** overwrite.
+  localparam int unsigned IdxWidth   = (NumIn > 32'd1) ? unsigned'($clog2(NumIn)) : 32'd1,
+  /// Dependent localparam, do **not** overwrite.
   /// Type for defining the arbitration priority and arbitrated index signal.
-  parameter type         idx_t      = logic [IdxWidth-1:0]
+  localparam type         idx_t      = logic [IdxWidth-1:0]
 ) (
   /// Clock, positive edge triggered.
   input  logic                clk_i,
@@ -36336,13 +36336,13 @@ endpackage
 
 
 module fpnew_cast_multi #(
-  parameter fpnew_pkg::fmt_logic_t   FpFmtConfig  = '1,
-  parameter fpnew_pkg::ifmt_logic_t  IntFmtConfig = '1,
+  localparam fpnew_pkg::fmt_logic_t   FpFmtConfig  = '1,
+  localparam fpnew_pkg::ifmt_logic_t  IntFmtConfig = '1,
   // FPU configuration
-  parameter int unsigned             NumPipeRegs = 0,
-  parameter fpnew_pkg::pipe_config_t PipeConfig  = fpnew_pkg::BEFORE,
-  parameter type                     TagType     = logic,
-  parameter type                     AuxType     = logic,
+  localparam int unsigned             NumPipeRegs = 0,
+  localparam fpnew_pkg::pipe_config_t PipeConfig  = fpnew_pkg::BEFORE,
+  localparam type                     TagType     = logic,
+  localparam type                     AuxType     = logic,
   // Do not change
   localparam int unsigned WIDTH = fpnew_pkg::maximum(fpnew_pkg::max_fp_width(FpFmtConfig),
                                                      fpnew_pkg::max_int_width(IntFmtConfig)),
@@ -37138,8 +37138,8 @@ endmodule
 // Author: Stefan Mach <smach@iis.ee.ethz.ch>
 
 module fpnew_classifier #(
-  parameter fpnew_pkg::fp_format_e   FpFormat = fpnew_pkg::fp_format_e'(0),
-  parameter int unsigned             NumOperands = 1,
+  localparam fpnew_pkg::fp_format_e   FpFormat = fpnew_pkg::fp_format_e'(0),
+  localparam int unsigned             NumOperands = 1,
   // Do not change
   localparam int unsigned WIDTH = fpnew_pkg::fp_width(FpFormat)
 ) (
@@ -37597,12 +37597,12 @@ assign srt_skip       =  ex2_of ||
 assign srt_cnt_zero   = ~|srt_cnt[4:0];
 assign fdsu_dn_stall  = ctrl_sm_start && ex1_op1_id_vld;
 
-parameter IDLE  = 3'b000;
-parameter WFI2  = 3'b001;
-parameter ITER  = 3'b010;
-parameter RND   = 3'b011;
-parameter PACK  = 3'b100;
-parameter WFWB  = 3'b101;
+localparam IDLE  = 3'b000;
+localparam WFI2  = 3'b001;
+localparam ITER  = 3'b010;
+localparam RND   = 3'b011;
+localparam PACK  = 3'b100;
+localparam WFWB  = 3'b101;
 
 always @ (posedge fdsu_clk or negedge cpurst_b)
 begin
@@ -37724,7 +37724,7 @@ end
 //==========================================================
 //                 Write Back State Machine
 //==========================================================
-parameter WB_IDLE  = 2'b00,
+localparam WB_IDLE  = 2'b00,
           WB_EX2   = 2'b10,
           WB_CMPLT = 2'b01;
 
@@ -41079,9 +41079,9 @@ wire    [31:0]  idu_fpu_ex1_srcf2;
 wire            pad_yy_icg_scan_en;         
 
 
-parameter DOUBLE_WIDTH =64;
-parameter SINGLE_WIDTH =32;
-parameter FUNC_WIDTH   =10;
+localparam DOUBLE_WIDTH =64;
+localparam SINGLE_WIDTH =32;
+localparam FUNC_WIDTH   =10;
 //==========================================================
 //                     EX1 special data path
 //==========================================================
@@ -41454,10 +41454,10 @@ endmodule
 module fpnew_divsqrt_th_32 #(
   // FP32-only DivSqrt
   // FPU configuration
-  parameter int unsigned             NumPipeRegs = 0,
-  parameter fpnew_pkg::pipe_config_t PipeConfig  = fpnew_pkg::BEFORE,
-  parameter type                     TagType     = logic,
-  parameter type                     AuxType     = logic,
+  localparam int unsigned             NumPipeRegs = 0,
+  localparam fpnew_pkg::pipe_config_t PipeConfig  = fpnew_pkg::BEFORE,
+  localparam type                     TagType     = logic,
+  localparam type                     AuxType     = logic,
   // Do not change
   localparam int unsigned WIDTH       = 32,
   localparam int unsigned NUM_FORMATS = fpnew_pkg::NUM_FP_FORMATS,
@@ -41931,11 +41931,11 @@ endmodule
 
 
 module fpnew_fma #(
-  parameter fpnew_pkg::fp_format_e   FpFormat    = fpnew_pkg::fp_format_e'(0),
-  parameter int unsigned             NumPipeRegs = 0,
-  parameter fpnew_pkg::pipe_config_t PipeConfig  = fpnew_pkg::BEFORE,
-  parameter type                     TagType     = logic,
-  parameter type                     AuxType     = logic,
+  localparam fpnew_pkg::fp_format_e   FpFormat    = fpnew_pkg::fp_format_e'(0),
+  localparam int unsigned             NumPipeRegs = 0,
+  localparam fpnew_pkg::pipe_config_t PipeConfig  = fpnew_pkg::BEFORE,
+  localparam type                     TagType     = logic,
+  localparam type                     AuxType     = logic,
   // Do not change
   localparam int unsigned WIDTH = fpnew_pkg::fp_width(FpFormat),
   localparam int unsigned ExtRegEnaWidth = NumPipeRegs == 0 ? 1 : NumPipeRegs
@@ -42629,11 +42629,11 @@ endmodule
 
 
 module fpnew_fma_multi #(
-  parameter fpnew_pkg::fmt_logic_t   FpFmtConfig = '1,
-  parameter int unsigned             NumPipeRegs = 0,
-  parameter fpnew_pkg::pipe_config_t PipeConfig  = fpnew_pkg::BEFORE,
-  parameter type                     TagType     = logic,
-  parameter type                     AuxType     = logic,
+  localparam fpnew_pkg::fmt_logic_t   FpFmtConfig = '1,
+  localparam int unsigned             NumPipeRegs = 0,
+  localparam fpnew_pkg::pipe_config_t PipeConfig  = fpnew_pkg::BEFORE,
+  localparam type                     TagType     = logic,
+  localparam type                     AuxType     = logic,
   // Do not change
   localparam int unsigned WIDTH       = fpnew_pkg::max_fp_width(FpFmtConfig),
   localparam int unsigned NUM_FORMATS = fpnew_pkg::NUM_FP_FORMATS,
@@ -43476,11 +43476,11 @@ endmodule
 
 
 module fpnew_noncomp #(
-  parameter fpnew_pkg::fp_format_e   FpFormat    = fpnew_pkg::fp_format_e'(0),
-  parameter int unsigned             NumPipeRegs = 0,
-  parameter fpnew_pkg::pipe_config_t PipeConfig  = fpnew_pkg::BEFORE,
-  parameter type                     TagType     = logic,
-  parameter type                     AuxType     = logic,
+  localparam fpnew_pkg::fp_format_e   FpFormat    = fpnew_pkg::fp_format_e'(0),
+  localparam int unsigned             NumPipeRegs = 0,
+  localparam fpnew_pkg::pipe_config_t PipeConfig  = fpnew_pkg::BEFORE,
+  localparam type                     TagType     = logic,
+  localparam type                     AuxType     = logic,
   // Do not change
   localparam int unsigned WIDTH = fpnew_pkg::fp_width(FpFormat),
   localparam int unsigned ExtRegEnaWidth = NumPipeRegs == 0 ? 1 : NumPipeRegs
@@ -43895,18 +43895,18 @@ endmodule
 // Author: Stefan Mach <smach@iis.ee.ethz.ch>
 
 module fpnew_opgroup_block #(
-  parameter fpnew_pkg::opgroup_e        OpGroup       = fpnew_pkg::ADDMUL,
+  localparam fpnew_pkg::opgroup_e        OpGroup       = fpnew_pkg::ADDMUL,
   // FPU configuration
-  parameter int unsigned                Width         = 32,
-  parameter logic                       EnableVectors = 1'b1,
-  parameter logic                       PulpDivsqrt   = 1'b1,
-  parameter fpnew_pkg::fmt_logic_t      FpFmtMask     = '1,
-  parameter fpnew_pkg::ifmt_logic_t     IntFmtMask    = '1,
-  parameter fpnew_pkg::fmt_unsigned_t   FmtPipeRegs   = '{default: 0},
-  parameter fpnew_pkg::fmt_unit_types_t FmtUnitTypes  = '{default: fpnew_pkg::PARALLEL},
-  parameter fpnew_pkg::pipe_config_t    PipeConfig    = fpnew_pkg::BEFORE,
-  parameter type                        TagType       = logic,
-  parameter int unsigned                TrueSIMDClass = 0,
+  localparam int unsigned                Width         = 32,
+  localparam logic                       EnableVectors = 1'b1,
+  localparam logic                       PulpDivsqrt   = 1'b1,
+  localparam fpnew_pkg::fmt_logic_t      FpFmtMask     = '1,
+  localparam fpnew_pkg::ifmt_logic_t     IntFmtMask    = '1,
+  localparam fpnew_pkg::fmt_unsigned_t   FmtPipeRegs   = '{default: 0},
+  localparam fpnew_pkg::fmt_unit_types_t FmtUnitTypes  = '{default: fpnew_pkg::PARALLEL},
+  localparam fpnew_pkg::pipe_config_t    PipeConfig    = fpnew_pkg::BEFORE,
+  localparam type                        TagType       = logic,
+  localparam int unsigned                TrueSIMDClass = 0,
   // Do not change
   localparam int unsigned NUM_FORMATS  = fpnew_pkg::NUM_FP_FORMATS,
   localparam int unsigned NUM_OPERANDS = fpnew_pkg::num_operands(OpGroup),
@@ -44146,16 +44146,16 @@ endmodule
 // Author: Stefan Mach <smach@iis.ee.ethz.ch>
 
 module fpnew_opgroup_fmt_slice #(
-  parameter fpnew_pkg::opgroup_e     OpGroup       = fpnew_pkg::ADDMUL,
-  parameter fpnew_pkg::fp_format_e   FpFormat      = fpnew_pkg::fp_format_e'(0),
+  localparam fpnew_pkg::opgroup_e     OpGroup       = fpnew_pkg::ADDMUL,
+  localparam fpnew_pkg::fp_format_e   FpFormat      = fpnew_pkg::fp_format_e'(0),
   // FPU configuration
-  parameter int unsigned             Width         = 32,
-  parameter logic                    EnableVectors = 1'b1,
-  parameter int unsigned             NumPipeRegs   = 0,
-  parameter fpnew_pkg::pipe_config_t PipeConfig    = fpnew_pkg::BEFORE,
-  parameter logic                    ExtRegEna     = 1'b0,
-  parameter type                     TagType       = logic,
-  parameter int unsigned             TrueSIMDClass = 0,
+  localparam int unsigned             Width         = 32,
+  localparam logic                    EnableVectors = 1'b1,
+  localparam int unsigned             NumPipeRegs   = 0,
+  localparam fpnew_pkg::pipe_config_t PipeConfig    = fpnew_pkg::BEFORE,
+  localparam logic                    ExtRegEna     = 1'b0,
+  localparam type                     TagType       = logic,
+  localparam int unsigned             TrueSIMDClass = 0,
   // Do not change
   localparam int unsigned NUM_OPERANDS = fpnew_pkg::num_operands(OpGroup),
   localparam int unsigned NUM_LANES    = fpnew_pkg::num_lanes(Width, FpFormat, EnableVectors),
@@ -44450,17 +44450,17 @@ endmodule
 
 
 module fpnew_opgroup_multifmt_slice #(
-  parameter fpnew_pkg::opgroup_e     OpGroup       = fpnew_pkg::CONV,
-  parameter int unsigned             Width         = 64,
+  localparam fpnew_pkg::opgroup_e     OpGroup       = fpnew_pkg::CONV,
+  localparam int unsigned             Width         = 64,
   // FPU configuration
-  parameter fpnew_pkg::fmt_logic_t   FpFmtConfig   = '1,
-  parameter fpnew_pkg::ifmt_logic_t  IntFmtConfig  = '1,
-  parameter logic                    EnableVectors = 1'b1,
-  parameter logic                    PulpDivsqrt   = 1'b1,
-  parameter int unsigned             NumPipeRegs   = 0,
-  parameter fpnew_pkg::pipe_config_t PipeConfig    = fpnew_pkg::BEFORE,
-  parameter logic                    ExtRegEna     = 1'b0,
-  parameter type                     TagType       = logic,
+  localparam fpnew_pkg::fmt_logic_t   FpFmtConfig   = '1,
+  localparam fpnew_pkg::ifmt_logic_t  IntFmtConfig  = '1,
+  localparam logic                    EnableVectors = 1'b1,
+  localparam logic                    PulpDivsqrt   = 1'b1,
+  localparam int unsigned             NumPipeRegs   = 0,
+  localparam fpnew_pkg::pipe_config_t PipeConfig    = fpnew_pkg::BEFORE,
+  localparam logic                    ExtRegEna     = 1'b0,
+  localparam type                     TagType       = logic,
   // Do not change
   localparam int unsigned NUM_OPERANDS = fpnew_pkg::num_operands(OpGroup),
   localparam int unsigned NUM_FORMATS  = fpnew_pkg::NUM_FP_FORMATS,
@@ -44973,7 +44973,7 @@ endmodule
 // Author: Stefan Mach <smach@iis.ee.ethz.ch>
 
 module fpnew_rounding #(
-  parameter int unsigned AbsWidth=2 // Width of the abolute value, without sign bit
+  localparam int unsigned AbsWidth=2 // Width of the abolute value, without sign bit
 ) (
   // Input value
   input logic [AbsWidth-1:0]   abs_value_i,             // absolute value without sign
@@ -45053,13 +45053,13 @@ endmodule
 
 module fpnew_top #(
   // FPU configuration
-  parameter fpnew_pkg::fpu_features_t       Features       = fpnew_pkg::RV64D_Xsflt,
-  parameter fpnew_pkg::fpu_implementation_t Implementation = fpnew_pkg::DEFAULT_NOREGS,
+  localparam fpnew_pkg::fpu_features_t       Features       = fpnew_pkg::RV64D_Xsflt,
+  localparam fpnew_pkg::fpu_implementation_t Implementation = fpnew_pkg::DEFAULT_NOREGS,
   // PulpDivSqrt = 0 enables T-head-based DivSqrt unit. Supported only for FP32-only instances of Fpnew
-  parameter logic                           PulpDivsqrt    = 1'b1,
-  parameter type                            TagType        = logic,
-  parameter int unsigned                    TrueSIMDClass  = 0,
-  parameter int unsigned                    EnableSIMDMask = 0,
+  localparam logic                           PulpDivsqrt    = 1'b1,
+  localparam type                            TagType        = logic,
+  localparam int unsigned                    TrueSIMDClass  = 0,
+  localparam int unsigned                    EnableSIMDMask = 0,
   // Do not change
   localparam int unsigned NumLanes     = fpnew_pkg::max_num_lanes(Features.Width, Features.FpFmtMask, Features.EnableVectors),
   localparam type         MaskType     = logic [NumLanes-1:0],
@@ -45535,133 +45535,133 @@ typedef enum logic [2:0] {
 } EXE_UNIT_e;
 
 // when EXE_UNIT_e is not LSU, it is used to distinguish arithmetic instructions, based on inst_encoding[14:12]
-  parameter  OPIVV=3'b000;      // vs2,      vs1, vd.
-  parameter  OPFVV=3'b001;      // vs2,      vs1, vd/rd. float, not support
-  parameter  OPMVV=3'b010;      // vs2,      vs1, vd/rd.
-  parameter  OPIVI=3'b011;      // vs2, imm[4:0], vd.
-  parameter  OPIVX=3'b100;      // vs2,      rs1, vd.
-  parameter  OPFVF=3'b101;      // vs2,      rs1, vd. float, not support
-  parameter  OPMVX=3'b110;      // vs2,      rs1, vd/rd.
-  parameter  OPCFG=3'b111;      // vset* instructions        
+  localparam  OPIVV=3'b000;      // vs2,      vs1, vd.
+  localparam  OPFVV=3'b001;      // vs2,      vs1, vd/rd. float, not support
+  localparam  OPMVV=3'b010;      // vs2,      vs1, vd/rd.
+  localparam  OPIVI=3'b011;      // vs2, imm[4:0], vd.
+  localparam  OPIVX=3'b100;      // vs2,      rs1, vd.
+  localparam  OPFVF=3'b101;      // vs2,      rs1, vd. float, not support
+  localparam  OPMVX=3'b110;      // vs2,      rs1, vd/rd.
+  localparam  OPCFG=3'b111;      // vset* instructions        
 
 // when EXE_UNIT_e is not LSU, it identifys what instruction, vadd or vmacc or ..? based on inst_encoding[31:26]
   // OPI* instructions
-  parameter VADD            =   6'b000_000;
-  parameter VSUB            =   6'b000_010;
-  parameter VRSUB           =   6'b000_011;
-  parameter VMINU           =   6'b000_100;
-  parameter VMIN            =   6'b000_101;
-  parameter VMAXU           =   6'b000_110;
-  parameter VMAX            =   6'b000_111;
-  parameter VAND            =   6'b001_001;
-  parameter VOR             =   6'b001_010;
-  parameter VXOR            =   6'b001_011;
-  parameter VRGATHER        =   6'b001_100;
-  parameter VSLIDEUP_RGATHEREI16    =   6'b001_110;
-  parameter VSLIDEDOWN      =   6'b001_111;
-  parameter VADC            =   6'b010_000;
-  parameter VMADC           =   6'b010_001;
-  parameter VSBC            =   6'b010_010;
-  parameter VMSBC           =   6'b010_011;
-  parameter VMERGE_VMV      =   6'b010_111;     // it could be vmerge or vmv, based on vm field
-  parameter VMSEQ           =   6'b011_000;
-  parameter VMSNE           =   6'b011_001;
-  parameter VMSLTU          =   6'b011_010;
-  parameter VMSLT           =   6'b011_011;
-  parameter VMSLEU          =   6'b011_100;
-  parameter VMSLE           =   6'b011_101;
-  parameter VMSGTU          =   6'b011_110;
-  parameter VMSGT           =   6'b011_111;
-  parameter VSADDU          =   6'b100_000;
-  parameter VSADD           =   6'b100_001;
-  parameter VSSUBU          =   6'b100_010;
-  parameter VSSUB           =   6'b100_011;
-  parameter VSLL            =   6'b100_101;
-  parameter VSMUL_VMVNRR    =   6'b100_111;     // it could be vsmul or vmv<nr>r, based on vm field
-  parameter VSRL            =   6'b101_000;
-  parameter VSRA            =   6'b101_001;
-  parameter VSSRL           =   6'b101_010;
-  parameter VSSRA           =   6'b101_011;
-  parameter VNSRL           =   6'b101_100;
-  parameter VNSRA           =   6'b101_101;
-  parameter VNCLIPU         =   6'b101_110;
-  parameter VNCLIP          =   6'b101_111;
-  parameter VWREDSUMU       =   6'b110_000;
-  parameter VWREDSUM        =   6'b110_001;   
+  localparam VADD            =   6'b000_000;
+  localparam VSUB            =   6'b000_010;
+  localparam VRSUB           =   6'b000_011;
+  localparam VMINU           =   6'b000_100;
+  localparam VMIN            =   6'b000_101;
+  localparam VMAXU           =   6'b000_110;
+  localparam VMAX            =   6'b000_111;
+  localparam VAND            =   6'b001_001;
+  localparam VOR             =   6'b001_010;
+  localparam VXOR            =   6'b001_011;
+  localparam VRGATHER        =   6'b001_100;
+  localparam VSLIDEUP_RGATHEREI16    =   6'b001_110;
+  localparam VSLIDEDOWN      =   6'b001_111;
+  localparam VADC            =   6'b010_000;
+  localparam VMADC           =   6'b010_001;
+  localparam VSBC            =   6'b010_010;
+  localparam VMSBC           =   6'b010_011;
+  localparam VMERGE_VMV      =   6'b010_111;     // it could be vmerge or vmv, based on vm field
+  localparam VMSEQ           =   6'b011_000;
+  localparam VMSNE           =   6'b011_001;
+  localparam VMSLTU          =   6'b011_010;
+  localparam VMSLT           =   6'b011_011;
+  localparam VMSLEU          =   6'b011_100;
+  localparam VMSLE           =   6'b011_101;
+  localparam VMSGTU          =   6'b011_110;
+  localparam VMSGT           =   6'b011_111;
+  localparam VSADDU          =   6'b100_000;
+  localparam VSADD           =   6'b100_001;
+  localparam VSSUBU          =   6'b100_010;
+  localparam VSSUB           =   6'b100_011;
+  localparam VSLL            =   6'b100_101;
+  localparam VSMUL_VMVNRR    =   6'b100_111;     // it could be vsmul or vmv<nr>r, based on vm field
+  localparam VSRL            =   6'b101_000;
+  localparam VSRA            =   6'b101_001;
+  localparam VSSRL           =   6'b101_010;
+  localparam VSSRA           =   6'b101_011;
+  localparam VNSRL           =   6'b101_100;
+  localparam VNSRA           =   6'b101_101;
+  localparam VNCLIPU         =   6'b101_110;
+  localparam VNCLIP          =   6'b101_111;
+  localparam VWREDSUMU       =   6'b110_000;
+  localparam VWREDSUM        =   6'b110_001;   
 
   // OPM* instructions
-  parameter VREDSUM         =   6'b000_000;
-  parameter VREDAND         =   6'b000_001;
-  parameter VREDOR          =   6'b000_010;
-  parameter VREDXOR         =   6'b000_011;
-  parameter VREDMINU        =   6'b000_100;
-  parameter VREDMIN         =   6'b000_101;
-  parameter VREDMAXU        =   6'b000_110;
-  parameter VREDMAX         =   6'b000_111;
-  parameter VAADDU          =   6'b001_000;
-  parameter VAADD           =   6'b001_001;
-  parameter VASUBU          =   6'b001_010;
-  parameter VASUB           =   6'b001_011;
-  parameter VSLIDE1UP       =   6'b001_110;
-  parameter VSLIDE1DOWN     =   6'b001_111;
-  parameter VWXUNARY0       =   6'b010_000;     // it could be vcpop.m, vfirst.m and vmv. They can be distinguished by vs1 field(inst_encoding[19:15]).
-  parameter VXUNARY0        =   6'b010_010;     // it could be vzext.vf2, vzext.vf4, vsext.vf2, vsext.vf4. They can be distinguished by vs1 field(inst_encoding[19:15]).
-  parameter VMUNARY0        =   6'b010_100;     // it could be vmsbf, vmsof, vmsif, viota, vid. They can be distinguished by vs1 field(inst_encoding[19:15]).
-  parameter VCOMPRESS       =   6'b010_111;
-  parameter VMANDN          =   6'b011_000;
-  parameter VMAND           =   6'b011_001;
-  parameter VMOR            =   6'b011_010;
-  parameter VMXOR           =   6'b011_011;
-  parameter VMORN           =   6'b011_100;
-  parameter VMNAND          =   6'b011_101;
-  parameter VMNOR           =   6'b011_110;
-  parameter VMXNOR          =   6'b011_111;
-  parameter VDIVU           =   6'b100_000;
-  parameter VDIV            =   6'b100_001;
-  parameter VREMU           =   6'b100_010;
-  parameter VREM            =   6'b100_011;
-  parameter VMULHU          =   6'b100_100;
-  parameter VMUL            =   6'b100_101;
-  parameter VMULHSU         =   6'b100_110;
-  parameter VMULH           =   6'b100_111;
-  parameter VMADD           =   6'b101_001;
-  parameter VNMSUB          =   6'b101_011;
-  parameter VMACC           =   6'b101_101;
-  parameter VNMSAC          =   6'b101_111;
-  parameter VWADDU          =   6'b110_000;
-  parameter VWADD           =   6'b110_001;
-  parameter VWSUBU          =   6'b110_010;
-  parameter VWSUB           =   6'b110_011;
-  parameter VWADDU_W        =   6'b110_100;
-  parameter VWADD_W         =   6'b110_101;
-  parameter VWSUBU_W        =   6'b110_110;
-  parameter VWSUB_W         =   6'b110_111;
-  parameter VWMULU          =   6'b111_000;
-  parameter VWMULSU         =   6'b111_010;
-  parameter VWMUL           =   6'b111_011;
-  parameter VWMACCU         =   6'b111_100;
-  parameter VWMACC          =   6'b111_101;
-  parameter VWMACCUS        =   6'b111_110;
-  parameter VWMACCSU        =   6'b111_111;  
+  localparam VREDSUM         =   6'b000_000;
+  localparam VREDAND         =   6'b000_001;
+  localparam VREDOR          =   6'b000_010;
+  localparam VREDXOR         =   6'b000_011;
+  localparam VREDMINU        =   6'b000_100;
+  localparam VREDMIN         =   6'b000_101;
+  localparam VREDMAXU        =   6'b000_110;
+  localparam VREDMAX         =   6'b000_111;
+  localparam VAADDU          =   6'b001_000;
+  localparam VAADD           =   6'b001_001;
+  localparam VASUBU          =   6'b001_010;
+  localparam VASUB           =   6'b001_011;
+  localparam VSLIDE1UP       =   6'b001_110;
+  localparam VSLIDE1DOWN     =   6'b001_111;
+  localparam VWXUNARY0       =   6'b010_000;     // it could be vcpop.m, vfirst.m and vmv. They can be distinguished by vs1 field(inst_encoding[19:15]).
+  localparam VXUNARY0        =   6'b010_010;     // it could be vzext.vf2, vzext.vf4, vsext.vf2, vsext.vf4. They can be distinguished by vs1 field(inst_encoding[19:15]).
+  localparam VMUNARY0        =   6'b010_100;     // it could be vmsbf, vmsof, vmsif, viota, vid. They can be distinguished by vs1 field(inst_encoding[19:15]).
+  localparam VCOMPRESS       =   6'b010_111;
+  localparam VMANDN          =   6'b011_000;
+  localparam VMAND           =   6'b011_001;
+  localparam VMOR            =   6'b011_010;
+  localparam VMXOR           =   6'b011_011;
+  localparam VMORN           =   6'b011_100;
+  localparam VMNAND          =   6'b011_101;
+  localparam VMNOR           =   6'b011_110;
+  localparam VMXNOR          =   6'b011_111;
+  localparam VDIVU           =   6'b100_000;
+  localparam VDIV            =   6'b100_001;
+  localparam VREMU           =   6'b100_010;
+  localparam VREM            =   6'b100_011;
+  localparam VMULHU          =   6'b100_100;
+  localparam VMUL            =   6'b100_101;
+  localparam VMULHSU         =   6'b100_110;
+  localparam VMULH           =   6'b100_111;
+  localparam VMADD           =   6'b101_001;
+  localparam VNMSUB          =   6'b101_011;
+  localparam VMACC           =   6'b101_101;
+  localparam VNMSAC          =   6'b101_111;
+  localparam VWADDU          =   6'b110_000;
+  localparam VWADD           =   6'b110_001;
+  localparam VWSUBU          =   6'b110_010;
+  localparam VWSUB           =   6'b110_011;
+  localparam VWADDU_W        =   6'b110_100;
+  localparam VWADD_W         =   6'b110_101;
+  localparam VWSUBU_W        =   6'b110_110;
+  localparam VWSUB_W         =   6'b110_111;
+  localparam VWMULU          =   6'b111_000;
+  localparam VWMULSU         =   6'b111_010;
+  localparam VWMUL           =   6'b111_011;
+  localparam VWMACCU         =   6'b111_100;
+  localparam VWMACC          =   6'b111_101;
+  localparam VWMACCUS        =   6'b111_110;
+  localparam VWMACCSU        =   6'b111_111;  
 
 // vwxunary0, the uop could be vcpop.m, vfirst.m and vmv. They can be distinguished by vs1 field(inst_encoding[19:15]).
-  parameter VMV_X_S         =   5'b00000;
-  parameter VCPOP           =   5'b10000;
-  parameter VFIRST          =   5'b10001;
-  parameter VMV_S_X         =   5'b00000;  // vs2 field
+  localparam VMV_X_S         =   5'b00000;
+  localparam VCPOP           =   5'b10000;
+  localparam VFIRST          =   5'b10001;
+  localparam VMV_S_X         =   5'b00000;  // vs2 field
 
 // vxunary0, the uop could be vzext.vf2, vzext.vf4, vsext.vf2, vsext.vf4. They can be distinguished by vs1 field(inst_encoding[19:15]).
-  parameter VZEXT_VF4       =   5'b00100;
-  parameter VSEXT_VF4       =   5'b00101;
-  parameter VZEXT_VF2       =   5'b00110;
-  parameter VSEXT_VF2       =   5'b00111;
+  localparam VZEXT_VF4       =   5'b00100;
+  localparam VSEXT_VF4       =   5'b00101;
+  localparam VZEXT_VF2       =   5'b00110;
+  localparam VSEXT_VF2       =   5'b00111;
 
 // vmxunary0, the uop could be vmsbf, vmsof, vmsif, viota, vid. They can be distinguished by vs1 field(inst_encoding[19:15]).
-  parameter VMSBF           =   5'b00001;
-  parameter VMSOF           =   5'b00010;
-  parameter VMSIF           =   5'b00011;
-  parameter VIOTA           =   5'b10000;
-  parameter VID             =   5'b10001;
+  localparam VMSBF           =   5'b00001;
+  localparam VMSOF           =   5'b00010;
+  localparam VMSIF           =   5'b00011;
+  localparam VIOTA           =   5'b10000;
+  localparam VID             =   5'b10001;
 
 // when EXE_UNIT_e is LSU, it identifys what LSU instruction, unit-stride load or indexed store or ..? based on inst_encoding[31:26]
 typedef enum logic [1:0] {
@@ -45679,16 +45679,16 @@ typedef enum logic [1:0] {
   US_FF          // Faul-only-First load
 } LSU_UMOP_e;
 
-// parameter for lsu decoding
-  parameter  UNIT_STRIDE       = 3'b000;
-  parameter  UNORDERED_INDEX   = 3'b001;
-  parameter  CONSTANT_STRIDE   = 3'b010;
-  parameter  ORDERED_INDEX     = 3'b011;
+// localparam for lsu decoding
+  localparam  UNIT_STRIDE       = 3'b000;
+  localparam  UNORDERED_INDEX   = 3'b001;
+  localparam  CONSTANT_STRIDE   = 3'b010;
+  localparam  ORDERED_INDEX     = 3'b011;
 
-  parameter  US_REGULAR        = 5'b00000;
-  parameter  US_WHOLE_REGISTER = 5'b01000;
-  parameter  US_MASK           = 5'b01011;
-  parameter  US_FAULT_FIRST    = 5'b10000;
+  localparam  US_REGULAR        = 5'b00000;
+  localparam  US_WHOLE_REGISTER = 5'b01000;
+  localparam  US_MASK           = 5'b01011;
+  localparam  US_FAULT_FIRST    = 5'b10000;
 
 // It identifys what inst_encoding[11:7] is used for when LSU instruction, based on inst_encoding[5]
 typedef enum logic [0:0] {
@@ -45750,20 +45750,20 @@ typedef enum logic [2:0] {
 } EEW_e;
 
 // Number of REG
-  parameter NREG1 = 3'b000;  
-  parameter NREG2 = 3'b001;
-  parameter NREG4 = 3'b011;
-  parameter NREG8 = 3'b111;
+  localparam NREG1 = 3'b000;  
+  localparam NREG2 = 3'b001;
+  localparam NREG4 = 3'b011;
+  localparam NREG8 = 3'b111;
 
 // Number of FIELD
-  parameter NF1 = 3'b000;  
-  parameter NF2 = 3'b001;
-  parameter NF3 = 3'b010;
-  parameter NF4 = 3'b011;
-  parameter NF5 = 3'b100;
-  parameter NF6 = 3'b101;
-  parameter NF7 = 3'b110;
-  parameter NF8 = 3'b111;
+  localparam NF1 = 3'b000;  
+  localparam NF2 = 3'b001;
+  localparam NF3 = 3'b010;
+  localparam NF4 = 3'b011;
+  localparam NF5 = 3'b100;
+  localparam NF6 = 3'b101;
+  localparam NF7 = 3'b110;
+  localparam NF8 = 3'b111;
 
 // the uop struct stored in Uops Queue
 typedef struct packed {
@@ -46350,8 +46350,8 @@ typedef struct packed {
 // FF with sync enable, clear and async rst_n; 
 
 module cdffr ( q, clk, rst_n, c, e, d ) ; 
-  parameter type T = logic;
-  parameter T INIT  = '0;
+  localparam type T = logic;
+  localparam T INIT  = '0;
   input         clk;
   input         rst_n;
   input         e, c;
@@ -46374,7 +46374,7 @@ module compressor_3_2
   result_sum,
   result_carry
 );
-  parameter WIDTH = 8;
+  localparam WIDTH = 8;
   
   input   logic [WIDTH-1:0]   src1;
   input   logic [WIDTH-1:0]   src2;
@@ -46409,7 +46409,7 @@ module compressor_4_2
   result_carry,
   result_cout
 );
-  parameter WIDTH = 8;
+  localparam WIDTH = 8;
   
   input   logic [WIDTH-1:0]   src1;
   input   logic [WIDTH-1:0]   src2;
@@ -46446,7 +46446,7 @@ endmodule
 //   E.g.  DFF #(4) qsig (qsig, clk, rst_n, dsig);
 
 module dff ( q, clk, rst_n, d ) ; // FF with async rst_n;  
-  parameter WIDTH = 1 ;
+  localparam WIDTH = 1 ;
   input 	clk ;
   input 	rst_n ;
   input  [WIDTH-1:0] d ;
@@ -46464,8 +46464,8 @@ endmodule
 
 module edff (q, e, d, clk, rst_n
 );
-  parameter type T = logic;
-  parameter T INIT  = '0;
+  localparam type T = logic;
+  localparam T INIT  = '0;
 
   output T        q;
 
@@ -46489,9 +46489,9 @@ module edff_2d (/*AUTOARG*/
    clk, rst_n, en, d
    );
    
-    parameter REGISTER_WIDTH = 32;
-    parameter NUM_OF_REGISTERS = 8;
-    parameter RESET_STATE = 0;     
+    localparam REGISTER_WIDTH = 32;
+    localparam NUM_OF_REGISTERS = 8;
+    localparam RESET_STATE = 0;     
     
     input    clk;
     // synopsys sync_set_reset "rst_n"
@@ -46553,15 +46553,15 @@ module multi_fifo
   rptr,
   entry_count
 );
-// ---parameter definition--------------------------------------------
-  parameter type T      = logic [7:0];  // data structure
-  parameter M           = 4;            // push signal width
-  parameter N           = 4;            // pop signal width
-  parameter DEPTH       = 16;           // fifo depth
-  parameter POP_CLEAR   = 1'b0;         // clear data once pop
-  parameter ASYNC_RSTN  = 1'b0;         // reset data
-  parameter CHAOS_PUSH  = 1'b0;         // support push data disorderly
-  parameter DATAOUT_REG = 1'b0;         // dataout signal register output. 
+// ---localparam definition--------------------------------------------
+  localparam type T      = logic [7:0];  // data structure
+  localparam M           = 4;            // push signal width
+  localparam N           = 4;            // pop signal width
+  localparam DEPTH       = 16;           // fifo depth
+  localparam POP_CLEAR   = 1'b0;         // clear data once pop
+  localparam ASYNC_RSTN  = 1'b0;         // reset data
+  localparam CHAOS_PUSH  = 1'b0;         // support push data disorderly
+  localparam DATAOUT_REG = 1'b0;         // dataout signal register output. 
   
   localparam DEPTH_BITS = $clog2(DEPTH);
 
@@ -46838,8 +46838,8 @@ endmodule
 // instructions) arrive one cycle after the Instruction is dispatched, so this
 // module introduces one cycle of latency before putting the command into the
 // queue.
-module RvvFrontEnd#(parameter N = 4,
-                    parameter CAPACITYBITS=$clog2(2*N + 1))
+module RvvFrontEnd#(localparam N = 4,
+                    localparam CAPACITYBITS=$clog2(2*N + 1))
 (
   input clk,
   input rstn,
@@ -57670,7 +57670,7 @@ module rvv_backend_decode_unit_lsu
   // use for for-loop 
   genvar                                          j;
   
-  // local parameter for SEW in original endocing[14:12]
+  // local localparam for SEW in original endocing[14:12]
   localparam  SEW_8     = 3'b000;
   localparam  SEW_16    = 3'b101;
   localparam  SEW_32    = 3'b110;
@@ -62745,7 +62745,7 @@ module rvv_backend_dispatch_opr_byte_type
     uop_info,
     v0_enable
 );
-// ---parameter definition--------------------------------------------
+// ---localparam definition--------------------------------------------
     localparam VLENB_WIDTH = $clog2(`VLENB);
 
 // ---port definition-------------------------------------------------
@@ -63106,8 +63106,8 @@ module rvv_backend_dispatch_raw_uop_uop
     pre_uop
 );
 
-// ---parameter definition--------------------------------------------
-    parameter PREUOP_NUM = 1;
+// ---localparam definition--------------------------------------------
+    localparam PREUOP_NUM = 1;
 
 // ---port definition-------------------------------------------------
     output  RAW_UOP_UOP_t     raw_uop_uop;
@@ -64117,9 +64117,9 @@ module rvv_backend_div_unit_divider
   trap_flush_rvv
 );
 //
-// parameter
+// localparam
 //
-  parameter logic[7:0] DIV_WIDTH = `WORD_WIDTH;
+  localparam logic[7:0] DIV_WIDTH = `WORD_WIDTH;
 
 //
 // interface signals
@@ -66976,10 +66976,10 @@ module rvv_backend_pmtrdt_unit
   uop_cnt,
   trap_flush_rvv
 );
-// ---parameter definition--------------------------------------------
-  parameter GEN_RDT = 1'b0; // by default, NO Reduction unit
-  parameter GEN_CMP = 1'b0; // by default, NO COMPARE unit
-  parameter GEN_PMT = 1'b0; // by default, NO PERMUTATION unit
+// ---localparam definition--------------------------------------------
+  localparam GEN_RDT = 1'b0; // by default, NO Reduction unit
+  localparam GEN_CMP = 1'b0; // by default, NO COMPARE unit
+  localparam GEN_PMT = 1'b0; // by default, NO PERMUTATION unit
 
   localparam VLENB_WIDTH = $clog2(`VLENB);
 // ---port definition-------------------------------------------------
@@ -72275,8 +72275,8 @@ endmodule
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-module RvvCore #(parameter N = 4,
-                 parameter CMD_BUFFER_MAX_CAPACITY = 16,
+module RvvCore #(localparam N = 4,
+                 localparam CMD_BUFFER_MAX_CAPACITY = 16,
                  type RegDataT=logic [31:0],
                  type VRegDataT=logic [127:0],
                  type RegAddrT=logic [4:0],

@@ -8,18 +8,18 @@
 package rstmgr_reg_pkg;
 
   // Param list
-  parameter int RdWidth = 32;
-  parameter int IdxWidth = 4;
-  parameter int NumHwResets = 5;
-  parameter int NumSwResets = 8;
-  parameter int NumTotalResets = 8;
-  parameter int NumAlerts = 2;
+  localparam int RdWidth = 32;
+  localparam int IdxWidth = 4;
+  localparam int NumHwResets = 5;
+  localparam int NumSwResets = 8;
+  localparam int NumTotalResets = 8;
+  localparam int NumAlerts = 2;
 
   // Address widths within the block
-  parameter int BlockAw = 7;
+  localparam int BlockAw = 7;
 
   // Number of registers for every interface
-  parameter int NumRegs = 28;
+  localparam int NumRegs = 28;
 
   ////////////////////////////
   // Typedefs for registers //
@@ -173,47 +173,47 @@ package rstmgr_reg_pkg;
   } rstmgr_hw2reg_t;
 
   // Register offsets
-  parameter logic [BlockAw-1:0] RSTMGR_ALERT_TEST_OFFSET = 7'h 0;
-  parameter logic [BlockAw-1:0] RSTMGR_RESET_REQ_OFFSET = 7'h 4;
-  parameter logic [BlockAw-1:0] RSTMGR_RESET_INFO_OFFSET = 7'h 8;
-  parameter logic [BlockAw-1:0] RSTMGR_ALERT_REGWEN_OFFSET = 7'h c;
-  parameter logic [BlockAw-1:0] RSTMGR_ALERT_INFO_CTRL_OFFSET = 7'h 10;
-  parameter logic [BlockAw-1:0] RSTMGR_ALERT_INFO_ATTR_OFFSET = 7'h 14;
-  parameter logic [BlockAw-1:0] RSTMGR_ALERT_INFO_OFFSET = 7'h 18;
-  parameter logic [BlockAw-1:0] RSTMGR_CPU_REGWEN_OFFSET = 7'h 1c;
-  parameter logic [BlockAw-1:0] RSTMGR_CPU_INFO_CTRL_OFFSET = 7'h 20;
-  parameter logic [BlockAw-1:0] RSTMGR_CPU_INFO_ATTR_OFFSET = 7'h 24;
-  parameter logic [BlockAw-1:0] RSTMGR_CPU_INFO_OFFSET = 7'h 28;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_0_OFFSET = 7'h 2c;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_1_OFFSET = 7'h 30;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_2_OFFSET = 7'h 34;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_3_OFFSET = 7'h 38;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_4_OFFSET = 7'h 3c;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_5_OFFSET = 7'h 40;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_6_OFFSET = 7'h 44;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_7_OFFSET = 7'h 48;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_0_OFFSET = 7'h 4c;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_1_OFFSET = 7'h 50;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_2_OFFSET = 7'h 54;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_3_OFFSET = 7'h 58;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_4_OFFSET = 7'h 5c;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_5_OFFSET = 7'h 60;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_6_OFFSET = 7'h 64;
-  parameter logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_7_OFFSET = 7'h 68;
-  parameter logic [BlockAw-1:0] RSTMGR_ERR_CODE_OFFSET = 7'h 6c;
+  localparam logic [BlockAw-1:0] RSTMGR_ALERT_TEST_OFFSET = 7'h 0;
+  localparam logic [BlockAw-1:0] RSTMGR_RESET_REQ_OFFSET = 7'h 4;
+  localparam logic [BlockAw-1:0] RSTMGR_RESET_INFO_OFFSET = 7'h 8;
+  localparam logic [BlockAw-1:0] RSTMGR_ALERT_REGWEN_OFFSET = 7'h c;
+  localparam logic [BlockAw-1:0] RSTMGR_ALERT_INFO_CTRL_OFFSET = 7'h 10;
+  localparam logic [BlockAw-1:0] RSTMGR_ALERT_INFO_ATTR_OFFSET = 7'h 14;
+  localparam logic [BlockAw-1:0] RSTMGR_ALERT_INFO_OFFSET = 7'h 18;
+  localparam logic [BlockAw-1:0] RSTMGR_CPU_REGWEN_OFFSET = 7'h 1c;
+  localparam logic [BlockAw-1:0] RSTMGR_CPU_INFO_CTRL_OFFSET = 7'h 20;
+  localparam logic [BlockAw-1:0] RSTMGR_CPU_INFO_ATTR_OFFSET = 7'h 24;
+  localparam logic [BlockAw-1:0] RSTMGR_CPU_INFO_OFFSET = 7'h 28;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_0_OFFSET = 7'h 2c;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_1_OFFSET = 7'h 30;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_2_OFFSET = 7'h 34;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_3_OFFSET = 7'h 38;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_4_OFFSET = 7'h 3c;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_5_OFFSET = 7'h 40;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_6_OFFSET = 7'h 44;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_REGWEN_7_OFFSET = 7'h 48;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_0_OFFSET = 7'h 4c;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_1_OFFSET = 7'h 50;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_2_OFFSET = 7'h 54;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_3_OFFSET = 7'h 58;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_4_OFFSET = 7'h 5c;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_5_OFFSET = 7'h 60;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_6_OFFSET = 7'h 64;
+  localparam logic [BlockAw-1:0] RSTMGR_SW_RST_CTRL_N_7_OFFSET = 7'h 68;
+  localparam logic [BlockAw-1:0] RSTMGR_ERR_CODE_OFFSET = 7'h 6c;
 
   // Reset values for hwext registers and their fields
-  parameter logic [1:0] RSTMGR_ALERT_TEST_RESVAL = 2'h 0;
-  parameter logic [0:0] RSTMGR_ALERT_TEST_FATAL_FAULT_RESVAL = 1'h 0;
-  parameter logic [0:0] RSTMGR_ALERT_TEST_FATAL_CNSTY_FAULT_RESVAL = 1'h 0;
-  parameter logic [3:0] RSTMGR_ALERT_INFO_ATTR_RESVAL = 4'h 0;
-  parameter logic [3:0] RSTMGR_ALERT_INFO_ATTR_CNT_AVAIL_RESVAL = 4'h 0;
-  parameter logic [31:0] RSTMGR_ALERT_INFO_RESVAL = 32'h 0;
-  parameter logic [31:0] RSTMGR_ALERT_INFO_VALUE_RESVAL = 32'h 0;
-  parameter logic [3:0] RSTMGR_CPU_INFO_ATTR_RESVAL = 4'h 0;
-  parameter logic [3:0] RSTMGR_CPU_INFO_ATTR_CNT_AVAIL_RESVAL = 4'h 0;
-  parameter logic [31:0] RSTMGR_CPU_INFO_RESVAL = 32'h 0;
-  parameter logic [31:0] RSTMGR_CPU_INFO_VALUE_RESVAL = 32'h 0;
+  localparam logic [1:0] RSTMGR_ALERT_TEST_RESVAL = 2'h 0;
+  localparam logic [0:0] RSTMGR_ALERT_TEST_FATAL_FAULT_RESVAL = 1'h 0;
+  localparam logic [0:0] RSTMGR_ALERT_TEST_FATAL_CNSTY_FAULT_RESVAL = 1'h 0;
+  localparam logic [3:0] RSTMGR_ALERT_INFO_ATTR_RESVAL = 4'h 0;
+  localparam logic [3:0] RSTMGR_ALERT_INFO_ATTR_CNT_AVAIL_RESVAL = 4'h 0;
+  localparam logic [31:0] RSTMGR_ALERT_INFO_RESVAL = 32'h 0;
+  localparam logic [31:0] RSTMGR_ALERT_INFO_VALUE_RESVAL = 32'h 0;
+  localparam logic [3:0] RSTMGR_CPU_INFO_ATTR_RESVAL = 4'h 0;
+  localparam logic [3:0] RSTMGR_CPU_INFO_ATTR_CNT_AVAIL_RESVAL = 4'h 0;
+  localparam logic [31:0] RSTMGR_CPU_INFO_RESVAL = 32'h 0;
+  localparam logic [31:0] RSTMGR_CPU_INFO_VALUE_RESVAL = 32'h 0;
 
   // Register index
   typedef enum int {
@@ -248,7 +248,7 @@ package rstmgr_reg_pkg;
   } rstmgr_id_e;
 
   // Register width information to check illegal writes
-  parameter logic [3:0] RSTMGR_PERMIT [28] = '{
+  localparam logic [3:0] RSTMGR_PERMIT [28] = '{
     4'b 0001, // index[ 0] RSTMGR_ALERT_TEST
     4'b 0001, // index[ 1] RSTMGR_RESET_REQ
     4'b 0001, // index[ 2] RSTMGR_RESET_INFO

@@ -173,8 +173,8 @@ package prim_secded_pkg;
     endcase
   endfunction
 
-  parameter logic [5:0] Secded2216ZeroEcc = 6'h0;
-  parameter logic [21:0] Secded2216ZeroWord = 22'h0;
+  localparam logic [5:0] Secded2216ZeroEcc = 6'h0;
+  localparam logic [21:0] Secded2216ZeroWord = 22'h0;
 
   typedef struct packed {
     logic [15:0] data;
@@ -182,8 +182,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_22_16_t;
 
-  parameter logic [5:0] Secded2822ZeroEcc = 6'h0;
-  parameter logic [27:0] Secded2822ZeroWord = 28'h0;
+  localparam logic [5:0] Secded2822ZeroEcc = 6'h0;
+  localparam logic [27:0] Secded2822ZeroWord = 28'h0;
 
   typedef struct packed {
     logic [21:0] data;
@@ -191,8 +191,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_28_22_t;
 
-  parameter logic [6:0] Secded3932ZeroEcc = 7'h0;
-  parameter logic [38:0] Secded3932ZeroWord = 39'h0;
+  localparam logic [6:0] Secded3932ZeroEcc = 7'h0;
+  localparam logic [38:0] Secded3932ZeroWord = 39'h0;
 
   typedef struct packed {
     logic [31:0] data;
@@ -200,8 +200,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_39_32_t;
 
-  parameter logic [6:0] Secded6457ZeroEcc = 7'h0;
-  parameter logic [63:0] Secded6457ZeroWord = 64'h0;
+  localparam logic [6:0] Secded6457ZeroEcc = 7'h0;
+  localparam logic [63:0] Secded6457ZeroWord = 64'h0;
 
   typedef struct packed {
     logic [56:0] data;
@@ -209,8 +209,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_64_57_t;
 
-  parameter logic [7:0] Secded7264ZeroEcc = 8'h0;
-  parameter logic [71:0] Secded7264ZeroWord = 72'h0;
+  localparam logic [7:0] Secded7264ZeroEcc = 8'h0;
+  localparam logic [71:0] Secded7264ZeroWord = 72'h0;
 
   typedef struct packed {
     logic [63:0] data;
@@ -218,8 +218,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_72_64_t;
 
-  parameter logic [5:0] SecdedHamming2216ZeroEcc = 6'h0;
-  parameter logic [21:0] SecdedHamming2216ZeroWord = 22'h0;
+  localparam logic [5:0] SecdedHamming2216ZeroEcc = 6'h0;
+  localparam logic [21:0] SecdedHamming2216ZeroWord = 22'h0;
 
   typedef struct packed {
     logic [15:0] data;
@@ -227,8 +227,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_hamming_22_16_t;
 
-  parameter logic [6:0] SecdedHamming3932ZeroEcc = 7'h0;
-  parameter logic [38:0] SecdedHamming3932ZeroWord = 39'h0;
+  localparam logic [6:0] SecdedHamming3932ZeroEcc = 7'h0;
+  localparam logic [38:0] SecdedHamming3932ZeroWord = 39'h0;
 
   typedef struct packed {
     logic [31:0] data;
@@ -236,8 +236,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_hamming_39_32_t;
 
-  parameter logic [7:0] SecdedHamming7264ZeroEcc = 8'h0;
-  parameter logic [71:0] SecdedHamming7264ZeroWord = 72'h0;
+  localparam logic [7:0] SecdedHamming7264ZeroEcc = 8'h0;
+  localparam logic [71:0] SecdedHamming7264ZeroWord = 72'h0;
 
   typedef struct packed {
     logic [63:0] data;
@@ -245,8 +245,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_hamming_72_64_t;
 
-  parameter logic [7:0] SecdedHamming7668ZeroEcc = 8'h0;
-  parameter logic [75:0] SecdedHamming7668ZeroWord = 76'h0;
+  localparam logic [7:0] SecdedHamming7668ZeroEcc = 8'h0;
+  localparam logic [75:0] SecdedHamming7668ZeroWord = 76'h0;
 
   typedef struct packed {
     logic [67:0] data;
@@ -254,8 +254,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_hamming_76_68_t;
 
-  parameter logic [5:0] SecdedInv2216ZeroEcc = 6'h2A;
-  parameter logic [21:0] SecdedInv2216ZeroWord = 22'h2A0000;
+  localparam logic [5:0] SecdedInv2216ZeroEcc = 6'h2A;
+  localparam logic [21:0] SecdedInv2216ZeroWord = 22'h2A0000;
 
   typedef struct packed {
     logic [15:0] data;
@@ -263,8 +263,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_inv_22_16_t;
 
-  parameter logic [5:0] SecdedInv2822ZeroEcc = 6'h2A;
-  parameter logic [27:0] SecdedInv2822ZeroWord = 28'hA800000;
+  localparam logic [5:0] SecdedInv2822ZeroEcc = 6'h2A;
+  localparam logic [27:0] SecdedInv2822ZeroWord = 28'hA800000;
 
   typedef struct packed {
     logic [21:0] data;
@@ -272,8 +272,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_inv_28_22_t;
 
-  parameter logic [6:0] SecdedInv3932ZeroEcc = 7'h2A;
-  parameter logic [38:0] SecdedInv3932ZeroWord = 39'h2A00000000;
+  localparam logic [6:0] SecdedInv3932ZeroEcc = 7'h2A;
+  localparam logic [38:0] SecdedInv3932ZeroWord = 39'h2A00000000;
 
   typedef struct packed {
     logic [31:0] data;
@@ -281,8 +281,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_inv_39_32_t;
 
-  parameter logic [6:0] SecdedInv6457ZeroEcc = 7'h2A;
-  parameter logic [63:0] SecdedInv6457ZeroWord = 64'h5400000000000000;
+  localparam logic [6:0] SecdedInv6457ZeroEcc = 7'h2A;
+  localparam logic [63:0] SecdedInv6457ZeroWord = 64'h5400000000000000;
 
   typedef struct packed {
     logic [56:0] data;
@@ -290,8 +290,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_inv_64_57_t;
 
-  parameter logic [7:0] SecdedInv7264ZeroEcc = 8'hAA;
-  parameter logic [71:0] SecdedInv7264ZeroWord = 72'hAA0000000000000000;
+  localparam logic [7:0] SecdedInv7264ZeroEcc = 8'hAA;
+  localparam logic [71:0] SecdedInv7264ZeroWord = 72'hAA0000000000000000;
 
   typedef struct packed {
     logic [63:0] data;
@@ -299,8 +299,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_inv_72_64_t;
 
-  parameter logic [5:0] SecdedInvHamming2216ZeroEcc = 6'h2A;
-  parameter logic [21:0] SecdedInvHamming2216ZeroWord = 22'h2A0000;
+  localparam logic [5:0] SecdedInvHamming2216ZeroEcc = 6'h2A;
+  localparam logic [21:0] SecdedInvHamming2216ZeroWord = 22'h2A0000;
 
   typedef struct packed {
     logic [15:0] data;
@@ -308,8 +308,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_inv_hamming_22_16_t;
 
-  parameter logic [6:0] SecdedInvHamming3932ZeroEcc = 7'h2A;
-  parameter logic [38:0] SecdedInvHamming3932ZeroWord = 39'h2A00000000;
+  localparam logic [6:0] SecdedInvHamming3932ZeroEcc = 7'h2A;
+  localparam logic [38:0] SecdedInvHamming3932ZeroWord = 39'h2A00000000;
 
   typedef struct packed {
     logic [31:0] data;
@@ -317,8 +317,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_inv_hamming_39_32_t;
 
-  parameter logic [7:0] SecdedInvHamming7264ZeroEcc = 8'hAA;
-  parameter logic [71:0] SecdedInvHamming7264ZeroWord = 72'hAA0000000000000000;
+  localparam logic [7:0] SecdedInvHamming7264ZeroEcc = 8'hAA;
+  localparam logic [71:0] SecdedInvHamming7264ZeroWord = 72'hAA0000000000000000;
 
   typedef struct packed {
     logic [63:0] data;
@@ -326,8 +326,8 @@ package prim_secded_pkg;
     logic [1:0]  err;
   } secded_inv_hamming_72_64_t;
 
-  parameter logic [7:0] SecdedInvHamming7668ZeroEcc = 8'hAA;
-  parameter logic [75:0] SecdedInvHamming7668ZeroWord = 76'hAA00000000000000000;
+  localparam logic [7:0] SecdedInvHamming7668ZeroEcc = 8'hAA;
+  localparam logic [75:0] SecdedInvHamming7668ZeroWord = 76'hAA00000000000000000;
 
   typedef struct packed {
     logic [67:0] data;

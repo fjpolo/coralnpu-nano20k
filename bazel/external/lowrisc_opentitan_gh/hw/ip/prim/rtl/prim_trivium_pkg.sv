@@ -13,15 +13,15 @@ package prim_trivium_pkg;
     SeedTypeStatePartial  // Seed PartialSeedWidth bits of the state at a time.
   } seed_type_e;
 
-  parameter int unsigned KeyIvWidth = 80;
-  parameter int unsigned PartialSeedWidthDefault = 32;
-  parameter int unsigned MinNfsrWidth = 84;
+  localparam int unsigned KeyIvWidth = 80;
+  localparam int unsigned PartialSeedWidthDefault = 32;
+  localparam int unsigned MinNfsrWidth = 84;
 
   // These LFSR parameters have been generated with
   // $ ./util/design/gen-lfsr-seed.py --width 288 --seed 31468618 --prefix "Trivium"
-  parameter int TriviumLfsrWidth = 288;
+  localparam int TriviumLfsrWidth = 288;
   typedef logic [TriviumLfsrWidth-1:0] trivium_lfsr_seed_t;
-  parameter trivium_lfsr_seed_t RndCnstTriviumLfsrSeedDefault = {
+  localparam trivium_lfsr_seed_t RndCnstTriviumLfsrSeedDefault = {
     32'h758a4420,
     256'h31e1c461_6ea343ec_153282a3_0c132b57_23c5a4cf_4743b3c7_c32d580f_74f1713a
   };
@@ -30,8 +30,8 @@ package prim_trivium_pkg;
   // Trivium //
   /////////////
 
-  parameter int unsigned TriviumMaxNfsrWidth = 111;
-  parameter int TriviumStateWidth = TriviumLfsrWidth;
+  localparam int unsigned TriviumMaxNfsrWidth = 111;
+  localparam int TriviumStateWidth = TriviumLfsrWidth;
 
   function automatic logic [TriviumStateWidth-1:0] trivium_update_state(
     logic [TriviumStateWidth-1:0] in
@@ -100,8 +100,8 @@ package prim_trivium_pkg;
   // Bivium //
   ////////////
 
-  parameter int unsigned BiviumMaxNfsrWidth = 93;
-  parameter int BiviumStateWidth = 177;
+  localparam int unsigned BiviumMaxNfsrWidth = 93;
+  localparam int BiviumStateWidth = 177;
 
   function automatic logic [BiviumStateWidth-1:0] bivium_update_state(
     logic [BiviumStateWidth-1:0] in

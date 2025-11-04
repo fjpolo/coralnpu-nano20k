@@ -8,15 +8,15 @@
 package uart_reg_pkg;
 
   // Param list
-  parameter int RxFifoDepth = 64;
-  parameter int TxFifoDepth = 32;
-  parameter int NumAlerts = 1;
+  localparam int RxFifoDepth = 64;
+  localparam int TxFifoDepth = 32;
+  localparam int NumAlerts = 1;
 
   // Address widths within the block
-  parameter int BlockAw = 6;
+  localparam int BlockAw = 6;
 
   // Number of registers for every interface
-  parameter int NumRegs = 13;
+  localparam int NumRegs = 13;
 
   ////////////////////////////
   // Typedefs for registers //
@@ -344,41 +344,41 @@ package uart_reg_pkg;
   } uart_hw2reg_t;
 
   // Register offsets
-  parameter logic [BlockAw-1:0] UART_INTR_STATE_OFFSET = 6'h 0;
-  parameter logic [BlockAw-1:0] UART_INTR_ENABLE_OFFSET = 6'h 4;
-  parameter logic [BlockAw-1:0] UART_INTR_TEST_OFFSET = 6'h 8;
-  parameter logic [BlockAw-1:0] UART_ALERT_TEST_OFFSET = 6'h c;
-  parameter logic [BlockAw-1:0] UART_CTRL_OFFSET = 6'h 10;
-  parameter logic [BlockAw-1:0] UART_STATUS_OFFSET = 6'h 14;
-  parameter logic [BlockAw-1:0] UART_RDATA_OFFSET = 6'h 18;
-  parameter logic [BlockAw-1:0] UART_WDATA_OFFSET = 6'h 1c;
-  parameter logic [BlockAw-1:0] UART_FIFO_CTRL_OFFSET = 6'h 20;
-  parameter logic [BlockAw-1:0] UART_FIFO_STATUS_OFFSET = 6'h 24;
-  parameter logic [BlockAw-1:0] UART_OVRD_OFFSET = 6'h 28;
-  parameter logic [BlockAw-1:0] UART_VAL_OFFSET = 6'h 2c;
-  parameter logic [BlockAw-1:0] UART_TIMEOUT_CTRL_OFFSET = 6'h 30;
+  localparam logic [BlockAw-1:0] UART_INTR_STATE_OFFSET = 6'h 0;
+  localparam logic [BlockAw-1:0] UART_INTR_ENABLE_OFFSET = 6'h 4;
+  localparam logic [BlockAw-1:0] UART_INTR_TEST_OFFSET = 6'h 8;
+  localparam logic [BlockAw-1:0] UART_ALERT_TEST_OFFSET = 6'h c;
+  localparam logic [BlockAw-1:0] UART_CTRL_OFFSET = 6'h 10;
+  localparam logic [BlockAw-1:0] UART_STATUS_OFFSET = 6'h 14;
+  localparam logic [BlockAw-1:0] UART_RDATA_OFFSET = 6'h 18;
+  localparam logic [BlockAw-1:0] UART_WDATA_OFFSET = 6'h 1c;
+  localparam logic [BlockAw-1:0] UART_FIFO_CTRL_OFFSET = 6'h 20;
+  localparam logic [BlockAw-1:0] UART_FIFO_STATUS_OFFSET = 6'h 24;
+  localparam logic [BlockAw-1:0] UART_OVRD_OFFSET = 6'h 28;
+  localparam logic [BlockAw-1:0] UART_VAL_OFFSET = 6'h 2c;
+  localparam logic [BlockAw-1:0] UART_TIMEOUT_CTRL_OFFSET = 6'h 30;
 
   // Reset values for hwext registers and their fields
-  parameter logic [8:0] UART_INTR_TEST_RESVAL = 9'h 0;
-  parameter logic [0:0] UART_INTR_TEST_TX_WATERMARK_RESVAL = 1'h 0;
-  parameter logic [0:0] UART_INTR_TEST_RX_WATERMARK_RESVAL = 1'h 0;
-  parameter logic [0:0] UART_INTR_TEST_TX_DONE_RESVAL = 1'h 0;
-  parameter logic [0:0] UART_INTR_TEST_RX_OVERFLOW_RESVAL = 1'h 0;
-  parameter logic [0:0] UART_INTR_TEST_RX_FRAME_ERR_RESVAL = 1'h 0;
-  parameter logic [0:0] UART_INTR_TEST_RX_BREAK_ERR_RESVAL = 1'h 0;
-  parameter logic [0:0] UART_INTR_TEST_RX_TIMEOUT_RESVAL = 1'h 0;
-  parameter logic [0:0] UART_INTR_TEST_RX_PARITY_ERR_RESVAL = 1'h 0;
-  parameter logic [0:0] UART_INTR_TEST_TX_EMPTY_RESVAL = 1'h 0;
-  parameter logic [0:0] UART_ALERT_TEST_RESVAL = 1'h 0;
-  parameter logic [0:0] UART_ALERT_TEST_FATAL_FAULT_RESVAL = 1'h 0;
-  parameter logic [5:0] UART_STATUS_RESVAL = 6'h 3c;
-  parameter logic [0:0] UART_STATUS_TXEMPTY_RESVAL = 1'h 1;
-  parameter logic [0:0] UART_STATUS_TXIDLE_RESVAL = 1'h 1;
-  parameter logic [0:0] UART_STATUS_RXIDLE_RESVAL = 1'h 1;
-  parameter logic [0:0] UART_STATUS_RXEMPTY_RESVAL = 1'h 1;
-  parameter logic [7:0] UART_RDATA_RESVAL = 8'h 0;
-  parameter logic [23:0] UART_FIFO_STATUS_RESVAL = 24'h 0;
-  parameter logic [15:0] UART_VAL_RESVAL = 16'h 0;
+  localparam logic [8:0] UART_INTR_TEST_RESVAL = 9'h 0;
+  localparam logic [0:0] UART_INTR_TEST_TX_WATERMARK_RESVAL = 1'h 0;
+  localparam logic [0:0] UART_INTR_TEST_RX_WATERMARK_RESVAL = 1'h 0;
+  localparam logic [0:0] UART_INTR_TEST_TX_DONE_RESVAL = 1'h 0;
+  localparam logic [0:0] UART_INTR_TEST_RX_OVERFLOW_RESVAL = 1'h 0;
+  localparam logic [0:0] UART_INTR_TEST_RX_FRAME_ERR_RESVAL = 1'h 0;
+  localparam logic [0:0] UART_INTR_TEST_RX_BREAK_ERR_RESVAL = 1'h 0;
+  localparam logic [0:0] UART_INTR_TEST_RX_TIMEOUT_RESVAL = 1'h 0;
+  localparam logic [0:0] UART_INTR_TEST_RX_PARITY_ERR_RESVAL = 1'h 0;
+  localparam logic [0:0] UART_INTR_TEST_TX_EMPTY_RESVAL = 1'h 0;
+  localparam logic [0:0] UART_ALERT_TEST_RESVAL = 1'h 0;
+  localparam logic [0:0] UART_ALERT_TEST_FATAL_FAULT_RESVAL = 1'h 0;
+  localparam logic [5:0] UART_STATUS_RESVAL = 6'h 3c;
+  localparam logic [0:0] UART_STATUS_TXEMPTY_RESVAL = 1'h 1;
+  localparam logic [0:0] UART_STATUS_TXIDLE_RESVAL = 1'h 1;
+  localparam logic [0:0] UART_STATUS_RXIDLE_RESVAL = 1'h 1;
+  localparam logic [0:0] UART_STATUS_RXEMPTY_RESVAL = 1'h 1;
+  localparam logic [7:0] UART_RDATA_RESVAL = 8'h 0;
+  localparam logic [23:0] UART_FIFO_STATUS_RESVAL = 24'h 0;
+  localparam logic [15:0] UART_VAL_RESVAL = 16'h 0;
 
   // Register index
   typedef enum int {
@@ -398,7 +398,7 @@ package uart_reg_pkg;
   } uart_id_e;
 
   // Register width information to check illegal writes
-  parameter logic [3:0] UART_PERMIT [13] = '{
+  localparam logic [3:0] UART_PERMIT [13] = '{
     4'b 0011, // index[ 0] UART_INTR_STATE
     4'b 0011, // index[ 1] UART_INTR_ENABLE
     4'b 0011, // index[ 2] UART_INTR_TEST

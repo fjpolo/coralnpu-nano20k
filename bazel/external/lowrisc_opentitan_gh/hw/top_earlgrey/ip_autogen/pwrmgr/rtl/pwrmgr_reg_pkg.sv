@@ -8,27 +8,27 @@
 package pwrmgr_reg_pkg;
 
   // Param list
-  parameter int NumWkups = 6;
-  parameter int SYSRST_CTRL_AON_WKUP_REQ_IDX = 0;
-  parameter int ADC_CTRL_AON_WKUP_REQ_IDX = 1;
-  parameter int PINMUX_AON_PIN_WKUP_REQ_IDX = 2;
-  parameter int PINMUX_AON_USB_WKUP_REQ_IDX = 3;
-  parameter int AON_TIMER_AON_WKUP_REQ_IDX = 4;
-  parameter int SENSOR_CTRL_AON_WKUP_REQ_IDX = 5;
-  parameter int NumRstReqs = 2;
-  parameter int NumIntRstReqs = 2;
-  parameter int NumDebugRstReqs = 1;
-  parameter int NumRomInputs = 1;
-  parameter int ResetMainPwrIdx = 2;
-  parameter int ResetEscIdx = 3;
-  parameter int ResetNdmIdx = 4;
-  parameter int NumAlerts = 1;
+  localparam int NumWkups = 6;
+  localparam int SYSRST_CTRL_AON_WKUP_REQ_IDX = 0;
+  localparam int ADC_CTRL_AON_WKUP_REQ_IDX = 1;
+  localparam int PINMUX_AON_PIN_WKUP_REQ_IDX = 2;
+  localparam int PINMUX_AON_USB_WKUP_REQ_IDX = 3;
+  localparam int AON_TIMER_AON_WKUP_REQ_IDX = 4;
+  localparam int SENSOR_CTRL_AON_WKUP_REQ_IDX = 5;
+  localparam int NumRstReqs = 2;
+  localparam int NumIntRstReqs = 2;
+  localparam int NumDebugRstReqs = 1;
+  localparam int NumRomInputs = 1;
+  localparam int ResetMainPwrIdx = 2;
+  localparam int ResetEscIdx = 3;
+  localparam int ResetNdmIdx = 4;
+  localparam int NumAlerts = 1;
 
   // Address widths within the block
-  parameter int BlockAw = 7;
+  localparam int BlockAw = 7;
 
   // Number of registers for every interface
-  parameter int NumRegs = 17;
+  localparam int NumRegs = 17;
 
   ////////////////////////////
   // Typedefs for registers //
@@ -209,35 +209,35 @@ package pwrmgr_reg_pkg;
   } pwrmgr_hw2reg_t;
 
   // Register offsets
-  parameter logic [BlockAw-1:0] PWRMGR_INTR_STATE_OFFSET = 7'h 0;
-  parameter logic [BlockAw-1:0] PWRMGR_INTR_ENABLE_OFFSET = 7'h 4;
-  parameter logic [BlockAw-1:0] PWRMGR_INTR_TEST_OFFSET = 7'h 8;
-  parameter logic [BlockAw-1:0] PWRMGR_ALERT_TEST_OFFSET = 7'h c;
-  parameter logic [BlockAw-1:0] PWRMGR_CTRL_CFG_REGWEN_OFFSET = 7'h 10;
-  parameter logic [BlockAw-1:0] PWRMGR_CONTROL_OFFSET = 7'h 14;
-  parameter logic [BlockAw-1:0] PWRMGR_CFG_CDC_SYNC_OFFSET = 7'h 18;
-  parameter logic [BlockAw-1:0] PWRMGR_WAKEUP_EN_REGWEN_OFFSET = 7'h 1c;
-  parameter logic [BlockAw-1:0] PWRMGR_WAKEUP_EN_OFFSET = 7'h 20;
-  parameter logic [BlockAw-1:0] PWRMGR_WAKE_STATUS_OFFSET = 7'h 24;
-  parameter logic [BlockAw-1:0] PWRMGR_RESET_EN_REGWEN_OFFSET = 7'h 28;
-  parameter logic [BlockAw-1:0] PWRMGR_RESET_EN_OFFSET = 7'h 2c;
-  parameter logic [BlockAw-1:0] PWRMGR_RESET_STATUS_OFFSET = 7'h 30;
-  parameter logic [BlockAw-1:0] PWRMGR_ESCALATE_RESET_STATUS_OFFSET = 7'h 34;
-  parameter logic [BlockAw-1:0] PWRMGR_WAKE_INFO_CAPTURE_DIS_OFFSET = 7'h 38;
-  parameter logic [BlockAw-1:0] PWRMGR_WAKE_INFO_OFFSET = 7'h 3c;
-  parameter logic [BlockAw-1:0] PWRMGR_FAULT_STATUS_OFFSET = 7'h 40;
+  localparam logic [BlockAw-1:0] PWRMGR_INTR_STATE_OFFSET = 7'h 0;
+  localparam logic [BlockAw-1:0] PWRMGR_INTR_ENABLE_OFFSET = 7'h 4;
+  localparam logic [BlockAw-1:0] PWRMGR_INTR_TEST_OFFSET = 7'h 8;
+  localparam logic [BlockAw-1:0] PWRMGR_ALERT_TEST_OFFSET = 7'h c;
+  localparam logic [BlockAw-1:0] PWRMGR_CTRL_CFG_REGWEN_OFFSET = 7'h 10;
+  localparam logic [BlockAw-1:0] PWRMGR_CONTROL_OFFSET = 7'h 14;
+  localparam logic [BlockAw-1:0] PWRMGR_CFG_CDC_SYNC_OFFSET = 7'h 18;
+  localparam logic [BlockAw-1:0] PWRMGR_WAKEUP_EN_REGWEN_OFFSET = 7'h 1c;
+  localparam logic [BlockAw-1:0] PWRMGR_WAKEUP_EN_OFFSET = 7'h 20;
+  localparam logic [BlockAw-1:0] PWRMGR_WAKE_STATUS_OFFSET = 7'h 24;
+  localparam logic [BlockAw-1:0] PWRMGR_RESET_EN_REGWEN_OFFSET = 7'h 28;
+  localparam logic [BlockAw-1:0] PWRMGR_RESET_EN_OFFSET = 7'h 2c;
+  localparam logic [BlockAw-1:0] PWRMGR_RESET_STATUS_OFFSET = 7'h 30;
+  localparam logic [BlockAw-1:0] PWRMGR_ESCALATE_RESET_STATUS_OFFSET = 7'h 34;
+  localparam logic [BlockAw-1:0] PWRMGR_WAKE_INFO_CAPTURE_DIS_OFFSET = 7'h 38;
+  localparam logic [BlockAw-1:0] PWRMGR_WAKE_INFO_OFFSET = 7'h 3c;
+  localparam logic [BlockAw-1:0] PWRMGR_FAULT_STATUS_OFFSET = 7'h 40;
 
   // Reset values for hwext registers and their fields
-  parameter logic [0:0] PWRMGR_INTR_TEST_RESVAL = 1'h 0;
-  parameter logic [0:0] PWRMGR_INTR_TEST_WAKEUP_RESVAL = 1'h 0;
-  parameter logic [0:0] PWRMGR_ALERT_TEST_RESVAL = 1'h 0;
-  parameter logic [0:0] PWRMGR_ALERT_TEST_FATAL_FAULT_RESVAL = 1'h 0;
-  parameter logic [0:0] PWRMGR_CTRL_CFG_REGWEN_RESVAL = 1'h 1;
-  parameter logic [0:0] PWRMGR_CTRL_CFG_REGWEN_EN_RESVAL = 1'h 1;
-  parameter logic [7:0] PWRMGR_WAKE_INFO_RESVAL = 8'h 0;
-  parameter logic [5:0] PWRMGR_WAKE_INFO_REASONS_RESVAL = 6'h 0;
-  parameter logic [0:0] PWRMGR_WAKE_INFO_FALL_THROUGH_RESVAL = 1'h 0;
-  parameter logic [0:0] PWRMGR_WAKE_INFO_ABORT_RESVAL = 1'h 0;
+  localparam logic [0:0] PWRMGR_INTR_TEST_RESVAL = 1'h 0;
+  localparam logic [0:0] PWRMGR_INTR_TEST_WAKEUP_RESVAL = 1'h 0;
+  localparam logic [0:0] PWRMGR_ALERT_TEST_RESVAL = 1'h 0;
+  localparam logic [0:0] PWRMGR_ALERT_TEST_FATAL_FAULT_RESVAL = 1'h 0;
+  localparam logic [0:0] PWRMGR_CTRL_CFG_REGWEN_RESVAL = 1'h 1;
+  localparam logic [0:0] PWRMGR_CTRL_CFG_REGWEN_EN_RESVAL = 1'h 1;
+  localparam logic [7:0] PWRMGR_WAKE_INFO_RESVAL = 8'h 0;
+  localparam logic [5:0] PWRMGR_WAKE_INFO_REASONS_RESVAL = 6'h 0;
+  localparam logic [0:0] PWRMGR_WAKE_INFO_FALL_THROUGH_RESVAL = 1'h 0;
+  localparam logic [0:0] PWRMGR_WAKE_INFO_ABORT_RESVAL = 1'h 0;
 
   // Register index
   typedef enum int {
@@ -261,7 +261,7 @@ package pwrmgr_reg_pkg;
   } pwrmgr_id_e;
 
   // Register width information to check illegal writes
-  parameter logic [3:0] PWRMGR_PERMIT [17] = '{
+  localparam logic [3:0] PWRMGR_PERMIT [17] = '{
     4'b 0001, // index[ 0] PWRMGR_INTR_STATE
     4'b 0001, // index[ 1] PWRMGR_INTR_ENABLE
     4'b 0001, // index[ 2] PWRMGR_INTR_TEST

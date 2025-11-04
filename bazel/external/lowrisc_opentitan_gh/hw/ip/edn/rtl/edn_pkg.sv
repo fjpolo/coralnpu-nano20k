@@ -10,8 +10,8 @@ package edn_pkg;
   // Peripheral Interfaces //
   ///////////////////////////
 
-  parameter int unsigned   ENDPOINT_BUS_WIDTH = 32;
-  parameter int unsigned   FIPS_ENDPOINT_BUS_WIDTH = entropy_src_pkg::FIPS_BUS_WIDTH +
+  localparam int unsigned   ENDPOINT_BUS_WIDTH = 32;
+  localparam int unsigned   FIPS_ENDPOINT_BUS_WIDTH = entropy_src_pkg::FIPS_BUS_WIDTH +
                            ENDPOINT_BUS_WIDTH;
 
   // EDN request interface
@@ -24,9 +24,9 @@ package edn_pkg;
     logic [ENDPOINT_BUS_WIDTH-1:0]        edn_bus;
   } edn_rsp_t;
 
-  parameter edn_req_t EDN_REQ_DEFAULT = '0;
-  parameter edn_rsp_t EDN_RSP_DEFAULT = '0;
-  parameter csrng_pkg::csrng_cmd_t BOOT_UNINSTANTIATE = 32'h5;
+  localparam edn_req_t EDN_REQ_DEFAULT = '0;
+  localparam edn_rsp_t EDN_RSP_DEFAULT = '0;
+  localparam csrng_pkg::csrng_cmd_t BOOT_UNINSTANTIATE = 32'h5;
 
   // Encoding generated with:
   // $ ./util/design/sparse-fsm-encode.py -d 3 -m 20 -n 9 \

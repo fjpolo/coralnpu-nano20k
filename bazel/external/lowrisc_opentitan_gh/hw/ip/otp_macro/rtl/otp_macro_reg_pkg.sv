@@ -8,10 +8,10 @@
 package otp_macro_reg_pkg;
 
   // Address widths within the block
-  parameter int PrimAw = 5;
+  localparam int PrimAw = 5;
 
   // Number of registers for every interface
-  parameter int NumRegsPrim = 8;
+  localparam int NumRegsPrim = 8;
 
   ///////////////////////////////////////////////
   // Typedefs for registers for prim interface //
@@ -265,14 +265,14 @@ package otp_macro_reg_pkg;
   } otp_macro_prim_hw2reg_t;
 
   // Register offsets for prim interface
-  parameter logic [PrimAw-1:0] OTP_MACRO_CSR0_OFFSET = 5'h 0;
-  parameter logic [PrimAw-1:0] OTP_MACRO_CSR1_OFFSET = 5'h 4;
-  parameter logic [PrimAw-1:0] OTP_MACRO_CSR2_OFFSET = 5'h 8;
-  parameter logic [PrimAw-1:0] OTP_MACRO_CSR3_OFFSET = 5'h c;
-  parameter logic [PrimAw-1:0] OTP_MACRO_CSR4_OFFSET = 5'h 10;
-  parameter logic [PrimAw-1:0] OTP_MACRO_CSR5_OFFSET = 5'h 14;
-  parameter logic [PrimAw-1:0] OTP_MACRO_CSR6_OFFSET = 5'h 18;
-  parameter logic [PrimAw-1:0] OTP_MACRO_CSR7_OFFSET = 5'h 1c;
+  localparam logic [PrimAw-1:0] OTP_MACRO_CSR0_OFFSET = 5'h 0;
+  localparam logic [PrimAw-1:0] OTP_MACRO_CSR1_OFFSET = 5'h 4;
+  localparam logic [PrimAw-1:0] OTP_MACRO_CSR2_OFFSET = 5'h 8;
+  localparam logic [PrimAw-1:0] OTP_MACRO_CSR3_OFFSET = 5'h c;
+  localparam logic [PrimAw-1:0] OTP_MACRO_CSR4_OFFSET = 5'h 10;
+  localparam logic [PrimAw-1:0] OTP_MACRO_CSR5_OFFSET = 5'h 14;
+  localparam logic [PrimAw-1:0] OTP_MACRO_CSR6_OFFSET = 5'h 18;
+  localparam logic [PrimAw-1:0] OTP_MACRO_CSR7_OFFSET = 5'h 1c;
 
   // Register index for prim interface
   typedef enum int {
@@ -287,7 +287,7 @@ package otp_macro_reg_pkg;
   } otp_macro_prim_id_e;
 
   // Register width information to check illegal writes for prim interface
-  parameter logic [3:0] OTP_MACRO_PRIM_PERMIT [8] = '{
+  localparam logic [3:0] OTP_MACRO_PRIM_PERMIT [8] = '{
     4'b 1111, // index[0] OTP_MACRO_CSR0
     4'b 1111, // index[1] OTP_MACRO_CSR1
     4'b 0001, // index[2] OTP_MACRO_CSR2

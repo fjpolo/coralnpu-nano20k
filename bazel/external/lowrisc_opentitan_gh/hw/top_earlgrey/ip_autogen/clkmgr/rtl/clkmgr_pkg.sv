@@ -70,14 +70,14 @@ package clkmgr_pkg;
     prim_mubi_pkg::mubi4_t usb_peri;
   } clkmgr_cg_en_t;
 
-  parameter int NumOutputClk = 25;
+  localparam int NumOutputClk = 25;
 
 
   typedef struct packed {
     logic [4-1:0] idle;
   } clk_hint_status_t;
 
-  parameter clk_hint_status_t CLK_HINT_STATUS_DEFAULT = '{
+  localparam clk_hint_status_t CLK_HINT_STATUS_DEFAULT = '{
     idle: {4{1'b1}}
   };
 

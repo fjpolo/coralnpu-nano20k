@@ -16,12 +16,12 @@ package otp_ctrl_part_pkg;
   // Scrambling Constants and Types //
   ////////////////////////////////////
 
-  parameter int NumScrmblKeys = 3;
-  parameter int NumDigestSets = 4;
+  localparam int NumScrmblKeys = 3;
+  localparam int NumDigestSets = 4;
 
-  parameter int ScrmblKeySelWidth = vbits(NumScrmblKeys);
-  parameter int DigestSetSelWidth = vbits(NumDigestSets);
-  parameter int ConstSelWidth = (ScrmblKeySelWidth > DigestSetSelWidth) ?
+  localparam int ScrmblKeySelWidth = vbits(NumScrmblKeys);
+  localparam int DigestSetSelWidth = vbits(NumDigestSets);
+  localparam int ConstSelWidth = (ScrmblKeySelWidth > DigestSetSelWidth) ?
                                 ScrmblKeySelWidth :
                                 DigestSetSelWidth;
 
@@ -48,7 +48,7 @@ package otp_ctrl_part_pkg;
   } digest_sel_e;
 
   // SEC_CM: SECRET.MEM.SCRAMBLE
-  parameter key_array_t RndCnstKey = {
+  localparam key_array_t RndCnstKey = {
     128'h85A9E830BC059BA9286D6E2856A05CC3,
     128'hEFFA6D736C5EFF49AE7B70F9C46E5A62,
     128'h3BA121C5E097DDEB7768B4C666E9C3DA
@@ -57,14 +57,14 @@ package otp_ctrl_part_pkg;
   // SEC_CM: PART.MEM.DIGEST
   // Note: digest set 0 is used for computing the partition digests. Constants at
   // higher indices are used to compute the scrambling keys.
-  parameter digest_const_array_t RndCnstDigestConst = {
+  localparam digest_const_array_t RndCnstDigestConst = {
     128'h4A22D4B78FE0266FBEE3958332F2939B,
     128'hD60822E1FAEC5C7290C7F21F6224F027,
     128'h277195FC471E4B26B6641214B61D1B43,
     128'hE95F517CB98955B4D5A89AA9109294A
   };
 
-  parameter digest_iv_array_t RndCnstDigestIV = {
+  localparam digest_iv_array_t RndCnstDigestIV = {
     64'hF98C48B1F9377284,
     64'hB7474D640F8A7F5,
     64'hE048B657396B4B83,
@@ -100,7 +100,7 @@ package otp_ctrl_part_pkg;
     logic iskeymgr_owner;   // Whether the partition has any owner key material
   } part_info_t;
 
-  parameter part_info_t PartInfoDefault = '{
+  localparam part_info_t PartInfoDefault = '{
       variant:          Unbuffered,
       offset:           '0,
       size:             OtpByteAddrWidth'('hFF),
@@ -308,7 +308,7 @@ package otp_ctrl_part_pkg;
     NumAgentsIdx
   } part_idx_e;
 
-  parameter int NumAgents = int'(NumAgentsIdx);
+  localparam int NumAgents = int'(NumAgentsIdx);
 
   // Breakout types for easier access of individual items.
   typedef struct packed {
@@ -318,7 +318,7 @@ package otp_ctrl_part_pkg;
   } otp_hw_cfg0_data_t;
 
   // default value used for intermodule
-  parameter otp_hw_cfg0_data_t OTP_HW_CFG0_DATA_DEFAULT = '{
+  localparam otp_hw_cfg0_data_t OTP_HW_CFG0_DATA_DEFAULT = '{
     hw_cfg0_digest: 64'hF87BED95CFBA3727,
     manuf_state: 256'hDF3888886BD10DC67ABB319BDA0529AE40119A3C6E63CDF358840E458E4029A6,
     device_id: 256'h63B9485A3856C417CF7A50A9A91EF7F7B3A5B4421F462370FFF698183664DC7E
@@ -332,7 +332,7 @@ package otp_ctrl_part_pkg;
   } otp_hw_cfg1_data_t;
 
   // default value used for intermodule
-  parameter otp_hw_cfg1_data_t OTP_HW_CFG1_DATA_DEFAULT = '{
+  localparam otp_hw_cfg1_data_t OTP_HW_CFG1_DATA_DEFAULT = '{
     hw_cfg1_digest: 64'hBBF4A76885E754F2,
     unallocated: 40'h0,
     dis_rv_dm_late_debug: prim_mubi_pkg::mubi8_t'(8'h69),
@@ -347,7 +347,7 @@ package otp_ctrl_part_pkg;
   } otp_broadcast_t;
 
   // default value for intermodule
-  parameter otp_broadcast_t OTP_BROADCAST_DEFAULT = '{
+  localparam otp_broadcast_t OTP_BROADCAST_DEFAULT = '{
     valid: lc_ctrl_pkg::Off,
     hw_cfg1_data: OTP_HW_CFG1_DATA_DEFAULT,
     hw_cfg0_data: OTP_HW_CFG0_DATA_DEFAULT
@@ -355,7 +355,7 @@ package otp_ctrl_part_pkg;
 
 
   // OTP invalid partition default for buffered partitions.
-  parameter logic [16383:0] PartInvDefault = 16384'({
+  localparam logic [16383:0] PartInvDefault = 16384'({
     704'({
       320'h93B61DE417B9FB339605F051E74379CBCC6596C7174EBA643E725E464F593C87A445C3C29F71A256,
       384'hA0D1E90E8C9FDDFA01E46311FD36D95401136C663A36C3E3E817E760B27AE937BFCDF15A3429452A851B80674A2B6FBE

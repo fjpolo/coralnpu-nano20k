@@ -12,6 +12,7 @@ Running routing......
 [60%] Routing Phase 0 completed
 [70%] Routing Phase 1 completed
 [80%] Routing Phase 2 completed
+WARN  (PR1014) : Generic routing resource will be used to clock signal 'sys_clk_d' by the specified constraint. And then it may lead to the excessive delay or skew
 [90%] Routing Phase 3 completed
 Running timing analysis......
 [95%] Timing analysis completed
@@ -25,5 +26,5 @@ Generate file "C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\impl\pnr\conso
 Generate file "C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\impl\pnr\console60k.rpt.html" completed
 Generate file "C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\impl\pnr\console60k.rpt.txt" completed
 Generate file "C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\impl\pnr\console60k.tr.html" completed
-Mon Nov  3 18:37:05 2025
+Tue Nov  4 13:27:50 2025
 
