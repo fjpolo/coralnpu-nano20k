@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="chip_console60k_sram" Register="16" Lut="29" T_Register="25(16)" T_Lut="29(29)" T_Bsram="1(0)">
+<Module name="chip_console60k_sram" Register="16" Lut="152" T_Register="34(16)" T_Lut="158(152)" T_Bsram="13(0)">
  <SubModule name="gowinPLL81MHz">
   <SubModule name="u_pll"/>
  </SubModule>
- <SubModule name="i_write_data_buffer_sram_256x128" Register="9" Bsram="1" T_Register="9(9)" T_Bsram="1(1)"/>
+ <SubModule name="i_write_data_buffer_sram_256x128" Register="11" Lut="5" Bsram="12" T_Register="11(11)" T_Lut="5(5)" T_Bsram="12(12)"/>
+ <SubModule name="i_ram_2x160" Register="7" Lut="1" T_Register="7(7)" T_Lut="1(1)"/>
+ <SubModule name="i_write_data_buffer_sram_256x128_2" Bsram="1" T_Bsram="1(1)"/>
 </Module>

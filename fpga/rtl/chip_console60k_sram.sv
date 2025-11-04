@@ -18,16 +18,16 @@ import prim_mubi_pkg::*;
 
 module chip_console60k_sram(
      // System
-     input  logic sys_clk,     // 120 MHz
-     input  logic s0,          // **NEW USE: MUX Select (0=small RAM, 1=large SRAM)**
-     input  logic s1,          // Used as Write Enable for large SRAM
-     input  logic s2,          // System Reset Source
+     input  logic sys_clk,     // 27 MHz
+     input  logic s0,          // Unused
+     input  logic s1,          // Unused
+     input  logic s2,          // System Reset Source / Write Enable
      // UART
      output wire [1:0] uart_tx_o,
      input  wire [1:0] uart_rx_i,
      // PMODs (Used for SRAM Test Path)
      input [7:0] o_pmod0,      // Used as Address and Write Data
-     output [7:0] o_pmod1      // **FIXED: Shared Output for Data**
+     output [7:0] o_pmod1      // Shared Output for Data (Driven by XOR of all RAMs)
      );
 
   parameter ClockFrequency_81MHz = 81;
@@ -35,20 +35,7 @@ module chip_console60k_sram(
   wire sys_rst = s2;
 
   logic clk_81MHz;       // PLL output clock
-  
-  // Wires needed for RvvFrontEnd instantiation (left for context)
-  logic io_halted;
-  logic io_fault;
-  logic io_halted_n;
-  logic io_fault_n;
-  logic spi_clk_i;
-  logic spi_csb_i;
-  logic spi_mosi_i;
-  logic spi_miso_o;
-  logic spi_clk_probe_o;
-  logic spi_csb_probe_o;
-  logic spi_mosi_probe_o;
-  logic spi_miso_probe_o;
+  logic io_halted; 
 
   // PLL Instantiation (Clock generation)
   /* synthesis syn_keep=1 */ Gowin_PLL gowinPLL81MHz(
@@ -57,86 +44,124 @@ module chip_console60k_sram(
     );
 
 
-// --- Small RAM Instance (`ram_size_2x4`) ------------------------------------
-  logic        R0_addr_2x4;
-  logic        R0_en; 
-  logic        R0_clk_2x4;
-  logic [3:0]  R0_data_2x4; // <--- Source 0 for o_pmod1
-  logic        W0_addr_2x4;
-  logic        W0_en_2x4;
-  logic        W0_clk_2x4;
-  logic  [3:0] W0_data_2x4;
+// ===========================================================================
+// --- RAM INSTANTIATION WIRES (One instance of each) ------------------------
+// ===========================================================================
 
-// Small RAM assignments
-assign W0_en_2x4 = 1'h1;
-assign R0_en = ~ W0_en_2x4; 
+  logic [3:0]   R0_data_2x4;        // ram_size_2x4 (4 bits)
+  logic [127:0] R0_data_large;      // write_data_buffer_sram_256x128 (Type 1, 128 bits)
+  logic [127:0] R1_data_large;      // write_data_buffer_sram_256x128 (Type 1, 128 bits)
+  logic [127:0] R2_data_large;      // write_data_buffer_sram_256x128 (Type 1, 128 bits)
+  logic [188:0] R0_data_189;        // ram_2x189 (189 bits)
+  logic [159:0] R0_data_160;        // ram_2x160 (160 bits)
+  logic [127:0] R0_data_large_256x128_2; // write_data_buffer_sram_256x128 (Type 2, 128 bits)
 
-/* synthesis syn_keep=1 */ ram_size_2x4 i_ram_size_2x4(
-.R0_addr(o_pmod0),
-.R0_en(1'h1), 
-.R0_clk(sys_clk),
-.R0_data(R0_data_2x4), // Connect R0_data_2x4 to its local wire
-.W0_addr(o_pmod0),
-.W0_en(1'h0),
-.W0_clk(sys_clk),
-.W0_data(o_pmod0[3:0]) // Only 4 bits wide
-) /* synthesis syn_keep=1 */;
+  // Vector to collect the LSB (Bit 0) from all 5 RAMs
+  logic [7:0] all_lsb_wires;
+  
+  // Single bit result of the XOR reduction
+  logic final_xor_bit; 
 
+  // The LSB of the final output is the XOR reduction of the 5 LSBs.
+  assign final_xor_bit = ^all_lsb_wires; 
 
-// --- Large SRAM Instance (`write_data_buffer_sram_256x128`) -----------------
-logic [7:0]   R0_addr;
-logic         R0_en_large;    
-logic         R0_clk_large;   
-logic [127:0] R0_data; // <--- Source 1 (wider) for o_pmod1
-logic [7:0]   R1_addr;
-logic         R1_en;
-logic         R1_clk;
-logic [127:0] R1_data;
-logic [7:0]   R2_addr;
-logic         R2_en;
-logic         R2_clk;
-logic [127:0] R2_data;
-logic [7:0]   W0_addr;
-logic         W0_en;
-logic         W0_clk;
-logic [127:0] W0_data;
-
-// Assignments to force the large SRAM to be KEPT by the synthesizer
-assign R0_addr = o_pmod0;               
-assign W0_addr = o_pmod0;               
-assign W0_data = {120'h0, o_pmod0};     
-
-assign R0_en_large = 1'b1;              
-assign W0_en = s1;                      
-assign R0_clk_large = clk_81MHz;        
-assign W0_clk = sys_clk;                
-
-/* synthesis syn_keep=1 */ write_data_buffer_sram_256x128 i_write_data_buffer_sram_256x128(
-  .R0_addr(R0_addr),
-  .R0_en(R0_en_large),    
-  .R0_clk(R0_clk_large),  
-  .R0_data(R0_data),
-  .R1_addr(R1_addr),
-  .R1_en(R1_en),
-  .R1_clk(R1_clk),
-  .R1_data(R1_data),
-  .R2_addr(R2_addr),
-  .R2_en(R2_en),
-  .R2_clk(R2_clk),
-  .R2_data(R2_data),
-  .W0_addr(W0_addr),
-  .W0_en(W0_en),
-  .W0_clk(W0_clk),
-  .W0_data(W0_data)
-) /* synthesis syn_keep=1 */;
+  wire global_write_en  = s0;
+  wire global_read_en_0 = (~s2)&(s1);
+  wire global_read_en_1 = (s2)&(~s1);
+  wire global_read_en_2 = (s2)&(s1);
 
 
-// --- FIX: Single Driver for o_pmod1 using MUX --------------------------------
-// Use the s0 input as the MUX select signal to choose which SRAM drives the output.
-// Small RAM data (R0_data_2x4) is padded with zeros to match the 8-bit output width.
+// ===========================================================================
+// --- RAM INSTANTIATION (5 TOTAL) -------------------------------------------
+// ===========================================================================
 
-assign o_pmod1 = s0 ? 
-    R0_data[7:0] :           // If s0 is high, output data from large SRAM
-    {4'b0, R0_data_2x4};     // If s0 is low, output zero-padded data from small RAM
+// --- 1. ram_size_2x4 (Small RAM) ---
+/* synthesis syn_keep=1 */ ram_size_2x4 i_ram_size_2x4 (
+  .R0_addr({24'b0, o_pmod0}), 
+  .R0_en(global_read_en_0), 
+  .R0_clk(sys_clk),
+  .R0_data(R0_data_2x4), 
+  .W0_addr(({24'h0, o_pmod0} + 'h40)), 
+  .W0_en(global_write_en), 
+  .W0_clk(sys_clk),
+  .W0_data({24'h0, o_pmod0})
+);
+assign all_lsb_wires[0] = ~|R0_data_2x4;
+
+// --- 2. write_data_buffer_sram_256x128 (Large SRAM - Type 1) ---
+/* synthesis syn_keep=1 */ write_data_buffer_sram_256x128 i_write_data_buffer_sram_256x128 (
+  .R0_addr({24'h0, o_pmod0}),
+  .R0_en(global_read_en_0),
+  .R0_clk(clk_81MHz),
+  .R0_data(R0_data_large),
+  .R1_addr(({24'h0, o_pmod0} + 'h10)),
+  .R1_en(global_read_en_1),
+  .R1_clk(sys_clk),
+  .R1_data(R1_data_large),
+  .R2_addr({24'b0, o_pmod0}),
+  .R2_en(global_read_en_2),
+  .R2_clk(sys_clk),
+  .R2_data(R2_data_large),
+  .W0_addr(({24'h0, o_pmod0} + 'h40)),
+  .W0_en(global_write_en), 
+  .W0_clk(sys_clk),
+  .W0_data({24'h0, o_pmod0})
+);
+assign all_lsb_wires[1] = (~|R0_data_large)|~|R1_data_large|~|R2_data_large;
+
+
+// --- 3. ram_2x189 (189-bit RAM) ---
+/* synthesis syn_keep=1 */ ram_2x189 i_ram_2x189 (
+  .R0_addr({24'h0, o_pmod0}), 
+  .R0_en(global_read_en_0),
+  .R0_clk(sys_clk),
+  .R0_data(R0_data_189),
+  .W0_addr(({24'h0, o_pmod0} + 'h40)),
+  .W0_en(global_write_en), 
+  .W0_clk(sys_clk),
+  .W0_data({24'h0, o_pmod0})
+);
+assign all_lsb_wires[2] = ~|R0_data_189;
+
+
+// --- 4. ram_2x160 (160-bit RAM) ---
+/* synthesis syn_keep=1 */ ram_2x160 i_ram_2x160 (
+  .R0_addr({24'h0, o_pmod0}),
+  .R0_en(global_read_en_0),
+  .R0_clk(sys_clk),
+  .R0_data(R0_data_160),
+  .W0_addr(({24'h0, o_pmod0} + 'h40)),
+  .W0_en(global_write_en),
+  .W0_clk(sys_clk),
+  .W0_data({24'h0, o_pmod0})
+);
+assign all_lsb_wires[3] = ~|R0_data_160;
+
+
+// --- 5. write_data_buffer_sram_256x128 (Large SRAM - Type 2, Multi-port used) ---
+/* synthesis syn_keep=1 */ write_data_buffer_sram_256x128 i_write_data_buffer_sram_256x128_2 (
+  .R0_addr({24'h0, o_pmod0}),
+  .R0_en(global_read_en_0),
+  .R0_clk(clk_81MHz),
+  .R0_data(R0_data_large_256x128_2),
+  .R1_addr(({24'h0, o_pmod0} + 'h10)),
+  .R1_en(global_read_en_1),
+  .R1_clk(sys_clk),
+  .R1_data(R1_data_large_256x128_2),
+  .R2_addr(({24'h0, o_pmod0} + 'h20)),
+  .R2_en(global_read_en_2),
+  .R2_clk(sys_clk),
+  .R2_data(R2_data_large_256x128_2),
+  .W0_addr(({24'h0, o_pmod0} + 'h40)),
+  .W0_en(global_write_en),
+  .W0_clk(sys_clk),
+  .W0_data({24'h0, o_pmod0})
+);
+assign all_lsb_wires[4] = ~|R0_data_large_256x128_2;
+
+
+// --- FINAL OUTPUT ASSIGNMENT ------------------------------------------------
+// assign all_lsb_wires = (R0_data_2x4)&(R0_data_large)&(R1_data_large)&(R2_data_large)&(R0_data_189)&(R0_data_160)&(R0_data_large_256x128_2);
+assign o_pmod1 = all_lsb_wires[7:0];
 
 endmodule
