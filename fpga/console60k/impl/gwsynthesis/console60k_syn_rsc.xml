@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="chip_console60k_sram" Register="16" Lut="152" T_Register="34(16)" T_Lut="158(152)" T_Bsram="13(0)">
- <SubModule name="gowinPLL81MHz">
-  <SubModule name="u_pll"/>
+<Module name="chip_console60k_Spi2TLUL" Lut="13" T_Register="442(0)" T_Alu="96(0)" T_Lut="707(13)" T_Bsram="16(0)">
+ <SubModule name="i_Spi2TLUL" Register="278" Alu="96" Lut="631" T_Register="442(278)" T_Alu="96(96)" T_Lut="694(631)" T_Bsram="16(0)">
+  <SubModule name="spi2tlul_q" T_Register="44(0)" T_Lut="24(0)">
+   <SubModule name="source" Register="20" Lut="12" T_Register="26(20)" T_Lut="12(12)">
+    <SubModule name="ridx_ridx_gray" T_Register="6(0)">
+     <SubModule name="output_chain" Register="3" T_Register="3(3)"/>
+     <SubModule name="output_chain_1" Register="3" T_Register="3(3)"/>
+    </SubModule>
+   </SubModule>
+   <SubModule name="sink" Register="4" Lut="12" T_Register="18(4)" T_Lut="12(12)">
+    <SubModule name="widx_widx_gray" T_Register="6(0)">
+     <SubModule name="output_chain" Register="3" T_Register="3(3)"/>
+     <SubModule name="output_chain_1" Register="3" T_Register="3(3)"/>
+    </SubModule>
+    <SubModule name="io_deq_bits_deq_bits_reg" Register="8" T_Register="8(8)"/>
+   </SubModule>
+  </SubModule>
+  <SubModule name="write_data_buffer_sram_ext" Register="16" Bsram="12" T_Register="16(16)" T_Bsram="12(12)"/>
+  <SubModule name="read_data_buffer_sram_ext" Register="1" Lut="8" Bsram="4" T_Register="1(1)" T_Lut="8(8)" T_Bsram="4(4)"/>
+  <SubModule name="tl_to_spi_bulk_q" T_Register="3(0)" T_Lut="3(0)">
+   <SubModule name="sink" Register="3" Lut="3" T_Register="3(3)" T_Lut="3(3)"/>
+  </SubModule>
+  <SubModule name="tl_a_q" Register="74" T_Register="74(74)"/>
+  <SubModule name="io_tl_a_bits_req_intg_gen" T_Lut="24(0)">
+   <SubModule name="cmd_encoder" Lut="5" T_Lut="5(5)"/>
+   <SubModule name="data_encoder" Lut="19" T_Lut="19(19)"/>
+  </SubModule>
+  <SubModule name="tlul2spi_q" T_Register="26(0)" T_Lut="4(0)">
+   <SubModule name="source" Register="10" Lut="2" T_Register="13(10)" T_Lut="2(2)">
+    <SubModule name="ridx_ridx_gray" T_Register="3(0)">
+     <SubModule name="output_chain" Register="3" T_Register="3(3)"/>
+    </SubModule>
+   </SubModule>
+   <SubModule name="sink" Register="2" Lut="2" T_Register="13(2)" T_Lut="2(2)">
+    <SubModule name="widx_widx_gray" T_Register="3(0)">
+     <SubModule name="output_chain" Register="3" T_Register="3(3)"/>
+    </SubModule>
+    <SubModule name="io_deq_bits_deq_bits_reg" Register="8" T_Register="8(8)"/>
+   </SubModule>
+  </SubModule>
  </SubModule>
- <SubModule name="i_write_data_buffer_sram_256x128" Register="11" Lut="5" Bsram="12" T_Register="11(11)" T_Lut="5(5)" T_Bsram="12(12)"/>
- <SubModule name="i_ram_2x160" Register="7" Lut="1" T_Register="7(7)" T_Lut="1(1)"/>
- <SubModule name="i_write_data_buffer_sram_256x128_2" Bsram="1" T_Bsram="1(1)"/>
 </Module>

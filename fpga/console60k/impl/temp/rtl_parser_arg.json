@@ -2090,10 +2090,6 @@
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_sram.sv",
-   "Type" : "verilog"
-  },
-  {
    "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/coralnpu_soc.sv",
    "Type" : "verilog"
   },
@@ -2104,6 +2100,10 @@
   {
    "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/top_racl_pkg.sv",
    "Type" : "verilog"
+  },
+  {
+   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_Spi2TLUL.sv",
+   "Type" : "verilog"
   }
  ],
  "IncludePath" : [
@@ -2111,7 +2111,7 @@
  ],
  "LoopLimit" : 2000,
  "ResultFile" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/console60k/impl/temp/rtl_parser.result",
- "Top" : "chip_console60k_sram",
+ "Top" : "chip_console60k_Spi2TLUL",
  "VerilogStd" : "sysv",
  "VhdlStd" : "vhdl_93"
 }
