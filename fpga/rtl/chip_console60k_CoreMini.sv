@@ -1011,12 +1011,6 @@ module chip_console60k_CoreMini(
   assign _dispatch_io_float_bits_rs3 = o_pmod0[4:0];
   assign _dispatch_io_float_bits_rs2 = o_pmod0[4:0];
   assign _dispatch_io_float_bits_rs1 = o_pmod0[4:0];
-  assign _fRegfile_io_read_ports_0_data_mantissa = o_pmod0[6:3];
-  assign _fRegfile_io_read_ports_0_data_exponent = o_pmod0[2:0];
-  assign _fRegfile_io_read_ports_0_data_sign = o_pmod0[7];
-  assign _fRegfile_io_read_ports_1_data_mantissa = o_pmod0[6:3];
-  assign _fRegfile_io_read_ports_1_data_exponent = o_pmod0[2:0];
-  assign _fRegfile_io_read_ports_1_data_sign = o_pmod0[7];
   /* synthesis syn_keep=1 */ FloatCore floatCore (
     .clock                          (sys_rst),
     .reset                          (sys_rst),
@@ -1073,6 +1067,41 @@ module chip_console60k_CoreMini(
     .io_lsu_rd_bits_data            (_lsu_io_rd_flt_bits_data)
   )/* synthesis syn_keep=1 */;
 
+  /* synthesis syn_keep=1 */ FRegfile fRegfile (
+    .clock                          (sys_clk),
+    .reset                          (sys_rst),
+    .io_read_ports_0_valid          (_floatCore_io_read_ports_0_valid),
+    .io_read_ports_0_addr           (_floatCore_io_read_ports_0_addr),
+    .io_read_ports_0_data_mantissa  (_fRegfile_io_read_ports_0_data_mantissa),
+    .io_read_ports_0_data_exponent  (_fRegfile_io_read_ports_0_data_exponent),
+    .io_read_ports_0_data_sign      (_fRegfile_io_read_ports_0_data_sign),
+    .io_read_ports_1_valid          (_floatCore_io_read_ports_1_valid),
+    .io_read_ports_1_addr           (_floatCore_io_read_ports_1_addr),
+    .io_read_ports_1_data_mantissa  (_fRegfile_io_read_ports_1_data_mantissa),
+    .io_read_ports_1_data_exponent  (_fRegfile_io_read_ports_1_data_exponent),
+    .io_read_ports_1_data_sign      (_fRegfile_io_read_ports_1_data_sign),
+    .io_read_ports_2_valid          (_floatCore_io_read_ports_2_valid),
+    .io_read_ports_2_addr           (_floatCore_io_read_ports_2_addr),
+    .io_read_ports_2_data_mantissa  (_fRegfile_io_read_ports_2_data_mantissa),
+    .io_read_ports_2_data_exponent  (_fRegfile_io_read_ports_2_data_exponent),
+    .io_read_ports_2_data_sign      (_fRegfile_io_read_ports_2_data_sign),
+    .io_write_ports_0_valid         (_floatCore_io_write_ports_0_valid),
+    .io_write_ports_0_addr          (_floatCore_io_write_ports_0_addr),
+    .io_write_ports_0_data_mantissa (_floatCore_io_write_ports_0_data_mantissa),
+    .io_write_ports_0_data_exponent (_floatCore_io_write_ports_0_data_exponent),
+    .io_write_ports_0_data_sign     (_floatCore_io_write_ports_0_data_sign),
+    .io_write_ports_1_valid         (_floatCore_io_write_ports_1_valid),
+    .io_write_ports_1_addr          (_floatCore_io_write_ports_1_addr),
+    .io_write_ports_1_data_mantissa (_floatCore_io_write_ports_1_data_mantissa),
+    .io_write_ports_1_data_exponent (_floatCore_io_write_ports_1_data_exponent),
+    .io_write_ports_1_data_sign     (_floatCore_io_write_ports_1_data_sign),
+    .io_scoreboard_set
+      (_dispatch_io_rdMark_flt_valid ? 32'h1 << _dispatch_io_rdMark_flt_addr : 32'h0),
+    .io_scoreboard                  (_fRegfile_io_scoreboard),
+    .io_busPort_data_0              (_fRegfile_io_busPort_data_0),
+    .io_busPortAddr                 (_dispatch_io_fbusPortAddr)
+  )/* synthesis syn_keep=1 */;
+
  // =========================================================================
  // --- FINAL OUTPUT ASSIGNMENT ---------------------------------------------
  // =========================================================================
@@ -1106,11 +1135,11 @@ module chip_console60k_CoreMini(
  // o_pmod1[3]: Regfile Target 3 LSB
  assign o_pmod1[3] = ((|_regfile_io_target_3_data)&(|_fetch_io_inst_lanes_0_bits_brchFwd)) ^ (global_en_4);
  // o_pmod1[4]: Regfile Write Count LSB
- assign o_pmod1[4] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_ibus_addr)&(|_lsu_io_rd_flt_bits_data)&(|_floatCore_io_read_ports_0_addr)&(|_floatCore_io_read_ports_1_addr)&(|_floatCore_io_read_ports_2_addr)) ^ (global_en_5);
+ assign o_pmod1[4] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_ibus_addr)&(|_lsu_io_rd_flt_bits_data)&(|_floatCore_io_read_ports_0_addr)&(|_floatCore_io_read_ports_1_addr)&(|_floatCore_io_read_ports_2_addr)&(|_fRegfile_io_read_ports_0_data_mantissa)&(|_fRegfile_io_read_ports_0_data_exponent)&(_fRegfile_io_read_ports_0_data_sign)) ^ (global_en_5);
  // o_pmod1[5]: Regfile Target 0 bits [2:1]
- assign o_pmod1[5] = ((|_regfile_io_target_0_data)&(|_fetch_io_inst_lanes_1_valid)&(|_floatCore_io_write_ports_0_data_mantissa)&(|_floatCore_io_write_ports_0_data_exponent)&(_floatCore_io_write_ports_0_data_sign)) ^ (_regfile_io_target_0_data[2]) ^ (global_en_6);
+ assign o_pmod1[5] = ((|_regfile_io_target_0_data)&(|_fetch_io_inst_lanes_1_valid)&(|_floatCore_io_write_ports_0_data_mantissa)&(|_floatCore_io_write_ports_0_data_exponent)&(_floatCore_io_write_ports_0_data_sign)&(|_fRegfile_io_read_ports_1_data_exponent)&(_fRegfile_io_read_ports_1_data_sign)) ^ (_regfile_io_target_2_data[2]) ^ (global_en_6);
  // o_pmod1[6]: Regfile Target 1 bits [2:1]
- assign o_pmod1[6] = ((|_regfile_io_target_1_data)&(|_fetch_io_inst_lanes_3_valid)&(|_floatCore_io_write_ports_1_data_mantissa)&(|_floatCore_io_write_ports_1_data_exponent)&(_floatCore_io_write_ports_1_data_sign)) ^ (_regfile_io_target_1_data[2]) ^ (global_en_7);
+ assign o_pmod1[6] = ((|_regfile_io_target_1_data)&(|_fetch_io_inst_lanes_3_valid)&(|_floatCore_io_write_ports_1_data_mantissa)&(|_floatCore_io_write_ports_1_data_exponent)&(_floatCore_io_write_ports_1_data_sign)&(|_fRegfile_io_read_ports_2_data_exponent)&(_fRegfile_io_read_ports_2_data_sign)) ^ (_regfile_io_target_2_data[2]) ^ (global_en_7);
  // o_pmod1[7]: Mix of Regfile Write Count and original input o_pmod0
  assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)) ^ (o_pmod0[7]) ^ (global_en_0);
  // UART outputs tied off as unused in this minimal test

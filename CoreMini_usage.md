@@ -123,6 +123,37 @@ Register	610 / 60780	2%
 BSRAM	0 / 118	0%
 ```
 
+# FRegfile
+
+```
+Resource Usage Summary
+Resource	Usage
+I/O Port	24
+I/O Buf	22
+    IBUF	12
+    OBUF	10
+Register	898
+    DFFSE	4
+    DFFRE	201
+    DFFCE	693
+LUT	4643
+    LUT2	344
+    LUT3	1837
+    LUT4	2462
+ALU	617
+    ALU	617
+INV	8
+    INV	8
+DSP	
+    MULT12X12	1
+Resource Utilization Summary
+Resource	Usage	Utilization
+Logic	5268(4651 LUT, 617 ALU) / 59904	9%
+Register	898 / 60780	2%
+  --Register as Latch	0 / 60780	0%
+  --Register as FF	898 / 60780	2%
+BSRAM	0 / 118	0%
+```
 
 
 
@@ -146,10 +177,6 @@ BSRAM	0 / 118	0%
 ```
 ```
 
-# FRegfile
-
-```
-```
 
 # Arbiter3_RegfileWriteDataIO
 
