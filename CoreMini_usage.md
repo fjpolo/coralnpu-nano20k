@@ -157,7 +157,7 @@ BSRAM	0 / 118	0%
 
 
 
-# DispatchV1
+# DispatchV1 (disabled after test)
 
 ```
 Resource Usage Summary
@@ -190,6 +190,8 @@ Register	4337 / 60780	8%
   --Register as FF	4337 / 60780	8%
 BSRAM	0 / 118	0%
 ```
+
+⚠️ This takes ~50kLUTs ⚠️
 
 # LsuV1 (no dispatcher)
 
