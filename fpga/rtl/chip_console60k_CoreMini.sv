@@ -1867,8 +1867,35 @@ wire lsu_final =
                   (|_dvu_io_rd_bits_addr)&
                   (|_dvu_io_rd_bits_data)/* synthesis syn_keep=1 */;
 
-
-
+  assign io_in_0_valid = o_pmod0[1];
+  assign io_in_1_valid = o_pmod0[5];
+  assign io_in_2_valid = o_pmod0[3];
+  assign io_in_0_bits_addr = o_pmod0[4:0];
+  assign io_in_2_bits_addr = o_pmod0[4:0];
+  assign io_in_1_bits_addr = o_pmod0[4:0];
+  assign io_in_0_bits_data = o_pmod0[7:0];
+  assign io_in_1_bits_data = o_pmod0[7:0];
+  assign io_in_2_bits_data = o_pmod0[7:0];
+  /* synthesis syn_keep=1 */ Arbiter3_RegfileWriteDataIO arb (
+    .io_in_0_valid     (_mlu_io_rd_valid),
+    .io_in_0_bits_addr (_mlu_io_rd_bits_addr),
+    .io_in_0_bits_data (_mlu_io_rd_bits_data),
+    .io_in_1_ready     (_arb_io_in_1_ready),
+    .io_in_1_valid     (_dvu_io_rd_valid),
+    .io_in_1_bits_addr (_dvu_io_rd_bits_addr),
+    .io_in_1_bits_data (_dvu_io_rd_bits_data),
+    .io_in_2_ready     (_arb_io_in_2_ready),
+    .io_in_2_valid     (_floatCore_io_scalar_rd_valid),
+    .io_in_2_bits_addr (_floatCore_io_scalar_rd_bits_addr),
+    .io_in_2_bits_data (_floatCore_io_scalar_rd_bits_data),
+    .io_out_valid      (_arb_io_out_valid),
+    .io_out_bits_addr  (_arb_io_out_bits_addr),
+    .io_out_bits_data  (_arb_io_out_bits_data)
+  )/* synthesis syn_keep=1 */;
+  wire arbiter_final = 
+                      (|_arb_io_out_valid)&
+                      (|_arb_io_out_bits_addr)&
+                      (|_arb_io_out_bits_data);
 
   assign io_in_fault_0_csr = o_pmod0[0];
   assign io_in_fault_0_jal = o_pmod0[1];
@@ -1905,26 +1932,59 @@ wire lsu_final =
   assign io_in_jalr_1_target= o_pmod0[7:0];
   assign io_in_jalr_2_target= o_pmod0[7:0];
   assign io_in_jalr_3_target= o_pmod0[7:0];
-  /* synthesis syn_keep=1 */ Arbiter3_RegfileWriteDataIO arb (
-    .io_in_0_valid     (_mlu_io_rd_valid),
-    .io_in_0_bits_addr (_mlu_io_rd_bits_addr),
-    .io_in_0_bits_data (_mlu_io_rd_bits_data),
-    .io_in_1_ready     (_arb_io_in_1_ready),
-    .io_in_1_valid     (_dvu_io_rd_valid),
-    .io_in_1_bits_addr (_dvu_io_rd_bits_addr),
-    .io_in_1_bits_data (_dvu_io_rd_bits_data),
-    .io_in_2_ready     (_arb_io_in_2_ready),
-    .io_in_2_valid     (_floatCore_io_scalar_rd_valid),
-    .io_in_2_bits_addr (_floatCore_io_scalar_rd_bits_addr),
-    .io_in_2_bits_data (_floatCore_io_scalar_rd_bits_data),
-    .io_out_valid      (_arb_io_out_valid),
-    .io_out_bits_addr  (_arb_io_out_bits_addr),
-    .io_out_bits_data  (_arb_io_out_bits_data)
+  /* synthesis syn_keep=1 */ FaultManager fault_manager (
+    .io_in_fault_0_csr             (_dispatch_io_csrFault_0),
+    .io_in_fault_0_jal             (_dispatch_io_jalFault_0),
+    .io_in_fault_0_jalr            (_dispatch_io_jalrFault_0),
+    .io_in_fault_0_bxx             (_dispatch_io_bxxFault_0),
+    .io_in_fault_0_undef           (_dispatch_io_undefFault_0),
+    .io_in_fault_1_jal             (_dispatch_io_jalFault_1),
+    .io_in_fault_1_jalr            (_dispatch_io_jalrFault_1),
+    .io_in_fault_1_bxx             (_dispatch_io_bxxFault_1),
+    .io_in_fault_2_jal             (_dispatch_io_jalFault_2),
+    .io_in_fault_2_jalr            (_dispatch_io_jalrFault_2),
+    .io_in_fault_2_bxx             (_dispatch_io_bxxFault_2),
+    .io_in_fault_3_jal             (_dispatch_io_jalFault_3),
+    .io_in_fault_3_jalr            (_dispatch_io_jalrFault_3),
+    .io_in_fault_3_bxx             (_dispatch_io_bxxFault_3),
+    .io_in_pc_0_pc                 (_fetch_io_inst_lanes_0_bits_addr),
+    .io_in_pc_1_pc                 (_fetch_io_inst_lanes_1_bits_addr),
+    .io_in_pc_2_pc                 (_fetch_io_inst_lanes_2_bits_addr),
+    .io_in_pc_3_pc                 (_fetch_io_inst_lanes_3_bits_addr),
+    .io_in_memory_fault_valid
+      (io_ibus_fault_valid ? io_ibus_fault_valid : _lsu_io_fault_valid),
+    .io_in_memory_fault_bits_write
+      (~io_ibus_fault_valid & _lsu_io_fault_valid & _lsu_io_fault_bits_write),
+    .io_in_memory_fault_bits_addr
+      (io_ibus_fault_valid | ~_lsu_io_fault_valid ? 32'h0 : _lsu_io_fault_bits_addr),
+    .io_in_memory_fault_bits_epc
+      (io_ibus_fault_valid
+         ? io_ibus_fault_bits_epc
+         : _lsu_io_fault_valid ? _lsu_io_fault_bits_epc : 32'h0),
+    .io_in_ibus_fault              (io_ibus_fault_valid),
+    .io_in_undef_0_inst            (_fetch_io_inst_lanes_0_bits_inst),
+    .io_in_undef_1_inst            (_fetch_io_inst_lanes_1_bits_inst),
+    .io_in_undef_2_inst            (_fetch_io_inst_lanes_2_bits_inst),
+    .io_in_undef_3_inst            (_fetch_io_inst_lanes_3_bits_inst),
+    .io_in_jal_0_target            (_dispatch_io_bruTarget_0),
+    .io_in_jal_1_target            (_dispatch_io_bruTarget_1),
+    .io_in_jal_2_target            (_dispatch_io_bruTarget_2),
+    .io_in_jal_3_target            (_dispatch_io_bruTarget_3),
+    .io_in_jalr_0_target           (_regfile_io_target_0_data),
+    .io_in_jalr_1_target           (_regfile_io_target_1_data),
+    .io_in_jalr_2_target           (_regfile_io_target_2_data),
+    .io_in_jalr_3_target           (_regfile_io_target_3_data),
+    .io_out_valid                  (_fault_manager_io_out_valid),
+    .io_out_bits_mepc              (_fault_manager_io_out_bits_mepc),
+    .io_out_bits_mtval             (_fault_manager_io_out_bits_mtval),
+    .io_out_bits_mcause            (_fault_manager_io_out_bits_mcause)
   )/* synthesis syn_keep=1 */;
-  wire arbiter_final = 
-                        (|_arb_io_out_valid)&
-                        (|_arb_io_out_bits_addr)&
-                        (|_arb_io_out_bits_data)/* synthesis syn_keep=1 */;
+
+  wire fault_final = 
+                        (|_fault_manager_io_out_valid)&
+                        (|_fault_manager_io_out_bits_mepc)&
+                        (|_fault_manager_io_out_bits_mtval)&
+                        (|_fault_manager_io_out_bits_mcause)/* synthesis syn_keep=1 */;
 
  // =========================================================================
  // --- FINAL OUTPUT ASSIGNMENT #1 ---------------------------------------
@@ -2056,7 +2116,7 @@ wire lsu_final =
  // o_pmod1[6]: Regfile Target 1 bits [2:1]
  assign o_pmod1[6] = ((|_regfile_io_target_1_data)&(|_fetch_io_inst_lanes_3_valid)&(|_floatCore_io_write_ports_1_data_mantissa)&(|_floatCore_io_write_ports_1_data_exponent)&(_floatCore_io_write_ports_1_data_sign)&(|_fRegfile_io_read_ports_2_data_exponent)&(_fRegfile_io_read_ports_2_data_sign)) ^ (_regfile_io_target_2_data[2]) ^ (global_en_7);
  // o_pmod1[7]: Mix of Regfile Write Count and original input o_pmod0
- assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)&(|lsu_final)&(mlu_final)&(csr_final)&(dvu_final)&(arbiter_final)) ^ (o_pmod0[7]) ^ (global_en_0);
+ assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)&(|lsu_final)&(mlu_final)&(csr_final)&(dvu_final)&(arbiter_final)&(fault_final)) ^ (o_pmod0[7]) ^ (global_en_0);
  // UART outputs tied off as unused in this minimal test
  assign uart_tx_o = 2'b0;
 

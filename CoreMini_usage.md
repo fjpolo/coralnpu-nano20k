@@ -356,7 +356,37 @@ BSRAM	0 / 118	0%
 # FaultManager (no dispatcher)
 
 ```
+Resource Usage Summary
+Resource	Usage
+I/O Port	24
+I/O Buf	22
+    IBUF	12
+    OBUF	10
+Register	1671
+    DFFSE	4
+    DFFRE	201
+    DFFCE	1466
+LUT	6008
+    LUT2	392
+    LUT3	3085
+    LUT4	2531
+ALU	618
+    ALU	618
+INV	8
+    INV	8
+DSP	
+    MULT12X12	1
+Resource Utilization Summary
+Resource	Usage	Utilization
+Logic	6634(6016 LUT, 618 ALU) / 59904	12%
+Register	1671 / 60780	3%
+  --Register as Latch	0 / 60780	0%
+  --Register as FF	1671 / 60780	3%
+BSRAM	0 / 118	0%
+```
+
+# DispatchV1 (no Decodex4)
 
 ```
 
-
+```
