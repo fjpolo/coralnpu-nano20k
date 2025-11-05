@@ -1867,8 +1867,158 @@ wire lsu_final =
                   (|_dvu_io_rd_bits_addr)&
                   (|_dvu_io_rd_bits_data)/* synthesis syn_keep=1 */;
 
-// =========================================================================
- // --- FINAL OUTPUT ASSIGNMENT ---------------------------------------------
+
+
+
+  assign io_in_fault_0_csr = o_pmod0[0];
+  assign io_in_fault_0_jal = o_pmod0[1];
+  assign io_in_fault_0_jalr = o_pmod0[2];
+  assign io_in_fault_0_bxx = o_pmod0[3];
+  assign io_in_fault_0_undef = o_pmod0[4];
+  assign io_in_fault_1_jal = o_pmod0[5];
+  assign io_in_fault_1_jalr = o_pmod0[6];
+  assign io_in_fault_1_bxx = o_pmod0[7];
+  assign io_in_fault_2_jal = o_pmod0[6];
+  assign io_in_fault_2_jalr = o_pmod0[3];
+  assign io_in_fault_2_bxx = o_pmod0[2];
+  assign io_in_fault_3_jal = o_pmod0[1];
+  assign io_in_fault_3_jalr = o_pmod0[6];
+  assign io_in_fault_3_bxx = o_pmod0[4];
+  assign io_in_memory_fault_valid = o_pmod0[2];
+  assign io_in_memory_fault_bits_write = o_pmod0[1];
+  assign io_in_ibus_fault = o_pmod0[0];
+  assign io_in_pc_0_pc= o_pmod0[7:0];
+  assign io_in_pc_1_pc= o_pmod0[7:0];
+  assign io_in_pc_2_pc= o_pmod0[7:0];
+  assign io_in_pc_3_pc= o_pmod0[7:0];
+  assign io_in_memory_fault_bits_addr= o_pmod0[7:0];
+  assign io_in_memory_fault_bits_epc= o_pmod0[7:0];
+  assign io_in_undef_0_inst= o_pmod0[7:0];
+  assign io_in_undef_1_inst = o_pmod0[7:0];
+  assign io_in_undef_2_inst= o_pmod0[7:0];
+  assign io_in_undef_3_inst= o_pmod0[7:0];
+  assign io_in_jal_0_target= o_pmod0[7:0];
+  assign io_in_jal_1_target= o_pmod0[7:0];
+  assign io_in_jal_2_target= o_pmod0[7:0];
+  assign io_in_jal_3_target= o_pmod0[7:0];
+  assign io_in_jalr_0_target= o_pmod0[7:0];
+  assign io_in_jalr_1_target= o_pmod0[7:0];
+  assign io_in_jalr_2_target= o_pmod0[7:0];
+  assign io_in_jalr_3_target= o_pmod0[7:0];
+  /* synthesis syn_keep=1 */ Arbiter3_RegfileWriteDataIO arb (
+    .io_in_0_valid     (_mlu_io_rd_valid),
+    .io_in_0_bits_addr (_mlu_io_rd_bits_addr),
+    .io_in_0_bits_data (_mlu_io_rd_bits_data),
+    .io_in_1_ready     (_arb_io_in_1_ready),
+    .io_in_1_valid     (_dvu_io_rd_valid),
+    .io_in_1_bits_addr (_dvu_io_rd_bits_addr),
+    .io_in_1_bits_data (_dvu_io_rd_bits_data),
+    .io_in_2_ready     (_arb_io_in_2_ready),
+    .io_in_2_valid     (_floatCore_io_scalar_rd_valid),
+    .io_in_2_bits_addr (_floatCore_io_scalar_rd_bits_addr),
+    .io_in_2_bits_data (_floatCore_io_scalar_rd_bits_data),
+    .io_out_valid      (_arb_io_out_valid),
+    .io_out_bits_addr  (_arb_io_out_bits_addr),
+    .io_out_bits_data  (_arb_io_out_bits_data)
+  )/* synthesis syn_keep=1 */;
+  wire arbiter_final = 
+                        (|_arb_io_out_valid)&
+                        (|_arb_io_out_bits_addr)&
+                        (|_arb_io_out_bits_data)/* synthesis syn_keep=1 */;
+
+ // =========================================================================
+ // --- FINAL OUTPUT ASSIGNMENT #1 ---------------------------------------
+ // =========================================================================
+
+   assign io_csr_out_value_4 = _csr_io_csr_out_value_4;
+  assign io_halted = _csr_io_halted;
+  assign io_wfi = _csr_io_wfi;
+  assign io_ibus_valid = _lsu_io_ibus_valid ? _lsu_io_ibus_valid : _fetch_io_ibus_valid;
+  assign io_ibus_addr = _lsu_io_ibus_valid ? _lsu_io_ibus_addr : _fetch_io_ibus_addr;
+  assign io_dbus_valid = _lsu_io_dbus_valid;
+  assign io_dbus_write = _lsu_io_dbus_write;
+  assign io_dbus_addr = _lsu_io_dbus_addr;
+  assign io_dbus_wdata = _lsu_io_dbus_wdata;
+  assign io_slog_valid = slogValid;
+  assign io_slog_addr = {3'h0, slogValid ? slogAddr : 2'h0};
+  assign io_slog_data = slogValid ? _regfile_io_readData_0_data : 32'h0;
+  assign io_debug_en =
+    {~(_bru_1_io_taken_valid | _debugBrch_T_1),
+     ~_debugBrch_T_1,
+     ~_bru_3_io_taken_valid,
+     1'h1} & debugEn;
+  assign io_debug_addr_0 = debugAddr_0;
+  assign io_debug_addr_1 = debugAddr_1;
+  assign io_debug_addr_2 = debugAddr_2;
+  assign io_debug_addr_3 = debugAddr_3;
+  assign io_debug_inst_0 = debugInst_0;
+  assign io_debug_inst_1 = debugInst_1;
+  assign io_debug_inst_2 = debugInst_2;
+  assign io_debug_inst_3 = debugInst_3;
+  assign io_debug_cycles = _csr_io_csr_out_value_4;
+  assign io_debug_dbus_valid = _lsu_io_dbus_valid;
+  assign io_debug_dbus_bits_addr = _lsu_io_dbus_addr;
+  assign io_debug_dbus_bits_wdata = _lsu_io_dbus_wdata;
+  assign io_debug_dbus_bits_write = _lsu_io_dbus_write;
+  assign io_debug_dispatch_0_instFire =
+    _dispatch_io_inst_0_ready & _fetch_io_inst_lanes_0_valid;
+  assign io_debug_dispatch_0_instAddr = _fetch_io_inst_lanes_0_bits_addr;
+  assign io_debug_dispatch_0_instInst = _fetch_io_inst_lanes_0_bits_inst;
+  assign io_debug_dispatch_1_instFire =
+    _dispatch_io_inst_1_ready & _fetch_io_inst_lanes_1_valid;
+  assign io_debug_dispatch_1_instAddr = _fetch_io_inst_lanes_1_bits_addr;
+  assign io_debug_dispatch_1_instInst = _fetch_io_inst_lanes_1_bits_inst;
+  assign io_debug_dispatch_2_instFire =
+    _dispatch_io_inst_2_ready & _fetch_io_inst_lanes_2_valid;
+  assign io_debug_dispatch_2_instAddr = _fetch_io_inst_lanes_2_bits_addr;
+  assign io_debug_dispatch_2_instInst = _fetch_io_inst_lanes_2_bits_inst;
+  assign io_debug_dispatch_3_instFire =
+    _dispatch_io_inst_3_ready & _fetch_io_inst_lanes_3_valid;
+  assign io_debug_dispatch_3_instAddr = _fetch_io_inst_lanes_3_bits_addr;
+  assign io_debug_dispatch_3_instInst = _fetch_io_inst_lanes_3_bits_inst;
+  assign io_debug_regfile_writeAddr_0_valid = _dispatch_io_rdMark_0_valid;
+  assign io_debug_regfile_writeAddr_0_bits = _dispatch_io_rdMark_0_addr;
+  assign io_debug_regfile_writeAddr_1_valid = _dispatch_io_rdMark_1_valid;
+  assign io_debug_regfile_writeAddr_1_bits = _dispatch_io_rdMark_1_addr;
+  assign io_debug_regfile_writeAddr_2_valid = _dispatch_io_rdMark_2_valid;
+  assign io_debug_regfile_writeAddr_2_bits = _dispatch_io_rdMark_2_addr;
+  assign io_debug_regfile_writeAddr_3_valid = _dispatch_io_rdMark_3_valid;
+  assign io_debug_regfile_writeAddr_3_bits = _dispatch_io_rdMark_3_addr;
+  assign io_debug_regfile_writeData_0_valid = regfile_io_writeData_0_valid;
+  assign io_debug_regfile_writeData_0_bits_addr = regfile_io_writeData_0_bits_addr;
+  assign io_debug_regfile_writeData_0_bits_data = regfile_io_writeData_0_bits_data;
+  assign io_debug_regfile_writeData_1_valid = regfile_io_writeData_1_valid;
+  assign io_debug_regfile_writeData_1_bits_addr = regfile_io_writeData_1_bits_addr;
+  assign io_debug_regfile_writeData_1_bits_data = regfile_io_writeData_1_bits_data;
+  assign io_debug_regfile_writeData_2_valid = regfile_io_writeData_2_valid;
+  assign io_debug_regfile_writeData_2_bits_addr = regfile_io_writeData_2_bits_addr;
+  assign io_debug_regfile_writeData_2_bits_data = regfile_io_writeData_2_bits_data;
+  assign io_debug_regfile_writeData_3_valid = regfile_io_writeData_3_valid;
+  assign io_debug_regfile_writeData_3_bits_addr = regfile_io_writeData_3_bits_addr;
+  assign io_debug_regfile_writeData_3_bits_data = regfile_io_writeData_3_bits_data;
+  assign io_debug_regfile_writeData_4_valid = _arb_io_out_valid;
+  assign io_debug_regfile_writeData_4_bits_addr = _arb_io_out_bits_addr;
+  assign io_debug_regfile_writeData_4_bits_data = _arb_io_out_bits_data;
+  assign io_debug_regfile_writeData_5_valid = _lsu_io_rd_valid;
+  assign io_debug_regfile_writeData_5_bits_addr = _lsu_io_rd_bits_addr;
+  assign io_debug_regfile_writeData_5_bits_data = _lsu_io_rd_bits_data;
+  assign io_debug_float_writeAddr_valid = _dispatch_io_rdMark_flt_valid;
+  assign io_debug_float_writeAddr_bits = _dispatch_io_rdMark_flt_addr;
+  assign io_debug_float_writeData_0_valid = _floatCore_io_write_ports_0_valid;
+  assign io_debug_float_writeData_0_bits_addr = {27'h0, _floatCore_io_write_ports_0_addr};
+  assign io_debug_float_writeData_0_bits_data =
+    {_floatCore_io_write_ports_0_data_sign,
+     _floatCore_io_write_ports_0_data_exponent,
+     _floatCore_io_write_ports_0_data_mantissa};
+  assign io_debug_float_writeData_1_valid = _floatCore_io_write_ports_1_valid;
+  assign io_debug_float_writeData_1_bits_addr = {27'h0, _floatCore_io_write_ports_1_addr};
+  assign io_debug_float_writeData_1_bits_data =
+    {_floatCore_io_write_ports_1_data_sign,
+     _floatCore_io_write_ports_1_data_exponent,
+     _floatCore_io_write_ports_1_data_mantissa};
+
+ // =========================================================================
+ // --- FINAL OUTPUT ASSIGNMENT #2 ----------------------------------------
  // =========================================================================
 
   wire [31:0]  _alu_io_rd_bits_data/* synthesis syn_keep=1 */;
@@ -1906,7 +2056,7 @@ wire lsu_final =
  // o_pmod1[6]: Regfile Target 1 bits [2:1]
  assign o_pmod1[6] = ((|_regfile_io_target_1_data)&(|_fetch_io_inst_lanes_3_valid)&(|_floatCore_io_write_ports_1_data_mantissa)&(|_floatCore_io_write_ports_1_data_exponent)&(_floatCore_io_write_ports_1_data_sign)&(|_fRegfile_io_read_ports_2_data_exponent)&(_fRegfile_io_read_ports_2_data_sign)) ^ (_regfile_io_target_2_data[2]) ^ (global_en_7);
  // o_pmod1[7]: Mix of Regfile Write Count and original input o_pmod0
- assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)&(|lsu_final)&(mlu_final)&(csr_final)&(dvu_final)) ^ (o_pmod0[7]) ^ (global_en_0);
+ assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)&(|lsu_final)&(mlu_final)&(csr_final)&(dvu_final)&(arbiter_final)) ^ (o_pmod0[7]) ^ (global_en_0);
  // UART outputs tied off as unused in this minimal test
  assign uart_tx_o = 2'b0;
 

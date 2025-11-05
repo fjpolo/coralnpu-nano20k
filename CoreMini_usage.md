@@ -321,14 +321,42 @@ Register	1671 / 60780	3%
 BSRAM	0 / 118	0%
 ```
 
+# Arbiter3_RegfileWriteDataIO (no dispatcher)
+
+```
+Resource Usage Summary
+Resource	Usage
+I/O Port	24
+I/O Buf	22
+    IBUF	12
+    OBUF	10
+Register	1671
+    DFFSE	4
+    DFFRE	200
+    DFFCE	1467
+LUT	6183
+    LUT2	374
+    LUT3	3225
+    LUT4	2584
+ALU	617
+    ALU	617
+INV	8
+    INV	8
+DSP	
+    MULT12X12	1
+Resource Utilization Summary
+Resource	Usage	Utilization
+Logic	6808(6191 LUT, 617 ALU) / 59904	12%
+Register	1671 / 60780	3%
+  --Register as Latch	0 / 60780	0%
+  --Register as FF	1671 / 60780	3%
+BSRAM	0 / 118	0%
+```
+
 # FaultManager (no dispatcher)
 
 ```
 
 ```
 
-# Arbiter3_RegfileWriteDataIO (no dispatcher)
-
-```
-```
 
