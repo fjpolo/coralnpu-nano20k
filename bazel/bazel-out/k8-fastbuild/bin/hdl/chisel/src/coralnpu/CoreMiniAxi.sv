@@ -3620,7 +3620,7 @@ module Csr(
 endmodule
 
 `define OPT_DECODE
-´ifndef OPT_DECODE
+`ifndef OPT_DECODE
 module Decode(
   input         io_halted,
   output        io_inst_ready,
