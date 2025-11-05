@@ -554,10 +554,72 @@ Register	5556 / 60780	10%
 BSRAM	0 / 118	0%
 ```
 
-# DispatchV1 (decode_0 only - optimization #4)
+# DispatchV1 (decode_0 only - optimization: Hierarchical Opcode Pre-decode)
 
 ```
+Resource Usage Summary
+Resource	Usage
+I/O Port	24
+I/O Buf	16
+    IBUF	6
+    OBUF	10
+Register	5556
+    DFFSE	4
+    DFFRE	385
+    DFFPE	3
+    DFFCE	5164
+LUT	36974
+    LUT2	1711
+    LUT3	14835
+    LUT4	20428
+ALU	927
+    ALU	927
+INV	14
+    INV	14
+DSP	
+    MULT12X12	2
+    MULT27X36	3
+Resource Utilization Summary
+Resource	Usage	Utilization
+Logic	37915(36988 LUT, 927 ALU) / 59904	64%
+Register	5556 / 60780	10%
+  --Register as Latch	0 / 60780	0%
+  --Register as FF	5556 / 60780	10%
+BSRAM	0 / 118	0%
+```
 
+# DispatchV1 (decode_0 only - optimization: Instruction Decode simplification)
+
+```
+Resource Usage Summary
+Resource	Usage
+I/O Port	24
+I/O Buf	16
+    IBUF	6
+    OBUF	10
+Register	5556
+    DFFSE	4
+    DFFRE	385
+    DFFPE	3
+    DFFCE	5164
+LUT	36980
+    LUT2	1660
+    LUT3	14811
+    LUT4	20509
+ALU	927
+    ALU	927
+INV	14
+    INV	14
+DSP	
+    MULT12X12	2
+    MULT27X36	3
+Resource Utilization Summary
+Resource	Usage	Utilization
+Logic	37921(36994 LUT, 927 ALU) / 59904	64%
+Register	5556 / 60780	10%
+  --Register as Latch	0 / 60780	0%
+  --Register as FF	5556 / 60780	10%
+BSRAM	0 / 118	0%
 ```
 # DispatchV1 (decode_0 only - optimization #5)
 
@@ -569,11 +631,7 @@ BSRAM	0 / 118	0%
 ```
 
 ```
-# DispatchV1 (decode_0 only - optimization #1)
 
-```
-
-```
 # DispatchV1 (decode_0 only - optimization #8)
 
 ```

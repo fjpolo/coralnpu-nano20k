@@ -4277,85 +4277,85 @@ module Decode(
   input               io_halted,
   output              io_inst_ready,
   input               io_inst_valid,
-  input        [31:0] io_inst_bits_addr,
-                      io_inst_bits_inst,
+  input      [31:0]   io_inst_bits_addr,
+  input      [31:0]   io_inst_bits_inst,
   input               io_inst_bits_brchFwd,
-  input        [31:0] io_scoreboard_regd,
-                      io_scoreboard_comb,
-  output       [31:0] io_scoreboard_spec,
-  input        [31:0] io_fscoreboard,
+  input      [31:0]   io_scoreboard_regd,
+  input      [31:0]   io_scoreboard_comb,
+  output     [31:0]   io_scoreboard_spec,
+  input      [31:0]   io_fscoreboard,
   input               io_lsuActive,
   output              io_rs1Read_valid,
-  output       [4:0]  io_rs1Read_addr,
+  output     [4:0]    io_rs1Read_addr,
   output              io_rs1Set_valid,
-  output       [31:0] io_rs1Set_value,
+  output     [31:0]   io_rs1Set_value,
   output              io_rs2Read_valid,
-  output       [4:0]  io_rs2Read_addr,
+  output     [4:0]    io_rs2Read_addr,
   output              io_rs2Set_valid,
-  output       [31:0] io_rs2Set_value,
+  output     [31:0]   io_rs2Set_value,
   output              io_rdMark_valid,
-  output       [4:0]  io_rdMark_addr,
+  output     [4:0]    io_rdMark_addr,
   output              io_rdMark_flt_valid,
-  output       [4:0]  io_rdMark_flt_addr,
+  output     [4:0]    io_rdMark_flt_addr,
   output              io_busRead_bypass,
-                      io_busRead_immen,
-  output       [31:0] io_busRead_immed,
+  output              io_busRead_immen,
+  output     [31:0]   io_busRead_immed,
   output              io_jalFault,
-                      io_jalrFault,
-                      io_bxxFault,
-                      io_undefFault,
-  output       [31:0] io_bruTarget,
-  input        [31:0] io_jalrTarget_data,
+  output              io_jalrFault,
+  output              io_bxxFault,
+  output              io_undefFault,
+  output     [31:0]   io_bruTarget,
+  input      [31:0]   io_jalrTarget_data,
   output              io_alu_valid,
-  output       [4:0]  io_alu_bits_addr,
-  output       [4:0]  io_alu_bits_op,
+  output     [4:0]    io_alu_bits_addr,
+  output     [4:0]    io_alu_bits_op,
   output              io_bru_valid,
-                      io_bru_bits_fwd,
-  output       [3:0]  io_bru_bits_op,
-  output       [31:0] io_bru_bits_pc,
-                      io_bru_bits_target,
-  output       [4:0]  io_bru_bits_link,
+  output              io_bru_bits_fwd,
+  output     [3:0]    io_bru_bits_op,
+  output     [31:0]   io_bru_bits_pc,
+  output     [31:0]   io_bru_bits_target,
+  output     [4:0]    io_bru_bits_link,
   output              io_csr_valid,
-  output       [4:0]  io_csr_bits_addr,
-  output       [11:0] io_csr_bits_index,
-  output       [1:0]  io_csr_bits_op,
+  output     [4:0]    io_csr_bits_addr,
+  output     [11:0]   io_csr_bits_index,
+  output     [1:0]    io_csr_bits_op,
   output              io_csrFault,
   input               io_lsu_ready,
   output              io_lsu_valid,
-                      io_lsu_bits_store,
-  output       [4:0]  io_lsu_bits_addr,
-  output       [4:0]  io_lsu_bits_op,
-  output       [31:0] io_lsu_bits_pc,
+  output              io_lsu_bits_store,
+  output     [4:0]    io_lsu_bits_addr,
+  output     [4:0]    io_lsu_bits_op,
+  output     [31:0]   io_lsu_bits_pc,
   output              io_mlu_valid,
-  output       [4:0]  io_mlu_bits_addr,
-  output       [2:0]  io_mlu_bits_op,
+  output     [4:0]    io_mlu_bits_addr,
+  output     [2:0]    io_mlu_bits_op,
   input               io_dvu_ready,
   output              io_dvu_valid,
-  output       [4:0]  io_dvu_bits_addr,
-  output       [1:0]  io_dvu_bits_op,
+  output     [4:0]    io_dvu_bits_addr,
+  output     [1:0]    io_dvu_bits_op,
   input               io_float_ready,
   output              io_float_valid,
-  output       [2:0]  io_float_bits_opcode,
-  output       [4:0]  io_float_bits_funct5,
-                      io_float_bits_rs3,
-                      io_float_bits_rs2,
-                      io_float_bits_rs1,
-  output       [2:0]  io_float_bits_rm,
-  output       [31:0] io_float_bits_inst,
-                      io_float_bits_pc,
+  output     [2:0]    io_float_bits_opcode,
+  output     [4:0]    io_float_bits_funct5,
+  output     [4:0]    io_float_bits_rs3,
+  output     [4:0]    io_float_bits_rs2,
+  output     [4:0]    io_float_bits_rs1,
+  output     [2:0]    io_float_bits_rm,
+  output     [31:0]   io_float_bits_inst,
+  output     [31:0]   io_float_bits_pc,
   output              io_float_bits_scalar_rd,
-                      io_float_bits_scalar_rs1,
-  output       [4:0]  io_float_bits_rd,
+  output              io_float_bits_scalar_rs1,
+  output     [4:0]    io_float_bits_rd,
   output              io_float_bits_uses_rs3,
-                      io_float_bits_uses_rs2,
+  output              io_float_bits_uses_rs2,
   input               io_branchTaken,
-                      io_interlock,
+  input               io_interlock,
   output              io_serializeOut_mul,
-                      io_serializeOut_jump,
-                      io_serializeOut_brcond,
-                      io_serializeOut_wfi,
-                      io_serializeOut_fence,
-                      output              io_serializeOut_csr,
+  output              io_serializeOut_jump,
+  output              io_serializeOut_brcond,
+  output              io_serializeOut_wfi,
+  output              io_serializeOut_fence,
+  output              io_serializeOut_csr,
   output              io_serializeOut_undef,
   output              io_slog
 );
@@ -4363,15 +4363,16 @@ module Decode(
   wire                io_inst_ready_0;
   wire                io_busRead_bypass_0;
   wire                decodeEn = io_inst_valid & io_inst_ready_0 & ~io_branchTaken;
-  wire [19:0]         _d_d_imm12_T_1 = {20{io_inst_bits_inst[31]}};
+  wire [19:0]         _d_d_imm12_T_1 = {{20{io_inst_bits_inst[31]}}};
   wire [31:0]         d_immcsr = {27'h0, io_inst_bits_inst[19:15]};
-  
+ 
   // =========================================================================
-  // 1. HIERARCHICAL PRE-DECODE
+  // 1. HIERARCHICAL PRE-DECODE (UNCHANGED)
   // =========================================================================
   wire [6:0] opcode = io_inst_bits_inst[6:0];
   wire [2:0] funct3 = io_inst_bits_inst[14:12];
   wire [6:0] funct7 = io_inst_bits_inst[31:25];
+  wire [4:0] rs2_addr = io_inst_bits_inst[24:20];
 
   // Top-Level Instruction Classes (Opcode-based)
   wire d_type_r      = opcode == 7'b0110011; // R-type (ALU/M-Ext)
@@ -4386,20 +4387,20 @@ module Decode(
   wire d_type_float  = opcode == 7'h07 | opcode == 7'h27 | opcode == 7'h47 | opcode == 7'h53 | opcode == 7'h57; // F-Ext / D-Ext
 
   // =========================================================================
-  // 2. NARROWER INDIVIDUAL DECODING
+  // 2. NARROWER INDIVIDUAL DECODING (SIMPLIFIED)
   // =========================================================================
 
   // U-Type
   wire d_lui   = opcode == 7'h37;
   wire d_auipc = opcode == 7'h17;
-  
+ 
   // J-Type
   wire d_jal   = d_type_j;
 
   // I-Type JALR
   wire d_jalr  = d_type_i_jalr & (funct3 == 3'h0);
 
-  // B-Type
+  // B-Type (UNCHANGED)
   wire d_beq  = d_type_b & (funct3 == 3'h0);
   wire d_bne  = d_type_b & (funct3 == 3'h1);
   wire d_blt  = d_type_b & (funct3 == 3'h4);
@@ -4411,154 +4412,163 @@ module Decode(
   wire d_csrrw = d_type_csr & (funct3 == 3'h1);
   wire d_csrrs = d_type_csr & (funct3 == 3'h2);
   wire d_csrrc = d_type_csr & (funct3 == 3'h3);
-  
-  // System Instructions (All funct3 == 0)
-  wire d_ebreak    = d_type_csr & (funct3 == 3'h0) & (io_inst_bits_inst[31:20] == 12'h1);
-  wire d_ecall     = d_type_csr & (funct3 == 3'h0) & (io_inst_bits_inst[31:20] == 12'h0);
-  wire d_mpause    = d_type_csr & (funct3 == 3'h0) & (io_inst_bits_inst[31:20] == 12'h800);
-  wire d_mret      = d_type_csr & (funct3 == 3'h0) & (io_inst_bits_inst[31:20] == 12'h302);
-  wire d_wfi       = d_type_csr & (funct3 == 3'h0) & (io_inst_bits_inst[31:20] == 12'h105);
+
+  // System Instructions (Use a common prefix for funct3 == 0)
+  wire d_type_sys_priv = d_type_csr & (funct3 == 3'h0);
+  wire [11:0] d_imm12_sys = io_inst_bits_inst[31:20];
+ 
+  wire d_ebreak    = d_type_sys_priv & (d_imm12_sys == 12'h1);
+  wire d_ecall     = d_type_sys_priv & (d_imm12_sys == 12'h0);
+  wire d_mpause    = d_type_sys_priv & (d_imm12_sys == 12'h800);
+  wire d_mret      = d_type_sys_priv & (d_imm12_sys == 12'h302);
+  wire d_wfi       = d_type_sys_priv & (d_imm12_sys == 12'h105);
+  wire d_slog      = d_type_sys_priv & (d_imm12_sys == 12'hF00);
+
+  // Fence/Flush (Use opcode 0F)
   wire d_fencei    = opcode == 7'h0F & (funct3 == 3'h1);
   wire d_flushat   = opcode == 7'h0F & (funct3 == 3'h4) & (|(io_inst_bits_inst[19:15]));
   wire d_flushall  = opcode == 7'h0F & (funct3 == 3'h4) & ~(|(io_inst_bits_inst[19:15]));
-  wire d_slog      = d_type_csr & (funct3 == 3'h0) & (io_inst_bits_inst[31:20] == 12'hF00);
 
-  // I-Type Load
+  // I-Type Load (UNCHANGED)
   wire d_lb  = d_type_i_load & (funct3 == 3'h0);
   wire d_lh  = d_type_i_load & (funct3 == 3'h1);
   wire d_lw  = d_type_i_load & (funct3 == 3'h2);
   wire d_lbu = d_type_i_load & (funct3 == 3'h4);
   wire d_lhu = d_type_i_load & (funct3 == 3'h5);
 
-  // S-Type Store
+  // S-Type Store (UNCHANGED)
   wire d_sb = d_type_s & (funct3 == 3'h0);
   wire d_sh = d_type_s & (funct3 == 3'h1);
   wire d_sw = d_type_s & (funct3 == 3'h2);
 
-  // I-Type ALU
-  wire d_addi   = d_type_i_alu & (funct3 == 3'h0);
-  wire d_slti   = d_type_i_alu & (funct3 == 3'h2);
-  wire d_sltiu  = d_type_i_alu & (funct3 == 3'h3);
-  wire d_xori   = d_type_i_alu & (funct3 == 3'h4);
-  wire d_ori    = d_type_i_alu & (funct3 == 3'h6);
-  wire d_andi   = d_type_i_alu & (funct3 == 3'h7);
-  wire d_slli   = d_type_i_alu & (funct3 == 3'h1) & (funct7 == 7'h00);
-  wire d_srli   = d_type_i_alu & (funct3 == 3'h5) & (funct7 == 7'h00);
-  wire d_srai   = d_type_i_alu & (funct3 == 3'h5) & (funct7 == 7'h20);
-  wire d_rori   = d_type_i_alu & (funct3 == 3'h5) & (funct7 == 7'h40);
-  
-  // R-Type / M-Extension / Bit-Manipulation Extension
-  wire d_add    = d_type_r & (funct3 == 3'h0) & (funct7 == 7'h00);
-  wire d_sub    = d_type_r & (funct3 == 3'h0) & (funct7 == 7'h20);
-  wire d_sll    = d_type_r & (funct3 == 3'h1) & (funct7 == 7'h00);
-  wire d_slt    = d_type_r & (funct3 == 3'h2) & (funct7 == 7'h00);
-  wire d_sltu   = d_type_r & (funct3 == 3'h3) & (funct7 == 7'h00);
-  wire d_xor    = d_type_r & (funct3 == 3'h4) & (funct7 == 7'h00);
-  wire d_srl    = d_type_r & (funct3 == 3'h5) & (funct7 == 7'h00);
-  wire d_sra    = d_type_r & (funct3 == 3'h5) & (funct7 == 7'h20);
-  wire d_or     = d_type_r & (funct3 == 3'h6) & (funct7 == 7'h00);
-  wire d_and    = d_type_r & (funct3 == 3'h7) & (funct7 == 7'h00);
+  // I-Type ALU (Shift/Rotate)
+  wire d_shift_r_i_base = d_type_i_alu & (funct3 == 3'h5); // SRLI/SRAI/ROR
+  wire d_slli     = d_type_i_alu & (funct3 == 3'h1) & (funct7 == 7'h00);
+  wire d_srli     = d_shift_r_i_base & (funct7 == 7'h00);
+  wire d_srai     = d_shift_r_i_base & (funct7 == 7'h20);
+  wire d_rori     = d_shift_r_i_base & (funct7 == 7'h40);
+ 
+  // I-Type ALU (Other)
+  wire d_addi     = d_type_i_alu & (funct3 == 3'h0);
+  wire d_slti     = d_type_i_alu & (funct3 == 3'h2);
+  wire d_sltiu    = d_type_i_alu & (funct3 == 3'h3);
+  wire d_xori     = d_type_i_alu & (funct3 == 3'h4);
+  wire d_ori      = d_type_i_alu & (funct3 == 3'h6);
+  wire d_andi     = d_type_i_alu & (funct3 == 3'h7);
+ 
+  // R-Type ALU (Shift/Rotate)
+  wire d_shift_r_base = d_type_r & (funct3 == 3'h5); // SRL/SRA/ROR
+  wire d_sll      = d_type_r & (funct3 == 3'h1) & (funct7 == 7'h00);
+  wire d_srl      = d_shift_r_base & (funct7 == 7'h00);
+  wire d_sra      = d_shift_r_base & (funct7 == 7'h20);
+  wire d_rol      = d_type_r & (funct3 == 3'h1) & (funct7 == 7'h30);
+  wire d_ror      = d_shift_r_base & (funct7 == 7'h30);
+
+  // R-Type ALU (Other funct7 == 00)
+  wire d_alu_r_base = d_type_r & (funct7 == 7'h00);
+  wire d_add      = d_alu_r_base & (funct3 == 3'h0);
+  wire d_sub      = d_type_r & (funct3 == 3'h0) & (funct7 == 7'h20);
+  wire d_slt      = d_alu_r_base & (funct3 == 3'h2);
+  wire d_sltu     = d_alu_r_base & (funct3 == 3'h3);
+  wire d_xor      = d_alu_r_base & (funct3 == 3'h4);
+  wire d_or       = d_alu_r_base & (funct3 == 3'h6);
+  wire d_and      = d_alu_r_base & (funct3 == 3'h7);
+  wire d_zexth    = d_type_r & (funct3 == 3'h0) & (funct7 == 7'h08); // ZEXT.H
 
   // M-Extension (All funct7 == 7'h01)
-  wire d_mul    = d_type_r & (funct3 == 3'h0) & (funct7 == 7'h01);
-  wire d_mulh   = d_type_r & (funct3 == 3'h1) & (funct7 == 7'h01);
-  wire d_mulhsu = d_type_r & (funct3 == 3'h2) & (funct7 == 7'h01);
-  wire d_mulhu  = d_type_r & (funct3 == 3'h3) & (funct7 == 7'h01);
-  wire d_div    = d_type_r & (funct3 == 3'h4) & (funct7 == 7'h01);
-  wire d_divu   = d_type_r & (funct3 == 3'h5) & (funct7 == 7'h01);
-  wire d_rem    = d_type_r & (funct3 == 3'h6) & (funct7 == 7'h01);
-  wire d_remu   = d_type_r & (funct3 == 3'h7) & (funct7 == 7'h01);
+  wire d_mlu_base = d_type_r & (funct7 == 7'h01);
+  wire d_mul      = d_mlu_base & (funct3 == 3'h0);
+  wire d_mulh     = d_mlu_base & (funct3 == 3'h1);
+  wire d_mulhsu   = d_mlu_base & (funct3 == 3'h2);
+  wire d_mulhu    = d_mlu_base & (funct3 == 3'h3);
+  wire d_div      = d_mlu_base & (funct3 == 3'h4);
+  wire d_divu     = d_mlu_base & (funct3 == 3'h5);
+  wire d_rem      = d_mlu_base & (funct3 == 3'h6);
+  wire d_remu     = d_mlu_base & (funct3 == 3'h7);
 
-  // Bit-Manipulation (Extended logic checks, simplified by using d_type_r/d_type_i_alu)
-  wire d_andn   = d_type_r & (funct3 == 3'h7) & (funct7 == 7'h20);
-  wire d_orn    = d_type_r & (funct3 == 3'h6) & (funct7 == 7'h20);
-  wire d_xnor   = d_type_r & (funct3 == 3'h4) & (funct7 == 7'h20);
-  wire d_clz    = d_type_i_alu & (funct3 == 3'h1) & (funct7 == 7'h40);
-  wire d_ctz    = d_type_i_alu & (funct3 == 3'h5) & (funct7 == 7'h40);
-  wire d_cpop   = d_type_i_alu & (funct3 == 3'h5) & (funct7 == 7'h40) & (io_inst_bits_inst[24:20] == 5'h02); 
-  wire d_max    = d_type_r & (funct3 == 3'h6) & (funct7 == 7'h05);
-  wire d_maxu   = d_type_r & (funct3 == 3'h7) & (funct7 == 7'h05);
-  wire d_min    = d_type_r & (funct3 == 3'h4) & (funct7 == 7'h05);
-  wire d_minu   = d_type_r & (funct3 == 3'h5) & (funct7 == 7'h05);
-  wire d_sextb  = d_type_i_alu & (funct3 == 3'h1) & (funct7 == 7'h40) & (io_inst_bits_inst[24:20] == 5'h04);
-  wire d_sexth  = d_type_i_alu & (funct3 == 3'h1) & (funct7 == 7'h40) & (io_inst_bits_inst[24:20] == 5'h08);
-  wire d_rol    = d_type_r & (funct3 == 3'h1) & (funct7 == 7'h30);
-  wire d_ror    = d_type_r & (funct3 == 3'h5) & (funct7 == 7'h30);
-  wire d_orcb   = d_type_i_alu & (funct3 == 3'h7) & (funct7 == 7'h50);
-  wire d_rev8   = d_type_i_alu & (funct3 == 3'h5) & (funct7 == 7'h53);
-  wire d_zexth  = d_type_r & (funct3 == 3'h0) & (funct7 == 7'h08);
+  // Bit-Manipulation Extension (Simplified)
+  wire d_r_ext_base1 = d_type_r & (funct7 == 7'h20); // ANDN, ORN, XNOR
+  wire d_r_ext_base2 = d_type_r & (funct7 == 7'h05); // MIN/MAX
+  wire d_i_ext_base1 = d_type_i_alu & (funct7 == 7'h40); // CLZ, CTZ, CPOP, SEXTB/H
+ 
+  wire d_andn     = d_r_ext_base1 & (funct3 == 3'h7);
+  wire d_orn      = d_r_ext_base1 & (funct3 == 3'h6);
+  wire d_xnor     = d_r_ext_base1 & (funct3 == 3'h4);
+  wire d_clz      = d_i_ext_base1 & (funct3 == 3'h1);
+  wire d_ctz      = d_i_ext_base1 & (funct3 == 3'h5) & (rs2_addr == 5'h00);
+  wire d_cpop     = d_i_ext_base1 & (funct3 == 3'h5) & (rs2_addr == 5'h02); 
+  wire d_max      = d_r_ext_base2 & (funct3 == 3'h6);
+  wire d_maxu     = d_r_ext_base2 & (funct3 == 3'h7);
+  wire d_min      = d_r_ext_base2 & (funct3 == 3'h4);
+  wire d_minu     = d_r_ext_base2 & (funct3 == 3'h5);
+  wire d_sextb    = d_i_ext_base1 & (funct3 == 3'h1) & (rs2_addr == 5'h04);
+  wire d_sexth    = d_i_ext_base1 & (funct3 == 3'h1) & (rs2_addr == 5'h08);
+  wire d_orcb     = d_type_i_alu & (funct3 == 3'h7) & (funct7 == 7'h50);
+  wire d_rev8     = d_type_i_alu & (funct3 == 3'h5) & (funct7 == 7'h53);
 
-  // Floating Point/LSU (Retaining original complexity for control signals)
+  // Floating Point/LSU (Simplified Opcode assignment, retaining original logic for d_d_float_y)
+  wire [4:0] fp_opcode_group = io_inst_bits_inst[6:2];
   wire d_d_float_load_store_rm_valid = funct3 == 3'h1 | funct3 == 3'h2;
-  wire _d_d_float_opcode_T_4 = io_inst_bits_inst[6:2] == 5'h9;
-  wire _d_d_float_opcode_T_6 = io_inst_bits_inst[6:2] == 5'h14;
-  wire _d_d_float_opcode_T_8 = io_inst_bits_inst[6:2] == 5'h10;
-  wire _d_d_float_opcode_T_10 = io_inst_bits_inst[6:2] == 5'h11;
-  wire _d_d_float_opcode_T_12 = io_inst_bits_inst[6:2] == 5'h12;
-  wire _d_d_float_opcode_T_14 = io_inst_bits_inst[6:2] == 5'h13;
-  wire [2:0]          d_d_float_opcode_bits =
-    _d_d_float_opcode_T_14
-      ? 3'h5
-      : _d_d_float_opcode_T_12
-          ? 3'h6
-          : _d_d_float_opcode_T_10
-              ? 3'h4
-              : _d_d_float_opcode_T_8
-                  ? 3'h3
-                  : _d_d_float_opcode_T_6
-                      ? 3'h2
-                      : {2'h0, _d_d_float_opcode_T_4 & d_d_float_load_store_rm_valid};
-  wire                _d_d_float_uses_rs2_T_5 = io_inst_bits_inst[31:27] == 5'h1C;
-  wire                _d_d_float_uses_rs2_T_7 = io_inst_bits_inst[31:27] == 5'h18;
-  wire                _d_d_float_uses_rs2_T_2 = d_d_float_opcode_bits == 3'h2;
-  wire                d_d_float_scalar_rd =
-    (_d_d_float_uses_rs2_T_7 | _d_d_float_uses_rs2_T_5
-      | io_inst_bits_inst[31:27] == 5'h14) & _d_d_float_uses_rs2_T_2;
-  wire                _d_d_float_uses_rs2_T_9 = io_inst_bits_inst[31:27] == 5'h1E;
-  wire                _d_d_float_uses_rs2_T_11 = io_inst_bits_inst[31:27] == 5'h1A;
-  wire                d_d_float_scalar_rs1 = _d_d_float_uses_rs2_T_11 | _d_d_float_uses_rs2_T_9;
-  wire                _d_d_float_T_1 = d_d_float_opcode_bits == 3'h1;
-  wire                d_d_float_y =
+
+  // Use a clean conditional assignment for FP opcode
+  wire [2:0] d_d_float_opcode_bits;
+  assign d_d_float_opcode_bits =
+    (fp_opcode_group == 5'h14) ? 3'h2 : // Fused Multiply-Add (MADD, MSUB)
+    (fp_opcode_group == 5'h10) ? 3'h3 : // Simple R4 (ADD, SUB, MUL, DIV, SGNJ, MIN/MAX)
+    (fp_opcode_group == 5'h11) ? 3'h4 : // Conversion/Move (CVT, FCLASSD)
+    (fp_opcode_group == 5'h13) ? 3'h5 : // Comparison/Classification (FCMP, FCLASS)
+    (fp_opcode_group == 5'h12) ? 3'h6 : // Square Root/Reciprocal (FSQRT)
+    (fp_opcode_group == 5'h09) ? 3'h1 : // F-Load/Store/Move (FLW, FSW, FMV.X.W)
+    (fp_opcode_group == 5'h01) ? 3'h0 : // F-Store (FSW) (Uses funct3 to differentiate)
+    3'h0; // Default/Error (Should be covered by d_type_float)
+
+  // Simplify scalar determination using the new opcode bits
+  wire d_d_float_scalar_rd = (io_inst_bits_inst[31:27] == 5'h14 | io_inst_bits_inst[31:27] == 5'h18 | io_inst_bits_inst[31:27] == 5'h1C) & (d_d_float_opcode_bits == 3'h2);
+  wire d_d_float_scalar_rs1 = (io_inst_bits_inst[31:27] == 5'h1A | io_inst_bits_inst[31:27] == 5'h1E);
+  wire _d_d_float_T_1 = d_d_float_opcode_bits == 3'h1; // F-Load/Store/Move
+
+  // Retained logic for main FP Valid signal, using the opcode bits
+  wire d_d_float_y =
     (d_type_float) // Top-level filter
-    & (_d_d_float_opcode_T_14 | _d_d_float_opcode_T_12 | _d_d_float_opcode_T_10
-      | _d_d_float_opcode_T_8 | _d_d_float_opcode_T_6
-      | (_d_d_float_opcode_T_4 | io_inst_bits_inst[6:2] == 5'h1)
+    & (d_d_float_opcode_bits == 3'h5 | d_d_float_opcode_bits == 3'h6 | d_d_float_opcode_bits == 3'h4
+      | d_d_float_opcode_bits == 3'h3 | d_d_float_opcode_bits == 3'h2
+      | (d_d_float_opcode_bits == 3'h1 | fp_opcode_group == 5'h1)
       & d_d_float_load_store_rm_valid)
     & (d_d_float_opcode_bits == 3'h0 | _d_d_float_T_1 | io_inst_bits_inst[26:25] == 2'h0);
 
   // =========================================================================
-  // 3. COMBINATORIAL VALID AND UNDEF (Now much simpler)
+  // 3. COMBINATORIAL VALID AND UNDEF (Cleaned up)
   // =========================================================================
-  
+ 
   wire d_is_decoded = 
     d_type_r | d_type_i_alu | d_type_i_load | d_type_s | d_type_b | d_type_u | 
-    d_type_j | d_type_i_jalr | d_type_csr | d_type_float | d_fencei | d_flushat | d_flushall;
+    d_type_j | d_type_i_jalr | d_type_csr | d_type_float | opcode == 7'h0F; // FENCE/FLUSH opcode
 
   wire d_undef = ~d_is_decoded;
-  
+ 
   // --- ALU and LSU valid (based on simplified class wires) ---
   wire alu_valid =
     d_type_u | d_type_i_alu | d_type_r |
     d_andn | d_orn | d_xnor | d_clz | d_ctz | d_cpop | d_max | d_maxu | d_min | d_minu | 
     d_sextb | d_sexth | d_rol | d_ror | d_orcb | d_rev8 | d_zexth | d_rori;
-  
+ 
   wire bru_valid = d_type_j | d_type_i_jalr | d_type_b | d_type_csr;
-  
-  wire _lsu_T_3 = d_d_float_opcode_bits == 3'h1;
-  wire _io_float_valid_T_5 = d_d_float_opcode_bits == 3'h0;
-  wire _lsu_T_7_valid = d_d_float_y & _io_float_valid_T_5 | d_d_float_y & _lsu_T_3;
-  
+ 
+  wire _lsu_T_3 = d_d_float_opcode_bits == 3'h1; // FP Load/Store
+  wire _io_float_valid_T_5 = d_d_float_opcode_bits == 3'h0; // FP Store
+  wire _lsu_T_7_valid = d_d_float_y & (_io_float_valid_T_5 | _lsu_T_3); // FP Load/Store valid
+ 
   wire lsu_valid =
     d_type_i_load | d_type_s | d_wfi | d_fencei | d_flushat | d_flushall | _lsu_T_7_valid;
-  
+ 
   wire mlu_valid = d_mul | d_mulh | d_mulhsu | d_mulhu;
   wire dvu_valid = d_div | d_divu | d_rem | d_remu;
-  
+ 
   wire _rdMark_valid_T_15 = d_d_float_y & d_d_float_scalar_rd;
   wire writes_to_gpr = d_type_u | d_type_i_alu | d_type_r | d_type_i_load | d_type_j | d_type_i_jalr | d_type_csr;
   wire rdMark_valid = (writes_to_gpr & (|(io_inst_bits_inst[11:7])) & d_is_decoded) | _rdMark_valid_T_15;
 
-  // ... (All original hazard and control logic retained below)
+  // ... (Hazard logic with variable shift fixes)
   wire [31:0]         _GEN_3 = {27'h0, io_inst_bits_inst[11:7]};
   wire [31:0]         _floatEn_T_18 = io_scoreboard_comb >> d_immcsr;
   wire [31:0]         _GEN_4 = {27'h0, io_inst_bits_inst[24:20]};
@@ -4569,16 +4579,16 @@ module Decode(
     & ~(|(io_inst_bits_inst[11:7])) & io_inst_bits_inst[19:15] == 5'h1;
   wire                _io_rs1Set_value_T = d_csrrw | d_csrrs;
   wire                csrEn = ~(_io_rs1Set_value_T | d_csrrc) | (d_csrrw | d_csrrs | d_csrrc) & io_float_ready;
-  
+ 
   wire [31:0]         _bru_target_T_2 =
     io_inst_bits_addr
     + {{12{io_inst_bits_inst[31]}},
       io_inst_bits_inst[2]
         ? {io_inst_bits_inst[19:12], io_inst_bits_inst[20], io_inst_bits_inst[30:21]}
         : {{8{io_inst_bits_inst[31]}},
-           io_inst_bits_inst[7],
-           io_inst_bits_inst[30:25],
-           io_inst_bits_inst[11:8]},
+          io_inst_bits_inst[7],
+          io_inst_bits_inst[30:25],
+          io_inst_bits_inst[11:8]},
       1'h0};
   wire                _bxx_fault_T = bruEn & bru_valid;
   wire                jalr_fault = _bxx_fault_T & d_jalr & io_jalrTarget_data[1];
@@ -4588,8 +4598,8 @@ module Decode(
     & (d_type_b) & (|(_bru_target_T_2[1:0]));
   wire                _io_inst_ready_T_25 = jalr_fault | jal_fault;
   wire                csr_valid = d_csrrw | d_csrrs | d_csrrc;
-  
-  // ... (Full CSR validation check)
+ 
+  // ... (Full CSR validation check - UNCHANGED)
   wire                _GEN_5 =
     csr_valid
     & ~(io_inst_bits_inst[31:20] == 12'h1 | io_inst_bits_inst[31:20] == 12'h2
@@ -4618,27 +4628,27 @@ module Decode(
           | io_inst_bits_inst[31:20] == 12'hFCC | io_inst_bits_inst[31:20] == 12'hFD0
           | io_inst_bits_inst[31:20] == 12'hFD4);
   wire                io_csr_valid_0 = decodeEn & csr_valid & ~_GEN_5;
-  
-  // --- HAZARD LOGIC (Unchanged) ---
+ 
+  // --- HAZARD LOGIC (FIXED) ---
   wire rs1_gpr_comb_hazard = io_rs1Read_valid & (_floatEn_T_18[0]);
   wire rs2_gpr_comb_hazard = io_rs2Read_valid & (_lsuEn_T_48[0]);
   wire jalr_regd_hazard = d_jalr & ~bruEn;
-  // wire float_scalar_rd_hazard = _rdMark_valid_T_15 & (io_scoreboard_comb >> _GEN_3)[0];
+  // FIX: Isolated variable shift
   wire [31:0] scoreboard_shift_result = io_scoreboard_comb >> _GEN_3;
   wire float_scalar_rd_hazard = _rdMark_valid_T_15 & scoreboard_shift_result[0];
   wire float_rs1_csr_hazard = io_rs1Read_valid & d_type_float & (_floatEn_T_18[0]); // Simplified to d_type_float check
-  // wire float_rd_hazard      = d_d_float_y & ~d_d_float_scalar_rd & (io_fscoreboard >> _GEN_3)[0];
+  // FIX: Isolated variable shift
   wire [31:0] fscoreboard_rd_shift_result = io_fscoreboard >> _GEN_3;
   wire float_rd_hazard = d_d_float_y & ~d_d_float_scalar_rd & fscoreboard_rd_shift_result[0];
-  // wire float_rs1_hazard     = d_d_float_y & ~d_d_float_scalar_rs1 & (io_fscoreboard >> d_immcsr)[0];
+  // FIX: Isolated variable shift
   wire [31:0] fscoreboard_rs1_shift_result = io_fscoreboard >> d_immcsr;
   wire float_rs1_hazard = d_d_float_y & ~d_d_float_scalar_rs1 & fscoreboard_rs1_shift_result[0];
-  // wire float_rs2_hazard     = d_d_float_y & (io_fscoreboard >> _GEN_4)[0];
+  // FIX: Isolated variable shift
   wire [31:0] fscoreboard_rs2_shift_result = io_fscoreboard >> _GEN_4;
   wire float_rs2_hazard = d_d_float_y & fscoreboard_rs2_shift_result[0];
-  // wire float_rs3_hazard     = d_d_float_y & (io_fscoreboard >> io_inst_bits_inst[31:27])[0];
+  // FIX: Isolated variable shift
   wire [31:0] fscoreboard_rs3_shift_result = io_fscoreboard >> io_inst_bits_inst[31:27];
-  wire float_rs3_hazard     = d_d_float_y & fscoreboard_rs3_shift_result[0];
+  wire float_rs3_hazard      = d_d_float_y & fscoreboard_rs3_shift_result[0];
   wire lsu_needs_ready = d_type_i_load | d_type_s | _lsu_T_7_valid | d_flushat | d_flushall;
   wire lsu_ready_stall = lsu_needs_ready & ~io_lsu_ready;
   wire dvu_ready_stall = dvu_valid & ~io_dvu_ready;
@@ -4646,7 +4656,7 @@ module Decode(
   wire general_control_stall = io_halted | io_interlock | io_branchTaken;
   wire serialize_lsu_active = ((d_fencei | d_ebreak) | d_wfi | d_mpause | d_flushat | d_flushall) & io_lsuActive;
   wire fault_stall = _io_inst_ready_T_25 | _GEN_5 | bxx_fault;
-  
+ 
   assign io_inst_ready_0 = 
       ~general_control_stall & 
       bruEn & 
@@ -4665,7 +4675,7 @@ module Decode(
       ~float_rs2_hazard &
       ~float_rs3_hazard &
       ~fault_stall;
-  
+ 
   // =========================================================================
   // 4. FINAL ASSIGNMENTS (MUXES)
   // =========================================================================
@@ -4676,23 +4686,23 @@ module Decode(
         ? io_inst_bits_inst[24:20] == 5'h0
         : ~(|(io_inst_bits_inst[11:7])));
   assign io_inst_ready = io_inst_ready_0;
-  // assign io_scoreboard_spec = {rdMark_valid ? (32'h1 << io_inst_bits_inst[11:7])[31:1] : 31'h0, 1'h0};
+  // FIX: Isolated variable shift for scoreboard_spec
   wire [31:0] rd_mark_shift = 32'h1 << io_inst_bits_inst[11:7];
   assign io_scoreboard_spec = {rdMark_valid ? rd_mark_shift[31:1] : 31'h0, 1'h0};
-  
+ 
   assign io_rs1Read_valid =
     decodeEn
     & (d_type_r | d_type_i_alu | d_type_i_load | d_type_s | d_type_b | 
-       (csr_valid & ~funct3 == 3'h0) | // CSR with Rs1
-       (d_type_float & ~d_d_float_scalar_rs1) | // FP rs1 read
-       d_type_i_jalr);
-      
+      (csr_valid & funct3 != 3'h0) | // CSR with Rs1
+      (d_type_float & ~d_d_float_scalar_rs1) | // FP rs1 read
+      d_type_i_jalr);
+     
   assign io_rs2Read_valid =
     decodeEn
     & (d_type_r | d_type_s | d_type_b | 
-       (d_type_i_alu & funct3 == 3'h1) | // SLLI
-       d_slog | d_type_float); // FP rs2/rs3 read (simplified)
-  
+      (d_type_i_alu & funct3 == 3'h1) | // SLLI
+      d_slog | d_type_float); // FP rs2/rs3 read (simplified)
+ 
   assign io_rs1Read_addr =
     io_inst_bits_inst[0] ? io_inst_bits_inst[19:15] : io_inst_bits_inst[31:27];
   assign io_rs1Set_valid =
@@ -4729,65 +4739,106 @@ module Decode(
   assign io_bruTarget = _bru_target_T_2;
   assign io_alu_valid = decodeEn & alu_valid;
   assign io_alu_bits_addr = io_inst_bits_inst[11:7];
-  
-  // FIX: Converted to reg and simple assignments
+ 
+  // -------------------------------------------------------------------------
+  // REWRITTEN LOGIC FOR ALU_BITS_OP (Wires + Case)
+  // -------------------------------------------------------------------------
+ 
+  // Combinatorial Assignments (Wires) for ALU Opcode
+  wire [4:0] alu_op_r_wire = 
+      d_add ? 5'h0 :
+      d_sub ? 5'h1 :
+      d_slt ? 5'h2 :
+      d_sltu ? 5'h3 :
+      d_xor ? 5'h4 :
+      d_or ? 5'h5 :
+      d_and ? 5'h6 :
+      d_sll ? 5'h7 :
+      d_srl ? 5'h8 :
+      d_sra ? 5'h9 :
+      d_andn ? 5'hB :
+      d_orn ? 5'hC :
+      d_xnor ? 5'hD :
+      d_max ? 5'h11 :
+      d_maxu ? 5'h12 :
+      d_min ? 5'h13 :
+      d_minu ? 5'h14 :
+      d_rol ? 5'h17 :
+      d_ror ? 5'h18 :
+      d_zexth ? 5'h1B :
+      5'h0; // Should not happen if d_type_r, handled by default/if-else
+
+  wire [4:0] alu_op_i_wire = 
+      d_addi ? 5'h0 :
+      d_slti ? 5'h2 :
+      d_sltiu ? 5'h3 :
+      d_xori ? 5'h4 :
+      d_ori ? 5'h5 :
+      d_andi ? 5'h6 :
+      d_slli ? 5'h7 :
+      d_srli ? 5'h8 :
+      d_srai ? 5'h9 :
+      d_rori ? 5'h18 :
+      d_clz ? 5'hE :
+      d_ctz ? 5'hF :
+      d_cpop ? 5'h10 :
+      d_sextb ? 5'h15 :
+      d_sexth ? 5'h16 :
+      d_orcb ? 5'h19 :
+      d_rev8 ? 5'h1A :
+      5'h0; // Default: ADDI (5'h0)
+
   reg [4:0] alu_bits_op_r; 
   always @* begin
-    alu_bits_op_r = 5'h0; // Default: ADD/ADDI/AUIPC
-    if (d_lui)          alu_bits_op_r = 5'hA;
-    else if (d_add | d_addi | d_auipc) alu_bits_op_r = 5'h0;
-    else if (d_sub)     alu_bits_op_r = 5'h1;
-    else if (d_slt | d_slti)    alu_bits_op_r = 5'h2;
-    else if (d_sltu | d_sltiu)  alu_bits_op_r = 5'h3;
-    else if (d_xor | d_xori)    alu_bits_op_r = 5'h4;
-    else if (d_or | d_ori)      alu_bits_op_r = 5'h5;
-    else if (d_and | d_andi)    alu_bits_op_r = 5'h6;
-    else if (d_sll | d_slli)    alu_bits_op_r = 5'h7;
-    else if (d_srl | d_srli)    alu_bits_op_r = 5'h8;
-    else if (d_sra | d_srai)    alu_bits_op_r = 5'h9;
-    else if (d_andn)    alu_bits_op_r = 5'hB;
-    else if (d_orn)     alu_bits_op_r = 5'hC;
-    else if (d_xnor)    alu_bits_op_r = 5'hD;
-    else if (d_clz)     alu_bits_op_r = 5'hE;
-    else if (d_ctz)     alu_bits_op_r = 5'hF;
-    else if (d_cpop)    alu_bits_op_r = 5'h10;
-    else if (d_max)     alu_bits_op_r = 5'h11;
-    else if (d_maxu)    alu_bits_op_r = 5'h12;
-    else if (d_min)     alu_bits_op_r = 5'h13;
-    else if (d_minu)    alu_bits_op_r = 5'h14;
-    else if (d_sextb)   alu_bits_op_r = 5'h15;
-    else if (d_sexth)   alu_bits_op_r = 5'h16;
-    else if (d_rol)     alu_bits_op_r = 5'h17;
-    else if (d_ror | d_rori) alu_bits_op_r = 5'h18;
-    else if (d_orcb)    alu_bits_op_r = 5'h19;
-    else if (d_rev8)    alu_bits_op_r = 5'h1A;
-    else if (d_zexth)   alu_bits_op_r = 5'h1B;
+    alu_bits_op_r = 5'h0; // Default to ADD/ADDI (5'h0)
+    case (1'b1)
+      d_lui:            alu_bits_op_r = 5'hA;
+      d_auipc:          alu_bits_op_r = 5'h0; // AUIPC uses ADD op
+      d_type_r:         alu_bits_op_r = alu_op_r_wire;
+      d_type_i_alu:     alu_bits_op_r = alu_op_i_wire;
+      default:          alu_bits_op_r = 5'h0;
+    endcase
   end
   assign io_alu_bits_op = alu_bits_op_r;
 
   assign io_bru_valid = decodeEn & bru_valid & ~(_io_inst_ready_T_25 | bxx_fault);
   assign io_bru_bits_fwd = io_inst_bits_brchFwd;
-  
-  // FIX: Converted to reg and simple assignments
-  reg [3:0] bru_bits; 
+ 
+  // -------------------------------------------------------------------------
+  // REWRITTEN LOGIC FOR BRU_BITS_OP (Wires + Case)
+  // -------------------------------------------------------------------------
+
+  // Combinatorial Assignments (Wires) for BRU Opcode
+  wire [3:0] bru_op_b_wire =
+      d_beq ? 4'h2 :
+      d_bne ? 4'h3 :
+      d_blt ? 4'h4 :
+      d_bge ? 4'h5 :
+      d_bltu ? 4'h6 :
+      d_bgeu ? 4'h7 :
+      4'h0; // Should not happen if d_type_b, handled by default
+
+  wire [3:0] bru_op_sys_wire = 
+      d_ebreak ? 4'h8 :
+      d_ecall ? 4'h9 :
+      d_mpause ? 4'hA :
+      d_mret ? 4'hB :
+      d_wfi ? 4'hC :
+      4'h0; // Should not happen, handled by d_type_sys_priv
+
+  reg [3:0] bru_bits_op_r; 
   always @* begin
-    bru_bits = 4'h0; 
-    if (d_jal)      bru_bits = 4'h0;
-    else if (d_jalr) bru_bits = 4'h1;
-    else if (d_beq)  bru_bits = 4'h2; 
-    else if (d_bne)  bru_bits = 4'h3;
-    else if (d_blt)  bru_bits = 4'h4; 
-    else if (d_bge)  bru_bits = 4'h5;
-    else if (d_bltu) bru_bits = 4'h6;
-    else if (d_bgeu) bru_bits = 4'h7;
-    else if (d_ebreak) bru_bits = 4'h8; 
-    else if (d_ecall)  bru_bits = 4'h9; 
-    else if (d_mpause) bru_bits = 4'hA; 
-    else if (d_mret) bru_bits = 4'hB; 
-    else if (d_wfi)  bru_bits = 4'hC; 
+    bru_bits_op_r = 4'h0; // Default: JAL
+    case (1'b1)
+      d_jal:            bru_bits_op_r = 4'h0;
+      d_jalr:           bru_bits_op_r = 4'h1;
+      d_type_b:         bru_bits_op_r = bru_op_b_wire;
+      d_type_sys_priv:  bru_bits_op_r = bru_op_sys_wire;
+      default:          bru_bits_op_r = 4'h0;
+    endcase
   end
-  assign io_bru_bits_op = bru_bits;
-  
+  assign io_bru_bits_op = bru_bits_op_r;
+ 
   assign io_bru_bits_pc = io_inst_bits_addr;
   assign io_bru_bits_target = _bru_target_T_2;
   assign io_bru_bits_link = io_inst_bits_inst[11:7];
@@ -4799,23 +4850,39 @@ module Decode(
   assign io_lsu_valid = decodeEn & lsu_valid;
   assign io_lsu_bits_store = d_type_s;
   assign io_lsu_bits_addr = io_inst_bits_inst[11:7];
-  
-  // FIX: Converted to reg and simple assignments
+ 
+  // -------------------------------------------------------------------------
+  // REWRITTEN LOGIC FOR LSU_BITS_OP (Wires + Case)
+  // -------------------------------------------------------------------------
+
+  // Combinatorial Assignments (Wires) for LSU Opcode
+  wire [4:0] lsu_op_load_wire =
+      d_lb ? 5'h0 :
+      d_lh ? 5'h1 :
+      d_lw ? 5'h2 :
+      d_lbu ? 5'h3 :
+      d_lhu ? 5'h4 :
+      5'h0; // Default: LB
+
+  wire [4:0] lsu_op_store_wire =
+      d_sb ? 5'h5 :
+      d_sh ? 5'h6 :
+      d_sw ? 5'h7 :
+      5'h5; // Default: SB
+
   reg [4:0] lsu_bits_op_r;
   always @* begin
-    lsu_bits_op_r = 5'h0; // Default to LB
-    if (d_lb) lsu_bits_op_r = 5'h0;
-    else if (d_lh) lsu_bits_op_r = 5'h1;
-    else if (d_lw) lsu_bits_op_r = 5'h2;
-    else if (d_lbu) lsu_bits_op_r = 5'h3;
-    else if (d_lhu) lsu_bits_op_r = 5'h4;
-    else if (d_sb) lsu_bits_op_r = 5'h5;
-    else if (d_sh) lsu_bits_op_r = 5'h6;
-    else if (d_sw) lsu_bits_op_r = 5'h7;
-    else if (d_wfi | d_fencei) lsu_bits_op_r = 5'h8;
-    else if (d_flushat) lsu_bits_op_r = 5'h9;
-    else if (d_flushall) lsu_bits_op_r = 5'hA;
-    else if (_lsu_T_7_valid) lsu_bits_op_r = 5'hC; 
+    lsu_bits_op_r = 5'h0; // Default to LB (5'h0)
+    case (1'b1)
+      d_type_i_load:  lsu_bits_op_r = lsu_op_load_wire;
+      d_type_s:       lsu_bits_op_r = lsu_op_store_wire;
+      d_wfi:          lsu_bits_op_r = 5'h8; // WFI
+      d_fencei:       lsu_bits_op_r = 5'h8; // FENCE.I (shares op code)
+      d_flushat:      lsu_bits_op_r = 5'h9;
+      d_flushall:     lsu_bits_op_r = 5'hA;
+      _lsu_T_7_valid: lsu_bits_op_r = 5'hC; // Floating Point Load/Store
+      default:        lsu_bits_op_r = 5'h0;
+    endcase
   end
   assign io_lsu_bits_op = lsu_bits_op_r;
 
@@ -4844,6 +4911,11 @@ module Decode(
       d_d_float_opcode_bits == 3'h5,
       d_d_float_opcode_bits == 3'h4,
       d_d_float_opcode_bits == 3'h3};
+  wire _d_d_float_uses_rs2_T_2 = d_d_float_opcode_bits == 3'h2;
+  wire _d_d_float_uses_rs2_T_11 = io_inst_bits_inst[31:27] == 5'h1A;
+  wire _d_d_float_uses_rs2_T_9 = io_inst_bits_inst[31:27] == 5'h1E;
+  wire _d_d_float_uses_rs2_T_7 = io_inst_bits_inst[31:27] == 5'h18;
+  wire _d_d_float_uses_rs2_T_5 = io_inst_bits_inst[31:27] == 5'h1C;
   assign io_float_bits_uses_rs2 =
     _d_d_float_T_1 | _d_d_float_uses_rs2_T_2
     & ~(io_inst_bits_inst[31:27] == 5'hB | _d_d_float_uses_rs2_T_11
