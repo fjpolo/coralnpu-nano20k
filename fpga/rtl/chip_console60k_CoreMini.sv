@@ -1055,7 +1055,6 @@ module chip_console60k_CoreMini(
     .io_busPortAddr     (_dispatch_io_fbusPortAddr)
   )/* synthesis syn_keep=1 */;
 
-// `define INCLUDE_DISPATCHER
   assign io_halted = o_pmod0[0];
   assign io_lsuActive = o_pmod0[0];
   assign io_scoreboard_regd = o_pmod0[7:0];
@@ -1089,7 +1088,7 @@ module chip_console60k_CoreMini(
   assign io_dvu_0_ready = o_pmod0[0];
   assign io_float_ready = o_pmod0[0];
   assign io_inst_3_bits_brchFwd = o_pmod0[0];
-
+`define INCLUDE_DISPATCHER
 `ifdef INCLUDE_DISPATCHER
 //   output [31:0] io_bruTarget_0,
 // assign   io_bruTarget_1,
@@ -1113,52 +1112,52 @@ module chip_console60k_CoreMini(
 //   output        io_inst_1_ready,
 //   output        io_inst_2_ready,
 //   output        io_inst_3_ready,
-wire io_inst_ready = (io_inst_0_ready)&(io_inst_1_ready)&(io_inst_2_ready)&(io_inst_3_ready);
+wire io_inst_ready = (_dispatch_io_inst_0_ready)&(_dispatch_io_inst_1_ready)&(_dispatch_io_inst_2_ready)&(_dispatch_io_inst_3_ready);
 //   output        io_rs1Read_0_valid,
 //   output        io_rs1Read_1_valid,
 //   output        io_rs1Read_2_valid,
 //   output        io_rs1Read_3_valid,
-wire io_rs1Read_valid = (io_rs1Read_0_valid)&(io_rs1Read_1_valid)&(io_rs1Read_2_valid)&(io_rs1Read_3_valid);
+wire io_rs1Read_valid = (_dispatch_io_rs1Read_0_valid)&(_dispatch_io_rs1Read_1_valid)&(_dispatch_io_rs1Read_2_valid)&(_dispatch_io_rs1Read_3_valid);
 //   output [4:0]  io_rs1Read_0_addr,
 //   output [4:0]  io_rs1Read_1_addr,
 //   output [4:0]  io_rs1Read_2_addr,
 //   output [4:0]  io_rs1Read_3_addr,
-wire io_rs1Read_addr = (io_rs1Read_0_addr)&(io_rs1Read_1_addr)&(io_rs1Read_2_addr)&(io_rs1Read_3_addr);
+wire io_rs1Read_addr = (_dispatch_io_rs1Read_0_addr)&(_dispatch_io_rs1Read_1_addr)&(_dispatch_io_rs1Read_2_addr)&(_dispatch_io_rs1Read_3_addr);
 //   output        io_rs1Set_0_valid,
 //   output        io_rs1Set_1_valid,
 //   output        io_rs1Set_2_valid,
 //   output        io_rs1Set_3_valid,
-wire io_rs1Set_valid = (io_rs1Set_0_valid)&(io_rs1Set_1_valid)&(io_rs1Set_2_valid)&(io_rs1Set_3_valid);
+wire io_rs1Set_valid = (_dispatch_io_rs1Set_0_valid)&(_dispatch_io_rs1Set_1_valid)&(_dispatch_io_rs1Set_2_valid)&(_dispatch_io_rs1Set_3_valid);
 //   output [31:0] io_rs1Set_0_value,
 //   output [31:0] io_rs1Set_1_value,
 //   output [31:0] io_rs1Set_2_value,
 //   output [31:0] io_rs1Set_3_value,
-wire io_rs1Read_addr = (|io_rs1Set_0_value)&(|io_rs1Set_1_value)&(|io_rs1Set_2_value)&(|io_rs1Set_3_value);
+wire io_rs1Read_addr = (|_dispatch_io_rs1Set_0_value)&(|_dispatch_io_rs1Set_1_value)&(|_dispatch_io_rs1Set_2_value)&(|_dispatch_io_rs1Set_3_value);
 //   output        io_rs2Read_0_valid,
 //   output        io_rs2Read_1_valid,
 //   output        io_rs2Read_2_valid,
 //   output        io_rs2Read_3_valid,
-wire io_rs2Read_valid = (io_rs2Read_0_valid)&(io_rs2Read_1_valid)&(io_rs2Read_2_valid)&(io_rs2Read_3_valid);
+wire io_rs2Read_valid = (_dispatch_io_rs2Read_0_valid)&(_dispatch_io_rs2Read_1_valid)&(_dispatch_io_rs2Read_2_valid)&(_dispatch_io_rs2Read_3_valid);
 //   output [4:0]  io_rs2Read_0_addr,
 //   output [4:0]  io_rs2Read_1_addr,
 //   output [4:0]  io_rs2Read_2_addr,
 //   output [4:0]  io_rs2Read_3_addr,
-wire io_rs2Read_addr = (|io_rs2Read_0_addr)&(|io_rs2Read_1_addr)&(|io_rs2Read_2_addr)&(|io_rs2Read_3_addr);
+wire io_rs2Read_addr = (|_dispatch_io_rs2Read_0_addr)&(|_dispatch_io_rs2Read_1_addr)&(|_dispatch_io_rs2Read_2_addr)&(|_dispatch_io_rs2Read_3_addr);
 //   output        io_rs2Set_0_valid,
 //   output        io_rs2Set_1_valid,
 //   output        io_rs2Set_2_valid,
 //   output        io_rs2Set_3_valid,
-wire io_rs2Set_valid = (io_rs2Set_0_valid)&(io_rs2Set_1_valid)&(io_rs2Set_2_valid)&(io_rs2Set_3_valid);
+wire io_rs2Set_valid = (_dispatch_io_rs2Set_0_valid)&(_dispatch_io_rs2Set_1_valid)&(_dispatch_io_rs2Set_2_valid)&(_dispatch_io_rs2Set_3_valid);
 //   output [31:0] io_rs2Set_0_value,
 //   output [31:0] io_rs2Set_1_value,
 //   output [31:0] io_rs2Set_2_value,
 //   output [31:0] io_rs2Set_3_value,
-wire io_rs2Set_value = (|io_rs2Set_0_value)&(|io_rs2Set_1_value)&(|io_rs2Set_2_value)&(|io_rs2Set_3_value);
+wire io_rs2Set_value = (|_dispatch_io_rs2Set_0_value)&(|_dispatch_io_rs2Set_1_value)&(|_dispatch_io_rs2Set_2_value)&(|_dispatch_io_rs2Set_3_value);
 //   output        io_rdMark_0_valid,
 //   output        io_rdMark_1_valid,
 //   output        io_rdMark_2_valid,
 //   output        io_rdMark_3_valid,
-wire io_rdMark_valid = (io_rdMark_0_valid)&(io_rdMark_1_valid)&(io_rdMark_2_valid)&(io_rdMark_3_valid);
+wire io_rdMark_valid = (_dispatch_io_rdMark_0_valid)&(_dispatch_io_rdMark_1_valid)&(_dispatch_io_rdMark_2_valid)&(_dispatch_io_rdMark_3_valid);
 wire dispatcher_final = 
                         (io_inst_ready)&
                         (io_rs1Read_valid)&
@@ -1175,7 +1174,7 @@ wire dispatcher_final =
 //   output [4:0]  io_rdMark_1_addr,
 //   output [4:0]  io_rdMark_2_addr,
 //   output [4:0]  io_rdMark_3_addr,
-wire io_rdMark_addr = (|io_rdMark_0_addr)&(|io_rdMark_1_addr)&(|io_rdMark_2_addr)&(|io_rdMark_3_addr);
+wire io_rdMark_addr = (|_dispatch_io_rdMark_0_addr)&(|_dispatch_io_rdMark_1_addr)&(|_dispatch_io_rdMark_2_addr)&(|_dispatch_io_rdMark_3_addr);
 //   output        io_busRead_0_bypass,
 //   output   io_busRead_0_immen,
 //   output [31:0] io_busRead_0_immed,
@@ -1279,7 +1278,7 @@ wire io_rdMark_addr = (|io_rdMark_0_addr)&(|io_rdMark_1_addr)&(|io_rdMark_2_addr
 //   output [4:0]  io_fbusPortAddr,
 //   output        io_slog
   /* synthesis syn_keep=1 */ DispatchV1 dispatch (
-    .io_haltedassign   (_csr_io_halted | _csr_io_wfi),
+    .io_halted                (_csr_io_halted | _csr_io_wfi),
     .io_lsuActive             (_lsu_io_active),
     .io_scoreboard_regd       (_regfile_io_scoreboard_regd),
     .io_scoreboard_comb       (_regfile_io_scoreboard_comb),
@@ -1475,7 +1474,7 @@ wire io_rdMark_addr = (|io_rdMark_0_addr)&(|io_rdMark_1_addr)&(|io_rdMark_2_addr
     .io_float_bits_uses_rs3   (_dispatch_io_float_bits_uses_rs3),
     .io_float_bits_uses_rs2   (_dispatch_io_float_bits_uses_rs2),
     .io_fbusPortAddr          (_dispatch_io_fbusPortAddr),
-    .io_slogassign     (_dispatch_io_slog)
+    .io_slog                  (_dispatch_io_slog)
   ) /* synthesis syn_keep=1 */;
 `else
   assign _dispatch_io_alu_0_valid = global_en_0;
