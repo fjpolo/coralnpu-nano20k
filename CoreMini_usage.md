@@ -91,7 +91,37 @@ Register	332 / 60780	<1%
 BSRAM	0 / 118	0%
 ```
 
+# FloatCore
 
+```
+Resource Usage Summary
+Resource	Usage
+I/O Port	24
+I/O Buf	22
+    IBUF	12
+    OBUF	10
+Register	610
+    DFFSE	4
+    DFFRE	200
+    DFFCE	406
+LUT	3835
+    LUT2	328
+    LUT3	1073
+    LUT4	2434
+ALU	618
+    ALU	618
+INV	8
+    INV	8
+DSP	
+    MULT12X12	1
+Resource Utilization Summary
+Resource	Usage	Utilization
+Logic	4461(3843 LUT, 618 ALU) / 59904	8%
+Register	610 / 60780	2%
+  --Register as Latch	0 / 60780	0%
+  --Register as FF	610 / 60780	2%
+BSRAM	0 / 118	0%
+```
 
 
 
@@ -112,11 +142,6 @@ BSRAM	0 / 118	0%
 ```
 
 # FaultManager
-
-```
-```
-
-# FloatCore
 
 ```
 ```
