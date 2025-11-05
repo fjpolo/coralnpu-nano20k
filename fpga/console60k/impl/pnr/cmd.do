@@ -1,4 +1,4 @@
--d C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\impl\gwsynthesis\console60k.vg
+-d C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\impl\gwsynthesis\CoralNPU_console60k.vg
 -p GW5AT-60B-PBGA484A-1
 -pn GW5AT-LV60PG484AC1/I0
 -cst C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\console60k.cst

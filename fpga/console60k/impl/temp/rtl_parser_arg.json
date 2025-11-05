@@ -2,7 +2,7 @@
  "Device" : "GW5AT-60B",
  "Files" : [
   {
-   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/soc/CoralNPUChiselSubsystem.sv",
+   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
    "Type" : "verilog"
   },
   {
@@ -2102,7 +2102,7 @@
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_Spi2TLUL.sv",
+   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_CoreMini.sv",
    "Type" : "verilog"
   }
  ],
@@ -2111,7 +2111,7 @@
  ],
  "LoopLimit" : 2000,
  "ResultFile" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/console60k/impl/temp/rtl_parser.result",
- "Top" : "chip_console60k_Spi2TLUL",
+ "Top" : "chip_console60k_CoreMini",
  "VerilogStd" : "sysv",
  "VhdlStd" : "vhdl_93"
 }

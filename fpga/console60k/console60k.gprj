@@ -5,9 +5,9 @@
     <Version>5</Version>
     <Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device>
     <FileList>
-        <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv" type="file.verilog" enable="0"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/RvvCoreMiniAxi.sv" type="file.verilog" enable="0"/>
-        <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/soc/CoralNPUChiselSubsystem.sv" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/soc/CoralNPUChiselSubsystem.sv" type="file.verilog" enable="0"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/RVVI/source/host/rvvi/rvviApiPkg.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/RVVI/source/host/rvvi/rvviTrace.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/dv/sv/dv_utils/dv_report_catcher.sv" type="file.verilog" enable="0"/>
@@ -541,7 +541,11 @@
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/ip/coralnpu_tlul/coralnpu_tlul_pkg_32.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/ip/sram/Sram.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k.sv" type="file.verilog" enable="0"/>
-        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_Spi2TLUL.sv" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_CoralNPU.sv" type="file.verilog" enable="0"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_CoreMini.sv" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_CoreMiniAxi.sv" type="file.verilog" enable="0"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_Spi2TLUL.sv" type="file.verilog" enable="0"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_Spi2TLUL_TLUL2Axi.sv" type="file.verilog" enable="0"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_frontend.sv" type="file.verilog" enable="0"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_sram.sv" type="file.verilog" enable="0"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_vector_unit.sv" type="file.verilog" enable="0"/>
@@ -550,6 +554,8 @@
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/top_racl_pkg.sv" type="file.verilog" enable="1"/>
         <File path="console60k.cst" type="file.cst" enable="1"/>
         <File path="console60k.sdc" type="file.sdc" enable="1"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/VCoreMiniAxi_parameters.h" type="file.other" enable="1"/>
+        <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/VRvvCoreMiniAxi_parameters.h" type="file.other" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/coralnpu_v2_hello_world_add_floats.elf" type="file.other" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/coralnpu_v2_hello_world_add_floats.vmem" type="file.other" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/RVVI/source/host/rvvi/rvvi.f" type="file.other" enable="1"/>

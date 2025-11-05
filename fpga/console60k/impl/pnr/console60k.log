@@ -7,8 +7,6 @@ Running placement......
 [10%] Placement Phase 0 completed
 [20%] Placement Phase 1 completed
 [30%] Placement Phase 2 completed
-WARN  (TA1132) :  'o_pmod0[0]' was determined to be a clock but was not created.
-WARN  (TA1132) :  'sys_clk' was determined to be a clock but was not created.
 [50%] Placement Phase 3 completed
 Running routing......
 [60%] Routing Phase 0 completed
@@ -28,5 +26,5 @@ Generate file "C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\impl\pnr\conso
 Generate file "C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\impl\pnr\console60k.rpt.html" completed
 Generate file "C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\impl\pnr\console60k.rpt.txt" completed
 Generate file "C:\Workspace\FPGA\coralnpu-nano20k\fpga\console60k\impl\pnr\console60k.tr.html" completed
-Tue Nov  4 15:37:44 2025
+Tue Nov  4 16:18:40 2025
 
