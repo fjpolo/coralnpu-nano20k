@@ -1524,6 +1524,159 @@ wire io_rdMark_addr = (|io_rdMark_0_addr)&(|io_rdMark_1_addr)&(|io_rdMark_2_addr
   wire dispatcher_final = 'h0;
 `endif // INCLUDE_DISPATCHER 
 
+`define INCLUDE_LSU
+`ifdef INCLUDE_LSU
+assign _lsu_io_req_0_valid = o_pmod0[0];
+assign _lsu_io_req_0_bits_store = o_pmod0[0];
+assign _lsu_io_req_0_bits_op = o_pmod0[0];
+assign _lsu_io_req_1_valid = o_pmod0[0];
+assign _lsu_io_req_1_bits_store = o_pmod0[0];
+assign _lsu_io_req_1_bits_op = o_pmod0[0];
+assign _lsu_io_req_2_valid = o_pmod0[0];
+assign _lsu_io_req_2_bits_store = o_pmod0[0];
+assign _lsu_io_req_2_bits_op = o_pmod0[0];
+assign _lsu_io_req_3_valid = o_pmod0[0];
+assign _lsu_io_req_3_bits_store = o_pmod0[0];
+assign _lsu_io_req_3_bits_op = o_pmod0[0];
+assign _lsu_io_busPort_addr_0 = o_pmod0[0];
+assign _lsu_io_busPort_addr_1 = o_pmod0[0];
+assign _lsu_io_busPort_addr_2 = o_pmod0[0];
+assign _lsu_io_busPort_addr_3 = o_pmod0[0];
+assign _lsu_io_busPort_data_0 = o_pmod0[0];
+assign _lsu_io_busPort_data_1 = o_pmod0[0];
+assign _lsu_io_busPort_data_2 = o_pmod0[0];
+assign _lsu_io_busPort_data_3 = o_pmod0[0];
+assign _lsu_io_busPort_flt_data_0 = o_pmod0[0];
+assign _lsu_io_ibus_ready = o_pmod0[0];
+assign _lsu_io_flush_ready = o_pmod0[0];
+assign _lsu_io_ebus_dbus_ready = o_pmod0[0];
+assign _lsu_io_ebus_fault_valid = o_pmod0[0];
+assign _lsu_io_ebus_fault_bits_write = o_pmod0[0];
+assign _lsu_io_req_0_bits_addr = o_pmod0[7:0];
+assign _lsu_io_req_0_bits_pc = o_pmod0[7:0];
+assign _lsu_io_req_1_bits_addr = o_pmod0[7:0];
+assign _lsu_io_req_1_bits_pc = o_pmod0[7:0];
+assign _lsu_io_req_2_bits_addr = o_pmod0[7:0];
+assign _lsu_io_req_2_bits_pc = o_pmod0[7:0];
+assign _lsu_io_req_3_bits_addr = o_pmod0[7:0];
+assign _lsu_io_req_3_bits_pc = o_pmod0[7:0];
+assign _lsu_io_ibus_rdata = o_pmod0[7:0];
+assign _lsu_io_dbus_rdata = o_pmod0[7:0];
+assign _lsu_io_ebus_dbus_rdata = o_pmod0[7:0];
+assign _lsu_io_ebus_fault_bits_addr = o_pmod0[7:0];
+assign _lsu_io_ebus_fault_bits_epc = o_pmod0[0];
+
+//  output [31:0]  io_rd_flt_bits_data,
+
+//  output         io_req_0_ready,
+//  output         io_req_1_ready,
+//  output         io_req_2_ready,
+//  output         io_req_3_ready,
+//  output         io_rd_valid,
+//  output [4:0]   io_rd_bits_addr,
+//  output [31:0]  io_rd_bits_data,
+//  output         io_rd_flt_valid,
+//  output [4:0]   io_rd_flt_bits_addr,
+//  output         io_ibus_valid,
+//  output [31:0]  io_ibus_addr,
+//  output         io_dbus_valid,
+//                 io_dbus_write,
+//  output [31:0]  io_dbus_addr,
+//  output [127:0] io_dbus_wdata,
+//  output [15:0]  io_dbus_wmask,
+//  output         io_flush_valid,
+//  output         io_flush_fencei,
+//  output [31:0]  io_flush_pcNext,
+//  output         io_fault_valid,
+//                 io_fault_bits_write,
+//  output [31:0]  io_fault_bits_addr,
+//                 io_fault_bits_epc,
+//  output         io_ebus_dbus_valid,
+//  output         io_ebus_dbus_write,
+//  output [31:0]  io_ebus_dbus_pc,
+//                 io_ebus_dbus_addr,
+//  output [4:0]   io_ebus_dbus_size,
+//  output [127:0] io_ebus_dbus_wdata,
+//  output [1:0]   io_storeCount,
+//  output         io_active
+  /* synthesis syn_keep=1 */ LsuV1 lsu (
+    .clock                    (sys_clk),
+    .reset                    (sys_rst),
+    .io_req_0_ready           (_lsu_io_req_0_ready),
+    .io_req_0_valid           (_dispatch_io_lsu_0_valid),
+    .io_req_0_bits_store      (_dispatch_io_lsu_0_bits_store),
+    .io_req_0_bits_addr       (_dispatch_io_lsu_0_bits_addr),
+    .io_req_0_bits_op         (_dispatch_io_lsu_0_bits_op),
+    .io_req_0_bits_pc         (_dispatch_io_lsu_0_bits_pc),
+    .io_req_1_ready           (_lsu_io_req_1_ready),
+    .io_req_1_valid           (_dispatch_io_lsu_1_valid),
+    .io_req_1_bits_store      (_dispatch_io_lsu_1_bits_store),
+    .io_req_1_bits_addr       (_dispatch_io_lsu_1_bits_addr),
+    .io_req_1_bits_op         (_dispatch_io_lsu_1_bits_op),
+    .io_req_1_bits_pc         (_dispatch_io_lsu_1_bits_pc),
+    .io_req_2_ready           (_lsu_io_req_2_ready),
+    .io_req_2_valid           (_dispatch_io_lsu_2_valid),
+    .io_req_2_bits_store      (_dispatch_io_lsu_2_bits_store),
+    .io_req_2_bits_addr       (_dispatch_io_lsu_2_bits_addr),
+    .io_req_2_bits_op         (_dispatch_io_lsu_2_bits_op),
+    .io_req_2_bits_pc         (_dispatch_io_lsu_2_bits_pc),
+    .io_req_3_ready           (_lsu_io_req_3_ready),
+    .io_req_3_valid           (_dispatch_io_lsu_3_valid),
+    .io_req_3_bits_store      (_dispatch_io_lsu_3_bits_store),
+    .io_req_3_bits_addr       (_dispatch_io_lsu_3_bits_addr),
+    .io_req_3_bits_op         (_dispatch_io_lsu_3_bits_op),
+    .io_req_3_bits_pc         (_dispatch_io_lsu_3_bits_pc),
+    .io_busPort_addr_0        (_regfile_io_busPort_addr_0),
+    .io_busPort_addr_1        (_regfile_io_busPort_addr_1),
+    .io_busPort_addr_2        (_regfile_io_busPort_addr_2),
+    .io_busPort_addr_3        (_regfile_io_busPort_addr_3),
+    .io_busPort_data_0        (_regfile_io_busPort_data_0),
+    .io_busPort_data_1        (_regfile_io_busPort_data_1),
+    .io_busPort_data_2        (_regfile_io_busPort_data_2),
+    .io_busPort_data_3        (_regfile_io_busPort_data_3),
+    .io_busPort_flt_data_0    (_fRegfile_io_busPort_data_0),
+    .io_rd_valid              (_lsu_io_rd_valid),
+    .io_rd_bits_addr          (_lsu_io_rd_bits_addr),
+    .io_rd_bits_data          (_lsu_io_rd_bits_data),
+    .io_rd_flt_valid          (_lsu_io_rd_flt_valid),
+    .io_rd_flt_bits_addr      (_lsu_io_rd_flt_bits_addr),
+    .io_rd_flt_bits_data      (_lsu_io_rd_flt_bits_data),
+    .io_ibus_valid            (_lsu_io_ibus_valid),
+    .io_ibus_ready            (_lsu_io_ibus_valid),
+    .io_ibus_addr             (_lsu_io_ibus_addr),
+    .io_ibus_rdata            (io_ibus_rdata),
+    .io_dbus_valid            (_lsu_io_dbus_valid),
+    .io_dbus_write            (_lsu_io_dbus_write),
+    .io_dbus_addr             (_lsu_io_dbus_addr),
+    .io_dbus_wdata            (_lsu_io_dbus_wdata),
+    .io_dbus_wmask            (io_dbus_wmask),
+    .io_dbus_rdata            (io_dbus_rdata),
+    .io_flush_valid           (_lsu_io_flush_valid),
+    .io_flush_ready           (_lsu_io_flush_valid),
+    .io_flush_fencei          (_lsu_io_flush_fencei),
+    .io_flush_pcNext          (_lsu_io_flush_pcNext),
+    .io_fault_valid           (_lsu_io_fault_valid),
+    .io_fault_bits_write      (_lsu_io_fault_bits_write),
+    .io_fault_bits_addr       (_lsu_io_fault_bits_addr),
+    .io_fault_bits_epc        (_lsu_io_fault_bits_epc),
+    .io_ebus_dbus_valid       (io_ebus_dbus_valid),
+    .io_ebus_dbus_ready       (io_ebus_dbus_ready),
+    .io_ebus_dbus_write       (io_ebus_dbus_write),
+    .io_ebus_dbus_pc          (io_ebus_dbus_pc),
+    .io_ebus_dbus_addr        (io_ebus_dbus_addr),
+    .io_ebus_dbus_size        (io_ebus_dbus_size),
+    .io_ebus_dbus_wdata       (io_ebus_dbus_wdata),
+    .io_ebus_dbus_rdata       (io_ebus_dbus_rdata),
+    .io_ebus_fault_valid      (io_ebus_fault_valid),
+    .io_ebus_fault_bits_write (io_ebus_fault_bits_write),
+    .io_ebus_fault_bits_addr  (io_ebus_fault_bits_addr),
+    .io_ebus_fault_bits_epc   (io_ebus_fault_bits_epc),
+    .io_storeCount            (_lsu_io_storeCount),
+    .io_active                (_lsu_io_active)
+  )/* synthesis syn_keep=1 */;
+`else
+`endif // INCLUDE_LSU
+
 // =========================================================================
  // --- FINAL OUTPUT ASSIGNMENT ---------------------------------------------
  // =========================================================================
@@ -1563,7 +1716,7 @@ assign _regfile_io_readData_data =
  // o_pmod1[6]: Regfile Target 1 bits [2:1]
  assign o_pmod1[6] = ((|_regfile_io_target_1_data)&(|_fetch_io_inst_lanes_3_valid)&(|_floatCore_io_write_ports_1_data_mantissa)&(|_floatCore_io_write_ports_1_data_exponent)&(_floatCore_io_write_ports_1_data_sign)&(|_fRegfile_io_read_ports_2_data_exponent)&(_fRegfile_io_read_ports_2_data_sign)) ^ (_regfile_io_target_2_data[2]) ^ (global_en_7);
  // o_pmod1[7]: Mix of Regfile Write Count and original input o_pmod0
- assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)) ^ (o_pmod0[7]) ^ (global_en_0);
+ assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)&(_lsu_io_rd_flt_bits_data)) ^ (o_pmod0[7]) ^ (global_en_0);
  // UART outputs tied off as unused in this minimal test
  assign uart_tx_o = 2'b0;
 

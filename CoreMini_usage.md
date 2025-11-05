@@ -191,27 +191,54 @@ Register	4337 / 60780	8%
 BSRAM	0 / 118	0%
 ```
 
-# LsuV1
+# LsuV1 (no dispatcher)
+
+```
+Resource Usage Summary
+Resource	Usage
+I/O Port	24
+I/O Buf	22
+    IBUF	12
+    OBUF	10
+Register	1634
+    DFFSE	4
+    DFFRE	200
+    DFFCE	1430
+LUT	5908
+    LUT2	347
+    LUT3	3071
+    LUT4	2490
+ALU	618
+    ALU	618
+INV	8
+    INV	8
+DSP	
+    MULT12X12	1
+Resource Utilization Summary
+Resource	Usage	Utilization
+Logic	6534(5916 LUT, 618 ALU) / 59904	11%
+Register	1634 / 60780	3%
+  --Register as Latch	0 / 60780	0%
+  --Register as FF	1634 / 60780	3%
+BSRAM	0 / 118	0%
+```
+
+# Mlu (no dispatcher)
 
 ```
 ```
 
-# Mlu
+# FaultManager (no dispatcher)
 
 ```
 ```
 
-# FaultManager
+# Arbiter3_RegfileWriteDataIO (no dispatcher)
 
 ```
 ```
 
-# Arbiter3_RegfileWriteDataIO
-
-```
-```
-
-# Csr
+# Csr (no dispatcher)
 
 ```
 ```
