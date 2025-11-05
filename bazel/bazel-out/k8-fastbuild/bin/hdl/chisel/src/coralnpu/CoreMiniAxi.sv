@@ -4824,66 +4824,6 @@ module Decode(
   assign io_bruTarget = _bru_target_T_2;
   assign io_alu_valid = decodeEn & alu_valid;
   assign io_alu_bits_addr = io_inst_bits_inst[11:7];
-  assign io_alu_bits_op =
-    _alu_T_1
-      ? 5'h0
-      : d_sub
-          ? 5'h1
-          : _alu_T_2
-              ? 5'h2
-              : _alu_T_3
-                  ? 5'h3
-                  : _alu_T_4
-                      ? 5'h4
-                      : _alu_T_5
-                          ? 5'h5
-                          : _alu_T_6
-                              ? 5'h6
-                              : _alu_T_7
-                                  ? 5'h7
-                                  : _alu_T_8
-                                      ? 5'h8
-                                      : _alu_T_9
-                                          ? 5'h9
-                                          : d_lui
-                                              ? 5'hA
-                                              : d_andn
-                                                  ? 5'hB
-                                                  : d_orn
-                                                      ? 5'hC
-                                                      : d_xnor
-                                                          ? 5'hD
-                                                          : d_clz
-                                                              ? 5'hE
-                                                              : d_ctz
-                                                                  ? 5'hF
-                                                                  : d_cpop
-                                                                      ? 5'h10
-                                                                      : d_max
-                                                                          ? 5'h11
-                                                                          : d_maxu
-                                                                              ? 5'h12
-                                                                              : d_min
-                                                                                  ? 5'h13
-                                                                                  : d_minu
-                                                                                      ? 5'h14
-                                                                                      : d_sextb
-                                                                                          ? 5'h15
-                                                                                          : d_sexth
-                                                                                              ? 5'h16
-                                                                                              : d_rol
-                                                                                                  ? 5'h17
-                                                                                                  : d_ror
-                                                                                                      ? 5'h18
-                                                                                                      : d_orcb
-                                                                                                          ? 5'h19
-                                                                                                          : d_rev8
-                                                                                                              ? 5'h1A
-                                                                                                              : d_zexth
-                                                                                                                  ? 5'h1B
-                                                                                                                  : d_rori
-                                                                                                                      ? 5'h18
-                                                                                                                      : 5'h0;
   assign io_bru_valid = decodeEn & bru_valid & ~(_io_inst_ready_T_25 | bxx_fault);
   assign io_bru_bits_fwd = io_inst_bits_brchFwd;
   assign io_bru_bits_op = bru_bits;
@@ -4891,6 +4831,42 @@ module Decode(
   assign io_bru_bits_target = _bru_target_T_2;
   assign io_bru_bits_link = io_inst_bits_inst[11:7];
   assign io_csr_valid = io_csr_valid_0;
+
+  // Added for Change 2: Refactor io_alu_bits_op
+  reg [4:0] alu_bits_op_r; 
+
+  always @* begin
+    alu_bits_op_r = 5'h0; // Default: ADD/ADDI/AUIPC
+    if (d_lui)          alu_bits_op_r = 5'hA;
+    else if (_alu_T_1)  alu_bits_op_r = 5'h0;
+    else if (d_sub)     alu_bits_op_r = 5'h1;
+    else if (_alu_T_2)  alu_bits_op_r = 5'h2;
+    else if (_alu_T_3)  alu_bits_op_r = 5'h3;
+    else if (_alu_T_4)  alu_bits_op_r = 5'h4;
+    else if (_alu_T_5)  alu_bits_op_r = 5'h5;
+    else if (_alu_T_6)  alu_bits_op_r = 5'h6;
+    else if (_alu_T_7)  alu_bits_op_r = 5'h7;
+    else if (_alu_T_8)  alu_bits_op_r = 5'h8;
+    else if (_alu_T_9)  alu_bits_op_r = 5'h9;
+    else if (d_andn)    alu_bits_op_r = 5'hB;
+    else if (d_orn)     alu_bits_op_r = 5'hC;
+    else if (d_xnor)    alu_bits_op_r = 5'hD;
+    else if (d_clz)     alu_bits_op_r = 5'hE;
+    else if (d_ctz)     alu_bits_op_r = 5'hF;
+    else if (d_cpop)    alu_bits_op_r = 5'h10;
+    else if (d_max)     alu_bits_op_r = 5'h11;
+    else if (d_maxu)    alu_bits_op_r = 5'h12;
+    else if (d_min)     alu_bits_op_r = 5'h13;
+    else if (d_minu)    alu_bits_op_r = 5'h14;
+    else if (d_sextb)   alu_bits_op_r = 5'h15;
+    else if (d_sexth)   alu_bits_op_r = 5'h16;
+    else if (d_rol)     alu_bits_op_r = 5'h17;
+    else if (d_ror || d_rori) alu_bits_op_r = 5'h18;
+    else if (d_orcb)    alu_bits_op_r = 5'h19;
+    else if (d_rev8)    alu_bits_op_r = 5'h1A;
+    else if (d_zexth)   alu_bits_op_r = 5'h1B;
+  end
+
   assign io_csr_bits_addr = io_inst_bits_inst[11:7];
   assign io_csr_bits_index = io_inst_bits_inst[31:20];
   assign io_csr_bits_op = d_csrrw ? 2'h0 : d_csrrs ? 2'h1 : {d_csrrc, 1'h0};
@@ -4898,6 +4874,7 @@ module Decode(
   assign io_lsu_valid = decodeEn & lsu_valid;
   assign io_lsu_bits_store = io_inst_bits_inst[5];
   assign io_lsu_bits_addr = io_inst_bits_inst[11:7];
+  assign io_alu_bits_op = alu_bits_op_r; // New assignment points to the result of the always block
   assign io_lsu_bits_op =
     d_lb
       ? 5'h0
