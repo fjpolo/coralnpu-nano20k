@@ -875,22 +875,6 @@ module chip_console60k_CoreMini(
     .io_rd_bits_data  (_alu_3_io_rd_bits_data)
   )/* synthesis syn_keep=1 */;
 
-  wire [31:0]  _alu_io_rd_bits_data/* synthesis syn_keep=1 */;
-  wire [31:0]  _regfile_io_readData_data/* synthesis syn_keep=1 */;
-  assign _alu_io_rd_bits_data = 
-                                (_alu_0_io_rd_bits_data)&
-                                (_alu_1_io_rd_bits_data)&
-                                (_alu_2_io_rd_bits_data)&
-                                (_alu_3_io_rd_bits_data);
-  assign _regfile_io_readData_data = 
-                                      (_regfile_io_readData_0_data)&
-                                      (_regfile_io_readData_1_data)&
-                                      (_regfile_io_readData_2_data)&
-                                      (_regfile_io_readData_3_data)&
-                                      (_regfile_io_readData_4_data)&
-                                      (_regfile_io_readData_5_data)&
-                                      (_regfile_io_readData_6_data);
-
   /* synthesis syn_keep=1 */Bru bru_0 (
     .clock                        (sys_clk),
     .reset                        (sys_rst),
@@ -994,6 +978,22 @@ module chip_console60k_CoreMini(
  // =========================================================================
  // --- FINAL OUTPUT ASSIGNMENT ---------------------------------------------
  // =========================================================================
+
+  wire [31:0]  _alu_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_readData_data/* synthesis syn_keep=1 */;
+  assign _alu_io_rd_bits_data = 
+                                (_alu_0_io_rd_bits_data)&
+                                (_alu_1_io_rd_bits_data)&
+                                (_alu_2_io_rd_bits_data)&
+                                (_alu_3_io_rd_bits_data);
+  assign _regfile_io_readData_data = 
+                                      (_regfile_io_readData_0_data)&
+                                      (_regfile_io_readData_1_data)&
+                                      (_regfile_io_readData_2_data)&
+                                      (_regfile_io_readData_3_data)&
+                                      (_regfile_io_readData_4_data)&
+                                      (_regfile_io_readData_5_data)&
+                                      (_regfile_io_readData_6_data);
 
  // Use a combination of CoreMini outputs and global_en to drive o_pmod1
  // to ensure the CoreMini logic is preserved during synthesis.
