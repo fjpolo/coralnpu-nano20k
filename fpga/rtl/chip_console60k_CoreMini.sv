@@ -805,6 +805,93 @@ module chip_console60k_CoreMini(
     .io_pc                        (_fetch_io_pc)
   ) /* synthesis syn_keep=1 */;
 
+  assign _dispatch_io_alu_0_valid = global_en_0;
+  assign _dispatch_io_alu_0_bits_addr = o_pmod0[4:0];
+  assign _dispatch_io_alu_0_bits_op = {s0, s0, s1, s1, s2};
+  assign _dispatch_io_alu_0_bits_addr = ~o_pmod0[4:0];
+  /* synthesis syn_keep=1 */ Alu alu_0 (
+    .clock            (sys_clk),
+    .reset            (sys_rst),
+    .io_req_valid     (_dispatch_io_alu_0_valid),
+    .io_req_bits_addr (_dispatch_io_alu_0_bits_addr),
+    .io_req_bits_op   (_dispatch_io_alu_0_bits_op),
+    .io_rs1_valid     (_regfile_io_readData_0_valid),
+    .io_rs1_data      (_regfile_io_readData_0_data),
+    .io_rs2_valid     (_regfile_io_readData_1_valid),
+    .io_rs2_data      (_regfile_io_readData_1_data),
+    .io_rd_valid      (_alu_0_io_rd_valid),
+    .io_rd_bits_addr  (_alu_0_io_rd_bits_addr),
+    .io_rd_bits_data  (_alu_0_io_rd_bits_data)
+  ) /* synthesis syn_keep=1 */;
+  assign _dispatch_io_alu_1_valid = global_en_0;
+  assign _dispatch_io_alu_1_bits_addr = o_pmod0[4:0];
+  assign _dispatch_io_alu_1_bits_op = {s0, s0, s1, s1, s2};
+  /* synthesis syn_keep=1 */ Alu alu_1 (
+    .clock            (sys_clk),
+    .reset            (sys_rst),
+    .io_req_valid     (_dispatch_io_alu_1_valid),
+    .io_req_bits_addr (_dispatch_io_alu_1_bits_addr),
+    .io_req_bits_op   (_dispatch_io_alu_1_bits_op),
+    .io_rs1_valid     (_regfile_io_readData_2_valid),
+    .io_rs1_data      (_regfile_io_readData_2_data),
+    .io_rs2_valid     (_regfile_io_readData_3_valid),
+    .io_rs2_data      (_regfile_io_readData_3_data),
+    .io_rd_valid      (_alu_1_io_rd_valid),
+    .io_rd_bits_addr  (_alu_1_io_rd_bits_addr),
+    .io_rd_bits_data  (_alu_1_io_rd_bits_data)
+  )/* synthesis syn_keep=1 */;
+  assign _dispatch_io_alu_2_valid = global_en_0;
+  assign _dispatch_io_alu_2_bits_addr = o_pmod0[4:0];
+  assign _dispatch_io_alu_2_bits_op = {s0, s0, s1, s1, s2};
+  /* synthesis syn_keep=1 */ Alu alu_2 (
+    .clock            (sys_clk),
+    .reset            (sys_rst),
+    .io_req_valid     (_dispatch_io_alu_2_valid),
+    .io_req_bits_addr (_dispatch_io_alu_2_bits_addr),
+    .io_req_bits_op   (_dispatch_io_alu_2_bits_op),
+    .io_rs1_valid     (_regfile_io_readData_4_valid),
+    .io_rs1_data      (_regfile_io_readData_4_data),
+    .io_rs2_valid     (_regfile_io_readData_5_valid),
+    .io_rs2_data      (_regfile_io_readData_5_data),
+    .io_rd_valid      (_alu_2_io_rd_valid),
+    .io_rd_bits_addr  (_alu_2_io_rd_bits_addr),
+    .io_rd_bits_data  (_alu_2_io_rd_bits_data)
+  )/* synthesis syn_keep=1 */;
+  assign _dispatch_io_alu_3_valid = global_en_0;
+  assign _dispatch_io_alu_3_bits_addr = o_pmod0[4:0];
+  assign _dispatch_io_alu_3_bits_op = {s0, s0, s1, s1, s2};
+  /* synthesis syn_keep=1 */Alu alu_3 (
+    .clock            (sys_clk),
+    .reset            (sys_rst),
+    .io_req_valid     (_dispatch_io_alu_3_valid),
+    .io_req_bits_addr (_dispatch_io_alu_3_bits_addr),
+    .io_req_bits_op   (_dispatch_io_alu_3_bits_op),
+    .io_rs1_valid     (_regfile_io_readData_6_valid),
+    .io_rs1_data      (_regfile_io_readData_6_data),
+    .io_rs2_valid     (_regfile_io_readData_7_valid),
+    .io_rs2_data      (_regfile_io_readData_7_data),
+    .io_rd_valid      (_alu_3_io_rd_valid),
+    .io_rd_bits_addr  (_alu_3_io_rd_bits_addr),
+    .io_rd_bits_data  (_alu_3_io_rd_bits_data)
+  )/* synthesis syn_keep=1 */;
+
+  wire [31:0]  _alu_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_readData_data/* synthesis syn_keep=1 */;
+  assign _alu_io_rd_bits_data = 
+                                (_alu_0_io_rd_bits_data)&
+                                (_alu_1_io_rd_bits_data)&
+                                (_alu_2_io_rd_bits_data)&
+                                (_alu_3_io_rd_bits_data);
+  assign _regfile_io_readData_data = 
+                                      (_regfile_io_readData_0_data)&
+                                      (_regfile_io_readData_1_data)&
+                                      (_regfile_io_readData_2_data)&
+                                      (_regfile_io_readData_3_data)&
+                                      (_regfile_io_readData_4_data)&
+                                      (_regfile_io_readData_5_data)&
+                                      (_regfile_io_readData_6_data);
+
+
  // =========================================================================
  // --- FINAL OUTPUT ASSIGNMENT ---------------------------------------------
  // =========================================================================
@@ -813,21 +900,21 @@ module chip_console60k_CoreMini(
  // to ensure the CoreMini logic is preserved during synthesis.
 
  // o_pmod1[0]: Regfile Target 0 LSB
- assign o_pmod1[0] = ((|_regfile_io_target_0_data)&&(|_fetch_io_ibus_valid)) ^ global_en_1;
+ assign o_pmod1[0] = ((|_regfile_io_target_0_data)&(|_fetch_io_ibus_valid)&(_alu_0_io_rd_bits_data)) ^ (global_en_1);
  // o_pmod1[1]: Regfile Target 1 LSB
- assign o_pmod1[1] = ((|_regfile_io_target_1_data)&&(|_fetch_io_inst_lanes_0_valid)) ^ global_en_2;
+ assign o_pmod1[1] = ((|_regfile_io_target_1_data)&(|_fetch_io_inst_lanes_0_valid)&(_regfile_io_readData_data)) ^ (global_en_2);
  // o_pmod1[2]: Regfile Target 2 LSB
- assign o_pmod1[2] = ((|_regfile_io_target_2_data)&&(|_fetch_io_pc)) ^ global_en_3;
+ assign o_pmod1[2] = ((|_regfile_io_target_2_data)&(|_fetch_io_pc)) ^ global_en_3;
  // o_pmod1[3]: Regfile Target 3 LSB
- assign o_pmod1[3] = ((|_regfile_io_target_3_data)&&(|_fetch_io_inst_lanes_0_bits_brchFwd)) ^ global_en_4;
+ assign o_pmod1[3] = ((|_regfile_io_target_3_data)&(|_fetch_io_inst_lanes_0_bits_brchFwd)) ^ (global_en_4);
  // o_pmod1[4]: Regfile Write Count LSB
- assign o_pmod1[4] = ((|_regfile_io_rfwriteCount )&&(|_fetch_io_ibus_addr))^ global_en_5;
+ assign o_pmod1[4] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_ibus_addr)) ^ (global_en_5);
  // o_pmod1[5]: Regfile Target 0 bits [2:1]
- assign o_pmod1[5] = ((|_regfile_io_target_0_data)&&(|_fetch_io_inst_lanes_1_valid)) ^ _regfile_io_target_0_data[2] ^ global_en_6;
+ assign o_pmod1[5] = ((|_regfile_io_target_0_data)&(|_fetch_io_inst_lanes_1_valid)) ^ (_regfile_io_target_0_data[2]) ^ (global_en_6);
  // o_pmod1[6]: Regfile Target 1 bits [2:1]
- assign o_pmod1[6] = ((|_regfile_io_target_1_data)&&(|_fetch_io_inst_lanes_3_valid)) ^ _regfile_io_target_1_data[2] ^ global_en_7;
+ assign o_pmod1[6] = ((|_regfile_io_target_1_data)&(|_fetch_io_inst_lanes_3_valid)) ^ (_regfile_io_target_1_data[2]) ^ (global_en_7);
  // o_pmod1[7]: Mix of Regfile Write Count and original input o_pmod0
- assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&&(|_fetch_io_pc)) ^ o_pmod0[7] ^ global_en_0;
+ assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)) ^ (o_pmod0[7]) ^ (global_en_0);
  // UART outputs tied off as unused in this minimal test
  assign uart_tx_o = 2'b0;
 
