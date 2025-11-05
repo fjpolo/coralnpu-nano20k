@@ -2090,6 +2090,10 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_CoreMini.sv",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/coralnpu_soc.sv",
    "Type" : "verilog"
   },
@@ -2099,10 +2103,6 @@
   },
   {
    "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/top_racl_pkg.sv",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/chip_console60k_CoreMini.sv",
    "Type" : "verilog"
   }
  ],

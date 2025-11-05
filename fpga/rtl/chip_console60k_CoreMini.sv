@@ -148,7 +148,9 @@ module chip_console60k_CoreMini(
  // --- CoreMini INSTANTIATION ----------------------------------------------
  // =========================================================================
 
- /* synthesis syn_keep=1 */ CoreMini i_CoreMini(
+`ifdef FULL_SCORE
+//  /* synthesis syn_keep=1 */ CoreMini i_CoreMini(
+ /* synthesis syn_keep=1 */ SCore i_CoreMini_SCore(
    .clock(sys_clk),
    .reset(sys_rst),
    .io_csr_in_value_0(csr_in_value_0),
@@ -253,6 +255,555 @@ module chip_console60k_CoreMini(
    .io_debug_float_writeData_1_bits_addr(),
    .io_debug_float_writeData_1_bits_data()
  ) /* synthesis syn_keep=1 */;
+ `endif // FULL_SCORE
+
+
+
+ // =========================================================================
+ // --- SCORE - INDIVIDUAL MODULES ----------------------------------------
+ // =========================================================================
+  wire         _arb_io_in_1_ready/* synthesis syn_keep=1 */;
+  wire         _arb_io_in_2_ready/* synthesis syn_keep=1 */;
+  wire         _arb_io_out_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _arb_io_out_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _arb_io_out_bits_data/* synthesis syn_keep=1 */;
+  wire [22:0]  _fRegfile_io_read_ports_0_data_mantissa/* synthesis syn_keep=1 */;
+  wire [7:0]   _fRegfile_io_read_ports_0_data_exponent/* synthesis syn_keep=1 */;
+  wire         _fRegfile_io_read_ports_0_data_sign/* synthesis syn_keep=1 */;
+  wire [22:0]  _fRegfile_io_read_ports_1_data_mantissa/* synthesis syn_keep=1 */;
+  wire [7:0]   _fRegfile_io_read_ports_1_data_exponent/* synthesis syn_keep=1 */;
+  wire         _fRegfile_io_read_ports_1_data_sign/* synthesis syn_keep=1 */;
+  wire [22:0]  _fRegfile_io_read_ports_2_data_mantissa/* synthesis syn_keep=1 */;
+  wire [7:0]   _fRegfile_io_read_ports_2_data_exponent/* synthesis syn_keep=1 */;
+  wire         _fRegfile_io_read_ports_2_data_sign/* synthesis syn_keep=1 */;
+  wire [31:0]  _fRegfile_io_scoreboard/* synthesis syn_keep=1 */;
+  wire [31:0]  _fRegfile_io_busPort_data_0/* synthesis syn_keep=1 */;
+  wire         _floatCore_io_inst_ready/* synthesis syn_keep=1 */;
+  wire         _floatCore_io_read_ports_0_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _floatCore_io_read_ports_0_addr/* synthesis syn_keep=1 */;
+  wire         _floatCore_io_read_ports_1_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _floatCore_io_read_ports_1_addr/* synthesis syn_keep=1 */;
+  wire         _floatCore_io_read_ports_2_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _floatCore_io_read_ports_2_addr/* synthesis syn_keep=1 */;
+  wire         _floatCore_io_write_ports_0_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _floatCore_io_write_ports_0_addr/* synthesis syn_keep=1 */;
+  wire [22:0]  _floatCore_io_write_ports_0_data_mantissa/* synthesis syn_keep=1 */;
+  wire [7:0]   _floatCore_io_write_ports_0_data_exponent/* synthesis syn_keep=1 */;
+  wire         _floatCore_io_write_ports_0_data_sign/* synthesis syn_keep=1 */;
+  wire         _floatCore_io_write_ports_1_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _floatCore_io_write_ports_1_addr/* synthesis syn_keep=1 */;
+  wire [22:0]  _floatCore_io_write_ports_1_data_mantissa/* synthesis syn_keep=1 */;
+  wire [7:0]   _floatCore_io_write_ports_1_data_exponent/* synthesis syn_keep=1 */;
+  wire         _floatCore_io_write_ports_1_data_sign/* synthesis syn_keep=1 */;
+  wire         _floatCore_io_scalar_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _floatCore_io_scalar_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _floatCore_io_scalar_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _floatCore_io_csr_in_fflags_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _floatCore_io_csr_in_fflags_bits/* synthesis syn_keep=1 */;
+  wire         _fault_manager_io_out_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _fault_manager_io_out_bits_mepc/* synthesis syn_keep=1 */;
+  wire [31:0]  _fault_manager_io_out_bits_mtval/* synthesis syn_keep=1 */;
+  wire [31:0]  _fault_manager_io_out_bits_mcause/* synthesis syn_keep=1 */;
+  wire         _dvu_io_req_ready/* synthesis syn_keep=1 */;
+  wire         _dvu_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dvu_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _dvu_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _mlu_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _mlu_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _mlu_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _lsu_io_req_0_ready/* synthesis syn_keep=1 */;
+  wire         _lsu_io_req_1_ready/* synthesis syn_keep=1 */;
+  wire         _lsu_io_req_2_ready/* synthesis syn_keep=1 */;
+  wire         _lsu_io_req_3_ready/* synthesis syn_keep=1 */;
+  wire         _lsu_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _lsu_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _lsu_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _lsu_io_rd_flt_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _lsu_io_rd_flt_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _lsu_io_rd_flt_bits_data/* synthesis syn_keep=1 */;
+  wire         _lsu_io_ibus_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _lsu_io_ibus_addr/* synthesis syn_keep=1 */;
+  wire         _lsu_io_dbus_valid/* synthesis syn_keep=1 */;
+  wire         _lsu_io_dbus_write/* synthesis syn_keep=1 */;
+  wire [31:0]  _lsu_io_dbus_addr/* synthesis syn_keep=1 */;
+  wire [127:0] _lsu_io_dbus_wdata/* synthesis syn_keep=1 */;
+  wire         _lsu_io_flush_valid/* synthesis syn_keep=1 */;
+  wire         _lsu_io_flush_fencei/* synthesis syn_keep=1 */;
+  wire [31:0]  _lsu_io_flush_pcNext/* synthesis syn_keep=1 */;
+  wire         _lsu_io_fault_valid/* synthesis syn_keep=1 */;
+  wire         _lsu_io_fault_bits_write/* synthesis syn_keep=1 */;
+  wire [31:0]  _lsu_io_fault_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _lsu_io_fault_bits_epc/* synthesis syn_keep=1 */;
+  wire [1:0]   _lsu_io_storeCount/* synthesis syn_keep=1 */;
+  wire         _lsu_io_active/* synthesis syn_keep=1 */;
+  wire         _bru_3_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _bru_3_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _bru_3_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _bru_3_io_taken_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _bru_3_io_taken_value/* synthesis syn_keep=1 */;
+  wire         _bru_2_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _bru_2_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _bru_2_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _bru_2_io_taken_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _bru_2_io_taken_value/* synthesis syn_keep=1 */;
+  wire         _bru_1_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _bru_1_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _bru_1_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _bru_1_io_taken_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _bru_1_io_taken_value/* synthesis syn_keep=1 */;
+  wire         _bru_0_io_csr_in_mode_valid/* synthesis syn_keep=1 */;
+  wire [1:0]   _bru_0_io_csr_in_mode_bits/* synthesis syn_keep=1 */;
+  wire         _bru_0_io_csr_in_mcause_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _bru_0_io_csr_in_mcause_bits/* synthesis syn_keep=1 */;
+  wire         _bru_0_io_csr_in_mepc_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _bru_0_io_csr_in_mepc_bits/* synthesis syn_keep=1 */;
+  wire         _bru_0_io_csr_in_mtval_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _bru_0_io_csr_in_mtval_bits/* synthesis syn_keep=1 */;
+  wire         _bru_0_io_csr_in_halt/* synthesis syn_keep=1 */;
+  wire         _bru_0_io_csr_in_fault/* synthesis syn_keep=1 */;
+  wire         _bru_0_io_csr_in_wfi/* synthesis syn_keep=1 */;
+  wire         _bru_0_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _bru_0_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _bru_0_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _bru_0_io_taken_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _bru_0_io_taken_value/* synthesis syn_keep=1 */;
+  wire         _bru_0_io_interlock/* synthesis syn_keep=1 */;
+  wire         _alu_3_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _alu_3_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _alu_3_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _alu_2_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _alu_2_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _alu_2_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _alu_1_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _alu_1_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _alu_1_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _alu_0_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _alu_0_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _alu_0_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_csrFault_0/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_jalFault_0/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_jalFault_1/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_jalFault_2/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_jalFault_3/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_jalrFault_0/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_jalrFault_1/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_jalrFault_2/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_jalrFault_3/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bxxFault_0/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bxxFault_1/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bxxFault_2/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bxxFault_3/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_undefFault_0/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bruTarget_0/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bruTarget_1/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bruTarget_2/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bruTarget_3/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_inst_0_ready/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_inst_1_ready/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_inst_2_ready/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_inst_3_ready/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs1Read_0_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rs1Read_0_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs1Read_1_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rs1Read_1_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs1Read_2_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rs1Read_2_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs1Read_3_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rs1Read_3_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs1Set_0_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_rs1Set_0_value/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs1Set_1_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_rs1Set_1_value/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs1Set_2_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_rs1Set_2_value/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs1Set_3_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_rs1Set_3_value/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs2Read_0_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rs2Read_0_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs2Read_1_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rs2Read_1_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs2Read_2_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rs2Read_2_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs2Read_3_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rs2Read_3_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs2Set_0_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_rs2Set_0_value/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs2Set_1_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_rs2Set_1_value/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs2Set_2_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_rs2Set_2_value/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rs2Set_3_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_rs2Set_3_value/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rdMark_0_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rdMark_0_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rdMark_1_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rdMark_1_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rdMark_2_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rdMark_2_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rdMark_3_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rdMark_3_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_busRead_0_bypass/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_busRead_0_immen/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_busRead_0_immed/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_busRead_1_bypass/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_busRead_1_immed/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_busRead_2_bypass/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_busRead_2_immed/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_busRead_3_bypass/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_busRead_3_immed/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_rdMark_flt_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_rdMark_flt_addr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_alu_0_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_alu_0_bits_addr/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_alu_0_bits_op/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_alu_1_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_alu_1_bits_addr/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_alu_1_bits_op/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_alu_2_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_alu_2_bits_addr/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_alu_2_bits_op/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_alu_3_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_alu_3_bits_addr/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_alu_3_bits_op/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bru_0_valid/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bru_0_bits_fwd/* synthesis syn_keep=1 */;
+  wire [3:0]   _dispatch_io_bru_0_bits_op/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bru_0_bits_pc/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bru_0_bits_target/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_bru_0_bits_link/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bru_1_valid/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bru_1_bits_fwd/* synthesis syn_keep=1 */;
+  wire [3:0]   _dispatch_io_bru_1_bits_op/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bru_1_bits_pc/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bru_1_bits_target/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_bru_1_bits_link/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bru_2_valid/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bru_2_bits_fwd/* synthesis syn_keep=1 */;
+  wire [3:0]   _dispatch_io_bru_2_bits_op/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bru_2_bits_pc/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bru_2_bits_target/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_bru_2_bits_link/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bru_3_valid/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_bru_3_bits_fwd/* synthesis syn_keep=1 */;
+  wire [3:0]   _dispatch_io_bru_3_bits_op/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bru_3_bits_pc/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_bru_3_bits_target/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_bru_3_bits_link/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_csr_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_csr_bits_addr/* synthesis syn_keep=1 */;
+  wire [11:0]  _dispatch_io_csr_bits_index/* synthesis syn_keep=1 */;
+  wire [1:0]   _dispatch_io_csr_bits_op/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_lsu_0_valid/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_lsu_0_bits_store/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_lsu_0_bits_addr/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_lsu_0_bits_op/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_lsu_0_bits_pc/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_lsu_1_valid/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_lsu_1_bits_store/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_lsu_1_bits_addr/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_lsu_1_bits_op/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_lsu_1_bits_pc/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_lsu_2_valid/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_lsu_2_bits_store/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_lsu_2_bits_addr/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_lsu_2_bits_op/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_lsu_2_bits_pc/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_lsu_3_valid/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_lsu_3_bits_store/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_lsu_3_bits_addr/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_lsu_3_bits_op/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_lsu_3_bits_pc/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_mlu_0_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_mlu_0_bits_addr/* synthesis syn_keep=1 */;
+  wire [2:0]   _dispatch_io_mlu_0_bits_op/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_mlu_1_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_mlu_1_bits_addr/* synthesis syn_keep=1 */;
+  wire [2:0]   _dispatch_io_mlu_1_bits_op/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_mlu_2_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_mlu_2_bits_addr/* synthesis syn_keep=1 */;
+  wire [2:0]   _dispatch_io_mlu_2_bits_op/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_mlu_3_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_mlu_3_bits_addr/* synthesis syn_keep=1 */;
+  wire [2:0]   _dispatch_io_mlu_3_bits_op/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_dvu_0_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_dvu_0_bits_addr/* synthesis syn_keep=1 */;
+  wire [1:0]   _dispatch_io_dvu_0_bits_op/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_float_valid/* synthesis syn_keep=1 */;
+  wire [2:0]   _dispatch_io_float_bits_opcode/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_float_bits_funct5/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_float_bits_rs3/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_float_bits_rs2/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_float_bits_rs1/* synthesis syn_keep=1 */;
+  wire [2:0]   _dispatch_io_float_bits_rm/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_float_bits_inst/* synthesis syn_keep=1 */;
+  wire [31:0]  _dispatch_io_float_bits_pc/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_float_bits_scalar_rd/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_float_bits_scalar_rs1/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_float_bits_rd/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_float_bits_uses_rs3/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_float_bits_uses_rs2/* synthesis syn_keep=1 */;
+  wire [4:0]   _dispatch_io_fbusPortAddr/* synthesis syn_keep=1 */;
+  wire         _dispatch_io_slog/* synthesis syn_keep=1 */;
+  wire [31:0]  _csr_io_csr_out_value_4/* synthesis syn_keep=1 */;
+  wire         _csr_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   _csr_io_rd_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _csr_io_rd_bits_data/* synthesis syn_keep=1 */;
+  wire [1:0]   _csr_io_bru_out_mode/* synthesis syn_keep=1 */;
+  wire [31:0]  _csr_io_bru_out_mepc/* synthesis syn_keep=1 */;
+  wire [31:0]  _csr_io_bru_out_mtvec/* synthesis syn_keep=1 */;
+  wire [2:0]   _csr_io_float_out_frm/* synthesis syn_keep=1 */;
+  wire         _csr_io_halted/* synthesis syn_keep=1 */;
+  wire         _csr_io_wfi/* synthesis syn_keep=1 */;
+  wire         _fetch_io_ibus_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _fetch_io_ibus_addr/* synthesis syn_keep=1 */;
+  wire         _fetch_io_inst_lanes_0_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _fetch_io_inst_lanes_0_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _fetch_io_inst_lanes_0_bits_inst/* synthesis syn_keep=1 */;
+  wire         _fetch_io_inst_lanes_0_bits_brchFwd/* synthesis syn_keep=1 */;
+  wire         _fetch_io_inst_lanes_1_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _fetch_io_inst_lanes_1_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _fetch_io_inst_lanes_1_bits_inst/* synthesis syn_keep=1 */;
+  wire         _fetch_io_inst_lanes_1_bits_brchFwd/* synthesis syn_keep=1 */;
+  wire         _fetch_io_inst_lanes_2_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _fetch_io_inst_lanes_2_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _fetch_io_inst_lanes_2_bits_inst/* synthesis syn_keep=1 */;
+  wire         _fetch_io_inst_lanes_2_bits_brchFwd/* synthesis syn_keep=1 */;
+  wire         _fetch_io_inst_lanes_3_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _fetch_io_inst_lanes_3_bits_addr/* synthesis syn_keep=1 */;
+  wire [31:0]  _fetch_io_inst_lanes_3_bits_inst/* synthesis syn_keep=1 */;
+  wire         _fetch_io_inst_lanes_3_bits_brchFwd/* synthesis syn_keep=1 */;
+  wire [31:0]  _fetch_io_pc/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_target_0_data/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_target_1_data/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_target_2_data/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_target_3_data/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_busPort_addr_0/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_busPort_addr_1/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_busPort_addr_2/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_busPort_addr_3/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_busPort_data_0/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_busPort_data_1/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_busPort_data_2/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_busPort_data_3/* synthesis syn_keep=1 */;
+  wire         _regfile_io_readData_0_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_readData_0_data/* synthesis syn_keep=1 */;
+  wire         _regfile_io_readData_1_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_readData_1_data/* synthesis syn_keep=1 */;
+  wire         _regfile_io_readData_2_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_readData_2_data/* synthesis syn_keep=1 */;
+  wire         _regfile_io_readData_3_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_readData_3_data/* synthesis syn_keep=1 */;
+  wire         _regfile_io_readData_4_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_readData_4_data/* synthesis syn_keep=1 */;
+  wire         _regfile_io_readData_5_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_readData_5_data/* synthesis syn_keep=1 */;
+  wire         _regfile_io_readData_6_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_readData_6_data/* synthesis syn_keep=1 */;
+  wire         _regfile_io_readData_7_valid/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_readData_7_data/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_scoreboard_regd/* synthesis syn_keep=1 */;
+  wire [31:0]  _regfile_io_scoreboard_comb/* synthesis syn_keep=1 */;
+  wire [5:0]   _regfile_io_rfwriteCount/* synthesis syn_keep=1 */;
+  wire         branchTaken =
+    _bru_0_io_taken_valid | _bru_1_io_taken_valid | _bru_2_io_taken_valid
+    | _bru_3_io_taken_valid/* synthesis syn_keep=1 */;
+  wire         regfile_io_writeData_0_valid =
+    _csr_io_rd_valid | _alu_0_io_rd_valid | _bru_0_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   regfile_io_writeData_0_bits_addr =
+    (_csr_io_rd_valid ? _csr_io_rd_bits_addr : 5'h0)
+    | (_alu_0_io_rd_valid ? _alu_0_io_rd_bits_addr : 5'h0)
+    | (_bru_0_io_rd_valid ? _bru_0_io_rd_bits_addr : 5'h0)/* synthesis syn_keep=1 */;
+  wire [31:0]  regfile_io_writeData_0_bits_data =
+    (_csr_io_rd_valid ? _csr_io_rd_bits_data : 32'h0)
+    | (_alu_0_io_rd_valid ? _alu_0_io_rd_bits_data : 32'h0)
+    | (_bru_0_io_rd_valid ? _bru_0_io_rd_bits_data : 32'h0)/* synthesis syn_keep=1 */;
+  wire         regfile_io_writeData_1_valid = _alu_1_io_rd_valid | _bru_1_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   regfile_io_writeData_1_bits_addr =
+    (_alu_1_io_rd_valid ? _alu_1_io_rd_bits_addr : 5'h0)
+    | (_bru_1_io_rd_valid ? _bru_1_io_rd_bits_addr : 5'h0)/* synthesis syn_keep=1 */;
+  wire [31:0]  regfile_io_writeData_1_bits_data =
+    (_alu_1_io_rd_valid ? _alu_1_io_rd_bits_data : 32'h0)
+    | (_bru_1_io_rd_valid ? _bru_1_io_rd_bits_data : 32'h0)/* synthesis syn_keep=1 */;
+  wire         regfile_io_writeData_2_valid = _alu_2_io_rd_valid | _bru_2_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   regfile_io_writeData_2_bits_addr =
+    (_alu_2_io_rd_valid ? _alu_2_io_rd_bits_addr : 5'h0)
+    | (_bru_2_io_rd_valid ? _bru_2_io_rd_bits_addr : 5'h0)/* synthesis syn_keep=1 */;
+  wire [31:0]  regfile_io_writeData_2_bits_data =
+    (_alu_2_io_rd_valid ? _alu_2_io_rd_bits_data : 32'h0)
+    | (_bru_2_io_rd_valid ? _bru_2_io_rd_bits_data : 32'h0)/* synthesis syn_keep=1 */;
+  wire         regfile_io_writeData_3_valid = _alu_3_io_rd_valid | _bru_3_io_rd_valid/* synthesis syn_keep=1 */;
+  wire [4:0]   regfile_io_writeData_3_bits_addr =
+    (_alu_3_io_rd_valid ? _alu_3_io_rd_bits_addr : 5'h0)
+    | (_bru_3_io_rd_valid ? _bru_3_io_rd_bits_addr : 5'h0)/* synthesis syn_keep=1 */;
+  wire [31:0]  regfile_io_writeData_3_bits_data =
+    (_alu_3_io_rd_valid ? _alu_3_io_rd_bits_data : 32'h0)
+    | (_bru_3_io_rd_valid ? _bru_3_io_rd_bits_data : 32'h0)/* synthesis syn_keep=1 */;
+  wire         writeMask_2 = _bru_0_io_taken_valid | _bru_1_io_taken_valid/* synthesis syn_keep=1 */;
+  reg          slogValid/* synthesis syn_keep=1 */;
+  reg  [1:0]   slogAddr/* synthesis syn_keep=1 */;
+  reg  [3:0]   debugEn/* synthesis syn_keep=1 */;
+  reg  [31:0]  debugAddr_0/* synthesis syn_keep=1 */;
+  reg  [31:0]  debugAddr_1/* synthesis syn_keep=1 */;
+  reg  [31:0]  debugAddr_2/* synthesis syn_keep=1 */;
+  reg  [31:0]  debugAddr_3/* synthesis syn_keep=1 */;
+  reg  [31:0]  debugInst_0/* synthesis syn_keep=1 */;
+  reg  [31:0]  debugInst_1/* synthesis syn_keep=1 */;
+  reg  [31:0]  debugInst_2/* synthesis syn_keep=1 */;
+  reg  [31:0]  debugInst_3/* synthesis syn_keep=1 */;
+  wire         _debugBrch_T_1 = _bru_2_io_taken_valid | _bru_3_io_taken_valid/* synthesis syn_keep=1 */;
+
+  // assign _regfile_io_target_0_data = {24'hDEADBE, o_pmod0};
+  // assign _regfile_io_target_1_data = {24'h00C0DE, o_pmod0};
+  // assign _regfile_io_target_2_data = {24'hFEEDFA, o_pmod0};
+  // assign _regfile_io_target_3_data = {24'h1BADB0, o_pmod0};
+  // assign _regfile_io_rfwriteCount = {24'hCAFE01, o_pmod0};
+
+  /* synthesis syn_keep=1 */ Regfile regfile (
+    .clock                    (sys_clk),
+    .reset                    (sys_rst),
+    .io_readAddr_0_valid      (_dispatch_io_rs1Read_0_valid),
+    .io_readAddr_0_addr       (_dispatch_io_rs1Read_0_addr),
+    .io_readAddr_1_valid      (_dispatch_io_rs2Read_0_valid),
+    .io_readAddr_1_addr       (_dispatch_io_rs2Read_0_addr),
+    .io_readAddr_2_valid      (_dispatch_io_rs1Read_1_valid),
+    .io_readAddr_2_addr       (_dispatch_io_rs1Read_1_addr),
+    .io_readAddr_3_valid      (_dispatch_io_rs2Read_1_valid),
+    .io_readAddr_3_addr       (_dispatch_io_rs2Read_1_addr),
+    .io_readAddr_4_valid      (_dispatch_io_rs1Read_2_valid),
+    .io_readAddr_4_addr       (_dispatch_io_rs1Read_2_addr),
+    .io_readAddr_5_valid      (_dispatch_io_rs2Read_2_valid),
+    .io_readAddr_5_addr       (_dispatch_io_rs2Read_2_addr),
+    .io_readAddr_6_valid      (_dispatch_io_rs1Read_3_valid),
+    .io_readAddr_6_addr       (_dispatch_io_rs1Read_3_addr),
+    .io_readAddr_7_valid      (_dispatch_io_rs2Read_3_valid),
+    .io_readAddr_7_addr       (_dispatch_io_rs2Read_3_addr),
+    .io_readSet_0_valid       (_dispatch_io_rs1Set_0_valid),
+    .io_readSet_0_value       (_dispatch_io_rs1Set_0_value),
+    .io_readSet_1_valid       (_dispatch_io_rs2Set_0_valid),
+    .io_readSet_1_value       (_dispatch_io_rs2Set_0_value),
+    .io_readSet_2_valid       (_dispatch_io_rs1Set_1_valid),
+    .io_readSet_2_value       (_dispatch_io_rs1Set_1_value),
+    .io_readSet_3_valid       (_dispatch_io_rs2Set_1_valid),
+    .io_readSet_3_value       (_dispatch_io_rs2Set_1_value),
+    .io_readSet_4_valid       (_dispatch_io_rs1Set_2_valid),
+    .io_readSet_4_value       (_dispatch_io_rs1Set_2_value),
+    .io_readSet_5_valid       (_dispatch_io_rs2Set_2_valid),
+    .io_readSet_5_value       (_dispatch_io_rs2Set_2_value),
+    .io_readSet_6_valid       (_dispatch_io_rs1Set_3_valid),
+    .io_readSet_6_value       (_dispatch_io_rs1Set_3_value),
+    .io_readSet_7_valid       (_dispatch_io_rs2Set_3_valid),
+    .io_readSet_7_value       (_dispatch_io_rs2Set_3_value),
+    .io_writeAddr_0_valid     (_dispatch_io_rdMark_0_valid),
+    .io_writeAddr_0_addr      (_dispatch_io_rdMark_0_addr),
+    .io_writeAddr_1_valid     (_dispatch_io_rdMark_1_valid),
+    .io_writeAddr_1_addr      (_dispatch_io_rdMark_1_addr),
+    .io_writeAddr_2_valid     (_dispatch_io_rdMark_2_valid),
+    .io_writeAddr_2_addr      (_dispatch_io_rdMark_2_addr),
+    .io_writeAddr_3_valid     (_dispatch_io_rdMark_3_valid),
+    .io_writeAddr_3_addr      (_dispatch_io_rdMark_3_addr),
+    .io_busAddr_0_bypass      (_dispatch_io_busRead_0_bypass),
+    .io_busAddr_0_immen       (_dispatch_io_busRead_0_immen),
+    .io_busAddr_0_immed       (_dispatch_io_busRead_0_immed),
+    .io_busAddr_1_bypass      (_dispatch_io_busRead_1_bypass),
+    .io_busAddr_1_immed       (_dispatch_io_busRead_1_immed),
+    .io_busAddr_2_bypass      (_dispatch_io_busRead_2_bypass),
+    .io_busAddr_2_immed       (_dispatch_io_busRead_2_immed),
+    .io_busAddr_3_bypass      (_dispatch_io_busRead_3_bypass),
+    .io_busAddr_3_immed       (_dispatch_io_busRead_3_immed),
+    .io_target_0_data         (_regfile_io_target_0_data),
+    .io_target_1_data         (_regfile_io_target_1_data),
+    .io_target_2_data         (_regfile_io_target_2_data),
+    .io_target_3_data         (_regfile_io_target_3_data),
+    .io_busPort_addr_0        (_regfile_io_busPort_addr_0),
+    .io_busPort_addr_1        (_regfile_io_busPort_addr_1),
+    .io_busPort_addr_2        (_regfile_io_busPort_addr_2),
+    .io_busPort_addr_3        (_regfile_io_busPort_addr_3),
+    .io_busPort_data_0        (_regfile_io_busPort_data_0),
+    .io_busPort_data_1        (_regfile_io_busPort_data_1),
+    .io_busPort_data_2        (_regfile_io_busPort_data_2),
+    .io_busPort_data_3        (_regfile_io_busPort_data_3),
+    .io_readData_0_valid      (_regfile_io_readData_0_valid),
+    .io_readData_0_data       (_regfile_io_readData_0_data),
+    .io_readData_1_valid      (_regfile_io_readData_1_valid),
+    .io_readData_1_data       (_regfile_io_readData_1_data),
+    .io_readData_2_valid      (_regfile_io_readData_2_valid),
+    .io_readData_2_data       (_regfile_io_readData_2_data),
+    .io_readData_3_valid      (_regfile_io_readData_3_valid),
+    .io_readData_3_data       (_regfile_io_readData_3_data),
+    .io_readData_4_valid      (_regfile_io_readData_4_valid),
+    .io_readData_4_data       (_regfile_io_readData_4_data),
+    .io_readData_5_valid      (_regfile_io_readData_5_valid),
+    .io_readData_5_data       (_regfile_io_readData_5_data),
+    .io_readData_6_valid      (_regfile_io_readData_6_valid),
+    .io_readData_6_data       (_regfile_io_readData_6_data),
+    .io_readData_7_valid      (_regfile_io_readData_7_valid),
+    .io_readData_7_data       (_regfile_io_readData_7_data),
+    .io_writeData_0_valid     (regfile_io_writeData_0_valid),
+    .io_writeData_0_bits_addr (regfile_io_writeData_0_bits_addr),
+    .io_writeData_0_bits_data (regfile_io_writeData_0_bits_data),
+    .io_writeData_1_valid     (regfile_io_writeData_1_valid),
+    .io_writeData_1_bits_addr (regfile_io_writeData_1_bits_addr),
+    .io_writeData_1_bits_data (regfile_io_writeData_1_bits_data),
+    .io_writeData_2_valid     (regfile_io_writeData_2_valid),
+    .io_writeData_2_bits_addr (regfile_io_writeData_2_bits_addr),
+    .io_writeData_2_bits_data (regfile_io_writeData_2_bits_data),
+    .io_writeData_3_valid     (regfile_io_writeData_3_valid),
+    .io_writeData_3_bits_addr (regfile_io_writeData_3_bits_addr),
+    .io_writeData_3_bits_data (regfile_io_writeData_3_bits_data),
+    .io_writeData_4_valid     (_arb_io_out_valid),
+    .io_writeData_4_bits_addr (_arb_io_out_bits_addr),
+    .io_writeData_4_bits_data (_arb_io_out_bits_data),
+    .io_writeData_5_valid     (_lsu_io_rd_valid),
+    .io_writeData_5_bits_addr (_lsu_io_rd_bits_addr),
+    .io_writeData_5_bits_data (_lsu_io_rd_bits_data),
+    .io_writeMask_1_valid     (_bru_0_io_taken_valid),
+    .io_writeMask_2_valid     (writeMask_2),
+    .io_writeMask_3_valid     (writeMask_2 | _bru_2_io_taken_valid),
+    .io_scoreboard_regd       (_regfile_io_scoreboard_regd),
+    .io_scoreboard_comb       (_regfile_io_scoreboard_comb),
+    .io_rfwriteCount          (_regfile_io_rfwriteCount)
+  ) /* synthesis syn_keep=1 */;
+
+  /* synthesis syn_keep=1 */ UncachedFetch fetch (
+    .clock                        (sys_clk),
+    .reset                        (sys_rst),
+    .io_csr_value_0               (io_csr_in_value_0),
+    .io_ibus_valid                (_fetch_io_ibus_valid),
+    .io_ibus_ready                (~_lsu_io_ibus_valid),
+    .io_ibus_addr                 (_fetch_io_ibus_addr),
+    .io_ibus_rdata                (io_ibus_rdata),
+    .io_inst_lanes_0_ready        (_dispatch_io_inst_0_ready),
+    .io_inst_lanes_0_valid        (_fetch_io_inst_lanes_0_valid),
+    .io_inst_lanes_0_bits_addr    (_fetch_io_inst_lanes_0_bits_addr),
+    .io_inst_lanes_0_bits_inst    (_fetch_io_inst_lanes_0_bits_inst),
+    .io_inst_lanes_0_bits_brchFwd (_fetch_io_inst_lanes_0_bits_brchFwd),
+    .io_inst_lanes_1_ready        (_dispatch_io_inst_1_ready),
+    .io_inst_lanes_1_valid        (_fetch_io_inst_lanes_1_valid),
+    .io_inst_lanes_1_bits_addr    (_fetch_io_inst_lanes_1_bits_addr),
+    .io_inst_lanes_1_bits_inst    (_fetch_io_inst_lanes_1_bits_inst),
+    .io_inst_lanes_1_bits_brchFwd (_fetch_io_inst_lanes_1_bits_brchFwd),
+    .io_inst_lanes_2_ready        (_dispatch_io_inst_2_ready),
+    .io_inst_lanes_2_valid        (_fetch_io_inst_lanes_2_valid),
+    .io_inst_lanes_2_bits_addr    (_fetch_io_inst_lanes_2_bits_addr),
+    .io_inst_lanes_2_bits_inst    (_fetch_io_inst_lanes_2_bits_inst),
+    .io_inst_lanes_2_bits_brchFwd (_fetch_io_inst_lanes_2_bits_brchFwd),
+    .io_inst_lanes_3_ready        (_dispatch_io_inst_3_ready),
+    .io_inst_lanes_3_valid        (_fetch_io_inst_lanes_3_valid),
+    .io_inst_lanes_3_bits_addr    (_fetch_io_inst_lanes_3_bits_addr),
+    .io_inst_lanes_3_bits_inst    (_fetch_io_inst_lanes_3_bits_inst),
+    .io_inst_lanes_3_bits_brchFwd (_fetch_io_inst_lanes_3_bits_brchFwd),
+    .io_branch_0_valid            (_bru_0_io_taken_valid),
+    .io_branch_0_value            (_bru_0_io_taken_value),
+    .io_branch_1_valid            (_bru_1_io_taken_valid),
+    .io_branch_1_value            (_bru_1_io_taken_value),
+    .io_branch_2_valid            (_bru_2_io_taken_valid),
+    .io_branch_2_value            (_bru_2_io_taken_value),
+    .io_branch_3_valid            (_bru_3_io_taken_valid),
+    .io_branch_3_value            (_bru_3_io_taken_value),
+    .io_iflush_valid              (_lsu_io_flush_valid & _lsu_io_flush_fencei),
+    .io_iflush_pcNext             (_lsu_io_flush_pcNext),
+    .io_pc                        (_fetch_io_pc)
+  ) /* synthesis syn_keep=1 */;
 
  // =========================================================================
  // --- FINAL OUTPUT ASSIGNMENT ---------------------------------------------
@@ -261,30 +812,22 @@ module chip_console60k_CoreMini(
  // Use a combination of CoreMini outputs and global_en to drive o_pmod1
  // to ensure the CoreMini logic is preserved during synthesis.
 
- // o_pmod1[0]: Core status signals
- assign o_pmod1[0] = core_halted ^ core_wfi ^ global_en_1;
-
- // o_pmod1[1]: Bus valid signals
- assign o_pmod1[1] = ibus_valid ^ dbus_valid ^ global_en_2;
-
- // o_pmod1[2]: CSR outputs 0 and 1
- assign o_pmod1[2] = csr_out_value_0[0] ^ csr_out_value_1[0] ^ global_en_3;
-
- // o_pmod1[3]: CSR outputs 2 and 3
- assign o_pmod1[3] = csr_out_value_2[0] ^ csr_out_value_3[0] ^ global_en_4;
-
- // o_pmod1[4]: D-bus address LSBs
- assign o_pmod1[4] = dbus_addr[0] ^ dbus_addr[1] ^ global_en_5;
-
- // o_pmod1[5]: I-bus address LSBs
- assign o_pmod1[5] = ibus_addr[0] ^ ibus_addr[1] ^ global_en_6;
-
- // o_pmod1[6]: E-bus signals
- assign o_pmod1[6] = ebus_dbus_valid ^ ebus_dbus_write ^ global_en_7;
-
- // o_pmod1[7]: Mix of CSR output 7 and original input o_pmod0
- assign o_pmod1[7] = csr_out_value_7[0] ^ o_pmod0[7] ^ global_en_0;
-
+ // o_pmod1[0]: Regfile Target 0 LSB
+ assign o_pmod1[0] = ((|_regfile_io_target_0_data)&&(|_fetch_io_ibus_valid)) ^ global_en_1;
+ // o_pmod1[1]: Regfile Target 1 LSB
+ assign o_pmod1[1] = ((|_regfile_io_target_1_data)&&(|_fetch_io_inst_lanes_0_valid)) ^ global_en_2;
+ // o_pmod1[2]: Regfile Target 2 LSB
+ assign o_pmod1[2] = ((|_regfile_io_target_2_data)&&(|_fetch_io_pc)) ^ global_en_3;
+ // o_pmod1[3]: Regfile Target 3 LSB
+ assign o_pmod1[3] = ((|_regfile_io_target_3_data)&&(|_fetch_io_inst_lanes_0_bits_brchFwd)) ^ global_en_4;
+ // o_pmod1[4]: Regfile Write Count LSB
+ assign o_pmod1[4] = ((|_regfile_io_rfwriteCount )&&(|_fetch_io_ibus_addr))^ global_en_5;
+ // o_pmod1[5]: Regfile Target 0 bits [2:1]
+ assign o_pmod1[5] = ((|_regfile_io_target_0_data)&&(|_fetch_io_inst_lanes_1_valid)) ^ _regfile_io_target_0_data[2] ^ global_en_6;
+ // o_pmod1[6]: Regfile Target 1 bits [2:1]
+ assign o_pmod1[6] = ((|_regfile_io_target_1_data)&&(|_fetch_io_inst_lanes_3_valid)) ^ _regfile_io_target_1_data[2] ^ global_en_7;
+ // o_pmod1[7]: Mix of Regfile Write Count and original input o_pmod0
+ assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&&(|_fetch_io_pc)) ^ o_pmod0[7] ^ global_en_0;
  // UART outputs tied off as unused in this minimal test
  assign uart_tx_o = 2'b0;
 
