@@ -388,5 +388,37 @@ BSRAM	0 / 118	0%
 # DispatchV1 (no Decodex4)
 
 ```
+Resource Usage Summary
+Resource	Usage
+I/O Port	24
+I/O Buf	15
+    IBUF	5
+    OBUF	10
+Register	1958
+    DFFSE	4
+    DFFRE	202
+    DFFCE	1752
+LUT	9923
+    LUT2	318
+    LUT3	5039
+    LUT4	4566
+ALU	193
+    ALU	193
+INV	2
+    INV	2
+DSP	
+    MULT12X12	2
+Resource Utilization Summary
+Resource	Usage	Utilization
+Logic	10118(9925 LUT, 193 ALU) / 59904	17%
+Register	1958 / 60780	4%
+  --Register as Latch	0 / 60780	0%
+  --Register as FF	1958 / 60780	4%
+BSRAM	0 / 118	0%
+```
+
+# DispatchV1 (decode_0 only)
+
+```
 
 ```
