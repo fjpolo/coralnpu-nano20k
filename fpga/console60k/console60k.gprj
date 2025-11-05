@@ -149,7 +149,6 @@
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/ip/prim/rtl/prim_ascon_pkg.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/ip/prim/rtl/prim_ascon_round.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/ip/prim/rtl/prim_ascon_sbox.sv" type="file.verilog" enable="1"/>
-        <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/ip/prim/rtl/prim_assert.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/ip/prim/rtl/prim_blanker.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/ip/prim/rtl/prim_cdc_rand_delay.sv" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/ip/prim/rtl/prim_cipher_pkg.sv" type="file.verilog" enable="1"/>

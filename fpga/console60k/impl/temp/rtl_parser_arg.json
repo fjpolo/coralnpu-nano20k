@@ -550,10 +550,6 @@
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/ip/prim/rtl/prim_assert.sv",
-   "Type" : "verilog"
-  },
-  {
    "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/ip/prim/rtl/prim_blanker.sv",
    "Type" : "verilog"
   },
