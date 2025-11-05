@@ -3619,6 +3619,8 @@ module Csr(
   assign io_wfi = wfi;
 endmodule
 
+`define OPT_DECODE
+´ifndef OPT_DECODE
 module Decode(
   input         io_halted,
   output        io_inst_ready,
@@ -4270,6 +4272,697 @@ module Decode(
   assign io_serializeOut_undef = d_undef;
   assign io_slog = decodeEn & d_slog;
 endmodule
+`else
+module Decode(
+  input               io_halted,
+  output              io_inst_ready,
+  input               io_inst_valid,
+  input        [31:0] io_inst_bits_addr,
+                      io_inst_bits_inst,
+  input               io_inst_bits_brchFwd,
+  input        [31:0] io_scoreboard_regd,
+                      io_scoreboard_comb,
+  output       [31:0] io_scoreboard_spec,
+  input        [31:0] io_fscoreboard,
+  input               io_lsuActive,
+  output              io_rs1Read_valid,
+  output       [4:0]  io_rs1Read_addr,
+  output              io_rs1Set_valid,
+  output       [31:0] io_rs1Set_value,
+  output              io_rs2Read_valid,
+  output       [4:0]  io_rs2Read_addr,
+  output              io_rs2Set_valid,
+  output       [31:0] io_rs2Set_value,
+  output              io_rdMark_valid,
+  output       [4:0]  io_rdMark_addr,
+  output              io_rdMark_flt_valid,
+  output       [4:0]  io_rdMark_flt_addr,
+  output              io_busRead_bypass,
+                      io_busRead_immen,
+  output       [31:0] io_busRead_immed,
+  output              io_jalFault,
+                      io_jalrFault,
+                      io_bxxFault,
+                      io_undefFault,
+  output       [31:0] io_bruTarget,
+  input        [31:0] io_jalrTarget_data,
+  output              io_alu_valid,
+  output       [4:0]  io_alu_bits_addr,
+                      io_alu_bits_op,
+  output              io_bru_valid,
+                      io_bru_bits_fwd,
+  output       [3:0]  io_bru_bits_op,
+  output       [31:0] io_bru_bits_pc,
+                      io_bru_bits_target,
+  output       [4:0]  io_bru_bits_link,
+  output              io_csr_valid,
+  output       [4:0]  io_csr_bits_addr,
+  output       [11:0] io_csr_bits_index,
+  output       [1:0]  io_csr_bits_op,
+  output              io_csrFault,
+  input               io_lsu_ready,
+  output              io_lsu_valid,
+                      io_lsu_bits_store,
+  output       [4:0]  io_lsu_bits_addr,
+                      io_lsu_bits_op,
+  output       [31:0] io_lsu_bits_pc,
+  output              io_mlu_valid,
+  output       [4:0]  io_mlu_bits_addr,
+  output       [2:0]  io_mlu_bits_op,
+  input               io_dvu_ready,
+  output              io_dvu_valid,
+  output       [4:0]  io_dvu_bits_addr,
+  output       [1:0]  io_dvu_bits_op,
+  input               io_float_ready,
+  output              io_float_valid,
+  output       [2:0]  io_float_bits_opcode,
+  output       [4:0]  io_float_bits_funct5,
+                      io_float_bits_rs3,
+                      io_float_bits_rs2,
+                      io_float_bits_rs1,
+  output       [2:0]  io_float_bits_rm,
+  output       [31:0] io_float_bits_inst,
+                      io_float_bits_pc,
+  output              io_float_bits_scalar_rd,
+                      io_float_bits_scalar_rs1,
+  output       [4:0]  io_float_bits_rd,
+  output              io_float_bits_uses_rs3,
+                      io_float_bits_uses_rs2,
+  input               io_branchTaken,
+                      io_interlock,
+  output              io_serializeOut_mul,
+                      io_serializeOut_jump,
+                      io_serializeOut_brcond,
+                      io_serializeOut_wfi,
+                      io_serializeOut_fence,
+                      io_serializeOut_csr,
+                      io_serializeOut_undef,
+                      io_slog
+);
+
+  wire                io_inst_ready_0;
+  wire                io_busRead_bypass_0;
+  wire                decodeEn = io_inst_valid & io_inst_ready_0 & ~io_branchTaken;
+  wire [19:0]         _d_d_imm12_T_1 = {20{io_inst_bits_inst[31]}};
+  wire [31:0]         d_immcsr = {27'h0, io_inst_bits_inst[19:15]};
+  wire                d_lui = io_inst_bits_inst[6:0] == 7'h37;
+  wire                d_auipc = io_inst_bits_inst[6:0] == 7'h17;
+  wire                d_jal = io_inst_bits_inst[6:0] == 7'h6F;
+  wire [9:0]          _GEN = {io_inst_bits_inst[14:12], io_inst_bits_inst[6:0]};
+  wire                d_jalr = _GEN == 10'h67;
+  wire                d_beq = _GEN == 10'h63;
+  wire                d_bne = _GEN == 10'hE3;
+  wire                d_blt = _GEN == 10'h263;
+  wire                d_bge = _GEN == 10'h2E3;
+  wire                d_bltu = _GEN == 10'h363;
+  wire                d_bgeu = _GEN == 10'h3E3;
+  wire [8:0]          _GEN_0 = {io_inst_bits_inst[13:12], io_inst_bits_inst[6:0]};
+  wire                d_csrrw = _GEN_0 == 9'hF3;
+  wire                d_csrrs = _GEN_0 == 9'h173;
+  wire                d_csrrc = _GEN_0 == 9'h1F3;
+  wire                d_lb = _GEN == 10'h3;
+  wire                d_lh = _GEN == 10'h83;
+  wire                d_lw = _GEN == 10'h103;
+  wire                d_lbu = _GEN == 10'h203;
+  wire                d_lhu = _GEN == 10'h283;
+  wire                d_sb = _GEN == 10'h23;
+  wire                d_sh = _GEN == 10'hA3;
+  wire                d_sw = _GEN == 10'h123;
+  wire                d_addi = _GEN == 10'h13;
+  wire                d_slti = _GEN == 10'h113;
+  wire                d_sltiu = _GEN == 10'h193;
+  wire                d_xori = _GEN == 10'h213;
+  wire                d_ori = _GEN == 10'h313;
+  wire                d_andi = _GEN == 10'h393;
+  wire [16:0]         _GEN_1 =
+    {io_inst_bits_inst[31:25], io_inst_bits_inst[14:12], io_inst_bits_inst[6:0]};
+  wire                d_slli = _GEN_1 == 17'h93;
+  wire                d_srli = _GEN_1 == 17'h293;
+  wire                d_srai = _GEN_1 == 17'h8293;
+  wire                d_add = _GEN_1 == 17'h33;
+  wire                d_sub = _GEN_1 == 17'h8033;
+  wire                d_slt = _GEN_1 == 17'h133;
+  wire                d_sltu = _GEN_1 == 17'h1B3;
+  wire                d_xor = _GEN_1 == 17'h233;
+  wire                d_or = _GEN_1 == 17'h333;
+  wire                d_and = _GEN_1 == 17'h3B3;
+  wire                d_sll = _GEN_1 == 17'hB3;
+  wire                d_srl = _GEN_1 == 17'h2B3;
+  wire                d_sra = _GEN_1 == 17'h82B3;
+  wire                d_mul = _GEN_1 == 17'h433;
+  wire                d_mulh = _GEN_1 == 17'h4B3;
+  wire                d_mulhsu = _GEN_1 == 17'h533;
+  wire                d_mulhu = _GEN_1 == 17'h5B3;
+  wire                d_div = _GEN_1 == 17'h633;
+  wire                d_divu = _GEN_1 == 17'h6B3;
+  wire                d_rem = _GEN_1 == 17'h733;
+  wire                d_remu = _GEN_1 == 17'h7B3;
+  wire                d_andn = _GEN_1 == 17'h83B3;
+  wire                d_orn = _GEN_1 == 17'h8333;
+  wire                d_xnor = _GEN_1 == 17'h8233;
+  wire [21:0]         _GEN_2 =
+    {io_inst_bits_inst[31:20], io_inst_bits_inst[14:12], io_inst_bits_inst[6:0]};
+  wire                d_clz = _GEN_2 == 22'h180093;
+  wire                d_ctz = _GEN_2 == 22'h180493;
+  wire                d_cpop = _GEN_2 == 22'h180893;
+  wire                d_max = _GEN_1 == 17'h1733;
+  wire                d_maxu = _GEN_1 == 17'h17B3;
+  wire                d_min = _GEN_1 == 17'h1633;
+  wire                d_minu = _GEN_1 == 17'h16B3;
+  wire                d_sextb = _GEN_2 == 22'h181093;
+  wire                d_sexth = _GEN_2 == 22'h181493;
+  wire                d_rol = _GEN_1 == 17'hC0B3;
+  wire                d_ror = _GEN_1 == 17'hC2B3;
+  wire                d_orcb = _GEN_2 == 22'hA1E93;
+  wire                d_rev8 = _GEN_2 == 22'h1A6293;
+  wire                d_zexth = _GEN_2 == 22'h20233;
+  wire                d_rori = _GEN_1 == 17'hC293;
+  wire                d_slog =
+    {io_inst_bits_inst[31:20],
+      io_inst_bits_inst[14],
+      io_inst_bits_inst[11:0]} == 25'hF00077;
+  wire                d_ebreak = io_inst_bits_inst == 32'h100073;
+  wire                d_ecall = io_inst_bits_inst == 32'h73;
+  wire                d_mpause = io_inst_bits_inst == 32'h8000073;
+  wire                d_mret = io_inst_bits_inst == 32'h30200073;
+  wire                d_wfi = io_inst_bits_inst == 32'h10500073;
+  wire                d_fencei = io_inst_bits_inst == 32'h100F;
+  wire                d_flushat =
+    {io_inst_bits_inst[31:28],
+      io_inst_bits_inst[24:20],
+      io_inst_bits_inst[14:0]} == 24'h200077 & (|(io_inst_bits_inst[19:15]));
+  wire                d_flushall =
+    {io_inst_bits_inst[31:28], io_inst_bits_inst[24:0]} == 29'h4000077;
+  wire                d_d_float_load_store_rm_valid =
+    io_inst_bits_inst[14:12] == 3'h1 | io_inst_bits_inst[14:12] == 3'h2;
+  wire                _d_d_float_opcode_T_4 = io_inst_bits_inst[6:2] == 5'h9;
+  wire                _d_d_float_opcode_T_6 = io_inst_bits_inst[6:2] == 5'h14;
+  wire                _d_d_float_opcode_T_8 = io_inst_bits_inst[6:2] == 5'h10;
+  wire                _d_d_float_opcode_T_10 = io_inst_bits_inst[6:2] == 5'h11;
+  wire                _d_d_float_opcode_T_12 = io_inst_bits_inst[6:2] == 5'h12;
+  wire                _d_d_float_opcode_T_14 = io_inst_bits_inst[6:2] == 5'h13;
+  wire [2:0]          d_d_float_opcode_bits =
+    _d_d_float_opcode_T_14
+      ? 3'h5
+      : _d_d_float_opcode_T_12
+          ? 3'h6
+          : _d_d_float_opcode_T_10
+              ? 3'h4
+              : _d_d_float_opcode_T_8
+                  ? 3'h3
+                  : _d_d_float_opcode_T_6
+                      ? 3'h2
+                      : {2'h0, _d_d_float_opcode_T_4 & d_d_float_load_store_rm_valid};
+  wire                _d_d_float_uses_rs2_T_5 = io_inst_bits_inst[31:27] == 5'h1C;
+  wire                _d_d_float_uses_rs2_T_7 = io_inst_bits_inst[31:27] == 5'h18;
+  wire                _d_d_float_uses_rs2_T_2 = d_d_float_opcode_bits == 3'h2;
+  wire                d_d_float_scalar_rd =
+    (_d_d_float_uses_rs2_T_7 | _d_d_float_uses_rs2_T_5
+      | io_inst_bits_inst[31:27] == 5'h14) & _d_d_float_uses_rs2_T_2;
+  wire                _d_d_float_uses_rs2_T_9 = io_inst_bits_inst[31:27] == 5'h1E;
+  wire                _d_d_float_uses_rs2_T_11 = io_inst_bits_inst[31:27] == 5'h1A;
+  wire                d_d_float_scalar_rs1 = _d_d_float_uses_rs2_T_11 | _d_d_float_uses_rs2_T_9;
+  wire                _d_d_float_T_1 = d_d_float_opcode_bits == 3'h1;
+  wire                d_d_float_y =
+    (_d_d_float_opcode_T_14 | _d_d_float_opcode_T_12 | _d_d_float_opcode_T_10
+      | _d_d_float_opcode_T_8 | _d_d_float_opcode_T_6
+      | (_d_d_float_opcode_T_4 | io_inst_bits_inst[6:2] == 5'h1)
+      & d_d_float_load_store_rm_valid)
+    & (d_d_float_opcode_bits == 3'h0 | _d_d_float_T_1 | io_inst_bits_inst[26:25] == 2'h0);
+  wire                d_undef =
+    {d_lui,
+      d_auipc,
+      d_jal,
+      d_jalr,
+      d_beq,
+      d_bne,
+      d_blt,
+      d_bge,
+      d_bltu,
+      d_bgeu,
+      d_csrrw,
+      d_csrrs,
+      d_csrrc,
+      d_lb,
+      d_lh,
+      d_lw,
+      d_lbu,
+      d_lhu,
+      d_sb,
+      d_sh,
+      d_sw,
+      {io_inst_bits_inst[31:28], io_inst_bits_inst[19:0]} == 24'hF,
+      d_addi,
+      d_slti,
+      d_sltiu,
+      d_xori,
+      d_ori,
+      d_andi,
+      d_add,
+      d_sub,
+      d_slt,
+      d_sltu,
+      d_xor,
+      d_or,
+      d_and,
+      d_xnor,
+      d_orn,
+      d_andn,
+      d_slli,
+      d_srli,
+      d_srai,
+      d_sll,
+      d_srl,
+      d_sra,
+      d_mul,
+      d_mulh,
+      d_mulhsu,
+      d_mulhu,
+      d_div,
+      d_divu,
+      d_rem,
+      d_remu,
+      d_clz,
+      d_ctz,
+      d_cpop,
+      d_min,
+      d_minu,
+      d_max,
+      d_maxu,
+      d_sextb,
+      d_sexth,
+      d_zexth,
+      d_rol,
+      d_ror,
+      d_orcb,
+      d_rev8,
+      d_rori,
+      d_ebreak,
+      d_ecall,
+      d_wfi,
+      d_mpause,
+      d_mret,
+      d_fencei,
+      d_flushat,
+      d_flushall,
+      d_slog,
+      d_d_float_y} == 77'h0;
+  wire [31:0]         _GEN_3 = {27'h0, io_inst_bits_inst[11:7]};
+  wire [31:0]         _floatEn_T_12 = io_scoreboard_comb >> _GEN_3;
+  wire                _io_rs2Read_valid_T_24 = d_sb | d_sh;
+  wire                _io_rs2Read_valid_T = d_beq | d_bne;
+  wire [31:0]         _floatEn_T_18 = io_scoreboard_comb >> d_immcsr;
+  wire                _rdMark_valid_T_5 = d_lb | d_lh;
+  wire                _io_float_valid_T_5 = d_d_float_opcode_bits == 3'h0;
+  wire                _lsu_T_3 = d_d_float_opcode_bits == 3'h1;
+  wire [31:0]         _GEN_4 = {27'h0, io_inst_bits_inst[24:20]};
+  wire [31:0]         _lsuEn_T_48 = io_scoreboard_comb >> _GEN_4;
+  wire                _io_rs2Set_valid_T_5 = d_addi | d_slti;
+  wire                _io_rs2Set_valid_T_15 = d_clz | d_ctz;
+  wire [31:0]         _lsuEn_T_45 = io_scoreboard_regd >> d_immcsr;
+  wire                bruEn =
+    ~d_jalr | ~(_lsuEn_T_45[0]) | io_inst_bits_inst[31:20] == 12'h0
+    & ~(|(io_inst_bits_inst[11:7])) & io_inst_bits_inst[19:15] == 5'h1;
+  wire                _io_rs2Read_valid_T_33 = d_mul | d_mulh;
+  wire                _rdMark_valid_T_15 = d_d_float_y & d_d_float_scalar_rd;
+  wire                _io_rs1Read_valid_T_58 = d_d_float_y & d_d_float_scalar_rs1;
+  wire [31:0]         _floatEn_T_25 = io_fscoreboard >> _GEN_3;
+  wire [31:0]         _floatEn_T_32 = io_fscoreboard >> d_immcsr;
+  wire [31:0]         _floatEn_T_37 = io_fscoreboard >> _GEN_4;
+  wire [31:0]         _floatEn_T_42 = io_fscoreboard >> io_inst_bits_inst[31:27];
+  wire                _io_serializeOut_fence_T = d_fencei | d_ebreak;
+  wire                _alu_T_1 = d_auipc | d_addi | d_add;
+  wire                _alu_T_2 = d_slti | d_slt;
+  wire                _alu_T_3 = d_sltiu | d_sltu;
+  wire                _alu_T_4 = d_xori | d_xor;
+  wire                _alu_T_5 = d_ori | d_or;
+  wire                _alu_T_6 = d_andi | d_and;
+  wire                _alu_T_7 = d_slli | d_sll;
+  wire                _alu_T_8 = d_srli | d_srl;
+  wire                _alu_T_9 = d_srai | d_sra;
+  wire                alu_valid =
+    _alu_T_1 | d_sub | _alu_T_2 | _alu_T_3 | _alu_T_4 | _alu_T_5 | _alu_T_6 | _alu_T_7
+    | _alu_T_8 | _alu_T_9 | d_lui | d_andn | d_orn | d_xnor | d_clz | d_ctz | d_cpop
+    | d_max | d_maxu | d_min | d_minu | d_sextb | d_sexth | d_rol | d_ror | d_orcb
+    | d_rev8 | d_zexth | d_rori;
+  wire                bru_valid =
+    d_jal | d_jalr | d_beq | d_bne | d_blt | d_bge | d_bltu | d_bgeu | d_ebreak | d_ecall
+    | d_mpause | d_mret | d_wfi;
+  wire [3:0]          bru_bits =
+    d_jal
+      ? 4'h0
+      : d_jalr
+          ? 4'h1
+          : d_beq
+              ? 4'h2
+              : d_bne
+                  ? 4'h3
+                  : d_blt
+                      ? 4'h4
+                      : d_bge
+                          ? 4'h5
+                          : d_bltu
+                              ? 4'h6
+                              : d_bgeu
+                                  ? 4'h7
+                                  : d_ebreak
+                                      ? 4'h8
+                                      : d_ecall
+                                          ? 4'h9
+                                          : d_mpause
+                                              ? 4'hA
+                                              : d_mret ? 4'hB : d_wfi ? 4'hC : 4'h0;
+  wire [31:0]         _bru_target_T_2 =
+    io_inst_bits_addr
+    + {{12{io_inst_bits_inst[31]}},
+      io_inst_bits_inst[2]
+        ? {io_inst_bits_inst[19:12], io_inst_bits_inst[20], io_inst_bits_inst[30:21]}
+        : {{8{io_inst_bits_inst[31]}},
+           io_inst_bits_inst[7],
+           io_inst_bits_inst[30:25],
+           io_inst_bits_inst[11:8]},
+      1'h0};
+  wire                _bxx_fault_T = bruEn & bru_valid;
+  wire                jalr_fault = _bxx_fault_T & bru_bits == 4'h1 & io_jalrTarget_data[1];
+  wire                jal_fault = _bxx_fault_T & bru_bits == 4'h0 & (|(_bru_target_T_2[1:0]));
+  wire                bxx_fault =
+    _bxx_fault_T
+    & (|{bru_bits == 4'h7,
+          bru_bits == 4'h6,
+          bru_bits == 4'h5,
+          bru_bits == 4'h4,
+          bru_bits == 4'h3,
+          bru_bits == 4'h2}) & (|(_bru_target_T_2[1:0]));
+  wire                _io_inst_ready_T_25 = jalr_fault | jal_fault;
+  wire                csr_valid = d_csrrw | d_csrrs | d_csrrc;
+  wire                _io_rs1Set_value_T = d_csrrw | d_csrrs;
+  wire                csrEn = ~(_io_rs1Set_value_T | d_csrrc) | csr_valid & io_float_ready;
+  wire                _GEN_5 =
+    csr_valid
+    & ~(io_inst_bits_inst[31:20] == 12'h1 | io_inst_bits_inst[31:20] == 12'h2
+          | io_inst_bits_inst[31:20] == 12'h3 | io_inst_bits_inst[31:20] == 12'h8
+          | io_inst_bits_inst[31:20] == 12'h9 | io_inst_bits_inst[31:20] == 12'hA
+          | io_inst_bits_inst[31:20] == 12'h300 | io_inst_bits_inst[31:20] == 12'h301
+          | io_inst_bits_inst[31:20] == 12'h304 | io_inst_bits_inst[31:20] == 12'h305
+          | io_inst_bits_inst[31:20] == 12'h340 | io_inst_bits_inst[31:20] == 12'h341
+          | io_inst_bits_inst[31:20] == 12'h342 | io_inst_bits_inst[31:20] == 12'h343
+          | io_inst_bits_inst[31:20] == 12'h7A0 | io_inst_bits_inst[31:20] == 12'h7A1
+          | io_inst_bits_inst[31:20] == 12'h7A2 | io_inst_bits_inst[31:20] == 12'h7A4
+          | io_inst_bits_inst[31:20] == 12'h7B0 | io_inst_bits_inst[31:20] == 12'h7B1
+          | io_inst_bits_inst[31:20] == 12'h7B2 | io_inst_bits_inst[31:20] == 12'h7B3
+          | io_inst_bits_inst[31:20] == 12'h7C0 | io_inst_bits_inst[31:20] == 12'h7C1
+          | io_inst_bits_inst[31:20] == 12'h7C2 | io_inst_bits_inst[31:20] == 12'h7C3
+          | io_inst_bits_inst[31:20] == 12'h7C4 | io_inst_bits_inst[31:20] == 12'h7C5
+          | io_inst_bits_inst[31:20] == 12'h7C6 | io_inst_bits_inst[31:20] == 12'h7C7
+          | io_inst_bits_inst[31:20] == 12'h7E0 | io_inst_bits_inst[31:20] == 12'h7E1
+          | io_inst_bits_inst[31:20] == 12'hB00 | io_inst_bits_inst[31:20] == 12'hB02
+          | io_inst_bits_inst[31:20] == 12'hB80 | io_inst_bits_inst[31:20] == 12'hB82
+          | io_inst_bits_inst[31:20] == 12'hC20 | io_inst_bits_inst[31:20] == 12'hC21
+          | io_inst_bits_inst[31:20] == 12'hC22 | io_inst_bits_inst[31:20] == 12'hF11
+          | io_inst_bits_inst[31:20] == 12'hF12 | io_inst_bits_inst[31:20] == 12'hF13
+          | io_inst_bits_inst[31:20] == 12'hF14 | io_inst_bits_inst[31:20] == 12'hFC0
+          | io_inst_bits_inst[31:20] == 12'hFC4 | io_inst_bits_inst[31:20] == 12'hFC8
+          | io_inst_bits_inst[31:20] == 12'hFCC | io_inst_bits_inst[31:20] == 12'hFD0
+          | io_inst_bits_inst[31:20] == 12'hFD4);
+  wire                io_csr_valid_0 = decodeEn & csr_valid & ~_GEN_5;
+  wire                _lsu_T_7_valid = d_d_float_y & _io_float_valid_T_5 | d_d_float_y & _lsu_T_3;
+  wire                lsu_valid =
+    d_lb | d_lh | d_lw | d_lbu | d_lhu | d_sb | d_sh | d_sw | d_wfi | d_fencei | d_flushat
+    | d_flushall | _lsu_T_7_valid;
+  wire                mlu_valid = d_mul | d_mulh | d_mulhsu | d_mulhu;
+  wire                dvu_valid = d_div | d_divu | d_rem | d_remu;
+  wire                _io_rs2Read_valid_T_5 = d_add | d_sub;
+  wire                _io_rs2Read_valid_T_18 = d_min | d_minu;
+  wire                _io_rs2Read_valid_T_37 = d_div | d_divu;
+  wire                rdMark_valid =
+    alu_valid | io_csr_valid_0 | mlu_valid | dvu_valid & io_dvu_ready | lsu_valid
+    & (_rdMark_valid_T_5 | d_lw | d_lbu | d_lhu) | _rdMark_valid_T_15 | bru_valid
+    & (|{bru_bits == 4'h1, bru_bits == 4'h0}) & (|(io_inst_bits_inst[11:7]));
+  wire [31:0]         _scoreboard_spec_T_1 = 32'h1 << _GEN_3;
+  
+  // --- START: HAZARD LOGIC RESTRUCTURING (Change 1 Applied) ---
+  
+  // 1. GPR Hazard Checks (Inputs: io_scoreboard_comb, io_scoreboard_regd)
+  // Check if Rs1 is pending in the combinatorial path (io_scoreboard_comb)
+  wire rs1_gpr_comb_hazard = io_rs1Read_valid & _floatEn_T_18[0];
+  // Check if Rs2 is pending in the combinatorial path (io_scoreboard_comb)
+  wire rs2_gpr_comb_hazard = io_rs2Read_valid & _lsuEn_T_48[0];
+  // Check if Jalr's Rs1 is pending in the register-file path (io_scoreboard_regd for CSR access)
+  wire jalr_regd_hazard = d_jalr & ~bruEn;
+  
+  // 2. FPR Hazard Checks (Input: io_fscoreboard)
+  // Check if Float Rd is being marked but its Rs1 is pending (Scalar Rd case)
+  wire float_scalar_rd_hazard = _rdMark_valid_T_15 & _floatEn_T_12[0];
+  // Check if Float Rs1 is pending in the CSR register-file path (io_fscoreboard for CSR)
+  wire float_rs1_csr_hazard = _io_rs1Read_valid_T_58 & _floatEn_T_18[0];
+  // Check if Float Rd is busy (non-scalar RD)
+  wire float_rd_hazard      = d_d_float_y & ~d_d_float_scalar_rd & _floatEn_T_25[0];
+  // Check if Float Rs1 is busy
+  wire float_rs1_hazard     = d_d_float_y & ~d_d_float_scalar_rs1 & _floatEn_T_32[0];
+  // Check if Float Rs2 is busy
+  wire float_rs2_hazard     = d_d_float_y & _floatEn_T_37[0];
+  // Check if Float Rs3 is busy
+  wire float_rs3_hazard     = d_d_float_y & _floatEn_T_42[0];
+  
+  // 3. Functional Unit Ready/Stall Checks
+  // Check if LSU instruction but LSU is not ready (excluding simple R/I-type instructions)
+  wire lsu_needs_ready = d_lb | d_lh | d_lw | d_lbu | d_lhu | d_sb | d_sh | d_sw | _lsu_T_7_valid | d_flushat | d_flushall;
+  wire lsu_ready_stall = lsu_needs_ready & ~io_lsu_ready;
+  // Check if DVU instruction but DVU is not ready
+  wire dvu_ready_stall = dvu_valid & ~io_dvu_ready;
+  // Check if Float instruction but FPU is not ready (non-LSU ops)
+  wire float_ready_stall = d_d_float_y & ~_lsu_T_7_valid & ~io_float_ready;
+  
+  // 4. Pipeline Interlock/Control Stalls
+  // Check for global stall conditions (halted, interlock, branch taken)
+  wire general_control_stall = io_halted | io_interlock | io_branchTaken;
+  // Check for system-wide serialization required while LSU is busy
+  wire serialize_lsu_active = (_io_serializeOut_fence_T | d_wfi | d_mpause | d_flushat | d_flushall) & io_lsuActive;
+  // Check for illegal instruction/misalignment faults (prevents ready)
+  wire fault_stall = _io_inst_ready_T_25 | _GEN_5 | bxx_fault;
+  
+  // 5. Final Ready Signal (AND of all inverted stall conditions)
+  assign io_inst_ready_0 = 
+      ~general_control_stall & 
+      bruEn & 
+      csrEn & 
+      ~serialize_lsu_active &
+      ~dvu_ready_stall &
+      ~lsu_ready_stall &
+      ~float_ready_stall &
+      ~rs1_gpr_comb_hazard & 
+      ~rs2_gpr_comb_hazard &
+      ~jalr_regd_hazard &
+      ~float_scalar_rd_hazard &
+      ~float_rs1_csr_hazard &
+      ~float_rd_hazard &
+      ~float_rs1_hazard &
+      ~float_rs2_hazard &
+      ~float_rs3_hazard &
+      ~fault_stall;
+
+  // --- END: HAZARD LOGIC RESTRUCTURING ---
+  
+  assign io_busRead_bypass_0 =
+    io_inst_bits_inst[31:25] == 7'h0
+    & (~(io_inst_bits_inst[5]) | io_inst_bits_inst[6]
+        ? io_inst_bits_inst[24:20] == 5'h0
+        : ~(|(io_inst_bits_inst[11:7])));
+  assign io_inst_ready = io_inst_ready_0;
+  assign io_scoreboard_spec = {rdMark_valid ? _scoreboard_spec_T_1[31:1] : 31'h0, 1'h0};
+  assign io_rs1Read_valid =
+    decodeEn
+    & (_io_rs2Read_valid_T | d_blt | d_bge | d_bltu | d_bgeu | _io_rs2Read_valid_T_5
+      | d_slt | d_sltu | d_xor | d_or | d_and | d_xnor | d_orn | d_andn | d_sll | d_srl
+      | d_sra | _io_rs2Set_valid_T_5 | d_sltiu | d_xori | d_ori | d_andi | d_slli
+      | d_srli | d_srai | d_rori | _io_rs2Set_valid_T_15 | d_cpop | d_sextb | d_sexth
+      | d_zexth | d_orcb | d_rev8 | _io_rs2Read_valid_T_18 | d_max | d_maxu | d_rol
+      | d_ror | _io_rs1Set_value_T | d_csrrc | _io_rs2Read_valid_T_33 | d_mulhsu
+      | d_mulhu | _io_rs2Read_valid_T_37 | d_rem | d_remu | d_slog | d_jalr
+      | _io_rs1Read_valid_T_58);
+  assign io_rs1Read_addr =
+    io_inst_bits_inst[0] ? io_inst_bits_inst[19:15] : io_inst_bits_inst[31:27];
+  assign io_rs1Set_valid =
+    decodeEn & (d_auipc | (_io_rs1Set_value_T | d_csrrc) & io_inst_bits_inst[14]);
+  assign io_rs1Set_value = _io_rs1Set_value_T | d_csrrc ? d_immcsr : io_inst_bits_addr;
+  assign io_rs2Read_valid =
+    decodeEn
+    & (_io_rs2Read_valid_T | d_blt | d_bge | d_bltu | d_bgeu | _io_rs2Read_valid_T_5
+      | d_slt | d_sltu | d_xor | d_or | d_and | d_xnor | d_orn | d_andn | d_sll | d_srl
+      | d_sra | _io_rs2Read_valid_T_18 | d_max | d_maxu | d_rol | d_ror
+      | _io_rs2Read_valid_T_24 | d_sw | (_io_rs1Set_value_T | d_csrrc)
+      & ~(io_inst_bits_inst[14]) | _io_rs2Read_valid_T_33 | d_mulhsu | d_mulhu
+      | _io_rs2Read_valid_T_37 | d_rem | d_remu | d_slog);
+  assign io_rs2Read_addr = io_inst_bits_inst[24:20];
+  assign io_rs2Set_valid =
+    decodeEn
+    & (d_auipc | (_io_rs1Set_value_T | d_csrrc) & io_inst_bits_inst[14]
+      | _io_rs2Set_valid_T_5 | d_sltiu | d_xori | d_ori | d_andi | d_slli | d_srli
+      | d_srai | d_rori | _io_rs2Set_valid_T_15 | d_cpop | d_sextb | d_sexth | d_zexth
+      | d_orcb | d_rev8 | d_lui);
+  assign io_rs2Set_value =
+    d_auipc | d_lui
+      ? {io_inst_bits_inst[31:12], 12'h0}
+      : {_d_d_imm12_T_1, io_inst_bits_inst[31:20]};
+  assign io_rdMark_valid = decodeEn & rdMark_valid;
+  assign io_rdMark_addr = io_inst_bits_inst[11:7];
+  assign io_rdMark_flt_valid =
+    decodeEn & d_d_float_y & ~d_d_float_scalar_rd & d_d_float_opcode_bits != 3'h1;
+  assign io_rdMark_flt_addr = io_inst_bits_inst[11:7];
+  assign io_busRead_bypass = io_busRead_bypass_0;
+  assign io_busRead_immen = ~d_flushat;
+  assign io_busRead_immed =
+    {_d_d_imm12_T_1,
+      io_inst_bits_inst[31:25],
+      io_inst_bits_inst[6:3] == 4'h4 & (&(io_inst_bits_inst[1:0]))
+        ? io_inst_bits_inst[11:7]
+        : io_inst_bits_inst[24:20]};
+  assign io_jalFault = jal_fault;
+  assign io_jalrFault = jalr_fault;
+  assign io_bxxFault = bxx_fault;
+  assign io_undefFault = io_inst_valid & d_undef;
+  assign io_bruTarget = _bru_target_T_2;
+  assign io_alu_valid = decodeEn & alu_valid;
+  assign io_alu_bits_addr = io_inst_bits_inst[11:7];
+  assign io_alu_bits_op =
+    _alu_T_1
+      ? 5'h0
+      : d_sub
+          ? 5'h1
+          : _alu_T_2
+              ? 5'h2
+              : _alu_T_3
+                  ? 5'h3
+                  : _alu_T_4
+                      ? 5'h4
+                      : _alu_T_5
+                          ? 5'h5
+                          : _alu_T_6
+                              ? 5'h6
+                              : _alu_T_7
+                                  ? 5'h7
+                                  : _alu_T_8
+                                      ? 5'h8
+                                      : _alu_T_9
+                                          ? 5'h9
+                                          : d_lui
+                                              ? 5'hA
+                                              : d_andn
+                                                  ? 5'hB
+                                                  : d_orn
+                                                      ? 5'hC
+                                                      : d_xnor
+                                                          ? 5'hD
+                                                          : d_clz
+                                                              ? 5'hE
+                                                              : d_ctz
+                                                                  ? 5'hF
+                                                                  : d_cpop
+                                                                      ? 5'h10
+                                                                      : d_max
+                                                                          ? 5'h11
+                                                                          : d_maxu
+                                                                              ? 5'h12
+                                                                              : d_min
+                                                                                  ? 5'h13
+                                                                                  : d_minu
+                                                                                      ? 5'h14
+                                                                                      : d_sextb
+                                                                                          ? 5'h15
+                                                                                          : d_sexth
+                                                                                              ? 5'h16
+                                                                                              : d_rol
+                                                                                                  ? 5'h17
+                                                                                                  : d_ror
+                                                                                                      ? 5'h18
+                                                                                                      : d_orcb
+                                                                                                          ? 5'h19
+                                                                                                          : d_rev8
+                                                                                                              ? 5'h1A
+                                                                                                              : d_zexth
+                                                                                                                  ? 5'h1B
+                                                                                                                  : d_rori
+                                                                                                                      ? 5'h18
+                                                                                                                      : 5'h0;
+  assign io_bru_valid = decodeEn & bru_valid & ~(_io_inst_ready_T_25 | bxx_fault);
+  assign io_bru_bits_fwd = io_inst_bits_brchFwd;
+  assign io_bru_bits_op = bru_bits;
+  assign io_bru_bits_pc = io_inst_bits_addr;
+  assign io_bru_bits_target = _bru_target_T_2;
+  assign io_bru_bits_link = io_inst_bits_inst[11:7];
+  assign io_csr_valid = io_csr_valid_0;
+  assign io_csr_bits_addr = io_inst_bits_inst[11:7];
+  assign io_csr_bits_index = io_inst_bits_inst[31:20];
+  assign io_csr_bits_op = d_csrrw ? 2'h0 : d_csrrs ? 2'h1 : {d_csrrc, 1'h0};
+  assign io_csrFault = csrEn & _GEN_5;
+  assign io_lsu_valid = decodeEn & lsu_valid;
+  assign io_lsu_bits_store = io_inst_bits_inst[5];
+  assign io_lsu_bits_addr = io_inst_bits_inst[11:7];
+  assign io_lsu_bits_op =
+    d_lb
+      ? 5'h0
+      : d_lh
+          ? 5'h1
+          : d_lw
+              ? 5'h2
+              : d_lbu
+                  ? 5'h3
+                  : d_lhu
+                      ? 5'h4
+                      : d_sb
+                          ? 5'h5
+                          : d_sh
+                              ? 5'h6
+                              : d_sw
+                                  ? 5'h7
+                                  : d_wfi | d_fencei
+                                      ? 5'h8
+                                      : d_flushat
+                                          ? 5'h9
+                                          : d_flushall
+                                              ? 5'hA
+                                              : _lsu_T_7_valid ? 5'hC : 5'h0;
+  assign io_lsu_bits_pc = io_inst_bits_addr;
+  assign io_mlu_valid = decodeEn & mlu_valid;
+  assign io_mlu_bits_addr = io_inst_bits_inst[11:7];
+  assign io_mlu_bits_op =
+    d_mul ? 3'h0 : d_mulh ? 3'h1 : d_mulhsu ? 3'h2 : d_mulhu ? 3'h3 : 3'h0;
+  assign io_dvu_valid = decodeEn & dvu_valid;
+  assign io_dvu_bits_addr = io_inst_bits_inst[11:7];
+  assign io_dvu_bits_op = d_div ? 2'h0 : d_divu ? 2'h1 : d_rem ? 2'h2 : {2{d_remu}};
+  assign io_float_valid = decodeEn & d_d_float_y & ~(d_d_float_y & _io_float_valid_T_5);
+  assign io_float_bits_opcode = d_d_float_opcode_bits;
+  assign io_float_bits_funct5 = io_inst_bits_inst[31:27];
+  assign io_float_bits_rs3 = io_inst_bits_inst[31:27];
+  assign io_float_bits_rs2 = io_inst_bits_inst[24:20];
+  assign io_float_bits_rs1 = io_inst_bits_inst[19:15];
+  assign io_float_bits_rm = io_inst_bits_inst[14:12];
+  assign io_float_bits_inst = io_inst_bits_inst;
+  assign io_float_bits_pc = io_inst_bits_addr;
+  assign io_float_bits_scalar_rd = d_d_float_scalar_rd;
+  assign io_float_bits_scalar_rs1 = d_d_float_scalar_rs1;
+  assign io_float_bits_rd = io_inst_bits_inst[11:7];
+  assign io_float_bits_uses_rs3 =
+    |{d_d_float_opcode_bits == 3'h6,
+      d_d_float_opcode_bits == 3'h5,
+      d_d_float_opcode_bits == 3'h4,
+      d_d_float_opcode_bits == 3'h3};
+  assign io_float_bits_uses_rs2 =
+    _d_d_float_T_1 | _d_d_float_uses_rs2_T_2
+    & ~(io_inst_bits_inst[31:27] == 5'hB | _d_d_float_uses_rs2_T_11
+      | _d_d_float_uses_rs2_T_9 | _d_d_float_uses_rs2_T_7 | _d_d_float_uses_rs2_T_5)
+    & io_inst_bits_inst[31:27] != 5'h1C;
+  assign io_serializeOut_mul = mlu_valid;
+  assign io_serializeOut_jump = d_jal | d_jalr | d_ebreak | d_ecall | d_mpause | d_mret;
+  assign io_serializeOut_brcond = d_beq | d_bne | d_blt | d_bge | d_bltu | d_bgeu;
+  assign io_serializeOut_wfi = d_wfi;
+  assign io_serializeOut_fence =
+    _io_serializeOut_fence_T | d_wfi | d_mpause | d_flushat | d_flushall;
+  assign io_serializeOut_csr = d_csrrw | d_csrrs | d_csrrc;
+  assign io_serializeOut_undef = d_undef;
+  assign io_slog = decodeEn & d_slog;
+endmodule
+`endif
 
 module Decode_1(
   input         io_halted,
