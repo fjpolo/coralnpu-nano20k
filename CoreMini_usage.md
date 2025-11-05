@@ -67,27 +67,27 @@ BSRAM	0 / 118	0%
 Resource Usage Summary
 Resource	Usage
 I/O Port	24
-I/O Buf	20
-    IBUF	10
+I/O Buf	22
+    IBUF	12
     OBUF	10
-Register	164
-    DFFCE	164
-LUT	1815
-    LUT2	131
-    LUT3	551
-    LUT4	1133
-ALU	66
-    ALU	66
+Register	332
+    DFFCE	332
+LUT	2014
+    LUT2	156
+    LUT3	563
+    LUT4	1295
+ALU	442
+    ALU	442
 INV	5
     INV	5
 DSP	
     MULT12X12	1
 Resource Utilization Summary
 Resource	Usage	Utilization
-Logic	1886(1820 LUT, 66 ALU) / 59904	4%
-Register	164 / 60780	<1%
+Logic	2461(2019 LUT, 442 ALU) / 59904	5%
+Register	332 / 60780	<1%
   --Register as Latch	0 / 60780	0%
-  --Register as FF	164 / 60780	<1%
+  --Register as FF	332 / 60780	<1%
 BSRAM	0 / 118	0%
 ```
 

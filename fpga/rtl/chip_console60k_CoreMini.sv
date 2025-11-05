@@ -875,6 +875,12 @@ module chip_console60k_CoreMini(
     .io_rd_bits_data  (_alu_3_io_rd_bits_data)
   )/* synthesis syn_keep=1 */;
 
+  assign _dispatch_io_bru_0_valid = global_en_0;
+  assign _dispatch_io_bru_0_bits_fwd = o_pmod0[7];
+  assign _dispatch_io_bru_0_bits_op = o_pmod0[3:0];
+  assign _dispatch_io_bru_0_bits_pc = o_pmod0[7:0];
+  assign _dispatch_io_bru_0_bits_target = o_pmod0[7:0];
+  assign _dispatch_io_bru_0_bits_link = o_pmod0[4:0];
   /* synthesis syn_keep=1 */Bru bru_0 (
     .clock                        (sys_clk),
     .reset                        (sys_rst),
@@ -914,6 +920,14 @@ module chip_console60k_CoreMini(
     .io_fault_manager_bits_mtval  (_fault_manager_io_out_bits_mtval),
     .io_fault_manager_bits_mcause (_fault_manager_io_out_bits_mcause)
   )/* synthesis syn_keep=1 */;
+  wire bru0_output = |_regfile_io_target_0_data/* synthesis syn_keep=1 */;
+  
+  assign _dispatch_io_bru_1_valid = global_en_0;
+  assign _dispatch_io_bru_1_bits_fwd = o_pmod0[7];
+  assign _dispatch_io_bru_1_bits_op = o_pmod0[3:0];
+  assign _dispatch_io_bru_1_bits_pc = o_pmod0[7:0];
+  assign _dispatch_io_bru_1_bits_target = o_pmod0[7:0];
+  assign _dispatch_io_bru_1_bits_link = o_pmod0[4:0];
   /* synthesis syn_keep=1 */Bru_1 bru_1 (
     .clock              (sys_clk),
     .reset              (sys_rst),
@@ -934,6 +948,14 @@ module chip_console60k_CoreMini(
     .io_taken_value     (_bru_1_io_taken_value),
     .io_target_data     (_regfile_io_target_1_data)
   )/* synthesis syn_keep=1 */;
+  wire bru1_output = |_regfile_io_target_2_data/* synthesis syn_keep=1 */;
+  
+  assign _dispatch_io_bru_2_valid = global_en_0;
+  assign _dispatch_io_bru_2_bits_fwd = o_pmod0[7];
+  assign _dispatch_io_bru_2_bits_op = o_pmod0[3:0];
+  assign _dispatch_io_bru_2_bits_pc = o_pmod0[7:0];
+  assign _dispatch_io_bru_2_bits_target = o_pmod0[7:0];
+  assign _dispatch_io_bru_2_bits_link = o_pmod0[4:0];
   /* synthesis syn_keep=1 */Bru_1 bru_2 (
     .clock              (sys_clk),
     .reset              (sys_rst),
@@ -954,6 +976,14 @@ module chip_console60k_CoreMini(
     .io_taken_value     (_bru_2_io_taken_value),
     .io_target_data     (_regfile_io_target_2_data)
   )/* synthesis syn_keep=1 */;
+  assign _dispatch_io_bru_3_valid = global_en_0;
+  assign _dispatch_io_bru_3_bits_fwd = o_pmod0[7];
+  assign _dispatch_io_bru_3_bits_op = o_pmod0[3:0];
+  assign _dispatch_io_bru_3_bits_pc = o_pmod0[7:0];
+  assign _dispatch_io_bru_3_bits_target = o_pmod0[7:0];
+  assign _dispatch_io_bru_3_bits_link = o_pmod0[4:0];
+  
+  wire bru2_output = |_regfile_io_target_2_data/* synthesis syn_keep=1 */;
   /* synthesis syn_keep=1 */Bru_1 bru_3 (
     .clock              (sys_clk),
     .reset              (sys_rst),
@@ -974,6 +1004,7 @@ module chip_console60k_CoreMini(
     .io_taken_value     (_bru_3_io_taken_value),
     .io_target_data     (_regfile_io_target_3_data)
   )/* synthesis syn_keep=1 */;
+  wire bru3_output = |_regfile_io_target_3_data/* synthesis syn_keep=1 */;
 
  // =========================================================================
  // --- FINAL OUTPUT ASSIGNMENT ---------------------------------------------
@@ -981,6 +1012,7 @@ module chip_console60k_CoreMini(
 
   wire [31:0]  _alu_io_rd_bits_data/* synthesis syn_keep=1 */;
   wire [31:0]  _regfile_io_readData_data/* synthesis syn_keep=1 */;
+  wire bru_output = (bru0_output)&(bru1_output)&(bru1_output)&(bru2_output) /* synthesis syn_keep=1 */;
   assign _alu_io_rd_bits_data = 
                                 (_alu_0_io_rd_bits_data)&
                                 (_alu_1_io_rd_bits_data)&
@@ -1003,7 +1035,7 @@ module chip_console60k_CoreMini(
  // o_pmod1[1]: Regfile Target 1 LSB
  assign o_pmod1[1] = ((|_regfile_io_target_1_data)&(|_fetch_io_inst_lanes_0_valid)&(_regfile_io_readData_data)) ^ (global_en_2);
  // o_pmod1[2]: Regfile Target 2 LSB
- assign o_pmod1[2] = ((|_regfile_io_target_2_data)&(|_fetch_io_pc)) ^ global_en_3;
+ assign o_pmod1[2] = ((|_regfile_io_target_2_data)&(|_fetch_io_pc)&(bru_output)) ^ global_en_3;
  // o_pmod1[3]: Regfile Target 3 LSB
  assign o_pmod1[3] = ((|_regfile_io_target_3_data)&(|_fetch_io_inst_lanes_0_bits_brchFwd)) ^ (global_en_4);
  // o_pmod1[4]: Regfile Write Count LSB
