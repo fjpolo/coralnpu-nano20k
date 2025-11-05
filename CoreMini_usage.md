@@ -61,7 +61,7 @@ Register	155 / 60780	<1%
 BSRAM	0 / 118	0%
 ```
 
-# Bru
+# Bru + Bru_1 x 3
 
 ```
 Resource Usage Summary
@@ -91,13 +91,12 @@ Register	332 / 60780	<1%
 BSRAM	0 / 118	0%
 ```
 
+
+
+
+
+
 # DispatchV1
-
-```
-```
-
-
-# Bru_1 (x3)
 
 ```
 ```
