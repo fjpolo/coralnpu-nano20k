@@ -1567,7 +1567,6 @@ assign _lsu_io_ebus_fault_bits_addr = o_pmod0[7:0];
 assign _lsu_io_ebus_fault_bits_epc = o_pmod0[0];
 
 //  output [31:0]  io_rd_flt_bits_data,
-
 //  output         io_req_0_ready,
 //  output         io_req_1_ready,
 //  output         io_req_2_ready,
@@ -1599,6 +1598,17 @@ assign _lsu_io_ebus_fault_bits_epc = o_pmod0[0];
 //  output [127:0] io_ebus_dbus_wdata,
 //  output [1:0]   io_storeCount,
 //  output         io_active
+wire lsu_final = 
+                  (|_lsu_io_req_0_ready)&
+                  (|_lsu_io_req_1_ready)&
+                  (|_lsu_io_req_2_ready)&
+                  (|_lsu_io_req_3_ready)&
+                  (|_lsu_io_rd_valid)&
+                  (|_lsu_io_rd_bits_data)&
+                  (|_lsu_io_rd_flt_bits_addr)&
+                  (|_lsu_io_dbus_wdata)&
+                  (|_lsu_io_flush_pcNext)&
+                  (|_lsu_io_fault_bits_addr);
   /* synthesis syn_keep=1 */ LsuV1 lsu (
     .clock                    (sys_clk),
     .reset                    (sys_rst),
@@ -1716,7 +1726,7 @@ assign _regfile_io_readData_data =
  // o_pmod1[6]: Regfile Target 1 bits [2:1]
  assign o_pmod1[6] = ((|_regfile_io_target_1_data)&(|_fetch_io_inst_lanes_3_valid)&(|_floatCore_io_write_ports_1_data_mantissa)&(|_floatCore_io_write_ports_1_data_exponent)&(_floatCore_io_write_ports_1_data_sign)&(|_fRegfile_io_read_ports_2_data_exponent)&(_fRegfile_io_read_ports_2_data_sign)) ^ (_regfile_io_target_2_data[2]) ^ (global_en_7);
  // o_pmod1[7]: Mix of Regfile Write Count and original input o_pmod0
- assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)&(_lsu_io_rd_flt_bits_data)) ^ (o_pmod0[7]) ^ (global_en_0);
+ assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)&(|lsu_final)) ^ (o_pmod0[7]) ^ (global_en_0);
  // UART outputs tied off as unused in this minimal test
  assign uart_tx_o = 2'b0;
 
