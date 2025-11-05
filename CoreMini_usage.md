@@ -602,10 +602,10 @@ Register	5556
     DFFRE	385
     DFFPE	3
     DFFCE	5164
-LUT	36980
-    LUT2	1660
-    LUT3	14811
-    LUT4	20509
+LUT	36935
+    LUT2	1367
+    LUT3	15004
+    LUT4	20564
 ALU	927
     ALU	927
 INV	14
@@ -615,7 +615,7 @@ DSP
     MULT27X36	3
 Resource Utilization Summary
 Resource	Usage	Utilization
-Logic	37921(36994 LUT, 927 ALU) / 59904	64%
+Logic	37876(36949 LUT, 927 ALU) / 59904	64%
 Register	5556 / 60780	10%
   --Register as Latch	0 / 60780	0%
   --Register as FF	5556 / 60780	10%
