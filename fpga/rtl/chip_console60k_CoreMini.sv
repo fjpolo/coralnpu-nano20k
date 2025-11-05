@@ -1687,6 +1687,72 @@ wire lsu_final =
 `else
 `endif // INCLUDE_LSU
 
+
+  assign io_req_0_valid = o_pmod0[0];
+  assign io_req_1_valid = o_pmod0[1];
+  assign io_req_2_valid = o_pmod0[2];
+  assign io_req_3_valid = o_pmod0[3];
+  assign io_rs1_0_valid = o_pmod0[4];
+  assign io_rs1_1_valid = o_pmod0[5];
+  assign io_rs1_2_valid = o_pmod0[6];
+  assign io_rs1_3_valid = o_pmod0[7];
+  assign io_rs2_0_valid = o_pmod0[0];
+  assign io_rs2_1_valid = o_pmod0[1];
+  assign io_rs2_2_valid = o_pmod0[2];
+  assign io_rs2_3_valid = o_pmod0[3];
+  assign io_req_0_bits_addr = o_pmod0[7:0];
+  assign io_req_1_bits_addr = o_pmod0[7:0] + 'h10;
+  assign io_req_2_bits_addr = o_pmod0[7:0] + 'h20;
+  assign io_req_3_bits_addr = o_pmod0[7:0] + 'h30;
+  assign io_req_0_bits_op = o_pmod0[7:0] + 1;
+  assign io_req_1_bits_op = o_pmod0[7:0] + 2;
+  assign io_req_2_bits_op = o_pmod0[7:0] + 3;
+  assign io_req_3_bits_op = o_pmod0[7:0] + 4;
+  assign io_rs1_0_data = o_pmod0[7:0];
+  assign io_rs1_1_data = ~o_pmod0[7:0];
+  assign io_rs1_2_data = |o_pmod0[7:0];
+  assign io_rs1_3_data = ^o_pmod0[7:0];
+  assign io_rs2_0_data = o_pmod0[7:0];
+  assign io_rs2_1_data = ~o_pmod0[7:0];
+  assign io_rs2_2_data = |o_pmod0[7:0];
+  assign io_rs2_3_data = ^o_pmod0[7:0];
+  /* synthesis syn_keep=1 */ Mlu mlu (
+    .clock              (sys_clk),
+    .reset              (sys_rst),
+    .io_req_0_valid     (_dispatch_io_mlu_0_valid),
+    .io_req_0_bits_addr (_dispatch_io_mlu_0_bits_addr),
+    .io_req_0_bits_op   (_dispatch_io_mlu_0_bits_op),
+    .io_req_1_valid     (_dispatch_io_mlu_1_valid),
+    .io_req_1_bits_addr (_dispatch_io_mlu_1_bits_addr),
+    .io_req_1_bits_op   (_dispatch_io_mlu_1_bits_op),
+    .io_req_2_valid     (_dispatch_io_mlu_2_valid),
+    .io_req_2_bits_addr (_dispatch_io_mlu_2_bits_addr),
+    .io_req_2_bits_op   (_dispatch_io_mlu_2_bits_op),
+    .io_req_3_valid     (_dispatch_io_mlu_3_valid),
+    .io_req_3_bits_addr (_dispatch_io_mlu_3_bits_addr),
+    .io_req_3_bits_op   (_dispatch_io_mlu_3_bits_op),
+    .io_rs1_0_valid     (_regfile_io_readData_0_valid),
+    .io_rs1_0_data      (_regfile_io_readData_0_data),
+    .io_rs1_1_valid     (_regfile_io_readData_2_valid),
+    .io_rs1_1_data      (_regfile_io_readData_2_data),
+    .io_rs1_2_valid     (_regfile_io_readData_4_valid),
+    .io_rs1_2_data      (_regfile_io_readData_4_data),
+    .io_rs1_3_valid     (_regfile_io_readData_6_valid),
+    .io_rs1_3_data      (_regfile_io_readData_6_data),
+    .io_rs2_0_valid     (_regfile_io_readData_1_valid),
+    .io_rs2_0_data      (_regfile_io_readData_1_data),
+    .io_rs2_1_valid     (_regfile_io_readData_3_valid),
+    .io_rs2_1_data      (_regfile_io_readData_3_data),
+    .io_rs2_2_valid     (_regfile_io_readData_5_valid),
+    .io_rs2_2_data      (_regfile_io_readData_5_data),
+    .io_rs2_3_valid     (_regfile_io_readData_7_valid),
+    .io_rs2_3_data      (_regfile_io_readData_7_data),
+    .io_rd_valid        (_mlu_io_rd_valid),
+    .io_rd_bits_addr    (_mlu_io_rd_bits_addr),
+    .io_rd_bits_data    (_mlu_io_rd_bits_data)
+  )/* synthesis syn_keep=1 */;
+  wire mlu_final = (|_mlu_io_rd_valid)&(|_mlu_io_rd_bits_addr)&(|_mlu_io_rd_bits_data);
+
 // =========================================================================
  // --- FINAL OUTPUT ASSIGNMENT ---------------------------------------------
  // =========================================================================
@@ -1726,7 +1792,7 @@ assign _regfile_io_readData_data =
  // o_pmod1[6]: Regfile Target 1 bits [2:1]
  assign o_pmod1[6] = ((|_regfile_io_target_1_data)&(|_fetch_io_inst_lanes_3_valid)&(|_floatCore_io_write_ports_1_data_mantissa)&(|_floatCore_io_write_ports_1_data_exponent)&(_floatCore_io_write_ports_1_data_sign)&(|_fRegfile_io_read_ports_2_data_exponent)&(_fRegfile_io_read_ports_2_data_sign)) ^ (_regfile_io_target_2_data[2]) ^ (global_en_7);
  // o_pmod1[7]: Mix of Regfile Write Count and original input o_pmod0
- assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)&(|lsu_final)) ^ (o_pmod0[7]) ^ (global_en_0);
+ assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)&(|lsu_final)&(mlu_final)) ^ (o_pmod0[7]) ^ (global_en_0);
  // UART outputs tied off as unused in this minimal test
  assign uart_tx_o = 2'b0;
 
