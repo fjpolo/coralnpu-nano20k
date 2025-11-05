@@ -160,6 +160,35 @@ BSRAM	0 / 118	0%
 # DispatchV1
 
 ```
+Resource Usage Summary
+Resource	Usage
+I/O Port	24
+I/O Buf	15
+    IBUF	5
+    OBUF	10
+Register	4337
+    DFFSE	4
+    DFFRE	286
+    DFFPE	2
+    DFFCE	4045
+LUT	50802
+    LUT2	2791
+    LUT3	15279
+    LUT4	32732
+ALU	1364
+    ALU	1364
+INV	14
+    INV	14
+DSP	
+    MULT12X12	2
+    MULT27X36	1
+Resource Utilization Summary
+Resource	Usage	Utilization
+Logic	52180(50816 LUT, 1364 ALU) / 59904	88%
+Register	4337 / 60780	8%
+  --Register as Latch	0 / 60780	0%
+  --Register as FF	4337 / 60780	8%
+BSRAM	0 / 118	0%
 ```
 
 # LsuV1
@@ -177,18 +206,10 @@ BSRAM	0 / 118	0%
 ```
 ```
 
-
 # Arbiter3_RegfileWriteDataIO
 
 ```
 ```
-
-
-
-
-
-
-
 
 # Csr
 

@@ -80,7 +80,7 @@ module chip_console60k_CoreMini(
  logic ebus_fault_bits_write      /* synthesis syn_keep=1 */; // Tied low
  logic [31:0] ebus_fault_bits_addr /* synthesis syn_keep=1 */; // Tied to constant
  logic [31:0] ebus_fault_bits_epc  /* synthesis syn_keep=1 */; // Tied to constant
- logic core_irq                   /* synthesis syn_keep=1 */; // Driven by global_en
+ logic core_irqassign      /* synthesis syn_keep=1 */; // Driven by global_en
 
  // OUTPUT WIRES (Consumed by o_pmod1 or tied off)
  logic [31:0] csr_out_value_0     /* synthesis syn_keep=1 */;
@@ -91,13 +91,13 @@ module chip_console60k_CoreMini(
  logic [31:0] csr_out_value_5     /* synthesis syn_keep=1 */;
  logic [31:0] csr_out_value_6     /* synthesis syn_keep=1 */;
  logic [31:0] csr_out_value_7     /* synthesis syn_keep=1 */;
- logic core_halted                /* synthesis syn_keep=1 */;
- logic core_fault                 /* synthesis syn_keep=1 */;
- logic core_wfi                   /* synthesis syn_keep=1 */;
- logic ibus_valid                 /* synthesis syn_keep=1 */;
+ logic core_haltedassign   /* synthesis syn_keep=1 */;
+ logic core_faultassign    /* synthesis syn_keep=1 */;
+ logic core_wfiassign      /* synthesis syn_keep=1 */;
+ logic ibus_validassign    /* synthesis syn_keep=1 */;
  logic [31:0] ibus_addr           /* synthesis syn_keep=1 */;
- logic dbus_valid                 /* synthesis syn_keep=1 */;
- logic dbus_write                 /* synthesis syn_keep=1 */;
+ logic dbus_validassign    /* synthesis syn_keep=1 */;
+ logic dbus_writeassign    /* synthesis syn_keep=1 */;
  logic [31:0] dbus_addr           /* synthesis syn_keep=1 */;
  logic [127:0] dbus_wdata         /* synthesis syn_keep=1 */;
  logic [15:0] dbus_wmask          /* synthesis syn_keep=1 */;
@@ -652,15 +652,13 @@ module chip_console60k_CoreMini(
   reg  [31:0]  debugInst_3/* synthesis syn_keep=1 */;
   wire         _debugBrch_T_1 = _bru_2_io_taken_valid | _bru_3_io_taken_valid/* synthesis syn_keep=1 */;
 
-  // assign _regfile_io_target_0_data = {24'hDEADBE, o_pmod0};
-  // assign _regfile_io_target_1_data = {24'h00C0DE, o_pmod0};
-  // assign _regfile_io_target_2_data = {24'hFEEDFA, o_pmod0};
-  // assign _regfile_io_target_3_data = {24'h1BADB0, o_pmod0};
-  // assign _regfile_io_rfwriteCount = {24'hCAFE01, o_pmod0};
+  // =========================================================================
+  // --- MODULAR INSTANTIATION ---------------------------------------------
+  // =========================================================================
 
   /* synthesis syn_keep=1 */ Regfile regfile (
-    .clock                    (sys_clk),
-    .reset                    (sys_rst),
+    .clock(sys_clk),
+    .reset(sys_rst),
     .io_readAddr_0_valid      (_dispatch_io_rs1Read_0_valid),
     .io_readAddr_0_addr       (_dispatch_io_rs1Read_0_addr),
     .io_readAddr_1_valid      (_dispatch_io_rs2Read_0_valid),
@@ -765,13 +763,13 @@ module chip_console60k_CoreMini(
   ) /* synthesis syn_keep=1 */;
 
   /* synthesis syn_keep=1 */ UncachedFetch fetch (
-    .clock                        (sys_clk),
-    .reset                        (sys_rst),
-    .io_csr_value_0               (io_csr_in_value_0),
-    .io_ibus_valid                (_fetch_io_ibus_valid),
-    .io_ibus_ready                (~_lsu_io_ibus_valid),
-    .io_ibus_addr                 (_fetch_io_ibus_addr),
-    .io_ibus_rdata                (io_ibus_rdata),
+    .clock(sys_clk),
+    .reset(sys_rst),
+    .io_csr_value_0   (io_csr_in_value_0),
+    .io_ibus_valid    (_fetch_io_ibus_valid),
+    .io_ibus_ready    (~_lsu_io_ibus_valid),
+    .io_ibus_addr     (_fetch_io_ibus_addr),
+    .io_ibus_rdata    (io_ibus_rdata),
     .io_inst_lanes_0_ready        (_dispatch_io_inst_0_ready),
     .io_inst_lanes_0_valid        (_fetch_io_inst_lanes_0_valid),
     .io_inst_lanes_0_bits_addr    (_fetch_io_inst_lanes_0_bits_addr),
@@ -800,15 +798,11 @@ module chip_console60k_CoreMini(
     .io_branch_2_value            (_bru_2_io_taken_value),
     .io_branch_3_valid            (_bru_3_io_taken_valid),
     .io_branch_3_value            (_bru_3_io_taken_value),
-    .io_iflush_valid              (_lsu_io_flush_valid & _lsu_io_flush_fencei),
+    .io_iflush_valid(_lsu_io_flush_valid & _lsu_io_flush_fencei),
     .io_iflush_pcNext             (_lsu_io_flush_pcNext),
-    .io_pc                        (_fetch_io_pc)
+    .io_pc(_fetch_io_pc)
   ) /* synthesis syn_keep=1 */;
 
-  assign _dispatch_io_alu_0_valid = global_en_0;
-  assign _dispatch_io_alu_0_bits_addr = o_pmod0[4:0];
-  assign _dispatch_io_alu_0_bits_op = {s0, s0, s1, s1, s2};
-  assign _dispatch_io_alu_0_bits_addr = ~o_pmod0[4:0];
   /* synthesis syn_keep=1 */ Alu alu_0 (
     .clock            (sys_clk),
     .reset            (sys_rst),
@@ -823,9 +817,6 @@ module chip_console60k_CoreMini(
     .io_rd_bits_addr  (_alu_0_io_rd_bits_addr),
     .io_rd_bits_data  (_alu_0_io_rd_bits_data)
   ) /* synthesis syn_keep=1 */;
-  assign _dispatch_io_alu_1_valid = global_en_0;
-  assign _dispatch_io_alu_1_bits_addr = o_pmod0[4:0];
-  assign _dispatch_io_alu_1_bits_op = {s0, s0, s1, s1, s2};
   /* synthesis syn_keep=1 */ Alu alu_1 (
     .clock            (sys_clk),
     .reset            (sys_rst),
@@ -840,9 +831,6 @@ module chip_console60k_CoreMini(
     .io_rd_bits_addr  (_alu_1_io_rd_bits_addr),
     .io_rd_bits_data  (_alu_1_io_rd_bits_data)
   )/* synthesis syn_keep=1 */;
-  assign _dispatch_io_alu_2_valid = global_en_0;
-  assign _dispatch_io_alu_2_bits_addr = o_pmod0[4:0];
-  assign _dispatch_io_alu_2_bits_op = {s0, s0, s1, s1, s2};
   /* synthesis syn_keep=1 */ Alu alu_2 (
     .clock            (sys_clk),
     .reset            (sys_rst),
@@ -857,9 +845,6 @@ module chip_console60k_CoreMini(
     .io_rd_bits_addr  (_alu_2_io_rd_bits_addr),
     .io_rd_bits_data  (_alu_2_io_rd_bits_data)
   )/* synthesis syn_keep=1 */;
-  assign _dispatch_io_alu_3_valid = global_en_0;
-  assign _dispatch_io_alu_3_bits_addr = o_pmod0[4:0];
-  assign _dispatch_io_alu_3_bits_op = {s0, s0, s1, s1, s2};
   /* synthesis syn_keep=1 */Alu alu_3 (
     .clock            (sys_clk),
     .reset            (sys_rst),
@@ -875,19 +860,13 @@ module chip_console60k_CoreMini(
     .io_rd_bits_data  (_alu_3_io_rd_bits_data)
   )/* synthesis syn_keep=1 */;
 
-  assign _dispatch_io_bru_0_valid = global_en_0;
-  assign _dispatch_io_bru_0_bits_fwd = o_pmod0[7];
-  assign _dispatch_io_bru_0_bits_op = o_pmod0[3:0];
-  assign _dispatch_io_bru_0_bits_pc = o_pmod0[7:0];
-  assign _dispatch_io_bru_0_bits_target = o_pmod0[7:0];
-  assign _dispatch_io_bru_0_bits_link = o_pmod0[4:0];
   /* synthesis syn_keep=1 */Bru bru_0 (
-    .clock                        (sys_clk),
-    .reset                        (sys_rst),
-    .io_req_valid                 (_dispatch_io_bru_0_valid),
-    .io_req_bits_fwd              (_dispatch_io_bru_0_bits_fwd),
-    .io_req_bits_op               (_dispatch_io_bru_0_bits_op),
-    .io_req_bits_pc               (_dispatch_io_bru_0_bits_pc),
+    .clock(sys_clk),
+    .reset(sys_rst),
+    .io_req_valid     (_dispatch_io_bru_0_valid),
+    .io_req_bits_fwd(_dispatch_io_bru_0_bits_fwd),
+    .io_req_bits_op   (_dispatch_io_bru_0_bits_op),
+    .io_req_bits_pc   (_dispatch_io_bru_0_bits_pc),
     .io_req_bits_target           (_dispatch_io_bru_0_bits_target),
     .io_req_bits_link             (_dispatch_io_bru_0_bits_link),
     .io_csr_in_mode_valid         (_bru_0_io_csr_in_mode_valid),
@@ -898,39 +877,32 @@ module chip_console60k_CoreMini(
     .io_csr_in_mepc_bits          (_bru_0_io_csr_in_mepc_bits),
     .io_csr_in_mtval_valid        (_bru_0_io_csr_in_mtval_valid),
     .io_csr_in_mtval_bits         (_bru_0_io_csr_in_mtval_bits),
-    .io_csr_in_halt               (_bru_0_io_csr_in_halt),
-    .io_csr_in_fault              (_bru_0_io_csr_in_fault),
-    .io_csr_in_wfi                (_bru_0_io_csr_in_wfi),
-    .io_csr_out_mode              (_csr_io_bru_out_mode),
-    .io_csr_out_mepc              (_csr_io_bru_out_mepc),
+    .io_csr_in_halt   (_bru_0_io_csr_in_halt),
+    .io_csr_in_fault(_bru_0_io_csr_in_fault),
+    .io_csr_in_wfi    (_bru_0_io_csr_in_wfi),
+    .io_csr_out_mode(_csr_io_bru_out_mode),
+    .io_csr_out_mepc(_csr_io_bru_out_mepc),
     .io_csr_out_mtvec             (_csr_io_bru_out_mtvec),
-    .io_rs1_valid                 (_regfile_io_readData_0_valid),
-    .io_rs1_data                  (_regfile_io_readData_0_data),
-    .io_rs2_valid                 (_regfile_io_readData_1_valid),
-    .io_rs2_data                  (_regfile_io_readData_1_data),
-    .io_rd_valid                  (_bru_0_io_rd_valid),
-    .io_rd_bits_addr              (_bru_0_io_rd_bits_addr),
-    .io_rd_bits_data              (_bru_0_io_rd_bits_data),
-    .io_taken_valid               (_bru_0_io_taken_valid),
-    .io_taken_value               (_bru_0_io_taken_value),
-    .io_target_data               (_regfile_io_target_0_data),
-    .io_interlock                 (_bru_0_io_interlock),
+    .io_rs1_valid     (_regfile_io_readData_0_valid),
+    .io_rs1_data      (_regfile_io_readData_0_data),
+    .io_rs2_valid     (_regfile_io_readData_1_valid),
+    .io_rs2_data      (_regfile_io_readData_1_data),
+    .io_rd_valid      (_bru_0_io_rd_valid),
+    .io_rd_bits_addr(_bru_0_io_rd_bits_addr),
+    .io_rd_bits_data(_bru_0_io_rd_bits_data),
+    .io_taken_valid   (_bru_0_io_taken_valid),
+    .io_taken_value   (_bru_0_io_taken_value),
+    .io_target_data   (_regfile_io_target_0_data),
+    .io_interlock     (_bru_0_io_interlock),
     .io_fault_manager_valid       (_fault_manager_io_out_valid),
     .io_fault_manager_bits_mepc   (_fault_manager_io_out_bits_mepc),
     .io_fault_manager_bits_mtval  (_fault_manager_io_out_bits_mtval),
     .io_fault_manager_bits_mcause (_fault_manager_io_out_bits_mcause)
   )/* synthesis syn_keep=1 */;
-  wire bru0_output = |_regfile_io_target_0_data/* synthesis syn_keep=1 */;
-  
-  assign _dispatch_io_bru_1_valid = global_en_0;
-  assign _dispatch_io_bru_1_bits_fwd = o_pmod0[7];
-  assign _dispatch_io_bru_1_bits_op = o_pmod0[3:0];
-  assign _dispatch_io_bru_1_bits_pc = o_pmod0[7:0];
-  assign _dispatch_io_bru_1_bits_target = o_pmod0[7:0];
-  assign _dispatch_io_bru_1_bits_link = o_pmod0[4:0];
+  wire bru0_output = |_regfile_io_target_0_data /* synthesis syn_keep=1 */;
   /* synthesis syn_keep=1 */Bru_1 bru_1 (
-    .clock              (sys_clk),
-    .reset              (sys_rst),
+    .clock(sys_clk),
+    .reset(sys_rst),
     .io_req_valid       (_dispatch_io_bru_1_valid),
     .io_req_bits_fwd    (_dispatch_io_bru_1_bits_fwd),
     .io_req_bits_op     (_dispatch_io_bru_1_bits_op),
@@ -948,17 +920,10 @@ module chip_console60k_CoreMini(
     .io_taken_value     (_bru_1_io_taken_value),
     .io_target_data     (_regfile_io_target_1_data)
   )/* synthesis syn_keep=1 */;
-  wire bru1_output = |_regfile_io_target_2_data/* synthesis syn_keep=1 */;
-  
-  assign _dispatch_io_bru_2_valid = global_en_0;
-  assign _dispatch_io_bru_2_bits_fwd = o_pmod0[7];
-  assign _dispatch_io_bru_2_bits_op = o_pmod0[3:0];
-  assign _dispatch_io_bru_2_bits_pc = o_pmod0[7:0];
-  assign _dispatch_io_bru_2_bits_target = o_pmod0[7:0];
-  assign _dispatch_io_bru_2_bits_link = o_pmod0[4:0];
+  wire bru1_output = |_regfile_io_target_2_data /* synthesis syn_keep=1 */;
   /* synthesis syn_keep=1 */Bru_1 bru_2 (
-    .clock              (sys_clk),
-    .reset              (sys_rst),
+    .clock(sys_clk),
+    .reset(sys_rst),
     .io_req_valid       (_dispatch_io_bru_2_valid),
     .io_req_bits_fwd    (_dispatch_io_bru_2_bits_fwd),
     .io_req_bits_op     (_dispatch_io_bru_2_bits_op),
@@ -976,17 +941,10 @@ module chip_console60k_CoreMini(
     .io_taken_value     (_bru_2_io_taken_value),
     .io_target_data     (_regfile_io_target_2_data)
   )/* synthesis syn_keep=1 */;
-  assign _dispatch_io_bru_3_valid = global_en_0;
-  assign _dispatch_io_bru_3_bits_fwd = o_pmod0[7];
-  assign _dispatch_io_bru_3_bits_op = o_pmod0[3:0];
-  assign _dispatch_io_bru_3_bits_pc = o_pmod0[7:0];
-  assign _dispatch_io_bru_3_bits_target = o_pmod0[7:0];
-  assign _dispatch_io_bru_3_bits_link = o_pmod0[4:0];
-  
-  wire bru2_output = |_regfile_io_target_2_data/* synthesis syn_keep=1 */;
+  wire bru2_output = |_regfile_io_target_2_data /* synthesis syn_keep=1 */;
   /* synthesis syn_keep=1 */Bru_1 bru_3 (
-    .clock              (sys_clk),
-    .reset              (sys_rst),
+    .clock(sys_clk),
+    .reset(sys_rst),
     .io_req_valid       (_dispatch_io_bru_3_valid),
     .io_req_bits_fwd    (_dispatch_io_bru_3_bits_fwd),
     .io_req_bits_op     (_dispatch_io_bru_3_bits_op),
@@ -1004,29 +962,24 @@ module chip_console60k_CoreMini(
     .io_taken_value     (_bru_3_io_taken_value),
     .io_target_data     (_regfile_io_target_3_data)
   )/* synthesis syn_keep=1 */;
-  wire bru3_output = |_regfile_io_target_3_data/* synthesis syn_keep=1 */;
+  wire bru3_output = |_regfile_io_target_3_data /* synthesis syn_keep=1 */;
 
-  assign _dispatch_io_float_bits_opcode = o_pmod0[2:0];
-  assign _dispatch_io_float_bits_funct5 = o_pmod0[4:0];
-  assign _dispatch_io_float_bits_rs3 = o_pmod0[4:0];
-  assign _dispatch_io_float_bits_rs2 = o_pmod0[4:0];
-  assign _dispatch_io_float_bits_rs1 = o_pmod0[4:0];
   /* synthesis syn_keep=1 */ FloatCore floatCore (
-    .clock                          (sys_rst),
-    .reset                          (sys_rst),
-    .io_inst_ready                  (_floatCore_io_inst_ready),
-    .io_inst_valid                  (_dispatch_io_float_valid),
+    .clock              (sys_rst),
+    .reset              (sys_rst),
+    .io_inst_ready      (_floatCore_io_inst_ready),
+    .io_inst_valid      (_dispatch_io_float_valid),
     .io_inst_bits_opcode            (_dispatch_io_float_bits_opcode),
     .io_inst_bits_funct5            (_dispatch_io_float_bits_funct5),
-    .io_inst_bits_rs3               (_dispatch_io_float_bits_rs3),
-    .io_inst_bits_rs2               (_dispatch_io_float_bits_rs2),
-    .io_inst_bits_rs1               (_dispatch_io_float_bits_rs1),
-    .io_inst_bits_rm                (_dispatch_io_float_bits_rm),
-    .io_inst_bits_inst              (_dispatch_io_float_bits_inst),
-    .io_inst_bits_pc                (_dispatch_io_float_bits_pc),
+    .io_inst_bits_rs3   (_dispatch_io_float_bits_rs3),
+    .io_inst_bits_rs2   (_dispatch_io_float_bits_rs2),
+    .io_inst_bits_rs1   (_dispatch_io_float_bits_rs1),
+    .io_inst_bits_rm    (_dispatch_io_float_bits_rm),
+    .io_inst_bits_inst(_dispatch_io_float_bits_inst),
+    .io_inst_bits_pc    (_dispatch_io_float_bits_pc),
     .io_inst_bits_scalar_rd         (_dispatch_io_float_bits_scalar_rd),
     .io_inst_bits_scalar_rs1        (_dispatch_io_float_bits_scalar_rs1),
-    .io_inst_bits_rd                (_dispatch_io_float_bits_rd),
+    .io_inst_bits_rd    (_dispatch_io_float_bits_rd),
     .io_inst_bits_uses_rs3          (_dispatch_io_float_bits_uses_rs3),
     .io_inst_bits_uses_rs2          (_dispatch_io_float_bits_uses_rs2),
     .io_read_ports_0_valid          (_floatCore_io_read_ports_0_valid),
@@ -1054,22 +1007,22 @@ module chip_console60k_CoreMini(
     .io_write_ports_1_data_mantissa (_floatCore_io_write_ports_1_data_mantissa),
     .io_write_ports_1_data_exponent (_floatCore_io_write_ports_1_data_exponent),
     .io_write_ports_1_data_sign     (_floatCore_io_write_ports_1_data_sign),
-    .io_rs1_data                    (_regfile_io_readData_0_data),
+    .io_rs1_data(_regfile_io_readData_0_data),
     .io_scalar_rd_ready             (_arb_io_in_2_ready),
     .io_scalar_rd_valid             (_floatCore_io_scalar_rd_valid),
     .io_scalar_rd_bits_addr         (_floatCore_io_scalar_rd_bits_addr),
     .io_scalar_rd_bits_data         (_floatCore_io_scalar_rd_bits_data),
     .io_csr_in_fflags_valid         (_floatCore_io_csr_in_fflags_valid),
     .io_csr_in_fflags_bits          (_floatCore_io_csr_in_fflags_bits),
-    .io_csr_out_frm                 (_csr_io_float_out_frm),
-    .io_lsu_rd_valid                (_lsu_io_rd_flt_valid),
+    .io_csr_out_frm     (_csr_io_float_out_frm),
+    .io_lsu_rd_valid    (_lsu_io_rd_flt_valid),
     .io_lsu_rd_bits_addr            (_lsu_io_rd_flt_bits_addr),
     .io_lsu_rd_bits_data            (_lsu_io_rd_flt_bits_data)
   )/* synthesis syn_keep=1 */;
 
   /* synthesis syn_keep=1 */ FRegfile fRegfile (
-    .clock                          (sys_clk),
-    .reset                          (sys_rst),
+    .clock              (sys_clk),
+    .reset              (sys_rst),
     .io_read_ports_0_valid          (_floatCore_io_read_ports_0_valid),
     .io_read_ports_0_addr           (_floatCore_io_read_ports_0_addr),
     .io_read_ports_0_data_mantissa  (_fRegfile_io_read_ports_0_data_mantissa),
@@ -1097,12 +1050,481 @@ module chip_console60k_CoreMini(
     .io_write_ports_1_data_sign     (_floatCore_io_write_ports_1_data_sign),
     .io_scoreboard_set
       (_dispatch_io_rdMark_flt_valid ? 32'h1 << _dispatch_io_rdMark_flt_addr : 32'h0),
-    .io_scoreboard                  (_fRegfile_io_scoreboard),
-    .io_busPort_data_0              (_fRegfile_io_busPort_data_0),
-    .io_busPortAddr                 (_dispatch_io_fbusPortAddr)
+    .io_scoreboard      (_fRegfile_io_scoreboard),
+    .io_busPort_data_0(_fRegfile_io_busPort_data_0),
+    .io_busPortAddr     (_dispatch_io_fbusPortAddr)
   )/* synthesis syn_keep=1 */;
 
- // =========================================================================
+// `define INCLUDE_DISPATCHER
+  assign io_halted = o_pmod0[0];
+  assign io_lsuActive = o_pmod0[0];
+  assign io_scoreboard_regd = o_pmod0[7:0];
+  assign io_scoreboard_comb = o_pmod0[0];
+  assign io_fscoreboard = o_pmod0[0];
+  assign io_branchTaken = o_pmod0[0];
+  assign io_jalrTarget_0_data = o_pmod0[7:0];
+  assign io_jalrTarget_1_data = o_pmod0[7:0];
+  assign io_jalrTarget_2_data = o_pmod0[7:0];
+  assign io_jalrTarget_3_data = o_pmod0[7:0];
+  assign io_interlock = o_pmod0[0];
+  assign io_inst_0_valid = o_pmod0[0];
+  assign io_inst_0_bits_addr = o_pmod0[7:0];
+  assign io_inst_0_bits_inst = o_pmod0[7:0];
+  assign io_inst_0_bits_brchFwd = o_pmod0[0];
+  assign io_inst_1_valid = o_pmod0[0];
+  assign io_inst_1_bits_addr = o_pmod0[7:0];
+  assign io_inst_1_bits_inst = o_pmod0[7:0];
+  assign io_inst_1_bits_brchFwd = o_pmod0[0];
+  assign io_inst_2_valid = o_pmod0[0];
+  assign io_inst_2_bits_addr = o_pmod0[7:0];
+  assign io_inst_2_bits_inst = o_pmod0[7:0];
+  assign io_inst_2_bits_brchFwd = o_pmod0[0];
+  assign io_inst_3_valid = o_pmod0[0];
+  assign io_inst_3_bits_addr = o_pmod0[7:0];
+  assign io_inst_3_bits_inst = o_pmod0[7:0];
+  assign io_lsu_0_ready = o_pmod0[0];
+  assign io_lsu_1_ready = o_pmod0[0];
+  assign io_lsu_2_ready = o_pmod0[0];
+  assign io_lsu_3_ready = o_pmod0[0];
+  assign io_dvu_0_ready = o_pmod0[0];
+  assign io_float_ready = o_pmod0[0];
+  assign io_inst_3_bits_brchFwd = o_pmod0[0];
+
+`ifdef INCLUDE_DISPATCHER
+//   output [31:0] io_bruTarget_0,
+// assign   io_bruTarget_1,
+// assign   io_bruTarget_2,
+// assign   io_bruTarget_3,
+//   output        io_csrFault_0,
+// assign   io_jalFault_0,
+// assign   io_jalFault_1,
+// assign   io_jalFault_2,
+// assign   io_jalFault_3,
+// assign   io_jalrFault_0,
+// assign   io_jalrFault_1,
+// assign   io_jalrFault_2,
+// assign   io_jalrFault_3,
+// assign   io_bxxFault_0,
+// assign   io_bxxFault_1,
+// assign   io_bxxFault_2,
+// assign   io_bxxFault_3,
+// assign   io_undefFault_0,
+//   output        io_inst_0_ready,
+//   output        io_inst_1_ready,
+//   output        io_inst_2_ready,
+//   output        io_inst_3_ready,
+wire io_inst_ready = (io_inst_0_ready)&(io_inst_1_ready)&(io_inst_2_ready)&(io_inst_3_ready);
+//   output        io_rs1Read_0_valid,
+//   output        io_rs1Read_1_valid,
+//   output        io_rs1Read_2_valid,
+//   output        io_rs1Read_3_valid,
+wire io_rs1Read_valid = (io_rs1Read_0_valid)&(io_rs1Read_1_valid)&(io_rs1Read_2_valid)&(io_rs1Read_3_valid);
+//   output [4:0]  io_rs1Read_0_addr,
+//   output [4:0]  io_rs1Read_1_addr,
+//   output [4:0]  io_rs1Read_2_addr,
+//   output [4:0]  io_rs1Read_3_addr,
+wire io_rs1Read_addr = (io_rs1Read_0_addr)&(io_rs1Read_1_addr)&(io_rs1Read_2_addr)&(io_rs1Read_3_addr);
+//   output        io_rs1Set_0_valid,
+//   output        io_rs1Set_1_valid,
+//   output        io_rs1Set_2_valid,
+//   output        io_rs1Set_3_valid,
+wire io_rs1Set_valid = (io_rs1Set_0_valid)&(io_rs1Set_1_valid)&(io_rs1Set_2_valid)&(io_rs1Set_3_valid);
+//   output [31:0] io_rs1Set_0_value,
+//   output [31:0] io_rs1Set_1_value,
+//   output [31:0] io_rs1Set_2_value,
+//   output [31:0] io_rs1Set_3_value,
+wire io_rs1Read_addr = (|io_rs1Set_0_value)&(|io_rs1Set_1_value)&(|io_rs1Set_2_value)&(|io_rs1Set_3_value);
+//   output        io_rs2Read_0_valid,
+//   output        io_rs2Read_1_valid,
+//   output        io_rs2Read_2_valid,
+//   output        io_rs2Read_3_valid,
+wire io_rs2Read_valid = (io_rs2Read_0_valid)&(io_rs2Read_1_valid)&(io_rs2Read_2_valid)&(io_rs2Read_3_valid);
+//   output [4:0]  io_rs2Read_0_addr,
+//   output [4:0]  io_rs2Read_1_addr,
+//   output [4:0]  io_rs2Read_2_addr,
+//   output [4:0]  io_rs2Read_3_addr,
+wire io_rs2Read_addr = (|io_rs2Read_0_addr)&(|io_rs2Read_1_addr)&(|io_rs2Read_2_addr)&(|io_rs2Read_3_addr);
+//   output        io_rs2Set_0_valid,
+//   output        io_rs2Set_1_valid,
+//   output        io_rs2Set_2_valid,
+//   output        io_rs2Set_3_valid,
+wire io_rs2Set_valid = (io_rs2Set_0_valid)&(io_rs2Set_1_valid)&(io_rs2Set_2_valid)&(io_rs2Set_3_valid);
+//   output [31:0] io_rs2Set_0_value,
+//   output [31:0] io_rs2Set_1_value,
+//   output [31:0] io_rs2Set_2_value,
+//   output [31:0] io_rs2Set_3_value,
+wire io_rs2Set_value = (|io_rs2Set_0_value)&(|io_rs2Set_1_value)&(|io_rs2Set_2_value)&(|io_rs2Set_3_value);
+//   output        io_rdMark_0_valid,
+//   output        io_rdMark_1_valid,
+//   output        io_rdMark_2_valid,
+//   output        io_rdMark_3_valid,
+wire io_rdMark_valid = (io_rdMark_0_valid)&(io_rdMark_1_valid)&(io_rdMark_2_valid)&(io_rdMark_3_valid);
+wire dispatcher_final = 
+                        (io_inst_ready)&
+                        (io_rs1Read_valid)&
+                        (io_rs1Read_addr)&
+                        (io_rs1Set_valid)&
+                        (io_rs1Read_addr)&
+                        (io_rs2Read_valid)&
+                        (io_rs2Read_addr)&
+                        (io_rs2Set_valid)&
+                        (io_rs2Set_value)&
+                        (io_rdMark_valid)&
+                        (io_rdMark_addr);
+//   output [4:0]  io_rdMark_0_addr,
+//   output [4:0]  io_rdMark_1_addr,
+//   output [4:0]  io_rdMark_2_addr,
+//   output [4:0]  io_rdMark_3_addr,
+wire io_rdMark_addr = (|io_rdMark_0_addr)&(|io_rdMark_1_addr)&(|io_rdMark_2_addr)&(|io_rdMark_3_addr);
+//   output        io_busRead_0_bypass,
+//   output   io_busRead_0_immen,
+//   output [31:0] io_busRead_0_immed,
+//   output        io_busRead_1_bypass,
+//   output [31:0] io_busRead_1_immed,
+//   output        io_busRead_2_bypass,
+//   output [31:0] io_busRead_2_immed,
+//   output        io_busRead_3_bypass,
+//   output [31:0] io_busRead_3_immed,
+//   output        io_rdMark_flt_valid,
+//   output [4:0]  io_rdMark_flt_addr,
+//   output        io_alu_0_valid,
+//   output [4:0]  io_alu_0_bits_addr,
+//   output   io_alu_0_bits_op,
+//   output        io_alu_1_valid,
+//   output [4:0]  io_alu_1_bits_addr,
+//   output   io_alu_1_bits_op,
+//   output        io_alu_2_valid,
+//   output [4:0]  io_alu_2_bits_addr,
+//   output   io_alu_2_bits_op,
+//   output        io_alu_3_valid,
+//   output [4:0]  io_alu_3_bits_addr,
+//   output   io_alu_3_bits_op,
+//   output        io_bru_0_valid,
+//   output   io_bru_0_bits_fwd,
+//   output [3:0]  io_bru_0_bits_op,
+//   output [31:0] io_bru_0_bits_pc,
+//   output   io_bru_0_bits_target,
+//   output [4:0]  io_bru_0_bits_link,
+//   output        io_bru_1_valid,
+//   output   io_bru_1_bits_fwd,
+//   output [3:0]  io_bru_1_bits_op,
+//   output [31:0] io_bru_1_bits_pc,
+//   output   io_bru_1_bits_target,
+//   output [4:0]  io_bru_1_bits_link,
+//   output        io_bru_2_valid,
+//   output   io_bru_2_bits_fwd,
+//   output [3:0]  io_bru_2_bits_op,
+//   output [31:0] io_bru_2_bits_pc,
+//   output   io_bru_2_bits_target,
+//   output [4:0]  io_bru_2_bits_link,
+//   output        io_bru_3_valid,
+//   output   io_bru_3_bits_fwd,
+//   output [3:0]  io_bru_3_bits_op,
+//   output [31:0] io_bru_3_bits_pc,
+//   output   io_bru_3_bits_target,
+//   output [4:0]  io_bru_3_bits_link,
+//   output        io_csr_valid,
+//   output [4:0]  io_csr_bits_addr,
+//   output [11:0] io_csr_bits_index,
+//   output [1:0]  io_csr_bits_op,
+//   output        io_lsu_0_valid,
+//   output   io_lsu_0_bits_store,
+//   output [4:0]  io_lsu_0_bits_addr,
+//   output   io_lsu_0_bits_op,
+//   output [31:0] io_lsu_0_bits_pc,
+//   output        io_lsu_1_valid,
+//   output   io_lsu_1_bits_store,
+//   output [4:0]  io_lsu_1_bits_addr,
+//   output   io_lsu_1_bits_op,
+//   output [31:0] io_lsu_1_bits_pc,
+//   output        io_lsu_2_valid,
+//   output   io_lsu_2_bits_store,
+//   output [4:0]  io_lsu_2_bits_addr,
+//   output   io_lsu_2_bits_op,
+//   output [31:0] io_lsu_2_bits_pc,
+//   output        io_lsu_3_valid,
+//   output   io_lsu_3_bits_store,
+//   output [4:0]  io_lsu_3_bits_addr,
+//   output   io_lsu_3_bits_op,
+//   output [31:0] io_lsu_3_bits_pc,
+//   output        io_mlu_0_valid,
+//   output [4:0]  io_mlu_0_bits_addr,
+//   output [2:0]  io_mlu_0_bits_op,
+//   output        io_mlu_1_valid,
+//   output [4:0]  io_mlu_1_bits_addr,
+//   output [2:0]  io_mlu_1_bits_op,
+//   output        io_mlu_2_valid,
+//   output [4:0]  io_mlu_2_bits_addr,
+//   output [2:0]  io_mlu_2_bits_op,
+//   output        io_mlu_3_valid,
+//   output [4:0]  io_mlu_3_bits_addr,
+//   output [2:0]  io_mlu_3_bits_op,
+//   output        io_dvu_0_valid,
+//   output [4:0]  io_dvu_0_bits_addr,
+//   output [1:0]  io_dvu_0_bits_op,
+//   output        io_float_valid,
+//   output [2:0]  io_float_bits_opcode,
+//   output [4:0]  io_float_bits_funct5,
+//   output   io_float_bits_rs3,
+//   output   io_float_bits_rs2,
+//   output   io_float_bits_rs1,
+//   output [2:0]  io_float_bits_rm,
+//   output [31:0] io_float_bits_inst,
+//   output   io_float_bits_pc,
+//   output        io_float_bits_scalar_rd,
+//   output   io_float_bits_scalar_rs1,
+//   output [4:0]  io_float_bits_rd,
+//   output        io_float_bits_uses_rs3,
+//   output   io_float_bits_uses_rs2,
+//   output [4:0]  io_fbusPortAddr,
+//   output        io_slog
+  /* synthesis syn_keep=1 */ DispatchV1 dispatch (
+    .io_haltedassign   (_csr_io_halted | _csr_io_wfi),
+    .io_lsuActive             (_lsu_io_active),
+    .io_scoreboard_regd       (_regfile_io_scoreboard_regd),
+    .io_scoreboard_comb       (_regfile_io_scoreboard_comb),
+    .io_fscoreboard           (_fRegfile_io_scoreboard),
+    .io_branchTaken           (branchTaken),
+    .io_csrFault_0            (_dispatch_io_csrFault_0),
+    .io_jalFault_0            (_dispatch_io_jalFault_0),
+    .io_jalFault_1            (_dispatch_io_jalFault_1),
+    .io_jalFault_2            (_dispatch_io_jalFault_2),
+    .io_jalFault_3            (_dispatch_io_jalFault_3),
+    .io_jalrFault_0           (_dispatch_io_jalrFault_0),
+    .io_jalrFault_1           (_dispatch_io_jalrFault_1),
+    .io_jalrFault_2           (_dispatch_io_jalrFault_2),
+    .io_jalrFault_3           (_dispatch_io_jalrFault_3),
+    .io_bxxFault_0            (_dispatch_io_bxxFault_0),
+    .io_bxxFault_1            (_dispatch_io_bxxFault_1),
+    .io_bxxFault_2            (_dispatch_io_bxxFault_2),
+    .io_bxxFault_3            (_dispatch_io_bxxFault_3),
+    .io_undefFault_0          (_dispatch_io_undefFault_0),
+    .io_bruTarget_0           (_dispatch_io_bruTarget_0),
+    .io_bruTarget_1           (_dispatch_io_bruTarget_1),
+    .io_bruTarget_2           (_dispatch_io_bruTarget_2),
+    .io_bruTarget_3           (_dispatch_io_bruTarget_3),
+    .io_jalrTarget_0_data     (_regfile_io_target_0_data),
+    .io_jalrTarget_1_data     (_regfile_io_target_1_data),
+    .io_jalrTarget_2_data     (_regfile_io_target_2_data),
+    .io_jalrTarget_3_data     (_regfile_io_target_3_data),
+    .io_interlock             (_bru_0_io_interlock | _lsu_io_flush_valid),
+    .io_inst_0_ready          (_dispatch_io_inst_0_ready),
+    .io_inst_0_valid          (_fetch_io_inst_lanes_0_valid),
+    .io_inst_0_bits_addr      (_fetch_io_inst_lanes_0_bits_addr),
+    .io_inst_0_bits_inst      (_fetch_io_inst_lanes_0_bits_inst),
+    .io_inst_0_bits_brchFwd   (_fetch_io_inst_lanes_0_bits_brchFwd),
+    .io_inst_1_ready          (_dispatch_io_inst_1_ready),
+    .io_inst_1_valid          (_fetch_io_inst_lanes_1_valid),
+    .io_inst_1_bits_addr      (_fetch_io_inst_lanes_1_bits_addr),
+    .io_inst_1_bits_inst      (_fetch_io_inst_lanes_1_bits_inst),
+    .io_inst_1_bits_brchFwd   (_fetch_io_inst_lanes_1_bits_brchFwd),
+    .io_inst_2_ready          (_dispatch_io_inst_2_ready),
+    .io_inst_2_valid          (_fetch_io_inst_lanes_2_valid),
+    .io_inst_2_bits_addr      (_fetch_io_inst_lanes_2_bits_addr),
+    .io_inst_2_bits_inst      (_fetch_io_inst_lanes_2_bits_inst),
+    .io_inst_2_bits_brchFwd   (_fetch_io_inst_lanes_2_bits_brchFwd),
+    .io_inst_3_ready          (_dispatch_io_inst_3_ready),
+    .io_inst_3_valid          (_fetch_io_inst_lanes_3_valid),
+    .io_inst_3_bits_addr      (_fetch_io_inst_lanes_3_bits_addr),
+    .io_inst_3_bits_inst      (_fetch_io_inst_lanes_3_bits_inst),
+    .io_inst_3_bits_brchFwd   (_fetch_io_inst_lanes_3_bits_brchFwd),
+    .io_rs1Read_0_valid       (_dispatch_io_rs1Read_0_valid),
+    .io_rs1Read_0_addr        (_dispatch_io_rs1Read_0_addr),
+    .io_rs1Read_1_valid       (_dispatch_io_rs1Read_1_valid),
+    .io_rs1Read_1_addr        (_dispatch_io_rs1Read_1_addr),
+    .io_rs1Read_2_valid       (_dispatch_io_rs1Read_2_valid),
+    .io_rs1Read_2_addr        (_dispatch_io_rs1Read_2_addr),
+    .io_rs1Read_3_valid       (_dispatch_io_rs1Read_3_valid),
+    .io_rs1Read_3_addr        (_dispatch_io_rs1Read_3_addr),
+    .io_rs1Set_0_valid        (_dispatch_io_rs1Set_0_valid),
+    .io_rs1Set_0_value        (_dispatch_io_rs1Set_0_value),
+    .io_rs1Set_1_valid        (_dispatch_io_rs1Set_1_valid),
+    .io_rs1Set_1_value        (_dispatch_io_rs1Set_1_value),
+    .io_rs1Set_2_valid        (_dispatch_io_rs1Set_2_valid),
+    .io_rs1Set_2_value        (_dispatch_io_rs1Set_2_value),
+    .io_rs1Set_3_valid        (_dispatch_io_rs1Set_3_valid),
+    .io_rs1Set_3_value        (_dispatch_io_rs1Set_3_value),
+    .io_rs2Read_0_valid       (_dispatch_io_rs2Read_0_valid),
+    .io_rs2Read_0_addr        (_dispatch_io_rs2Read_0_addr),
+    .io_rs2Read_1_valid       (_dispatch_io_rs2Read_1_valid),
+    .io_rs2Read_1_addr        (_dispatch_io_rs2Read_1_addr),
+    .io_rs2Read_2_valid       (_dispatch_io_rs2Read_2_valid),
+    .io_rs2Read_2_addr        (_dispatch_io_rs2Read_2_addr),
+    .io_rs2Read_3_valid       (_dispatch_io_rs2Read_3_valid),
+    .io_rs2Read_3_addr        (_dispatch_io_rs2Read_3_addr),
+    .io_rs2Set_0_valid        (_dispatch_io_rs2Set_0_valid),
+    .io_rs2Set_0_value        (_dispatch_io_rs2Set_0_value),
+    .io_rs2Set_1_valid        (_dispatch_io_rs2Set_1_valid),
+    .io_rs2Set_1_value        (_dispatch_io_rs2Set_1_value),
+    .io_rs2Set_2_valid        (_dispatch_io_rs2Set_2_valid),
+    .io_rs2Set_2_value        (_dispatch_io_rs2Set_2_value),
+    .io_rs2Set_3_valid        (_dispatch_io_rs2Set_3_valid),
+    .io_rs2Set_3_value        (_dispatch_io_rs2Set_3_value),
+    .io_rdMark_0_valid        (_dispatch_io_rdMark_0_valid),
+    .io_rdMark_0_addr         (_dispatch_io_rdMark_0_addr),
+    .io_rdMark_1_valid        (_dispatch_io_rdMark_1_valid),
+    .io_rdMark_1_addr         (_dispatch_io_rdMark_1_addr),
+    .io_rdMark_2_valid        (_dispatch_io_rdMark_2_valid),
+    .io_rdMark_2_addr         (_dispatch_io_rdMark_2_addr),
+    .io_rdMark_3_valid        (_dispatch_io_rdMark_3_valid),
+    .io_rdMark_3_addr         (_dispatch_io_rdMark_3_addr),
+    .io_busRead_0_bypass      (_dispatch_io_busRead_0_bypass),
+    .io_busRead_0_immen       (_dispatch_io_busRead_0_immen),
+    .io_busRead_0_immed       (_dispatch_io_busRead_0_immed),
+    .io_busRead_1_bypass      (_dispatch_io_busRead_1_bypass),
+    .io_busRead_1_immed       (_dispatch_io_busRead_1_immed),
+    .io_busRead_2_bypass      (_dispatch_io_busRead_2_bypass),
+    .io_busRead_2_immed       (_dispatch_io_busRead_2_immed),
+    .io_busRead_3_bypass      (_dispatch_io_busRead_3_bypass),
+    .io_busRead_3_immed       (_dispatch_io_busRead_3_immed),
+    .io_rdMark_flt_valid      (_dispatch_io_rdMark_flt_valid),
+    .io_rdMark_flt_addr       (_dispatch_io_rdMark_flt_addr),
+    .io_alu_0_valid           (_dispatch_io_alu_0_valid),
+    .io_alu_0_bits_addr       (_dispatch_io_alu_0_bits_addr),
+    .io_alu_0_bits_op         (_dispatch_io_alu_0_bits_op),
+    .io_alu_1_valid           (_dispatch_io_alu_1_valid),
+    .io_alu_1_bits_addr       (_dispatch_io_alu_1_bits_addr),
+    .io_alu_1_bits_op         (_dispatch_io_alu_1_bits_op),
+    .io_alu_2_valid           (_dispatch_io_alu_2_valid),
+    .io_alu_2_bits_addr       (_dispatch_io_alu_2_bits_addr),
+    .io_alu_2_bits_op         (_dispatch_io_alu_2_bits_op),
+    .io_alu_3_valid           (_dispatch_io_alu_3_valid),
+    .io_alu_3_bits_addr       (_dispatch_io_alu_3_bits_addr),
+    .io_alu_3_bits_op         (_dispatch_io_alu_3_bits_op),
+    .io_bru_0_valid           (_dispatch_io_bru_0_valid),
+    .io_bru_0_bits_fwd        (_dispatch_io_bru_0_bits_fwd),
+    .io_bru_0_bits_op         (_dispatch_io_bru_0_bits_op),
+    .io_bru_0_bits_pc         (_dispatch_io_bru_0_bits_pc),
+    .io_bru_0_bits_target     (_dispatch_io_bru_0_bits_target),
+    .io_bru_0_bits_link       (_dispatch_io_bru_0_bits_link),
+    .io_bru_1_valid           (_dispatch_io_bru_1_valid),
+    .io_bru_1_bits_fwd        (_dispatch_io_bru_1_bits_fwd),
+    .io_bru_1_bits_op         (_dispatch_io_bru_1_bits_op),
+    .io_bru_1_bits_pc         (_dispatch_io_bru_1_bits_pc),
+    .io_bru_1_bits_target     (_dispatch_io_bru_1_bits_target),
+    .io_bru_1_bits_link       (_dispatch_io_bru_1_bits_link),
+    .io_bru_2_valid           (_dispatch_io_bru_2_valid),
+    .io_bru_2_bits_fwd        (_dispatch_io_bru_2_bits_fwd),
+    .io_bru_2_bits_op         (_dispatch_io_bru_2_bits_op),
+    .io_bru_2_bits_pc         (_dispatch_io_bru_2_bits_pc),
+    .io_bru_2_bits_target     (_dispatch_io_bru_2_bits_target),
+    .io_bru_2_bits_link       (_dispatch_io_bru_2_bits_link),
+    .io_bru_3_valid           (_dispatch_io_bru_3_valid),
+    .io_bru_3_bits_fwd        (_dispatch_io_bru_3_bits_fwd),
+    .io_bru_3_bits_op         (_dispatch_io_bru_3_bits_op),
+    .io_bru_3_bits_pc         (_dispatch_io_bru_3_bits_pc),
+    .io_bru_3_bits_target     (_dispatch_io_bru_3_bits_target),
+    .io_bru_3_bits_link       (_dispatch_io_bru_3_bits_link),
+    .io_csr_valid             (_dispatch_io_csr_valid),
+    .io_csr_bits_addr         (_dispatch_io_csr_bits_addr),
+    .io_csr_bits_index        (_dispatch_io_csr_bits_index),
+    .io_csr_bits_op           (_dispatch_io_csr_bits_op),
+    .io_lsu_0_ready           (_lsu_io_req_0_ready),
+    .io_lsu_0_valid           (_dispatch_io_lsu_0_valid),
+    .io_lsu_0_bits_store      (_dispatch_io_lsu_0_bits_store),
+    .io_lsu_0_bits_addr       (_dispatch_io_lsu_0_bits_addr),
+    .io_lsu_0_bits_op         (_dispatch_io_lsu_0_bits_op),
+    .io_lsu_0_bits_pc         (_dispatch_io_lsu_0_bits_pc),
+    .io_lsu_1_ready           (_lsu_io_req_1_ready),
+    .io_lsu_1_valid           (_dispatch_io_lsu_1_valid),
+    .io_lsu_1_bits_store      (_dispatch_io_lsu_1_bits_store),
+    .io_lsu_1_bits_addr       (_dispatch_io_lsu_1_bits_addr),
+    .io_lsu_1_bits_op         (_dispatch_io_lsu_1_bits_op),
+    .io_lsu_1_bits_pc         (_dispatch_io_lsu_1_bits_pc),
+    .io_lsu_2_ready           (_lsu_io_req_2_ready),
+    .io_lsu_2_valid           (_dispatch_io_lsu_2_valid),
+    .io_lsu_2_bits_store      (_dispatch_io_lsu_2_bits_store),
+    .io_lsu_2_bits_addr       (_dispatch_io_lsu_2_bits_addr),
+    .io_lsu_2_bits_op         (_dispatch_io_lsu_2_bits_op),
+    .io_lsu_2_bits_pc         (_dispatch_io_lsu_2_bits_pc),
+    .io_lsu_3_ready           (_lsu_io_req_3_ready),
+    .io_lsu_3_valid           (_dispatch_io_lsu_3_valid),
+    .io_lsu_3_bits_store      (_dispatch_io_lsu_3_bits_store),
+    .io_lsu_3_bits_addr       (_dispatch_io_lsu_3_bits_addr),
+    .io_lsu_3_bits_op         (_dispatch_io_lsu_3_bits_op),
+    .io_lsu_3_bits_pc         (_dispatch_io_lsu_3_bits_pc),
+    .io_mlu_0_valid           (_dispatch_io_mlu_0_valid),
+    .io_mlu_0_bits_addr       (_dispatch_io_mlu_0_bits_addr),
+    .io_mlu_0_bits_op         (_dispatch_io_mlu_0_bits_op),
+    .io_mlu_1_valid           (_dispatch_io_mlu_1_valid),
+    .io_mlu_1_bits_addr       (_dispatch_io_mlu_1_bits_addr),
+    .io_mlu_1_bits_op         (_dispatch_io_mlu_1_bits_op),
+    .io_mlu_2_valid           (_dispatch_io_mlu_2_valid),
+    .io_mlu_2_bits_addr       (_dispatch_io_mlu_2_bits_addr),
+    .io_mlu_2_bits_op         (_dispatch_io_mlu_2_bits_op),
+    .io_mlu_3_valid           (_dispatch_io_mlu_3_valid),
+    .io_mlu_3_bits_addr       (_dispatch_io_mlu_3_bits_addr),
+    .io_mlu_3_bits_op         (_dispatch_io_mlu_3_bits_op),
+    .io_dvu_0_ready           (_dvu_io_req_ready),
+    .io_dvu_0_valid           (_dispatch_io_dvu_0_valid),
+    .io_dvu_0_bits_addr       (_dispatch_io_dvu_0_bits_addr),
+    .io_dvu_0_bits_op         (_dispatch_io_dvu_0_bits_op),
+    .io_float_ready           (_floatCore_io_inst_ready),
+    .io_float_valid           (_dispatch_io_float_valid),
+    .io_float_bits_opcode     (_dispatch_io_float_bits_opcode),
+    .io_float_bits_funct5     (_dispatch_io_float_bits_funct5),
+    .io_float_bits_rs3        (_dispatch_io_float_bits_rs3),
+    .io_float_bits_rs2        (_dispatch_io_float_bits_rs2),
+    .io_float_bits_rs1        (_dispatch_io_float_bits_rs1),
+    .io_float_bits_rm         (_dispatch_io_float_bits_rm),
+    .io_float_bits_inst       (_dispatch_io_float_bits_inst),
+    .io_float_bits_pc         (_dispatch_io_float_bits_pc),
+    .io_float_bits_scalar_rd  (_dispatch_io_float_bits_scalar_rd),
+    .io_float_bits_scalar_rs1 (_dispatch_io_float_bits_scalar_rs1),
+    .io_float_bits_rd         (_dispatch_io_float_bits_rd),
+    .io_float_bits_uses_rs3   (_dispatch_io_float_bits_uses_rs3),
+    .io_float_bits_uses_rs2   (_dispatch_io_float_bits_uses_rs2),
+    .io_fbusPortAddr          (_dispatch_io_fbusPortAddr),
+    .io_slogassign     (_dispatch_io_slog)
+  ) /* synthesis syn_keep=1 */;
+`else
+  assign _dispatch_io_alu_0_valid = global_en_0;
+  assign _dispatch_io_alu_0_bits_addr = o_pmod0[4:0];
+  assign _dispatch_io_alu_0_bits_op = {s0, s0, s1, s1, s2};
+  assign _dispatch_io_alu_0_bits_addr = ~o_pmod0[4:0];
+  assign _dispatch_io_alu_1_valid = global_en_0;
+  assign _dispatch_io_alu_1_bits_addr = o_pmod0[4:0];
+  assign _dispatch_io_alu_1_bits_op = {s0, s0, s1, s1, s2};
+  assign _dispatch_io_alu_2_valid = global_en_0;
+  assign _dispatch_io_alu_2_bits_addr = o_pmod0[4:0];
+  assign _dispatch_io_alu_2_bits_op = {s0, s0, s1, s1, s2};
+  assign _dispatch_io_alu_3_valid = global_en_0;
+  assign _dispatch_io_alu_3_bits_addr = o_pmod0[4:0];
+  assign _dispatch_io_alu_3_bits_op = {s0, s0, s1, s1, s2};
+  assign _dispatch_io_bru_0_valid = global_en_0;
+  assign _dispatch_io_bru_0_bits_fwd = o_pmod0[7];
+  assign _dispatch_io_bru_0_bits_op = o_pmod0[3:0];
+  assign _dispatch_io_bru_0_bits_pc = o_pmod0[7:0];
+  assign _dispatch_io_bru_0_bits_target = o_pmod0[7:0];
+  assign _dispatch_io_bru_0_bits_link = o_pmod0[4:0];
+  assign _dispatch_io_bru_1_valid = global_en_0;
+  assign _dispatch_io_bru_1_bits_fwd = o_pmod0[7];
+  assign _dispatch_io_bru_1_bits_op = o_pmod0[3:0];
+  assign _dispatch_io_bru_1_bits_pc = o_pmod0[7:0];
+  assign _dispatch_io_bru_1_bits_target = o_pmod0[7:0];
+  assign _dispatch_io_bru_1_bits_link = o_pmod0[4:0];
+  assign _dispatch_io_bru_2_valid = global_en_0;
+  assign _dispatch_io_bru_2_bits_fwd = o_pmod0[7];
+  assign _dispatch_io_bru_2_bits_op = o_pmod0[3:0];
+  assign _dispatch_io_bru_2_bits_pc = o_pmod0[7:0];
+  assign _dispatch_io_bru_2_bits_target = o_pmod0[7:0];
+  assign _dispatch_io_bru_2_bits_link = o_pmod0[4:0];
+  assign _dispatch_io_bru_3_valid = global_en_0;
+  assign _dispatch_io_bru_3_bits_fwd = o_pmod0[7];
+  assign _dispatch_io_bru_3_bits_op = o_pmod0[3:0];
+  assign _dispatch_io_bru_3_bits_pc = o_pmod0[7:0];
+  assign _dispatch_io_bru_3_bits_target = o_pmod0[7:0];
+  assign _dispatch_io_bru_3_bits_link = o_pmod0[4:0];
+  assign _dispatch_io_float_bits_opcode = o_pmod0[2:0];
+  assign _dispatch_io_float_bits_funct5 = o_pmod0[4:0];
+  assign _dispatch_io_float_bits_rs3 = o_pmod0[4:0];
+  assign _dispatch_io_float_bits_rs2 = o_pmod0[4:0];
+  assign _dispatch_io_float_bits_rs1 = o_pmod0[4:0];
+
+  wire dispatcher_final = 'h0;
+`endif // INCLUDE_DISPATCHER 
+
+// =========================================================================
  // --- FINAL OUTPUT ASSIGNMENT ---------------------------------------------
  // =========================================================================
 
@@ -1114,14 +1536,14 @@ module chip_console60k_CoreMini(
                                 (_alu_1_io_rd_bits_data)&
                                 (_alu_2_io_rd_bits_data)&
                                 (_alu_3_io_rd_bits_data);
-  assign _regfile_io_readData_data = 
-                                      (_regfile_io_readData_0_data)&
-                                      (_regfile_io_readData_1_data)&
-                                      (_regfile_io_readData_2_data)&
-                                      (_regfile_io_readData_3_data)&
-                                      (_regfile_io_readData_4_data)&
-                                      (_regfile_io_readData_5_data)&
-                                      (_regfile_io_readData_6_data);
+assign _regfile_io_readData_data = 
+                                    (_regfile_io_readData_0_data)&
+                                    (_regfile_io_readData_1_data)&
+                                    (_regfile_io_readData_2_data)&
+                                    (_regfile_io_readData_3_data)&
+                                    (_regfile_io_readData_4_data)&
+                                    (_regfile_io_readData_5_data)&
+                                    (_regfile_io_readData_6_data);
 
  // Use a combination of CoreMini outputs and global_en to drive o_pmod1
  // to ensure the CoreMini logic is preserved during synthesis.
@@ -1141,7 +1563,7 @@ module chip_console60k_CoreMini(
  // o_pmod1[6]: Regfile Target 1 bits [2:1]
  assign o_pmod1[6] = ((|_regfile_io_target_1_data)&(|_fetch_io_inst_lanes_3_valid)&(|_floatCore_io_write_ports_1_data_mantissa)&(|_floatCore_io_write_ports_1_data_exponent)&(_floatCore_io_write_ports_1_data_sign)&(|_fRegfile_io_read_ports_2_data_exponent)&(_fRegfile_io_read_ports_2_data_sign)) ^ (_regfile_io_target_2_data[2]) ^ (global_en_7);
  // o_pmod1[7]: Mix of Regfile Write Count and original input o_pmod0
- assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)) ^ (o_pmod0[7]) ^ (global_en_0);
+ assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)) ^ (o_pmod0[7]) ^ (global_en_0);
  // UART outputs tied off as unused in this minimal test
  assign uart_tx_o = 2'b0;
 
