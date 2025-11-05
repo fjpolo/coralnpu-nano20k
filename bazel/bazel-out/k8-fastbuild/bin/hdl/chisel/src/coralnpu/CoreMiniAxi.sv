@@ -4875,30 +4875,27 @@ module Decode(
   assign io_lsu_bits_store = io_inst_bits_inst[5];
   assign io_lsu_bits_addr = io_inst_bits_inst[11:7];
   assign io_alu_bits_op = alu_bits_op_r; // New assignment points to the result of the always block
-  assign io_lsu_bits_op =
-    d_lb
-      ? 5'h0
-      : d_lh
-          ? 5'h1
-          : d_lw
-              ? 5'h2
-              : d_lbu
-                  ? 5'h3
-                  : d_lhu
-                      ? 5'h4
-                      : d_sb
-                          ? 5'h5
-                          : d_sh
-                              ? 5'h6
-                              : d_sw
-                                  ? 5'h7
-                                  : d_wfi | d_fencei
-                                      ? 5'h8
-                                      : d_flushat
-                                          ? 5'h9
-                                          : d_flushall
-                                              ? 5'hA
-                                              : _lsu_T_7_valid ? 5'hC : 5'h0;
+
+  // Added for Change 3: Refactor io_lsu_bits_op
+  reg [4:0] lsu_bits_op_r;
+  always @* begin
+    lsu_bits_op_r = 5'h0; // Default to LB
+    if (d_lb) lsu_bits_op_r = 5'h0;
+    else if (d_lh) lsu_bits_op_r = 5'h1;
+    else if (d_lw) lsu_bits_op_r = 5'h2;
+    else if (d_lbu) lsu_bits_op_r = 5'h3;
+    else if (d_lhu) lsu_bits_op_r = 5'h4;
+    else if (d_sb) lsu_bits_op_r = 5'h5;
+    else if (d_sh) lsu_bits_op_r = 5'h6;
+    else if (d_sw) lsu_bits_op_r = 5'h7;
+    else if (d_wfi | d_fencei) lsu_bits_op_r = 5'h8;
+    else if (d_flushat) lsu_bits_op_r = 5'h9;
+    else if (d_flushall) lsu_bits_op_r = 5'hA;
+    else if (_lsu_T_7_valid) lsu_bits_op_r = 5'hC;
+  end
+
+  assign io_lsu_bits_op = lsu_bits_op_r;
+
   assign io_lsu_bits_pc = io_inst_bits_addr;
   assign io_mlu_valid = decodeEn & mlu_valid;
   assign io_mlu_bits_addr = io_inst_bits_inst[11:7];
