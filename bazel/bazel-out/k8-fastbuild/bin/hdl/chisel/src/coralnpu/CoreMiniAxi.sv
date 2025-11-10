@@ -160,7 +160,7 @@ module CoreCSR(
   assign io_pcStart = pcStartReg;
 endmodule
 
-module Regfile_BSRAM (
+module Regfile (
     // System
     input               clock,
     input               reset,
