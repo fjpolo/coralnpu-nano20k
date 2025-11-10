@@ -264,17 +264,17 @@ module Regfile(
   output [31:0] io_scoreboard_regd,
                 io_scoreboard_comb,
   output [5:0]  io_rfwriteCount
-);
+) /*synthesis syn_ramstyle="block_ram"*/;
 
-  reg  [31:0] regfile_1;
-  reg  [31:0] regfile_2;
-  reg  [31:0] regfile_3;
-  reg  [31:0] regfile_4;
-  reg  [31:0] regfile_5;
-  reg  [31:0] regfile_6;
-  reg  [31:0] regfile_7;
-  reg  [31:0] regfile_8;
-  reg  [31:0] regfile_9;
+  reg  [31:0] regfile_1 ;
+  reg  [31:0] regfile_2 ;
+  reg  [31:0] regfile_3 ;
+  reg  [31:0] regfile_4 ;
+  reg  [31:0] regfile_5 ;
+  reg  [31:0] regfile_6 ;
+  reg  [31:0] regfile_7 ;
+  reg  [31:0] regfile_8 ;
+  reg  [31:0] regfile_9 ;
   reg  [31:0] regfile_10;
   reg  [31:0] regfile_11;
   reg  [31:0] regfile_12;
@@ -3072,7 +3072,7 @@ module UncachedFetch(
   input          io_iflush_valid,
   input  [31:0]  io_iflush_pcNext,
   output [31:0]  io_pc
-);
+) /*synthesis syn_ramstyle="block_ram"*/;
 
   wire        _instructionBuffer_io_out_0_valid;
   wire [31:0] _instructionBuffer_io_out_0_bits_addr;
