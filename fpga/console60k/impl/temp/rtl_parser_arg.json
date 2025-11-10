@@ -2094,10 +2094,6 @@
    "Type" : "verilog"
   },
   {
-   "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/coralnpu_soc.sv",
-   "Type" : "verilog"
-  },
-  {
    "Path" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/rtl/top_pkg.sv",
    "Type" : "verilog"
   },
@@ -2107,7 +2103,8 @@
   }
  ],
  "IncludePath" : [
-
+  "C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/ip/prim/rtl",
+  "C:/Workspace/FPGA/coralnpu-nano20k/bazel/external/lowrisc_opentitan_gh/hw/ip/prim/rtl"
  ],
  "LoopLimit" : 2000,
  "ResultFile" : "C:/Workspace/FPGA/coralnpu-nano20k/fpga/console60k/impl/temp/rtl_parser.result",
