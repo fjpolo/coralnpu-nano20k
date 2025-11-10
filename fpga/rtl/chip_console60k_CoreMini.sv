@@ -13,6 +13,7 @@
 // limitations under the License.
 
 `define SYNTHESIS
+// `define FULL_COREMINI
 
 // Assuming prim_mubi_pkg and Gowin_PLL are available globally or included elsewhere.
 import prim_mubi_pkg::*;
@@ -148,7 +149,7 @@ module chip_console60k_CoreMini(
  // --- CoreMini INSTANTIATION ----------------------------------------------
  // =========================================================================
 
-`ifdef FULL_SCORE
+`ifdef FULL_COREMINI
 //  /* synthesis syn_keep=1 */ CoreMini i_CoreMini(
  /* synthesis syn_keep=1 */ SCore i_CoreMini_SCore(
    .clock(sys_clk),
@@ -255,10 +256,40 @@ module chip_console60k_CoreMini(
    .io_debug_float_writeData_1_bits_addr(),
    .io_debug_float_writeData_1_bits_data()
  ) /* synthesis syn_keep=1 */;
- `endif // FULL_SCORE
+
+ // =========================================================================
+ // --- FINAL OUTPUT ASSIGNMENT  ------------------------------------------
+ // =========================================================================
+ assign o_pmod1[0] = 
+                    (|csr_out_value_0)&
+                    (|csr_out_value_1)&
+                    (|csr_out_value_2)&
+                    (|csr_out_value_3)&
+                    (|csr_out_value_4)&
+                    (|csr_out_value_5)&
+                    (|csr_out_value_6)&
+                    (|csr_out_value_7)&
+                    (|core_halted)&
+                    (|core_fault)&
+                    (|core_wfi)&
+                    (|ibus_valid)&
+                    (|ibus_addr)&
+                    (|dbus_valid)&
+                    (|dbus_write)&
+                    (|dbus_addr)&
+                    (|dbus_wdata)&
+                    (|dbus_wmask)&
+                    (|ebus_dbus_valid)&
+                    (|ebus_dbus_write)&
+                    (|ebus_dbus_pc)&
+                    (|ebus_dbus_addr)&
+                    (|ebus_dbus_size)&
+                    (|ebus_dbus_wdata)&
+                    (|ebus_fault_bits_write)&
+                    (|ebus_fault_bits_epc);
 
 
-
+`else 
  // =========================================================================
  // --- SCORE - INDIVIDUAL MODULES ----------------------------------------
  // =========================================================================
@@ -2118,5 +2149,6 @@ wire lsu_final =
  assign o_pmod1[7] = ((|_regfile_io_rfwriteCount )&(|_fetch_io_pc)&(|_floatCore_io_scalar_rd_bits_data)&(dispatcher_final)&(|lsu_final)&(mlu_final)&(csr_final)&(dvu_final)&(arbiter_final)&(fault_final)) ^ (o_pmod0[7]) ^ (global_en_0);
  // UART outputs tied off as unused in this minimal test
  assign uart_tx_o = 2'b0;
+`endif // FULL_COREMINI
 
 endmodule
