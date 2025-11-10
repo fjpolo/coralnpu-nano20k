@@ -2577,34 +2577,34 @@ module CircularBufferMulti(
   output        io_dataOut_3_brchFwd,
   input  [2:0]  io_deqReady,
   input         io_flush
-);
+) /*synthesis syn_ramstyle="block_ram"*/;
 
-  reg  [31:0]  buffer_0_addr;
-  reg  [31:0]  buffer_0_inst;
-  reg          buffer_0_brchFwd;
-  reg  [31:0]  buffer_1_addr;
-  reg  [31:0]  buffer_1_inst;
-  reg          buffer_1_brchFwd;
-  reg  [31:0]  buffer_2_addr;
-  reg  [31:0]  buffer_2_inst;
-  reg          buffer_2_brchFwd;
-  reg  [31:0]  buffer_3_addr;
-  reg  [31:0]  buffer_3_inst;
-  reg          buffer_3_brchFwd;
-  reg  [31:0]  buffer_4_addr;
-  reg  [31:0]  buffer_4_inst;
-  reg          buffer_4_brchFwd;
-  reg  [31:0]  buffer_5_addr;
-  reg  [31:0]  buffer_5_inst;
-  reg          buffer_5_brchFwd;
-  reg  [31:0]  buffer_6_addr;
-  reg  [31:0]  buffer_6_inst;
-  reg          buffer_6_brchFwd;
-  reg  [31:0]  buffer_7_addr;
-  reg  [31:0]  buffer_7_inst;
-  reg          buffer_7_brchFwd;
-  reg  [2:0]   enqPtr;
-  reg  [2:0]   deqPtr;
+  reg  [31:0]  buffer_0_addr /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_0_inst /*synthesis syn_ramstyle="block_ram"*/;
+  reg          buffer_0_brchFwd /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_1_addr /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_1_inst /*synthesis syn_ramstyle="block_ram"*/;
+  reg          buffer_1_brchFwd /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_2_addr /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_2_inst /*synthesis syn_ramstyle="block_ram"*/;
+  reg          buffer_2_brchFwd /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_3_addr /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_3_inst /*synthesis syn_ramstyle="block_ram"*/;
+  reg          buffer_3_brchFwd /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_4_addr /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_4_inst /*synthesis syn_ramstyle="block_ram"*/;
+  reg          buffer_4_brchFwd /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_5_addr /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_5_inst /*synthesis syn_ramstyle="block_ram"*/;
+  reg          buffer_5_brchFwd /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_6_addr /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_6_inst /*synthesis syn_ramstyle="block_ram"*/;
+  reg          buffer_6_brchFwd /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_7_addr /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [31:0]  buffer_7_inst /*synthesis syn_ramstyle="block_ram"*/;
+  reg          buffer_7_brchFwd /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [2:0]   enqPtr /*synthesis syn_ramstyle="block_ram"*/;
+  reg  [2:0]   deqPtr /*synthesis syn_ramstyle="block_ram"*/;
   reg  [3:0]   nEnqueued;
   wire [9:0]   _outputBufferView_rotated_T_9 = {7'h0, deqPtr} * 10'h41;
   wire [519:0] _outputBufferView_rotated_T_23 =
@@ -2976,7 +2976,7 @@ module InstructionBuffer(
   input         io_flush,
   output [3:0]  io_nEnqueued,
                 io_nSpace
-);
+) /*synthesis syn_ramstyle="block_ram"*/;
 
   wire [3:0] _circularBuffer_io_nEnqueued;
   wire [3:0] _circularBuffer_io_nSpace;
