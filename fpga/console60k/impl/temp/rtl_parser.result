@@ -1,57 +1,57 @@
 [
  {
   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-  "InstLine" : 4936,
+  "InstLine" : 4274,
   "InstName" : "Decode_1",
   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-  "ModuleLine" : 4936,
+  "ModuleLine" : 4274,
   "ModuleName" : "Decode_1"
  },
  {
   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-  "InstLine" : 5362,
+  "InstLine" : 4700,
   "InstName" : "Decode_2",
   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-  "ModuleLine" : 5362,
+  "ModuleLine" : 4700,
   "ModuleName" : "Decode_2"
  },
  {
   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-  "InstLine" : 5788,
+  "InstLine" : 5126,
   "InstName" : "Decode_3",
   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-  "ModuleLine" : 5788,
+  "ModuleLine" : 5126,
   "ModuleName" : "Decode_3"
  },
  {
   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-  "InstLine" : 17654,
+  "InstLine" : 16992,
   "InstName" : "CoreMiniAxi",
   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-  "ModuleLine" : 17654,
+  "ModuleLine" : 16992,
   "ModuleName" : "CoreMiniAxi",
   "SubInsts" : [
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18029,
+    "InstLine" : 17367,
     "InstName" : "rst_sync",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 20797,
+    "ModuleLine" : 20135,
     "ModuleName" : "RstSync",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 20830,
+      "InstLine" : 20168,
       "InstName" : "icg",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20864,
+      "ModuleLine" : 20202,
       "ModuleName" : "ClockGate"
      }
     ]
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18037,
+    "InstLine" : 17375,
     "InstName" : "csr",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
     "ModuleLine" : 47,
@@ -59,39 +59,39 @@
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18061,
+    "InstLine" : 17399,
     "InstName" : "cg",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 20864,
+    "ModuleLine" : 20202,
     "ModuleName" : "ClockGate"
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18067,
+    "InstLine" : 17405,
     "InstName" : "core",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 14565,
+    "ModuleLine" : 13903,
     "ModuleName" : "CoreMini",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 14669,
+      "InstLine" : 14007,
       "InstName" : "score",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 13079,
+      "ModuleLine" : 12417,
       "ModuleName" : "SCore",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 19014,
+        "InstLine" : 18352,
         "InstName" : "verification_Assert",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 20404,
+        "ModuleLine" : 19742,
         "ModuleName" : "SCore_Verification_Assert"
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 13656,
+        "InstLine" : 12994,
         "InstName" : "regfile",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
         "ModuleLine" : 163,
@@ -99,17 +99,17 @@
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18641,
+          "InstLine" : 17979,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 19104,
+          "ModuleLine" : 18442,
           "ModuleName" : "Regfile_Verification_Assert"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 13761,
+        "InstLine" : 13099,
         "InstName" : "fetch",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
         "ModuleLine" : 3036,
@@ -141,10 +141,10 @@
           "SubInsts" : [
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 18856,
+            "InstLine" : 18194,
             "InstName" : "verification_Assert",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 19726,
+            "ModuleLine" : 19064,
             "ModuleName" : "InstructionBuffer_Verification_Assert"
            },
            {
@@ -157,10 +157,10 @@
             "SubInsts" : [
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 18848,
+              "InstLine" : 18186,
               "InstName" : "verification_Assert",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 19669,
+              "ModuleLine" : 19007,
               "ModuleName" : "CircularBufferMulti_Verification_Assert"
              }
             ]
@@ -171,7 +171,7 @@
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 13801,
+        "InstLine" : 13139,
         "InstName" : "csr",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
         "ModuleLine" : 3230,
@@ -179,372 +179,372 @@
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18864,
+          "InstLine" : 18202,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 19769,
+          "ModuleLine" : 19107,
           "ModuleName" : "Csr_Verification_Assert"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 13847,
+        "InstLine" : 13185,
         "InstName" : "dispatch",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 6195,
+        "ModuleLine" : 5533,
         "ModuleName" : "DispatchV1",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 6445,
+          "InstLine" : 5783,
           "InstName" : "decode_0",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 4276,
+          "ModuleLine" : 3622,
           "ModuleName" : "Decode"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14046,
+        "InstLine" : 13384,
         "InstName" : "alu_0",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 6733,
+        "ModuleLine" : 6071,
         "ModuleName" : "Alu",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18909,
+          "InstLine" : 18247,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 19871,
+          "ModuleLine" : 19209,
           "ModuleName" : "Alu_Verification_Assert"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14060,
+        "InstLine" : 13398,
         "InstName" : "alu_1",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 6733,
+        "ModuleLine" : 6071,
         "ModuleName" : "Alu",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18909,
+          "InstLine" : 18247,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 19871,
+          "ModuleLine" : 19209,
           "ModuleName" : "Alu_Verification_Assert"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14074,
+        "InstLine" : 13412,
         "InstName" : "alu_2",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 6733,
+        "ModuleLine" : 6071,
         "ModuleName" : "Alu",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18909,
+          "InstLine" : 18247,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 19871,
+          "ModuleLine" : 19209,
           "ModuleName" : "Alu_Verification_Assert"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14088,
+        "InstLine" : 13426,
         "InstName" : "alu_3",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 6733,
+        "ModuleLine" : 6071,
         "ModuleName" : "Alu",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18909,
+          "InstLine" : 18247,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 19871,
+          "ModuleLine" : 19209,
           "ModuleName" : "Alu_Verification_Assert"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14102,
+        "InstLine" : 13440,
         "InstName" : "bru_0",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 7042,
+        "ModuleLine" : 6380,
         "ModuleName" : "Bru",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18925,
+          "InstLine" : 18263,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 19936,
+          "ModuleLine" : 19274,
           "ModuleName" : "Bru_Verification_Assert"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14141,
+        "InstLine" : 13479,
         "InstName" : "bru_1",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 7248,
+        "ModuleLine" : 6586,
         "ModuleName" : "Bru_1",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18940,
+          "InstLine" : 18278,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 20010,
+          "ModuleLine" : 19348,
           "ModuleName" : "Bru_1_Verification_Assert"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14161,
+        "InstLine" : 13499,
         "InstName" : "bru_2",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 7248,
+        "ModuleLine" : 6586,
         "ModuleName" : "Bru_1",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18940,
+          "InstLine" : 18278,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 20010,
+          "ModuleLine" : 19348,
           "ModuleName" : "Bru_1_Verification_Assert"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14181,
+        "InstLine" : 13519,
         "InstName" : "bru_3",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 7248,
+        "ModuleLine" : 6586,
         "ModuleName" : "Bru_1",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18940,
+          "InstLine" : 18278,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 20010,
+          "ModuleLine" : 19348,
           "ModuleName" : "Bru_1_Verification_Assert"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14201,
+        "InstLine" : 13539,
         "InstName" : "lsu",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 9946,
+        "ModuleLine" : 9284,
         "ModuleName" : "LsuV1",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18966,
+          "InstLine" : 18304,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 20136,
+          "ModuleLine" : 19474,
           "ModuleName" : "LsuV1_Verification_Assert"
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 10812,
+          "InstLine" : 10150,
           "InstName" : "ctrl",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 7575,
+          "ModuleLine" : 6913,
           "ModuleName" : "FifoX",
           "SubInsts" : [
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 18960,
+            "InstLine" : 18298,
             "InstName" : "verification_Assert",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 20095,
+            "ModuleLine" : 19433,
             "ModuleName" : "FifoX_Verification_Assert"
            },
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 9649,
+            "InstLine" : 8987,
             "InstName" : "mslice",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 7368,
+            "ModuleLine" : 6706,
             "ModuleName" : "Slice"
            }
           ]
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 11018,
+          "InstLine" : 10356,
           "InstName" : "data",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 9725,
+          "ModuleLine" : 9063,
           "ModuleName" : "Slice_1"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14276,
+        "InstLine" : 13614,
         "InstName" : "mlu",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 11234,
+        "ModuleLine" : 10572,
         "ModuleName" : "Mlu",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18982,
+          "InstLine" : 18320,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 20217,
+          "ModuleLine" : 19555,
           "ModuleName" : "Mlu_Verification_Assert"
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 11307,
+          "InstLine" : 10645,
           "InstName" : "arb",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 11093,
+          "ModuleLine" : 10431,
           "ModuleName" : "Arbiter4_MluCmd"
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 11325,
+          "InstLine" : 10663,
           "InstName" : "stage2Input_q",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 11128,
+          "ModuleLine" : 10466,
           "ModuleName" : "Queue1_MluStage1"
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 11337,
+          "InstLine" : 10675,
           "InstName" : "stage3Input_q",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 11180,
+          "ModuleLine" : 10518,
           "ModuleName" : "Queue1_MluStage2"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14311,
+        "InstLine" : 13649,
         "InstName" : "dvu",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 11361,
+        "ModuleLine" : 10699,
         "ModuleName" : "Dvu"
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14325,
+        "InstLine" : 13663,
         "InstName" : "fault_manager",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 11564,
+        "ModuleLine" : 10902,
         "ModuleName" : "FaultManager"
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14372,
+        "InstLine" : 13710,
         "InstName" : "floatCore",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 11908,
+        "ModuleLine" : 11246,
         "ModuleName" : "FloatCore",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18999,
+          "InstLine" : 18337,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 20315,
+          "ModuleLine" : 19653,
           "ModuleName" : "FloatCore_Verification_Assert"
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 12061,
+          "InstLine" : 11399,
           "InstName" : "instQueue",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 11690,
+          "ModuleLine" : 11028,
           "ModuleName" : "Queue1_FloatInstruction"
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 12090,
+          "InstLine" : 11428,
           "InstName" : "floatCoreWrapper",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 31089,
+          "ModuleLine" : 30427,
           "ModuleName" : "FloatCoreWrapper",
           "SubInsts" : [
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 31123,
+            "InstLine" : 30461,
             "InstName" : "core",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 30913,
+            "ModuleLine" : 30251,
             "ModuleName" : "fpnew_top",
             "SubInsts" : [
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 31027,
+              "InstLine" : 30365,
               "InstName" : "gen_operation_groups[0].i_opgroup_block",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 29756,
+              "ModuleLine" : 29094,
               "ModuleName" : "fpnew_opgroup_block",
               "SubInsts" : [
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 29854,
+                "InstLine" : 29192,
                 "InstName" : "gen_parallel_slices[0].active_format.i_fmt_slice",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 30007,
+                "ModuleLine" : 29345,
                 "ModuleName" : "fpnew_opgroup_fmt_slice",
                 "SubInsts" : [
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 30109,
+                  "InstLine" : 29447,
                   "InstName" : "gen_num_lanes[0].active_lane.lane_instance.i_fma",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 27792,
+                  "ModuleLine" : 27130,
                   "ModuleName" : "fpnew_fma",
                   "SubInsts" : [
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 27936,
+                    "InstLine" : 27274,
                     "InstName" : "i_class_inputs",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 22999,
+                    "ModuleLine" : 22337,
                     "ModuleName" : "fpnew_classifier"
                    },
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 28286,
+                    "InstLine" : 27624,
                     "InstName" : "i_lzc",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 21229,
+                    "ModuleLine" : 20567,
                     "ModuleName" : "lzc"
                    },
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 28378,
+                    "InstLine" : 27716,
                     "InstName" : "i_fpnew_rounding",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 30834,
+                    "ModuleLine" : 30172,
                     "ModuleName" : "fpnew_rounding"
                    }
                   ]
@@ -553,26 +553,26 @@
                },
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 29966,
+                "InstLine" : 29304,
                 "InstName" : "i_arbiter",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 21366,
+                "ModuleLine" : 20704,
                 "ModuleName" : "rr_arb_tree",
                 "SubInsts" : [
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 21534,
+                  "InstLine" : 20872,
                   "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_upper",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 21229,
+                  "ModuleLine" : 20567,
                   "ModuleName" : "lzc"
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 21543,
+                  "InstLine" : 20881,
                   "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_lower",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 21229,
+                  "ModuleLine" : 20567,
                   "ModuleName" : "lzc"
                  }
                 ]
@@ -581,160 +581,160 @@
              },
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 31027,
+              "InstLine" : 30365,
               "InstName" : "gen_operation_groups[1].i_opgroup_block",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 29756,
+              "ModuleLine" : 29094,
               "ModuleName" : "fpnew_opgroup_block",
               "SubInsts" : [
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 29927,
+                "InstLine" : 29265,
                 "InstName" : "gen_merged_slice.i_multifmt_slice",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 30311,
+                "ModuleLine" : 29649,
                 "ModuleName" : "fpnew_opgroup_multifmt_slice",
                 "SubInsts" : [
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 30558,
+                  "InstLine" : 29896,
                   "InstName" : "gen_num_lanes[0].active_lane.lane_instance.i_fpnew_divsqrt_multi_th",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 27313,
+                  "ModuleLine" : 26651,
                   "ModuleName" : "fpnew_divsqrt_th_32",
                   "SubInsts" : [
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 27609,
+                    "InstLine" : 26947,
                     "InstName" : "i_divsqrt_thead",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 26358,
+                    "ModuleLine" : 25696,
                     "ModuleName" : "pa_fdsu_top",
                     "SubInsts" : [
                      {
                       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "InstLine" : 26567,
+                      "InstLine" : 25905,
                       "InstName" : "x_pa_fdsu_special",
                       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "ModuleLine" : 25185,
+                      "ModuleLine" : 24523,
                       "ModuleName" : "pa_fdsu_special"
                      },
                      {
                       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "InstLine" : 26590,
+                      "InstLine" : 25928,
                       "InstName" : "x_pa_fdsu_prepare",
                       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "ModuleLine" : 24355,
+                      "ModuleLine" : 23693,
                       "ModuleName" : "pa_fdsu_prepare",
                       "SubInsts" : [
                        {
                         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "InstLine" : 24490,
+                        "InstLine" : 23828,
                         "InstName" : "x_frac_expnt",
                         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "ModuleLine" : 23913,
+                        "ModuleLine" : 23251,
                         "ModuleName" : "pa_fdsu_ff1"
                        }
                       ]
                      },
                      {
                       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "InstLine" : 26620,
+                      "InstLine" : 25958,
                       "InstName" : "x_pa_fdsu_srt",
                       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "ModuleLine" : 25532,
+                      "ModuleLine" : 24870,
                       "ModuleName" : "pa_fdsu_srt_single",
                       "SubInsts" : [
                        {
                         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "InstLine" : 25882,
+                        "InstLine" : 25220,
                         "InstName" : "x_ex1_ex2_pipe_clk",
                         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "ModuleLine" : 23075,
+                        "ModuleLine" : 22413,
                         "ModuleName" : "gated_clk_cell"
                        },
                        {
                         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "InstLine" : 25950,
+                        "InstLine" : 25288,
                         "InstName" : "x_srt_div_clk",
                         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "ModuleLine" : 23075,
+                        "ModuleLine" : 22413,
                         "ModuleName" : "gated_clk_cell"
                        },
                        {
                         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "InstLine" : 26102,
+                        "InstLine" : 25440,
                         "InstName" : "x_qt_clk",
                         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "ModuleLine" : 23075,
+                        "ModuleLine" : 22413,
                         "ModuleName" : "gated_clk_cell"
                        }
                       ]
                      },
                      {
                       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "InstLine" : 26665,
+                      "InstLine" : 26003,
                       "InstName" : "x_pa_fdsu_round",
                       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "ModuleLine" : 24643,
+                      "ModuleLine" : 23981,
                       "ModuleName" : "pa_fdsu_round_single",
                       "SubInsts" : [
                        {
                         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "InstLine" : 25115,
+                        "InstLine" : 24453,
                         "InstName" : "x_ex3_pipe_clk",
                         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "ModuleLine" : 23075,
+                        "ModuleLine" : 22413,
                         "ModuleName" : "gated_clk_cell"
                        }
                       ]
                      },
                      {
                       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "InstLine" : 26692,
+                      "InstLine" : 26030,
                       "InstName" : "x_pa_fdsu_pack",
                       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "ModuleLine" : 24078,
+                      "ModuleLine" : 23416,
                       "ModuleName" : "pa_fdsu_pack_single"
                      },
                      {
                       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "InstLine" : 26716,
+                      "InstLine" : 26054,
                       "InstName" : "x_pa_fdsu_ctrl",
                       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "ModuleLine" : 23128,
+                      "ModuleLine" : 22466,
                       "ModuleName" : "pa_fdsu_ctrl",
                       "SubInsts" : [
                        {
                         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "InstLine" : 23763,
+                        "InstLine" : 23101,
                         "InstName" : "x_fdsu_clk",
                         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "ModuleLine" : 23075,
+                        "ModuleLine" : 22413,
                         "ModuleName" : "gated_clk_cell"
                        },
                        {
                         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "InstLine" : 23782,
+                        "InstLine" : 23120,
                         "InstName" : "x_ex1_pipe_clk",
                         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "ModuleLine" : 23075,
+                        "ModuleLine" : 22413,
                         "ModuleName" : "gated_clk_cell"
                        },
                        {
                         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "InstLine" : 23802,
+                        "InstLine" : 23140,
                         "InstName" : "x_ex2_pipe_clk",
                         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "ModuleLine" : 23075,
+                        "ModuleLine" : 22413,
                         "ModuleName" : "gated_clk_cell"
                        },
                        {
                         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "InstLine" : 23826,
+                        "InstLine" : 23164,
                         "InstName" : "x_expnt_rst_clk",
                         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                        "ModuleLine" : 23075,
+                        "ModuleLine" : 22413,
                         "ModuleName" : "gated_clk_cell"
                        }
                       ]
@@ -743,52 +743,52 @@
                    },
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 27654,
+                    "InstLine" : 26992,
                     "InstName" : "x_pa_fpu_dp",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 26820,
+                    "ModuleLine" : 26158,
                     "ModuleName" : "pa_fpu_dp",
                     "SubInsts" : [
                      {
                       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "InstLine" : 26968,
+                      "InstLine" : 26306,
                       "InstName" : "x_pa_fpu_ex1_srcf0_type",
                       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "ModuleLine" : 27214,
+                      "ModuleLine" : 26552,
                       "ModuleName" : "pa_fpu_src_type"
                      },
                      {
                       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "InstLine" : 26981,
+                      "InstLine" : 26319,
                       "InstName" : "x_pa_fpu_ex1_srcf1_type",
                       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "ModuleLine" : 27214,
+                      "ModuleLine" : 26552,
                       "ModuleName" : "pa_fpu_src_type"
                      },
                      {
                       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "InstLine" : 26994,
+                      "InstLine" : 26332,
                       "InstName" : "x_pa_fpu_ex1_srcf2_type",
                       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "ModuleLine" : 27214,
+                      "ModuleLine" : 26552,
                       "ModuleName" : "pa_fpu_src_type"
                      },
                      {
                       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "InstLine" : 27058,
+                      "InstLine" : 26396,
                       "InstName" : "x_fpu_data_ex2_gated_clk",
                       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                      "ModuleLine" : 23075,
+                      "ModuleLine" : 22413,
                       "ModuleName" : "gated_clk_cell"
                      }
                     ]
                    },
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 27688,
+                    "InstLine" : 27026,
                     "InstName" : "x_pa_fpu_frbus",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 27121,
+                    "ModuleLine" : 26459,
                     "ModuleName" : "pa_fpu_frbus"
                    }
                   ]
@@ -797,26 +797,26 @@
                },
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 29966,
+                "InstLine" : 29304,
                 "InstName" : "i_arbiter",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 21366,
+                "ModuleLine" : 20704,
                 "ModuleName" : "rr_arb_tree",
                 "SubInsts" : [
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 21534,
+                  "InstLine" : 20872,
                   "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_upper",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 21229,
+                  "ModuleLine" : 20567,
                   "ModuleName" : "lzc"
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 21543,
+                  "InstLine" : 20881,
                   "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_lower",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 21229,
+                  "ModuleLine" : 20567,
                   "ModuleName" : "lzc"
                  }
                 ]
@@ -825,34 +825,34 @@
              },
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 31027,
+              "InstLine" : 30365,
               "InstName" : "gen_operation_groups[2].i_opgroup_block",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 29756,
+              "ModuleLine" : 29094,
               "ModuleName" : "fpnew_opgroup_block",
               "SubInsts" : [
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 29854,
+                "InstLine" : 29192,
                 "InstName" : "gen_parallel_slices[0].active_format.i_fmt_slice",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 30007,
+                "ModuleLine" : 29345,
                 "ModuleName" : "fpnew_opgroup_fmt_slice",
                 "SubInsts" : [
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 30174,
+                  "InstLine" : 29512,
                   "InstName" : "gen_num_lanes[0].active_lane.lane_instance.i_noncomp",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 29337,
+                  "ModuleLine" : 28675,
                   "ModuleName" : "fpnew_noncomp",
                   "SubInsts" : [
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 29466,
+                    "InstLine" : 28804,
                     "InstName" : "i_class_a",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 22999,
+                    "ModuleLine" : 22337,
                     "ModuleName" : "fpnew_classifier"
                    }
                   ]
@@ -861,26 +861,26 @@
                },
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 29966,
+                "InstLine" : 29304,
                 "InstName" : "i_arbiter",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 21366,
+                "ModuleLine" : 20704,
                 "ModuleName" : "rr_arb_tree",
                 "SubInsts" : [
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 21534,
+                  "InstLine" : 20872,
                   "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_upper",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 21229,
+                  "ModuleLine" : 20567,
                   "ModuleName" : "lzc"
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 21543,
+                  "InstLine" : 20881,
                   "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_lower",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 21229,
+                  "ModuleLine" : 20567,
                   "ModuleName" : "lzc"
                  }
                 ]
@@ -889,50 +889,50 @@
              },
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 31027,
+              "InstLine" : 30365,
               "InstName" : "gen_operation_groups[3].i_opgroup_block",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 29756,
+              "ModuleLine" : 29094,
               "ModuleName" : "fpnew_opgroup_block",
               "SubInsts" : [
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 29927,
+                "InstLine" : 29265,
                 "InstName" : "gen_merged_slice.i_multifmt_slice",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 30311,
+                "ModuleLine" : 29649,
                 "ModuleName" : "fpnew_opgroup_multifmt_slice",
                 "SubInsts" : [
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 30630,
+                  "InstLine" : 29968,
                   "InstName" : "gen_num_lanes[0].active_lane.lane_instance.i_fpnew_cast_multi",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 22197,
+                  "ModuleLine" : 21535,
                   "ModuleName" : "fpnew_cast_multi",
                   "SubInsts" : [
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 22390,
+                    "InstLine" : 21728,
                     "InstName" : "fmt_init_inputs[0].active_format.i_fpnew_classifier",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 22999,
+                    "ModuleLine" : 22337,
                     "ModuleName" : "fpnew_classifier"
                    },
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 22463,
+                    "InstLine" : 21801,
                     "InstName" : "i_lzc",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 21229,
+                    "ModuleLine" : 20567,
                     "ModuleName" : "lzc"
                    },
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 22734,
+                    "InstLine" : 22072,
                     "InstName" : "i_fpnew_rounding",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 30834,
+                    "ModuleLine" : 30172,
                     "ModuleName" : "fpnew_rounding"
                    }
                   ]
@@ -941,26 +941,26 @@
                },
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 29966,
+                "InstLine" : 29304,
                 "InstName" : "i_arbiter",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 21366,
+                "ModuleLine" : 20704,
                 "ModuleName" : "rr_arb_tree",
                 "SubInsts" : [
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 21534,
+                  "InstLine" : 20872,
                   "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_upper",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 21229,
+                  "ModuleLine" : 20567,
                   "ModuleName" : "lzc"
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 21543,
+                  "InstLine" : 20881,
                   "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_lower",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 21229,
+                  "ModuleLine" : 20567,
                   "ModuleName" : "lzc"
                  }
                 ]
@@ -969,26 +969,26 @@
              },
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 31064,
+              "InstLine" : 30402,
               "InstName" : "i_arbiter",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 21366,
+              "ModuleLine" : 20704,
               "ModuleName" : "rr_arb_tree",
               "SubInsts" : [
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 21534,
+                "InstLine" : 20872,
                 "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_upper",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 21229,
+                "ModuleLine" : 20567,
                 "ModuleName" : "lzc"
                },
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 21543,
+                "InstLine" : 20881,
                 "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_lower",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 21229,
+                "ModuleLine" : 20567,
                 "ModuleName" : "lzc"
                }
               ]
@@ -999,18 +999,18 @@
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 12126,
+          "InstLine" : 11464,
           "InstName" : "scalar_rd_pipe_q",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 11830,
+          "ModuleLine" : 11168,
           "ModuleName" : "Queue2_RegfileWriteDataIO",
           "SubInsts" : [
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 11892,
+            "InstLine" : 11230,
             "InstName" : "ram_ext",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 11797,
+            "ModuleLine" : 11135,
             "ModuleName" : "ram_2x37"
            }
           ]
@@ -1019,28 +1019,28 @@
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14427,
+        "InstLine" : 13765,
         "InstName" : "fRegfile",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 12179,
+        "ModuleLine" : 11517,
         "ModuleName" : "FRegfile",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 19009,
+          "InstLine" : 18347,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 20364,
+          "ModuleLine" : 19702,
           "ModuleName" : "FRegfile_Verification_Assert"
          }
         ]
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14461,
+        "InstLine" : 13799,
         "InstName" : "arb",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 13048,
+        "ModuleLine" : 12386,
         "ModuleName" : "Arbiter3_RegfileWriteDataIO"
        }
       ]
@@ -1049,26 +1049,26 @@
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18171,
+    "InstLine" : 17509,
     "InstName" : "itcm",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 14795,
+    "ModuleLine" : 14133,
     "ModuleName" : "TCM128",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 14851,
+      "InstLine" : 14189,
       "InstName" : "sram",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 14774,
+      "ModuleLine" : 14112,
       "ModuleName" : "SRAM_512x128",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 14784,
+        "InstLine" : 14122,
         "InstName" : "sramModules_0",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 31164,
+        "ModuleLine" : 30502,
         "ModuleName" : "Sram_512x128"
        }
       ]
@@ -1077,52 +1077,52 @@
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18225,
+    "InstLine" : 17563,
     "InstName" : "itcmWrapper",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 14910,
+    "ModuleLine" : 14248,
     "ModuleName" : "SRAM"
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18288,
+    "InstLine" : 17626,
     "InstName" : "itcmArbiter",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 15077,
+    "ModuleLine" : 14415,
     "ModuleName" : "FabricArbiter",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 19028,
+      "InstLine" : 18366,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20476,
+      "ModuleLine" : 19814,
       "ModuleName" : "FabricArbiter_Verification_Assert"
      }
     ]
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18316,
+    "InstLine" : 17654,
     "InstName" : "dtcm",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 15146,
+    "ModuleLine" : 14484,
     "ModuleName" : "TCM128_1",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 15202,
+      "InstLine" : 14540,
       "InstName" : "sram",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 15125,
+      "ModuleLine" : 14463,
       "ModuleName" : "SRAM_2048x128",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 15135,
+        "InstLine" : 14473,
         "InstName" : "sramModules_0",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 31308,
+        "ModuleLine" : 30646,
         "ModuleName" : "Sram_2048x128"
        }
       ]
@@ -1131,166 +1131,166 @@
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18370,
+    "InstLine" : 17708,
     "InstName" : "dtcmWrapper",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 15261,
+    "ModuleLine" : 14599,
     "ModuleName" : "SRAM_1"
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18433,
+    "InstLine" : 17771,
     "InstName" : "dtcmArbiter",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 15077,
+    "ModuleLine" : 14415,
     "ModuleName" : "FabricArbiter",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 19028,
+      "InstLine" : 18366,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20476,
+      "ModuleLine" : 19814,
       "ModuleName" : "FabricArbiter_Verification_Assert"
      }
     ]
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18461,
+    "InstLine" : 17799,
     "InstName" : "fabricMux",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 15428,
+    "ModuleLine" : 14766,
     "ModuleName" : "FabricMux",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 19036,
+      "InstLine" : 18374,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20525,
+      "ModuleLine" : 19863,
       "ModuleName" : "FabricMux_Verification_Assert"
      }
     ]
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18500,
+    "InstLine" : 17838,
     "InstName" : "axiSlave",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 16245,
+    "ModuleLine" : 15583,
     "ModuleName" : "AxiSlave",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 19046,
+      "InstLine" : 18384,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20576,
+      "ModuleLine" : 19914,
       "ModuleName" : "AxiSlave_Verification_Assert"
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 16436,
+      "InstLine" : 15774,
       "InstName" : "addrArbiter",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 15579,
+      "ModuleLine" : 14917,
       "ModuleName" : "CoralNPURRArbiter"
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 16477,
+      "InstLine" : 15815,
       "InstName" : "addrArbiter_io_in_0_q",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 15705,
+      "ModuleLine" : 15043,
       "ModuleName" : "Queue2_AxiAddress",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 15783,
+        "InstLine" : 15121,
         "InstName" : "ram_ext",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 15672,
+        "ModuleLine" : 15010,
         "ModuleName" : "ram_2x67"
        }
       ]
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 16505,
+      "InstLine" : 15843,
       "InstName" : "addrArbiter_io_in_1_q",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 15705,
+      "ModuleLine" : 15043,
       "ModuleName" : "Queue2_AxiAddress",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 15783,
+        "InstLine" : 15121,
         "InstName" : "ram_ext",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 15672,
+        "ModuleLine" : 15010,
         "ModuleName" : "ram_2x67"
        }
       ]
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 16533,
+      "InstLine" : 15871,
       "InstName" : "axiAddrCmd_q",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 15817,
+      "ModuleLine" : 15155,
       "ModuleName" : "Queue1_RWAxiAddress"
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 16562,
+      "InstLine" : 15900,
       "InstName" : "writeData_q",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 15934,
+      "ModuleLine" : 15272,
       "ModuleName" : "Queue2_AxiWriteData",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 15998,
+        "InstLine" : 15336,
         "InstName" : "ram_ext",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 15901,
+        "ModuleLine" : 15239,
         "ModuleName" : "ram_2x145"
        }
       ]
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 16576,
+      "InstLine" : 15914,
       "InstName" : "io_axi_write_resp_q",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 16047,
+      "ModuleLine" : 15385,
       "ModuleName" : "Queue2_AxiWriteResponse",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 16109,
+        "InstLine" : 15447,
         "InstName" : "ram_ext",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 16016,
+        "ModuleLine" : 15354,
         "ModuleName" : "ram_2x8"
        }
       ]
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 16588,
+      "InstLine" : 15926,
       "InstName" : "readDataQueue",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 16159,
+      "ModuleLine" : 15497,
       "ModuleName" : "Queue2_AxiReadData",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 16226,
+        "InstLine" : 15564,
         "InstName" : "ram_ext",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 16126,
+        "ModuleLine" : 15464,
         "ModuleName" : "ram_2x137"
        }
       ]
@@ -1299,94 +1299,94 @@
    },
    {
     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "InstLine" : 18553,
+    "InstLine" : 17891,
     "InstName" : "ebus2axi",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 17162,
+    "ModuleLine" : 16500,
     "ModuleName" : "DBus2AxiV1",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 19064,
+      "InstLine" : 18402,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20699,
+      "ModuleLine" : 20037,
       "ModuleName" : "DBus2AxiV1_Verification_Assert"
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 17511,
+      "InstLine" : 16849,
       "InstName" : "readAddrQ",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 16747,
+      "ModuleLine" : 16085,
       "ModuleName" : "FifoX_1",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 19052,
+        "InstLine" : 18390,
         "InstName" : "verification_Assert",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 20617,
+        "ModuleLine" : 19955,
         "ModuleName" : "FifoX_1_Verification_Assert"
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 16898,
+        "InstLine" : 16236,
         "InstName" : "mslice",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 16612,
+        "ModuleLine" : 15950,
         "ModuleName" : "Slice_2"
        }
       ]
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 17549,
+      "InstLine" : 16887,
       "InstName" : "writeAddrQ",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 16747,
+      "ModuleLine" : 16085,
       "ModuleName" : "FifoX_1",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 19052,
+        "InstLine" : 18390,
         "InstName" : "verification_Assert",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 20617,
+        "ModuleLine" : 19955,
         "ModuleName" : "FifoX_1_Verification_Assert"
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 16898,
+        "InstLine" : 16236,
         "InstName" : "mslice",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 16612,
+        "ModuleLine" : 15950,
         "ModuleName" : "Slice_2"
        }
       ]
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 17587,
+      "InstLine" : 16925,
       "InstName" : "writeDataQ",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 17014,
+      "ModuleLine" : 16352,
       "ModuleName" : "FifoX_3",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 19058,
+        "InstLine" : 18396,
         "InstName" : "verification_Assert",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 20658,
+        "ModuleLine" : 19996,
         "ModuleName" : "FifoX_3_Verification_Assert"
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 17144,
+        "InstLine" : 16482,
         "InstName" : "mslice",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 16930,
+        "ModuleLine" : 16268,
         "ModuleName" : "Slice_4"
        }
       ]
@@ -137659,10 +137659,10 @@
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18641,
+      "InstLine" : 17979,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 19104,
+      "ModuleLine" : 18442,
       "ModuleName" : "Regfile_Verification_Assert"
      }
     ]
@@ -137701,10 +137701,10 @@
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 18856,
+        "InstLine" : 18194,
         "InstName" : "verification_Assert",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 19726,
+        "ModuleLine" : 19064,
         "ModuleName" : "InstructionBuffer_Verification_Assert"
        },
        {
@@ -137717,10 +137717,10 @@
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 18848,
+          "InstLine" : 18186,
           "InstName" : "verification_Assert",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 19669,
+          "ModuleLine" : 19007,
           "ModuleName" : "CircularBufferMulti_Verification_Assert"
          }
         ]
@@ -137734,15 +137734,15 @@
     "InstLine" : 806,
     "InstName" : "alu_0",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 6733,
+    "ModuleLine" : 6071,
     "ModuleName" : "Alu",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18909,
+      "InstLine" : 18247,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 19871,
+      "ModuleLine" : 19209,
       "ModuleName" : "Alu_Verification_Assert"
      }
     ]
@@ -137752,15 +137752,15 @@
     "InstLine" : 820,
     "InstName" : "alu_1",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 6733,
+    "ModuleLine" : 6071,
     "ModuleName" : "Alu",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18909,
+      "InstLine" : 18247,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 19871,
+      "ModuleLine" : 19209,
       "ModuleName" : "Alu_Verification_Assert"
      }
     ]
@@ -137770,15 +137770,15 @@
     "InstLine" : 834,
     "InstName" : "alu_2",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 6733,
+    "ModuleLine" : 6071,
     "ModuleName" : "Alu",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18909,
+      "InstLine" : 18247,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 19871,
+      "ModuleLine" : 19209,
       "ModuleName" : "Alu_Verification_Assert"
      }
     ]
@@ -137788,15 +137788,15 @@
     "InstLine" : 848,
     "InstName" : "alu_3",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 6733,
+    "ModuleLine" : 6071,
     "ModuleName" : "Alu",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18909,
+      "InstLine" : 18247,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 19871,
+      "ModuleLine" : 19209,
       "ModuleName" : "Alu_Verification_Assert"
      }
     ]
@@ -137806,15 +137806,15 @@
     "InstLine" : 863,
     "InstName" : "bru_0",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 7042,
+    "ModuleLine" : 6380,
     "ModuleName" : "Bru",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18925,
+      "InstLine" : 18263,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 19936,
+      "ModuleLine" : 19274,
       "ModuleName" : "Bru_Verification_Assert"
      }
     ]
@@ -137824,15 +137824,15 @@
     "InstLine" : 903,
     "InstName" : "bru_1",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 7248,
+    "ModuleLine" : 6586,
     "ModuleName" : "Bru_1",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18940,
+      "InstLine" : 18278,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20010,
+      "ModuleLine" : 19348,
       "ModuleName" : "Bru_1_Verification_Assert"
      }
     ]
@@ -137842,15 +137842,15 @@
     "InstLine" : 924,
     "InstName" : "bru_2",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 7248,
+    "ModuleLine" : 6586,
     "ModuleName" : "Bru_1",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18940,
+      "InstLine" : 18278,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20010,
+      "ModuleLine" : 19348,
       "ModuleName" : "Bru_1_Verification_Assert"
      }
     ]
@@ -137860,15 +137860,15 @@
     "InstLine" : 945,
     "InstName" : "bru_3",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 7248,
+    "ModuleLine" : 6586,
     "ModuleName" : "Bru_1",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18940,
+      "InstLine" : 18278,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20010,
+      "ModuleLine" : 19348,
       "ModuleName" : "Bru_1_Verification_Assert"
      }
     ]
@@ -137878,87 +137878,87 @@
     "InstLine" : 967,
     "InstName" : "floatCore",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 11908,
+    "ModuleLine" : 11246,
     "ModuleName" : "FloatCore",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18999,
+      "InstLine" : 18337,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20315,
+      "ModuleLine" : 19653,
       "ModuleName" : "FloatCore_Verification_Assert"
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 12061,
+      "InstLine" : 11399,
       "InstName" : "instQueue",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 11690,
+      "ModuleLine" : 11028,
       "ModuleName" : "Queue1_FloatInstruction"
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 12090,
+      "InstLine" : 11428,
       "InstName" : "floatCoreWrapper",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 31089,
+      "ModuleLine" : 30427,
       "ModuleName" : "FloatCoreWrapper",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 31123,
+        "InstLine" : 30461,
         "InstName" : "core",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 30913,
+        "ModuleLine" : 30251,
         "ModuleName" : "fpnew_top",
         "SubInsts" : [
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 31027,
+          "InstLine" : 30365,
           "InstName" : "gen_operation_groups[0].i_opgroup_block",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 29756,
+          "ModuleLine" : 29094,
           "ModuleName" : "fpnew_opgroup_block",
           "SubInsts" : [
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 29854,
+            "InstLine" : 29192,
             "InstName" : "gen_parallel_slices[0].active_format.i_fmt_slice",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 30007,
+            "ModuleLine" : 29345,
             "ModuleName" : "fpnew_opgroup_fmt_slice",
             "SubInsts" : [
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 30109,
+              "InstLine" : 29447,
               "InstName" : "gen_num_lanes[0].active_lane.lane_instance.i_fma",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 27792,
+              "ModuleLine" : 27130,
               "ModuleName" : "fpnew_fma",
               "SubInsts" : [
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 27936,
+                "InstLine" : 27274,
                 "InstName" : "i_class_inputs",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 22999,
+                "ModuleLine" : 22337,
                 "ModuleName" : "fpnew_classifier"
                },
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 28286,
+                "InstLine" : 27624,
                 "InstName" : "i_lzc",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 21229,
+                "ModuleLine" : 20567,
                 "ModuleName" : "lzc"
                },
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 28378,
+                "InstLine" : 27716,
                 "InstName" : "i_fpnew_rounding",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 30834,
+                "ModuleLine" : 30172,
                 "ModuleName" : "fpnew_rounding"
                }
               ]
@@ -137967,26 +137967,26 @@
            },
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 29966,
+            "InstLine" : 29304,
             "InstName" : "i_arbiter",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 21366,
+            "ModuleLine" : 20704,
             "ModuleName" : "rr_arb_tree",
             "SubInsts" : [
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 21534,
+              "InstLine" : 20872,
               "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_upper",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 21229,
+              "ModuleLine" : 20567,
               "ModuleName" : "lzc"
              },
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 21543,
+              "InstLine" : 20881,
               "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_lower",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 21229,
+              "ModuleLine" : 20567,
               "ModuleName" : "lzc"
              }
             ]
@@ -137995,160 +137995,160 @@
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 31027,
+          "InstLine" : 30365,
           "InstName" : "gen_operation_groups[1].i_opgroup_block",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 29756,
+          "ModuleLine" : 29094,
           "ModuleName" : "fpnew_opgroup_block",
           "SubInsts" : [
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 29927,
+            "InstLine" : 29265,
             "InstName" : "gen_merged_slice.i_multifmt_slice",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 30311,
+            "ModuleLine" : 29649,
             "ModuleName" : "fpnew_opgroup_multifmt_slice",
             "SubInsts" : [
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 30558,
+              "InstLine" : 29896,
               "InstName" : "gen_num_lanes[0].active_lane.lane_instance.i_fpnew_divsqrt_multi_th",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 27313,
+              "ModuleLine" : 26651,
               "ModuleName" : "fpnew_divsqrt_th_32",
               "SubInsts" : [
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 27609,
+                "InstLine" : 26947,
                 "InstName" : "i_divsqrt_thead",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 26358,
+                "ModuleLine" : 25696,
                 "ModuleName" : "pa_fdsu_top",
                 "SubInsts" : [
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 26567,
+                  "InstLine" : 25905,
                   "InstName" : "x_pa_fdsu_special",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 25185,
+                  "ModuleLine" : 24523,
                   "ModuleName" : "pa_fdsu_special"
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 26590,
+                  "InstLine" : 25928,
                   "InstName" : "x_pa_fdsu_prepare",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 24355,
+                  "ModuleLine" : 23693,
                   "ModuleName" : "pa_fdsu_prepare",
                   "SubInsts" : [
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 24490,
+                    "InstLine" : 23828,
                     "InstName" : "x_frac_expnt",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 23913,
+                    "ModuleLine" : 23251,
                     "ModuleName" : "pa_fdsu_ff1"
                    }
                   ]
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 26620,
+                  "InstLine" : 25958,
                   "InstName" : "x_pa_fdsu_srt",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 25532,
+                  "ModuleLine" : 24870,
                   "ModuleName" : "pa_fdsu_srt_single",
                   "SubInsts" : [
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 25882,
+                    "InstLine" : 25220,
                     "InstName" : "x_ex1_ex2_pipe_clk",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 23075,
+                    "ModuleLine" : 22413,
                     "ModuleName" : "gated_clk_cell"
                    },
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 25950,
+                    "InstLine" : 25288,
                     "InstName" : "x_srt_div_clk",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 23075,
+                    "ModuleLine" : 22413,
                     "ModuleName" : "gated_clk_cell"
                    },
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 26102,
+                    "InstLine" : 25440,
                     "InstName" : "x_qt_clk",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 23075,
+                    "ModuleLine" : 22413,
                     "ModuleName" : "gated_clk_cell"
                    }
                   ]
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 26665,
+                  "InstLine" : 26003,
                   "InstName" : "x_pa_fdsu_round",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 24643,
+                  "ModuleLine" : 23981,
                   "ModuleName" : "pa_fdsu_round_single",
                   "SubInsts" : [
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 25115,
+                    "InstLine" : 24453,
                     "InstName" : "x_ex3_pipe_clk",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 23075,
+                    "ModuleLine" : 22413,
                     "ModuleName" : "gated_clk_cell"
                    }
                   ]
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 26692,
+                  "InstLine" : 26030,
                   "InstName" : "x_pa_fdsu_pack",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 24078,
+                  "ModuleLine" : 23416,
                   "ModuleName" : "pa_fdsu_pack_single"
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 26716,
+                  "InstLine" : 26054,
                   "InstName" : "x_pa_fdsu_ctrl",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 23128,
+                  "ModuleLine" : 22466,
                   "ModuleName" : "pa_fdsu_ctrl",
                   "SubInsts" : [
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 23763,
+                    "InstLine" : 23101,
                     "InstName" : "x_fdsu_clk",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 23075,
+                    "ModuleLine" : 22413,
                     "ModuleName" : "gated_clk_cell"
                    },
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 23782,
+                    "InstLine" : 23120,
                     "InstName" : "x_ex1_pipe_clk",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 23075,
+                    "ModuleLine" : 22413,
                     "ModuleName" : "gated_clk_cell"
                    },
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 23802,
+                    "InstLine" : 23140,
                     "InstName" : "x_ex2_pipe_clk",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 23075,
+                    "ModuleLine" : 22413,
                     "ModuleName" : "gated_clk_cell"
                    },
                    {
                     "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "InstLine" : 23826,
+                    "InstLine" : 23164,
                     "InstName" : "x_expnt_rst_clk",
                     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                    "ModuleLine" : 23075,
+                    "ModuleLine" : 22413,
                     "ModuleName" : "gated_clk_cell"
                    }
                   ]
@@ -138157,52 +138157,52 @@
                },
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 27654,
+                "InstLine" : 26992,
                 "InstName" : "x_pa_fpu_dp",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 26820,
+                "ModuleLine" : 26158,
                 "ModuleName" : "pa_fpu_dp",
                 "SubInsts" : [
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 26968,
+                  "InstLine" : 26306,
                   "InstName" : "x_pa_fpu_ex1_srcf0_type",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 27214,
+                  "ModuleLine" : 26552,
                   "ModuleName" : "pa_fpu_src_type"
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 26981,
+                  "InstLine" : 26319,
                   "InstName" : "x_pa_fpu_ex1_srcf1_type",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 27214,
+                  "ModuleLine" : 26552,
                   "ModuleName" : "pa_fpu_src_type"
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 26994,
+                  "InstLine" : 26332,
                   "InstName" : "x_pa_fpu_ex1_srcf2_type",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 27214,
+                  "ModuleLine" : 26552,
                   "ModuleName" : "pa_fpu_src_type"
                  },
                  {
                   "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "InstLine" : 27058,
+                  "InstLine" : 26396,
                   "InstName" : "x_fpu_data_ex2_gated_clk",
                   "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                  "ModuleLine" : 23075,
+                  "ModuleLine" : 22413,
                   "ModuleName" : "gated_clk_cell"
                  }
                 ]
                },
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 27688,
+                "InstLine" : 27026,
                 "InstName" : "x_pa_fpu_frbus",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 27121,
+                "ModuleLine" : 26459,
                 "ModuleName" : "pa_fpu_frbus"
                }
               ]
@@ -138211,26 +138211,26 @@
            },
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 29966,
+            "InstLine" : 29304,
             "InstName" : "i_arbiter",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 21366,
+            "ModuleLine" : 20704,
             "ModuleName" : "rr_arb_tree",
             "SubInsts" : [
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 21534,
+              "InstLine" : 20872,
               "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_upper",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 21229,
+              "ModuleLine" : 20567,
               "ModuleName" : "lzc"
              },
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 21543,
+              "InstLine" : 20881,
               "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_lower",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 21229,
+              "ModuleLine" : 20567,
               "ModuleName" : "lzc"
              }
             ]
@@ -138239,34 +138239,34 @@
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 31027,
+          "InstLine" : 30365,
           "InstName" : "gen_operation_groups[2].i_opgroup_block",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 29756,
+          "ModuleLine" : 29094,
           "ModuleName" : "fpnew_opgroup_block",
           "SubInsts" : [
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 29854,
+            "InstLine" : 29192,
             "InstName" : "gen_parallel_slices[0].active_format.i_fmt_slice",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 30007,
+            "ModuleLine" : 29345,
             "ModuleName" : "fpnew_opgroup_fmt_slice",
             "SubInsts" : [
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 30174,
+              "InstLine" : 29512,
               "InstName" : "gen_num_lanes[0].active_lane.lane_instance.i_noncomp",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 29337,
+              "ModuleLine" : 28675,
               "ModuleName" : "fpnew_noncomp",
               "SubInsts" : [
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 29466,
+                "InstLine" : 28804,
                 "InstName" : "i_class_a",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 22999,
+                "ModuleLine" : 22337,
                 "ModuleName" : "fpnew_classifier"
                }
               ]
@@ -138275,26 +138275,26 @@
            },
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 29966,
+            "InstLine" : 29304,
             "InstName" : "i_arbiter",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 21366,
+            "ModuleLine" : 20704,
             "ModuleName" : "rr_arb_tree",
             "SubInsts" : [
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 21534,
+              "InstLine" : 20872,
               "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_upper",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 21229,
+              "ModuleLine" : 20567,
               "ModuleName" : "lzc"
              },
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 21543,
+              "InstLine" : 20881,
               "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_lower",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 21229,
+              "ModuleLine" : 20567,
               "ModuleName" : "lzc"
              }
             ]
@@ -138303,50 +138303,50 @@
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 31027,
+          "InstLine" : 30365,
           "InstName" : "gen_operation_groups[3].i_opgroup_block",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 29756,
+          "ModuleLine" : 29094,
           "ModuleName" : "fpnew_opgroup_block",
           "SubInsts" : [
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 29927,
+            "InstLine" : 29265,
             "InstName" : "gen_merged_slice.i_multifmt_slice",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 30311,
+            "ModuleLine" : 29649,
             "ModuleName" : "fpnew_opgroup_multifmt_slice",
             "SubInsts" : [
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 30630,
+              "InstLine" : 29968,
               "InstName" : "gen_num_lanes[0].active_lane.lane_instance.i_fpnew_cast_multi",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 22197,
+              "ModuleLine" : 21535,
               "ModuleName" : "fpnew_cast_multi",
               "SubInsts" : [
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 22390,
+                "InstLine" : 21728,
                 "InstName" : "fmt_init_inputs[0].active_format.i_fpnew_classifier",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 22999,
+                "ModuleLine" : 22337,
                 "ModuleName" : "fpnew_classifier"
                },
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 22463,
+                "InstLine" : 21801,
                 "InstName" : "i_lzc",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 21229,
+                "ModuleLine" : 20567,
                 "ModuleName" : "lzc"
                },
                {
                 "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "InstLine" : 22734,
+                "InstLine" : 22072,
                 "InstName" : "i_fpnew_rounding",
                 "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-                "ModuleLine" : 30834,
+                "ModuleLine" : 30172,
                 "ModuleName" : "fpnew_rounding"
                }
               ]
@@ -138355,26 +138355,26 @@
            },
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 29966,
+            "InstLine" : 29304,
             "InstName" : "i_arbiter",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 21366,
+            "ModuleLine" : 20704,
             "ModuleName" : "rr_arb_tree",
             "SubInsts" : [
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 21534,
+              "InstLine" : 20872,
               "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_upper",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 21229,
+              "ModuleLine" : 20567,
               "ModuleName" : "lzc"
              },
              {
               "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "InstLine" : 21543,
+              "InstLine" : 20881,
               "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_lower",
               "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-              "ModuleLine" : 21229,
+              "ModuleLine" : 20567,
               "ModuleName" : "lzc"
              }
             ]
@@ -138383,26 +138383,26 @@
          },
          {
           "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "InstLine" : 31064,
+          "InstLine" : 30402,
           "InstName" : "i_arbiter",
           "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-          "ModuleLine" : 21366,
+          "ModuleLine" : 20704,
           "ModuleName" : "rr_arb_tree",
           "SubInsts" : [
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 21534,
+            "InstLine" : 20872,
             "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_upper",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 21229,
+            "ModuleLine" : 20567,
             "ModuleName" : "lzc"
            },
            {
             "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "InstLine" : 21543,
+            "InstLine" : 20881,
             "InstName" : "gen_arbiter.gen_int_rr.gen_fair_arb.i_lzc_lower",
             "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-            "ModuleLine" : 21229,
+            "ModuleLine" : 20567,
             "ModuleName" : "lzc"
            }
           ]
@@ -138413,18 +138413,18 @@
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 12126,
+      "InstLine" : 11464,
       "InstName" : "scalar_rd_pipe_q",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 11830,
+      "ModuleLine" : 11168,
       "ModuleName" : "Queue2_RegfileWriteDataIO",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 11892,
+        "InstLine" : 11230,
         "InstName" : "ram_ext",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 11797,
+        "ModuleLine" : 11135,
         "ModuleName" : "ram_2x37"
        }
       ]
@@ -138436,15 +138436,15 @@
     "InstLine" : 1023,
     "InstName" : "fRegfile",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 12179,
+    "ModuleLine" : 11517,
     "ModuleName" : "FRegfile",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 19009,
+      "InstLine" : 18347,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20364,
+      "ModuleLine" : 19702,
       "ModuleName" : "FRegfile_Verification_Assert"
      }
     ]
@@ -138454,15 +138454,15 @@
     "InstLine" : 1280,
     "InstName" : "dispatch",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 6195,
+    "ModuleLine" : 5533,
     "ModuleName" : "DispatchV1",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 6445,
+      "InstLine" : 5783,
       "InstName" : "decode_0",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 4276,
+      "ModuleLine" : 3622,
       "ModuleName" : "Decode"
      }
     ]
@@ -138472,49 +138472,49 @@
     "InstLine" : 1611,
     "InstName" : "lsu",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 9946,
+    "ModuleLine" : 9284,
     "ModuleName" : "LsuV1",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18966,
+      "InstLine" : 18304,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20136,
+      "ModuleLine" : 19474,
       "ModuleName" : "LsuV1_Verification_Assert"
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 10812,
+      "InstLine" : 10150,
       "InstName" : "ctrl",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 7575,
+      "ModuleLine" : 6913,
       "ModuleName" : "FifoX",
       "SubInsts" : [
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 18960,
+        "InstLine" : 18298,
         "InstName" : "verification_Assert",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 20095,
+        "ModuleLine" : 19433,
         "ModuleName" : "FifoX_Verification_Assert"
        },
        {
         "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "InstLine" : 9649,
+        "InstLine" : 8987,
         "InstName" : "mslice",
         "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-        "ModuleLine" : 7368,
+        "ModuleLine" : 6706,
         "ModuleName" : "Slice"
        }
       ]
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 11018,
+      "InstLine" : 10356,
       "InstName" : "data",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 9725,
+      "ModuleLine" : 9063,
       "ModuleName" : "Slice_1"
      }
     ]
@@ -138524,39 +138524,39 @@
     "InstLine" : 1718,
     "InstName" : "mlu",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 11234,
+    "ModuleLine" : 10572,
     "ModuleName" : "Mlu",
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18982,
+      "InstLine" : 18320,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 20217,
+      "ModuleLine" : 19555,
       "ModuleName" : "Mlu_Verification_Assert"
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 11307,
+      "InstLine" : 10645,
       "InstName" : "arb",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 11093,
+      "ModuleLine" : 10431,
       "ModuleName" : "Arbiter4_MluCmd"
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 11325,
+      "InstLine" : 10663,
       "InstName" : "stage2Input_q",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 11128,
+      "ModuleLine" : 10466,
       "ModuleName" : "Queue1_MluStage1"
      },
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 11337,
+      "InstLine" : 10675,
       "InstName" : "stage3Input_q",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 11180,
+      "ModuleLine" : 10518,
       "ModuleName" : "Queue1_MluStage2"
      }
     ]
@@ -138571,10 +138571,10 @@
     "SubInsts" : [
      {
       "InstFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "InstLine" : 18864,
+      "InstLine" : 18202,
       "InstName" : "verification_Assert",
       "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-      "ModuleLine" : 19769,
+      "ModuleLine" : 19107,
       "ModuleName" : "Csr_Verification_Assert"
      }
     ]
@@ -138584,7 +138584,7 @@
     "InstLine" : 1849,
     "InstName" : "dvu",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 11361,
+    "ModuleLine" : 10699,
     "ModuleName" : "Dvu"
    },
    {
@@ -138592,7 +138592,7 @@
     "InstLine" : 1878,
     "InstName" : "arb",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 13048,
+    "ModuleLine" : 12386,
     "ModuleName" : "Arbiter3_RegfileWriteDataIO"
    },
    {
@@ -138600,7 +138600,7 @@
     "InstLine" : 1934,
     "InstName" : "fault_manager",
     "ModuleFile" : "C:/Workspace/FPGA/coralnpu-nano20k/bazel/bazel-out/k8-fastbuild/bin/hdl/chisel/src/coralnpu/CoreMiniAxi.sv",
-    "ModuleLine" : 11564,
+    "ModuleLine" : 10902,
     "ModuleName" : "FaultManager"
    }
   ]

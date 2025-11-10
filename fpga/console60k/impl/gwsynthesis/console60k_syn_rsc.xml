@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Module name="chip_console60k_CoreMiniAxi" Lut="1" T_Register="16(0)" T_Lut="7(1)">
- <SubModule name="gowinPLL81MHz">
-  <SubModule name="u_pll"/>
- </SubModule>
- <SubModule name="i_CoreCSR" Register="16" Lut="6" T_Register="16(16)" T_Lut="6(6)"/>
-</Module>

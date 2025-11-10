@@ -3272,7 +3272,7 @@ module Csr(
                 io_fault,
                 io_wfi,
   input         io_irq
-);
+) /*synthesis syn_ramstyle="block_ram"*/;
 
   reg              req_pipe_v;
   reg  [4:0]       req_pipe_b_addr;
@@ -11297,7 +11297,7 @@ module FloatCore(
   input         io_lsu_rd_valid,
   input  [4:0]  io_lsu_rd_bits_addr,
   input  [31:0] io_lsu_rd_bits_data
-);
+) /*synthesis syn_ramstyle="block_ram"*/;
 
   wire            instQueue_io_deq_ready;
   wire            _floatCoreWrapper_io_out_ready_i_T_4;
@@ -11546,7 +11546,7 @@ module FRegfile(
   output [31:0] io_scoreboard,
                 io_busPort_data_0,
   input  [4:0]  io_busPortAddr
-);
+) /*synthesis syn_ramstyle="block_ram"*/;
 
   reg  [22:0]       fregfile_0_mantissa;
   reg  [7:0]        fregfile_0_exponent;
