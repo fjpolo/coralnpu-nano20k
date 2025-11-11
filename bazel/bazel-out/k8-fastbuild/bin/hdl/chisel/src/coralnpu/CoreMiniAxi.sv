@@ -2709,7 +2709,11 @@ module CircularBufferMulti(
 // 		D. Combinational data path integrity
 // 			Formal tools will symbolically check that outputs (io_dataOut_*) always correspond to the stored entries at those indices.
 // 			This ensures that the massive combinational rotation network preserves correct ordering and data mapping.
-// =============================================================================`ifdef  FORMAL
+// =============================================================================
+//  Use CircularBufferMulti.sby
+// =============================================================================
+
+`ifdef  FORMAL
 // Change direction of assumes
 `define ASSERT  assert
 `ifdef  CircularBufferMulti
