@@ -2667,10 +2667,10 @@ module CircularBufferMulti(
   assign io_dataOut_3_brchFwd = rdata_3[0];
 
 // =============================================================================
-// File        : Formal Properties for CircularBufferMult
+// File        : Formal Properties for CircularBufferMulti.v
 // Author      : @fjpolo
 // email       : fjpolo@gmail.com
-// Description : Formal verification of FIFO order integrity and pointer movement
+// Description : Formal verification of FIFO order integrity and pointer movement.
 // License     : MIT License
 //
 // Copyright (c) 2025 | @fjpolo
@@ -2712,7 +2712,6 @@ module CircularBufferMulti(
 // =============================================================================
 //  Use CircularBufferMulti.sby
 // =============================================================================
-
 `ifdef  FORMAL
 // Change direction of assumes
 `define ASSERT  assert
@@ -2887,7 +2886,7 @@ module CircularBufferMulti(
         assert (f_deqPtr == deqPtr);
     end
 
-	////////////////////////////////////////////////////
+	  ////////////////////////////////////////////////////
     //
     // Contract
     //
@@ -2924,6 +2923,100 @@ module CircularBufferMulti(
             assert (io_dataOut_3_brchFwd == f_data_mem_brchFwd[f_deqPtr + 3'h3]);
         end
     end
+
+	  // Golden reference FIFO that models the INTENDED behavior
+    reg [64:0] f_golden_fifo [0:7];  // {addr, inst, brchFwd}
+    reg [2:0]  f_golden_enqPtr;
+    reg [2:0]  f_golden_deqPtr;
+    reg [3:0]  f_golden_count;
+
+    always @(posedge clock) begin
+        if (reset) begin
+            f_golden_enqPtr <= 3'h0;
+            f_golden_deqPtr <= 3'h0;
+            f_golden_count <= 4'h0;
+            for (integer i = 0; i < 8; i = i + 1) begin
+                f_golden_fifo[i] <= 65'h0;
+            end
+        end else if (io_flush) begin
+            f_golden_enqPtr <= 3'h0;
+            f_golden_deqPtr <= 3'h0;
+            f_golden_count <= 4'h0;
+        end else begin
+            // Enqueue logic - simple linear FIFO
+            if (io_enqValid > 0) begin
+                case (io_enqValid)
+                    3'h1: begin
+                        f_golden_fifo[f_golden_enqPtr] <= {io_enqData_0_addr, io_enqData_0_inst, io_enqData_0_brchFwd};
+                    end
+                    3'h2: begin
+                        f_golden_fifo[f_golden_enqPtr] <= {io_enqData_0_addr, io_enqData_0_inst, io_enqData_0_brchFwd};
+                        f_golden_fifo[(f_golden_enqPtr+1)&7] <= {io_enqData_1_addr, io_enqData_1_inst, io_enqData_1_brchFwd};
+                    end
+                    3'h3: begin
+                        f_golden_fifo[f_golden_enqPtr] <= {io_enqData_0_addr, io_enqData_0_inst, io_enqData_0_brchFwd};
+                        f_golden_fifo[(f_golden_enqPtr+1)&7] <= {io_enqData_1_addr, io_enqData_1_inst, io_enqData_1_brchFwd};
+                        f_golden_fifo[(f_golden_enqPtr+2)&7] <= {io_enqData_2_addr, io_enqData_2_inst, io_enqData_2_brchFwd};
+                    end
+                    3'h4: begin
+                        f_golden_fifo[f_golden_enqPtr] <= {io_enqData_0_addr, io_enqData_0_inst, io_enqData_0_brchFwd};
+                        f_golden_fifo[(f_golden_enqPtr+1)&7] <= {io_enqData_1_addr, io_enqData_1_inst, io_enqData_1_brchFwd};
+                        f_golden_fifo[(f_golden_enqPtr+2)&7] <= {io_enqData_2_addr, io_enqData_2_inst, io_enqData_2_brchFwd};
+                        f_golden_fifo[(f_golden_enqPtr+3)&7] <= {io_enqData_3_addr, io_enqData_3_inst, io_enqData_3_brchFwd};
+                    end
+                endcase
+                f_golden_enqPtr <= f_golden_enqPtr + io_enqValid;
+                f_golden_count <= f_golden_count + io_enqValid;
+            end
+
+            // Dequeue logic
+            if (io_deqReady > 0) begin
+                f_golden_deqPtr <= f_golden_deqPtr + io_deqReady;
+                if (f_golden_count >= io_deqReady) begin
+                    f_golden_count <= f_golden_count - io_deqReady;
+                end else begin
+                    f_golden_count <= 4'h0;
+                end
+            end
+        end
+    end
+    // The DUT outputs must match the golden reference outputs in the same order
+    always @(*) begin
+        if (!reset) begin
+            // Check all valid outputs against golden reference
+            if (io_nEnqueued >= 1) begin
+                assert(io_dataOut_0_addr    == f_golden_fifo[f_golden_deqPtr][64:33]);
+                assert(io_dataOut_0_inst    == f_golden_fifo[f_golden_deqPtr][32:1]);
+                assert(io_dataOut_0_brchFwd == f_golden_fifo[f_golden_deqPtr][0]);
+            end
+            if (io_nEnqueued >= 2) begin
+                assert(io_dataOut_1_addr    == f_golden_fifo[(f_golden_deqPtr+1)&7][64:33]);
+                assert(io_dataOut_1_inst    == f_golden_fifo[(f_golden_deqPtr+1)&7][32:1]);
+                assert(io_dataOut_1_brchFwd == f_golden_fifo[(f_golden_deqPtr+1)&7][0]);
+            end
+            if (io_nEnqueued >= 3) begin
+                assert(io_dataOut_2_addr    == f_golden_fifo[(f_golden_deqPtr+2)&7][64:33]);
+                assert(io_dataOut_2_inst    == f_golden_fifo[(f_golden_deqPtr+2)&7][32:1]);
+                assert(io_dataOut_2_brchFwd == f_golden_fifo[(f_golden_deqPtr+2)&7][0]);
+            end
+            if (io_nEnqueued >= 4) begin
+                assert(io_dataOut_3_addr    == f_golden_fifo[(f_golden_deqPtr+3)&7][64:33]);
+                assert(io_dataOut_3_inst    == f_golden_fifo[(f_golden_deqPtr+3)&7][32:1]);
+                assert(io_dataOut_3_brchFwd == f_golden_fifo[(f_golden_deqPtr+3)&7][0]);
+            end
+        end
+    end
+
+    // Additional safety: Golden reference should match DUT counts
+    always @(*) begin
+        if (!reset) begin
+            assert(f_golden_count == io_nEnqueued);
+            assert(f_golden_enqPtr == enqPtr);
+            assert(f_golden_deqPtr == deqPtr);
+        end
+    end
+
+	
 
     ////////////////////////////////////////////////////
     //
@@ -3039,33 +3132,31 @@ module CircularBufferMulti(
         if (!reset)
             if(io_enqData_3_brchFwd != 0)
                 cover(io_dataOut_3_brchFwd);
-
-    // Cover write operation on low address bank (Registers 0-15)
-    always @(posedge clk)
-        if (!i_rst)
-            if (i_ce && i_we && (i_addr <= 15))
-                cover(1);
-
-    // Cover write operation on high address bank (Registers 16-31)
-    always @(posedge clk)
-        if (!i_rst)
-            if (i_ce && i_we && (i_addr > 15))
-                cover(1);
-
-    // Cover simultaneous active Read Enable and Chip Enable
-    always @(posedge clk)
-        if (!i_rst)
-            if (i_ce && i_re)
-                cover(1);
-
-    // Cover that the output Chip Enable (o_ce) has been asserted high at least once
-    always @(posedge clk)
-        if (!i_rst)
-            if (o_ce)
-                cover(1);
            
-`endif
+	// Cover write operation on low address bank (Registers 0-15)
+	always @(posedge clk)
+		if (!i_rst)
+			if (i_ce && i_we && (i_addr <= 15))
+				cover(1);
 
+	// Cover write operation on high address bank (Registers 16-31)
+	always @(posedge clk)
+		if (!i_rst)
+			if (i_ce && i_we && (i_addr > 15))
+				cover(1);
+
+	// Cover simultaneous active Read Enable and Chip Enable
+	always @(posedge clk)
+		if (!i_rst)
+			if (i_ce && i_re)
+				cover(1);
+
+	// Cover that the output Chip Enable (o_ce) has been asserted high at least once
+	always @(posedge clk)
+		if (!i_rst)
+			if (o_ce)
+				cover(1);
+`endif
 
 endmodule
 
