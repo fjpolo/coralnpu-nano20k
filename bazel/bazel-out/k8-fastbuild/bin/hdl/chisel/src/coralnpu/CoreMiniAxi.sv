@@ -2667,11 +2667,11 @@ module CircularBufferMulti(
   assign io_dataOut_3_brchFwd = rdata_3[0];
 
 // =============================================================================
-// File        : Formal Properties for module CircularBufferMulti()
-// Author      : @fjpolo
-// email       : fjpolo@gmail.com
-// Description : Formal Properties for rewritten module CircularBufferMulti()
-// License     : MIT License
+// File        : Formal Properties for CircularBufferMult
+// Author      : @fjpolo
+// email       : fjpolo@gmail.com
+// Description : Formal verification of FIFO order integrity and pointer movement
+// License     : MIT License
 //
 // Copyright (c) 2025 | @fjpolo
 //
@@ -2693,338 +2693,335 @@ module CircularBufferMulti(
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // =============================================================================
-`ifdef	FORMAL
+`ifdef  FORMAL
 // Change direction of assumes
-`define	ASSERT	assert
-`ifdef	CircularBufferMulti
-`define	ASSUME	assume
+`define ASSERT  assert
+`ifdef  CircularBufferMulti
+`define ASSUME  assume
 `else
-`define	ASSUME	assert
+`define ASSUME  assert
 `endif
 
-  ////////////////////////////////////////////////////
-	//
-	// f_past_valid register
-	//
-	////////////////////////////////////////////////////
-	reg	f_past_valid;
-	initial	f_past_valid = 0;
-	always @(posedge clock)
-		f_past_valid <= 1'b1;
-	always @(posedge clock)
-		if(!f_past_valid)
-			assume(reset);
+    ////////////////////////////////////////////////////
+    //
+    // f_past_valid register
+    //
+    ////////////////////////////////////////////////////
+    reg f_past_valid;
+    initial f_past_valid = 0;
+    always @(posedge clock)
+        f_past_valid <= 1'b1;
+    always @(posedge clock)
+        if(!f_past_valid)
+            assume(reset);
 
 
-  ////////////////////////////////////////////////////
-	//
-	// Reset
-	//
-	////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////
+    //
+    // ASSUMPTIONS
+    //
+    //////////////////////////////////////////////////// 
+    
+    // 1. Reset must be active at t=0
+    initial assume(reset);
 
-  ////////////////////////////////////////////////////
-	//
-	// BMC
-	//
-	////////////////////////////////////////////////////
-
-	// Flush resets the count to zero
-	always @(posedge clock) begin
-		if(($past(f_past_valid))&&(f_past_valid)&&(!$past(reset))&&(!reset))
-			if ($past(io_flush)) begin
-				assert (io_nEnqueued == 4'h0);
-			end
-	end
-
-	// The output wire must exactly match the internal register.
-	always @(*) 
-		assert (io_nEnqueued == nEnqueued); // Passed implicitly by assign statement
-
-	// Space must always be the complement of count.
-	always @(*) 
-		assert (io_nSpace == (4'h8 - nEnqueued)); // Passed implicitly by assign statement
-
-	// The sum of io_nEnqueued and io_nSpace must always equal the depth.
-	always @(*) 
-		assert ((io_nEnqueued + io_nSpace) == 4'h8);
-
-	// Empty and Full checks
-	always @(posedge clock) begin
-		if(($past(f_past_valid))&&(f_past_valid)&&(!$past(reset))&&(!reset))
-			// Empty implies max space
-			if (io_nEnqueued == 4'h0) 
-				assert (io_nSpace == 4'h8);
-			// Full implies zero space
-			if (io_nEnqueued == 4'h8) 
-				assert (io_nSpace == 4'h0);
-	end
-
-	// FIFO Count Update Correctness
-	// 	Next Count = Previous Count + Enqueues - Dequeues
-	always @(posedge clock) begin
-		if(($past(f_past_valid))&&(f_past_valid)&&(!$past(reset))&&(!reset)) begin
-			if ($past(io_flush)) begin
-				assert(io_nEnqueued == 4'h0);
-			end else begin
-				// Count must follow the FIFO update logic:	io_nEnqueued (State N+1) must equal next_nEnqueued_expected
-				assert(io_nEnqueued == $past(io_nEnqueued + {1'b0, io_enqValid} - {1'b0, io_deqReady}));
-			end
-		end
-	end
-
-  ////////////////////////////////////////////////////
-	//
-	// Contract
-	//
-	////////////////////////////////////////////////////   
-
-	//
-	// Data Integrity
-	//
-	// If deque slot X is active, then DataOut_x = DataIn_N
-	// We need:
-	//   1. A formal memory to store all enqueued data
-	//   2. Logic to track the write and read pointers (head_ptr, tail_ptr) within the formal property file, mirroring the DUT's logic
-	//   3. Assertions that compare the output data against the data at the head_ptr in the formal memory
-	reg [31:0] f_data_mem_addr [7:0];
-    reg [31:0] f_data_mem_inst [7:0];
-    reg        f_data_mem_brchFwd [7:0];
-    reg [2:0]  f_enqPtr;
-    reg [2:0]  f_deqPtr;
-	always @(posedge clock) begin
-    if (reset) begin
-        f_enqPtr <= 3'h0;
-        f_deqPtr <= 3'h0;
-        for (integer i = 0; i < 8; i = i + 1) begin
-            f_data_mem_addr[i] <= 32'h0;
-            f_data_mem_inst[i] <= 32'h0;
-            f_data_mem_brchFwd[i] <= 1'b0;
-        end
-    end else if (io_flush) begin
-        f_enqPtr <= 3'h0;
-        f_deqPtr <= 3'h0;
-    end else begin
-        // Pointers update with implicit modulo 8, since they are 3-bit wide
-        f_enqPtr <= f_enqPtr + io_enqValid;
-        f_deqPtr <= f_deqPtr + io_deqReady;
-        
-        // Write parallel data to the formal memory starting at f_enqPtr.
-        // Array indexing uses the 3-bit pointer, ensuring modulo 8 wrap-around.
-        if (io_enqValid >= 3'h1) begin 
-            // Data 0 written to index f_enqPtr + 0
-            f_data_mem_addr[f_enqPtr + 3'h0] <= io_enqData_0_addr;
-            f_data_mem_inst[f_enqPtr + 3'h0] <= io_enqData_0_inst;
-            f_data_mem_brchFwd[f_enqPtr + 3'h0] <= io_enqData_0_brchFwd;
-        end
-        if (io_enqValid >= 3'h2) begin
-            // Data 1 written to index f_enqPtr + 1
-            f_data_mem_addr[f_enqPtr + 3'h1] <= io_enqData_1_addr;
-            f_data_mem_inst[f_enqPtr + 3'h1] <= io_enqData_1_inst;
-            f_data_mem_brchFwd[f_enqPtr + 3'h1] <= io_enqData_1_brchFwd;
-        end
-        if (io_enqValid >= 3'h3) begin
-            // Data 2 written to index f_enqPtr + 2
-            f_data_mem_addr[f_enqPtr + 3'h2] <= io_enqData_2_addr;
-            f_data_mem_inst[f_enqPtr + 3'h2] <= io_enqData_2_inst;
-            f_data_mem_brchFwd[f_enqPtr + 3'h2] <= io_enqData_2_brchFwd;
+    // 2. The queue does not underflow (cannot dequeue more than available)
+    always @(*) begin
+        if (!reset) begin
+            // Dequeue ready signal must be less than or equal to the number of items available
+            `ASSUME(io_deqReady <= io_nEnqueued); 
         end
     end
-end
 
-	// //
-	// // Temporal/Ordering Integrity
-	// // 
-	// // If DataIn_A is written befor DataIn_B, then DataOut_A must be read before DataOut
-	// reg [31:0] f_inst_A;
-	// reg [31:0] f_inst_B;
-	// reg [2:0] f_addr_A;        // Address where A was written in the formal memory
-	// reg f_captured_A;          // True when A's instruction has been captured
-	// reg f_captured_B;          // True when B's instruction has been captured
-	// reg f_read_A;              // True when A has been dequeued from the DUT
-	// reg f_read_B;              // True when B has been dequeued from the DUT
-	// reg [3:0] f_dequeues_count; // Tracks total dequeues since reset/flush (for multi-dequeue tracking)
+    // 3. The queue does not overflow (cannot enqueue more than space available)
+    always @(*) begin
+        if (!reset) begin
+            // Enqueue valid signal must be less than or equal to the space available
+            `ASSUME(io_enqValid <= io_nSpace);
+        end
+    end
 
-	// // Helper signal to detect a successful dequeue event
-	// reg [3:0] f_io_nEnqueued;
-	// 	always@(posedge clock)
-	// 		f_io_nEnqueued <= io_nEnqueued;
-	// wire f_dequeue_success = io_nEnqueued < f_io_nEnqueued; // We use a counter to infer how many items have been dequeued since A's capture.
-	// wire [3:0] f_items_dequeued_this_cycle = f_io_nEnqueued - io_nEnqueued;
-
-	// // -----------------------------------------------------------------------------
-	// // A. State Management, Capture Logic, and Read Tracking (SINGLE BLOCK)
-	// // -----------------------------------------------------------------------------
-	// always @(posedge clock) begin
-	// 	if (reset || io_flush) begin
-	// 		f_captured_A <= 1'b0;
-	// 		f_captured_B <= 1'b0;
-	// 		f_inst_A <= 32'h0;
-	// 		f_inst_B <= 32'h0;
-	// 		f_addr_A <= 3'h0;
-	// 		f_read_A <= 1'b0;
-	// 		f_read_B <= 1'b0;
-	// 		f_dequeues_count <= 4'h0; // Initialize counter
-	// 	end else begin
-	// 		// --- Capture A ---
-	// 		if (io_enqValid >= 3'h1 && !f_captured_A) begin
-	// 			f_captured_A <= 1'b1;
-	// 			f_inst_A <= io_enqData_0_inst;
-	// 			f_addr_A <= f_enqPtr + 3'h0;
-	// 		end
-
-	// 		// --- Capture B ---
-	// 		if (f_captured_A && $past(f_captured_A) && !f_captured_B) begin
-	// 			f_inst_B <= f_data_mem_inst[f_addr_A + 3'h1]; 
-	// 			f_captured_B <= 1'b1;
-	// 		end
-			
-	// 		// --- Dequeue Counter Update ---
-	// 		if (f_dequeue_success) begin
-	// 			f_dequeues_count <= f_dequeues_count + f_items_dequeued_this_cycle;
-	// 		end
-
-	// 		// --- Read Tracking (FIXED for Multi-Dequeue) ---
-	// 		// A is the first item captured. It is read if the total number of dequeues 
-	// 		// since A was captured is 1 or more.
-	// 		if (f_captured_A && !f_read_A && f_dequeues_count >= 4'h1) begin
-	// 			f_read_A <= 1'b1;
-	// 		end 
-			
-	// 		// B is the second item captured. It is read if the total number of dequeues 
-	// 		// since A was captured is 2 or more.
-	// 		if (f_captured_B && !f_read_B && f_dequeues_count >= 4'h2) begin
-	// 			f_read_B <= 1'b1;
-	// 		end
-	// 	end
-	// end
+    // 4. Dequeue and Enqueue widths are constrained by implementation
+    always @(*) begin
+        // Max dequeue is 3-wide (io_deqReady is 3 bits, but max 3 items are output/consumed)
+        `ASSUME(io_deqReady <= 3'h3); 
+        // Max enqueue is 4-wide (4 data ports are available, so max 4 items)
+        `ASSUME(io_enqValid <= 3'h4); 
+    end
 
 
-	// // -----------------------------------------------------------------------------
-	// // C. Temporal Integrity Assertion (The output check remains the same)
-	// // -----------------------------------------------------------------------------
-	// always @(posedge clock) begin
-	// 	if (!reset && f_past_valid) begin
-	// 		// Check this property only once both A and B have been written.
-	// 		if (f_captured_A && f_captured_B) begin
-				
-	// 			// CRITICAL ASSERTION: B must not appear at the head of the queue 
-	// 			// if A has not yet been read (f_read_A == 0).
-	// 			if (!f_read_A) begin
-	// 				// Check io_dataOut_0 against f_inst_B, accounting for its combinatorial nature.
-	// 				// We use $past(io_dataOut_0_inst) which is the value *before* the current clock edge.
-	// 				assert($past(io_dataOut_0_inst) !== f_inst_B);
-	// 			end
-	// 		end
-	// 	end
-	// end
+    ////////////////////////////////////////////////////
+    //
+    // BMC
+    //
+    ////////////////////////////////////////////////////
 
-  ////////////////////////////////////////////////////
-	//
-	// Induction
-	//
+    // Flush resets the count to zero
+    always @(posedge clock) begin
+        if(($past(f_past_valid))&&(f_past_valid)&&(!$past(reset))&&(!reset))
+            if ($past(io_flush)) begin
+                assert (io_nEnqueued == 4'h0);
+            end
+    end
+
+    // The output wire must exactly match the internal register.
+    always @(*) 
+        assert (io_nEnqueued == nEnqueued); // Passed implicitly by assign statement
+
+    // Space must always be the complement of count.
+    always @(*) 
+        assert (io_nSpace == (4'h8 - nEnqueued)); // Passed implicitly by assign statement
+
+    // The sum of io_nEnqueued and io_nSpace must always equal the depth (8).
+    always @(*) 
+        assert ((io_nEnqueued + io_nSpace) == 4'h8);
+
+    // Empty and Full checks
+    always @(posedge clock) begin
+        if(($past(f_past_valid))&&(f_past_valid)&&(!$past(reset))&&(!reset))
+            // Empty implies max space
+            if (io_nEnqueued == 4'h0) 
+                assert (io_nSpace == 4'h8);
+            // Full implies zero space
+            if (io_nEnqueued == 4'h8) 
+                assert (io_nSpace == 4'h0);
+    end
+
+    // FIFO Count Update Correctness
+    // Next Count = Previous Count + Enqueues - Dequeues
+    always @(posedge clock) begin
+        if(($past(f_past_valid))&&(f_past_valid)&&(!$past(reset))&&(!reset)) begin
+            if ($past(io_flush)) begin
+                assert(io_nEnqueued == 4'h0);
+            end else begin
+                // Count must follow the FIFO update logic
+                assert(io_nEnqueued == $past(io_nEnqueued + {1'b0, io_enqValid} - {1'b0, io_deqReady}));
+            end
+        end
+    end
+
+    ////////////////////////////////////////////////////
+    //
+    // Contract (Data Integrity and FIFO Order)
+    //
+    ////////////////////////////////////////////////////   
+
+    // Formal Memory and Pointers (High-Level Model)
+    reg [31:0] f_data_mem_addr [7:0];
+    reg [31:0] f_data_mem_inst [7:0];
+    reg        f_data_mem_brchFwd [7:0];
+    reg [2:0]  f_enqPtr;
+    reg [2:0]  f_deqPtr;
+
+    always @(posedge clock) begin
+        if (reset) begin
+            f_enqPtr <= 3'h0;
+            f_deqPtr <= 3'h0;
+            for (integer i = 0; i < 8; i = i + 1) begin
+                f_data_mem_addr[i] <= 32'h0;
+                f_data_mem_inst[i] <= 32'h0;
+                f_data_mem_brchFwd[i] <= 1'b0;
+            end
+        end else if (io_flush) begin
+            f_enqPtr <= 3'h0;
+            f_deqPtr <= 3'h0;
+        end else begin
+            // Pointers update with implicit modulo 8, since they are 3-bit wide
+            f_enqPtr <= f_enqPtr + io_enqValid;
+            f_deqPtr <= f_deqPtr + io_deqReady;
+            
+            // Write parallel data to the formal memory starting at f_enqPtr.
+            // Array indexing uses the 3-bit pointer, ensuring modulo 8 wrap-around.
+            
+            // Data 0 written to index f_enqPtr + 0
+            if (io_enqValid >= 3'h1) begin 
+                f_data_mem_addr[f_enqPtr + 3'h0] <= io_enqData_0_addr;
+                f_data_mem_inst[f_enqPtr + 3'h0] <= io_enqData_0_inst;
+                f_data_mem_brchFwd[f_enqPtr + 3'h0] <= io_enqData_0_brchFwd;
+            end
+            // Data 1 written to index f_enqPtr + 1
+            if (io_enqValid >= 3'h2) begin
+                f_data_mem_addr[f_enqPtr + 3'h1] <= io_enqData_1_addr;
+                f_data_mem_inst[f_enqPtr + 3'h1] <= io_enqData_1_inst;
+                f_data_mem_brchFwd[f_enqPtr + 3'h1] <= io_enqData_1_brchFwd;
+            end
+            // Data 2 written to index f_enqPtr + 2
+            if (io_enqValid >= 3'h3) begin
+                f_data_mem_addr[f_enqPtr + 3'h2] <= io_enqData_2_addr;
+                f_data_mem_inst[f_enqPtr + 3'h2] <= io_enqData_2_inst;
+                f_data_mem_brchFwd[f_enqPtr + 3'h2] <= io_enqData_2_brchFwd;
+            end
+            // Data 3 written to index f_enqPtr + 3 (Assuming max 4 wide enqueue)
+            if (io_enqValid >= 3'h4) begin
+                f_data_mem_addr[f_enqPtr + 3'h3] <= io_enqData_3_addr;
+                f_data_mem_inst[f_enqPtr + 3'h3] <= io_enqData_3_inst;
+                f_data_mem_brchFwd[f_enqPtr + 3'h3] <= io_enqData_3_brchFwd;
+            end
+        end
+    end
+
+    // Pointer Consistency Check
+    // The formal pointers (f_enqPtr, f_deqPtr) must match the DUT's internal pointers (enqPtr, deqPtr)
+    always @(*) begin
+        assert (f_enqPtr == enqPtr);
+        assert (f_deqPtr == deqPtr);
+    end
+
 	////////////////////////////////////////////////////
+    //
+    // Contract
+    //
+    ////////////////////////////////////////////////////
+
+    // Data Integrity and FIFO Ordering Check
+    // The output data must match the data in the formal memory at the corresponding read pointer.
+    always @(*) begin
+        // Slot 0 (Head of the queue)
+        if (io_nEnqueued >= 4'h1) begin
+            assert (io_dataOut_0_addr    == f_data_mem_addr[f_deqPtr + 3'h0]);
+            assert (io_dataOut_0_inst    == f_data_mem_inst[f_deqPtr + 3'h0]);
+            assert (io_dataOut_0_brchFwd == f_data_mem_brchFwd[f_deqPtr + 3'h0]);
+        end
+
+        // Slot 1 (2nd item in the queue)
+        if (io_nEnqueued >= 4'h2) begin
+            assert (io_dataOut_1_addr    == f_data_mem_addr[f_deqPtr + 3'h1]);
+            assert (io_dataOut_1_inst    == f_data_mem_inst[f_deqPtr + 3'h1]);
+            assert (io_dataOut_1_brchFwd == f_data_mem_brchFwd[f_deqPtr + 3'h1]);
+        end
+
+        // Slot 2 (3rd item in the queue)
+        if (io_nEnqueued >= 4'h3) begin
+            assert (io_dataOut_2_addr    == f_data_mem_addr[f_deqPtr + 3'h2]);
+            assert (io_dataOut_2_inst    == f_data_mem_inst[f_deqPtr + 3'h2]);
+            assert (io_dataOut_2_brchFwd == f_data_mem_brchFwd[f_deqPtr + 3'h2]);
+        end
+
+        // Slot 3 (4th item in the queue)
+        if (io_nEnqueued >= 4'h4) begin
+            assert (io_dataOut_3_addr    == f_data_mem_addr[f_deqPtr + 3'h3]);
+            assert (io_dataOut_3_inst    == f_data_mem_inst[f_deqPtr + 3'h3]);
+            assert (io_dataOut_3_brchFwd == f_data_mem_brchFwd[f_deqPtr + 3'h3]);
+        end
+    end
+
+    ////////////////////////////////////////////////////
+    //
+    // Induction
+    //
+    ////////////////////////////////////////////////////
+    
+    ////////////////////////////////////////////////////
+    //
+    // Cover
+    //
+    ////////////////////////////////////////////////////     
+
+    // The buffer becomes completely full (nEnqueued == 8)
+    always @(posedge clock) begin
+        if (!reset) begin
+            cover (io_nEnqueued == 4'h8);
+        end
+    end
+
+    // The buffer is completely empty (nEnqueued == 0)
+    always @(posedge clock) begin
+        if (!reset) begin
+            cover (io_nEnqueued == 4'h0);
+        end
+    end
+
+    // The buffer is half-full (nEnqueued == 4)
+    always @(posedge clock) begin
+        if (!reset) begin
+            cover (io_nEnqueued == 4'h4);
+        end
+    end
     
-	////////////////////////////////////////////////////
-	//
-	// Cover
-	//
-	////////////////////////////////////////////////////     
+    // Cover various combinations of enqueue/dequeue
+    always @(posedge clock) begin
+        if (!reset) begin
+            cover (io_enqValid == 3'h4 && io_deqReady == 3'h0); // 4-wide enqueue, 0 dequeue
+            cover (io_enqValid == 3'h0 && io_deqReady == 3'h3 && io_nEnqueued >= 4'h3); // 0 enqueue, 3-wide dequeue
+            cover (io_enqValid == 3'h2 && io_deqReady == 3'h2); // Balanced 2-wide flow
+            cover (io_flush); // Cover flush activation
+        end
+    end
 
-	// The buffer becomes completely full (nEnqueued == 8)
-	always @(posedge clock) begin
-		if (!reset) begin
-			cover (io_nEnqueued == 'h8);
-		end
-	end
+    // DATA0 instruction integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_0_inst != 0)
+                cover(io_dataOut_0_inst);
 
-	// The buffer is completely empty (nEnqueued == 0)
-	// Note: This is usually covered by reset, but good to cover during run-time.
-	always @(posedge clock) begin
-		if (!reset) begin
-			cover (io_nEnqueued == 4'h0);
-		end
-	end
+    // DATA1 instruction integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_1_inst != 0)
+                cover(io_dataOut_1_inst);
 
-	// The buffer is half-full (nEnqueued == 4)
-	always @(posedge clock) begin
-		if (!reset) begin
-			cover (io_nEnqueued == 4'h4);
-		end
-	end
+    // DATA2 instruction integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_2_inst != 0)
+                cover(io_dataOut_2_inst);
 
-	// DATA0 instruction integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_0_inst != 0)
-				cover(io_dataOut_0_inst);
+    // DATA3 instruction integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_3_inst != 0)
+                cover(io_dataOut_3_inst);
 
-	// DATA1 instruction integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_1_inst != 0)
-				cover(io_dataOut_1_inst);
+    // DATA0 address integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_0_addr != 0)
+                cover(io_dataOut_0_addr);
 
-	// DATA2 instruction integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_2_inst != 0)
-				cover(io_dataOut_2_inst);
+    // DATA1 address integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_1_addr != 0)
+                cover(io_dataOut_1_addr);
 
-	// DATA3 instruction integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_3_inst != 0)
-				cover(io_dataOut_3_inst);
+    // DATA2 address integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_2_addr != 0)
+                cover(io_dataOut_2_addr);
 
-	// DATA0 address integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_0_addr != 0)
-				cover(io_dataOut_0_addr);
+    // DATA3 address integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_3_addr != 0)
+                cover(io_dataOut_3_addr);
 
-	// DATA1 address integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_1_addr != 0)
-				cover(io_dataOut_1_addr);
+    // DATA0 branch integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_0_brchFwd != 0)
+                cover(io_dataOut_0_brchFwd);
 
-	// DATA2 address integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_2_addr != 0)
-				cover(io_dataOut_2_addr);
+    // DATA1 branch integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_1_brchFwd != 0)
+                cover(io_dataOut_1_brchFwd);
 
-	// DATA3 address integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_3_addr != 0)
-				cover(io_dataOut_3_addr);
+    // DATA2 branch integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_2_brchFwd != 0)
+                cover(io_dataOut_2_brchFwd);
 
-	// DATA0 branch integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_0_brchFwd != 0)
-				cover(io_dataOut_0_brchFwd);
-
-	// DATA1 branch integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_1_brchFwd != 0)
-				cover(io_dataOut_1_brchFwd);
-
-	// DATA2 branch integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_2_brchFwd != 0)
-				cover(io_dataOut_2_brchFwd);
-
-	// DATA3 branch integrity
-	always @(posedge clock)
-		if (!reset)
-			if(io_enqData_3_brchFwd != 0)
-				cover(io_dataOut_3_brchFwd);
-           
+    // DATA3 branch integrity
+    always @(posedge clock)
+        if (!reset)
+            if(io_enqData_3_brchFwd != 0)
+                cover(io_dataOut_3_brchFwd);
+           
 `endif
+
 
 endmodule
 
