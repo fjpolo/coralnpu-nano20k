@@ -3019,6 +3019,30 @@ module CircularBufferMulti(
         if (!reset)
             if(io_enqData_3_brchFwd != 0)
                 cover(io_dataOut_3_brchFwd);
+
+    // Cover write operation on low address bank (Registers 0-15)
+    always @(posedge clk)
+        if (!i_rst)
+            if (i_ce && i_we && (i_addr <= 15))
+                cover(1);
+
+    // Cover write operation on high address bank (Registers 16-31)
+    always @(posedge clk)
+        if (!i_rst)
+            if (i_ce && i_we && (i_addr > 15))
+                cover(1);
+
+    // Cover simultaneous active Read Enable and Chip Enable
+    always @(posedge clk)
+        if (!i_rst)
+            if (i_ce && i_re)
+                cover(1);
+
+    // Cover that the output Chip Enable (o_ce) has been asserted high at least once
+    always @(posedge clk)
+        if (!i_rst)
+            if (o_ce)
+                cover(1);
            
 `endif
 
