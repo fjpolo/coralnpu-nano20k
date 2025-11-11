@@ -47,159 +47,95 @@ module chip_console60k_rvvCoreMini(
    ) /* synthesis syn_keep=1 */;
 
  // =========================================================================
- // --- RvvCoreMini INTERFACE WIRES ---------------------------------------
- // =========================================================================
-  input          clock,
-                 reset,
-  input  [31:0]  io_csr_in_value_0,
-  output [31:0]  io_csr_out_value_0,
-                 io_csr_out_value_1,
-                 io_csr_out_value_2,
-                 io_csr_out_value_3,
-                 io_csr_out_value_4,
-                 io_csr_out_value_5,
-                 io_csr_out_value_6,
-                 io_csr_out_value_7,
-  output         io_halted,
-                 io_fault,
-                 io_wfi,
-  input          io_irq,
-  output         io_ibus_valid,
-  output [31:0]  io_ibus_addr,
-  input  [127:0] io_ibus_rdata,
-  input          io_ibus_fault_valid,
-  input  [31:0]  io_ibus_fault_bits_epc,
-  output         io_dbus_valid,
-                 io_dbus_write,
-  output [31:0]  io_dbus_addr,
-  output [127:0] io_dbus_wdata,
-  output [15:0]  io_dbus_wmask,
-  input  [127:0] io_dbus_rdata,
-  output         io_ebus_dbus_valid,
-  input          io_ebus_dbus_ready,
-  output         io_ebus_dbus_write,
-  output [31:0]  io_ebus_dbus_pc,
-                 io_ebus_dbus_addr,
-  output [4:0]   io_ebus_dbus_size,
-  output [127:0] io_ebus_dbus_wdata,
-  output [15:0]  io_ebus_dbus_wmask,
-  input  [127:0] io_ebus_dbus_rdata,
-  input          io_ebus_fault_valid,
-                 io_ebus_fault_bits_write,
-  input  [31:0]  io_ebus_fault_bits_addr,
-                 io_ebus_fault_bits_epc,
-  output         io_slog_valid,
-  output [4:0]   io_slog_addr,
-  output [31:0]  io_slog_data,
-  output [3:0]   io_debug_en,
-  output [31:0]  io_debug_addr_0,
-                 io_debug_addr_1,
-                 io_debug_addr_2,
-                 io_debug_addr_3,
-                 io_debug_inst_0,
-                 io_debug_inst_1,
-                 io_debug_inst_2,
-                 io_debug_inst_3,
-                 io_debug_cycles,
-  output         io_debug_dbus_valid,
-  output [31:0]  io_debug_dbus_bits_addr,
-  output [127:0] io_debug_dbus_bits_wdata,
-  output         io_debug_dbus_bits_write,
-                 io_debug_dispatch_0_instFire,
-  output [31:0]  io_debug_dispatch_0_instAddr,
-                 io_debug_dispatch_0_instInst,
-  output         io_debug_dispatch_1_instFire,
-  output [31:0]  io_debug_dispatch_1_instAddr,
-                 io_debug_dispatch_1_instInst,
-  output         io_debug_dispatch_2_instFire,
-  output [31:0]  io_debug_dispatch_2_instAddr,
-                 io_debug_dispatch_2_instInst,
-  output         io_debug_dispatch_3_instFire,
-  output [31:0]  io_debug_dispatch_3_instAddr,
-                 io_debug_dispatch_3_instInst,
-  output         io_debug_regfile_writeAddr_0_valid,
-  output [4:0]   io_debug_regfile_writeAddr_0_bits,
-  output         io_debug_regfile_writeAddr_1_valid,
-  output [4:0]   io_debug_regfile_writeAddr_1_bits,
-  output         io_debug_regfile_writeAddr_2_valid,
-  output [4:0]   io_debug_regfile_writeAddr_2_bits,
-  output         io_debug_regfile_writeAddr_3_valid,
-  output [4:0]   io_debug_regfile_writeAddr_3_bits,
-  output         io_debug_regfile_writeData_0_valid,
-  output [4:0]   io_debug_regfile_writeData_0_bits_addr,
-  output [31:0]  io_debug_regfile_writeData_0_bits_data,
-  output         io_debug_regfile_writeData_1_valid,
-  output [4:0]   io_debug_regfile_writeData_1_bits_addr,
-  output [31:0]  io_debug_regfile_writeData_1_bits_data,
-  output         io_debug_regfile_writeData_2_valid,
-  output [4:0]   io_debug_regfile_writeData_2_bits_addr,
-  output [31:0]  io_debug_regfile_writeData_2_bits_data,
-  output         io_debug_regfile_writeData_3_valid,
-  output [4:0]   io_debug_regfile_writeData_3_bits_addr,
-  output [31:0]  io_debug_regfile_writeData_3_bits_data,
-  output         io_debug_regfile_writeData_4_valid,
-  output [4:0]   io_debug_regfile_writeData_4_bits_addr,
-  output [31:0]  io_debug_regfile_writeData_4_bits_data,
-  output         io_debug_regfile_writeData_5_valid,
-  output [4:0]   io_debug_regfile_writeData_5_bits_addr,
-  output [31:0]  io_debug_regfile_writeData_5_bits_data,
-  output         io_debug_float_writeAddr_valid,
-  output [4:0]   io_debug_float_writeAddr_bits,
-  output         io_debug_float_writeData_0_valid,
-  output [31:0]  io_debug_float_writeData_0_bits_addr,
-                 io_debug_float_writeData_0_bits_data,
-  output         io_debug_float_writeData_1_valid,
-  output [31:0]  io_debug_float_writeData_1_bits_addr,
-                 io_debug_float_writeData_1_bits_data
-
- // =========================================================================
  // --- RVV CORE MINI INPUT LOGIC -----------------------------------------
  // =========================================================================
+  wire io_irq = o_pmod0[0];
+  wire io_ibus_fault_valid = o_pmod0[2];
+  wire io_ebus_dbus_ready = o_pmod0[3];
+  wire io_ebus_fault_valid = o_pmod0[4];
+  wire io_ebus_fault_bits_write = o_pmod0[5];
+  wire io_ebus_fault_bits_epc = o_pmod0[6];
+  wire [31:0]  io_csr_in_value_0 = {{4{o_pmod0[7:0]}}};
+  wire [31:0]  io_ibus_fault_bits_epc = {{4{o_pmod0[7:0]}}};
+  wire [31:0]  io_ebus_fault_bits_addr = {{4{o_pmod0[7:0]}}};
+  wire [127:0] io_ibus_rdata = {{16{o_pmod0[7:0]}}};
+  wire [127:0] io_dbus_rdata = {{16{o_pmod0[7:0]}}};
+  wire [127:0] io_ebus_dbus_rdata = {{16{o_pmod0[7:0]}}};
+
+ // =========================================================================
+ // --- RVV CORE MINI OUTPUT LOGIC -----------------------------------------
+ // =========================================================================
+ wire [31:0]  io_csr_out_value_0;
+ wire           io_csr_out_value_1;
+ wire           io_csr_out_value_2;
+ wire           io_csr_out_value_3;
+ wire           io_csr_out_value_4;
+ wire           io_csr_out_value_5;
+ wire           io_csr_out_value_6;
+ wire           io_csr_out_value_7;
+ wire          io_halted;
+ wire           io_fault;
+ wire           io_wfi;
+ wire          io_ibus_valid;
+ wire [31:0]   io_ibus_addr;
+ wire         io_dbus_valid;
+ wire           io_dbus_write;
+ wire [31:0]  io_dbus_addr;
+ wire [127:0] io_dbus_wdata;
+ wire [15:0]  io_dbus_wmask;
+ wire         io_ebus_dbus_valid;
+ wire         io_ebus_dbus_write;
+ wire [31:0]  io_ebus_dbus_pc;
+ wire           io_ebus_dbus_addr;
+ wire [4:0]   io_ebus_dbus_size;
+ wire [127:0] io_ebus_dbus_wdata;
+ wire [15:0]  io_ebus_dbus_wmask;
+
 
  // =========================================================================
  // --- RvvCoreMini INSTANTIATION -----------------------------------------
  // =========================================================================
 
  RvvCoreMini i_RvvCoreMini(
-                            .clock(),
-                            .reset(),
-                            .io_csr_in_value_0(),
-                            .io_csr_out_value_0(),
-                            .io_csr_out_value_1(),
-                            .io_csr_out_value_2(),
-                            .io_csr_out_value_3(),
-                            .io_csr_out_value_4(),
-                            .io_csr_out_value_5(),
-                            .io_csr_out_value_6(),
-                            .io_csr_out_value_7(),
-                            .io_halted(),
-                            .io_fault(),
-                            .io_wfi(),
-                            .io_irq(),
-                            .io_ibus_valid(),
-                            .io_ibus_addr(),
-                            .io_ibus_rdata(),
-                            .io_ibus_fault_valid(),
-                            .io_ibus_fault_bits_epc(),
-                            .io_dbus_valid(),
-                            .io_dbus_write(),
-                            .io_dbus_addr(),
-                            .io_dbus_wdata(),
-                            .io_dbus_wmask(),
-                            .io_dbus_rdata(),
-                            .io_ebus_dbus_valid(),
-                            .io_ebus_dbus_ready(),
-                            .io_ebus_dbus_write(),
-                            .io_ebus_dbus_pc(),
-                            .io_ebus_dbus_addr(),
-                            .io_ebus_dbus_size(),
-                            .io_ebus_dbus_wdata(),
-                            .io_ebus_dbus_wmask(),
-                            .io_ebus_dbus_rdata(),
-                            .io_ebus_fault_valid(),
-                            .io_ebus_fault_bits_write(),
-                            .io_ebus_fault_bits_addr(),
-                            .io_ebus_fault_bits_epc(),
+                            .clock(sys_clk),
+                            .reset(sys_rst),
+                            .io_csr_in_value_0(io_csr_in_value_0),
+                            .io_csr_out_value_0(io_csr_out_value_0),
+                            .io_csr_out_value_1(io_csr_out_value_1),
+                            .io_csr_out_value_2(io_csr_out_value_2),
+                            .io_csr_out_value_3(io_csr_out_value_3),
+                            .io_csr_out_value_4(io_csr_out_value_4),
+                            .io_csr_out_value_5(io_csr_out_value_5),
+                            .io_csr_out_value_6(io_csr_out_value_6),
+                            .io_csr_out_value_7(io_csr_out_value_7),
+                            .io_halted(io_halted),
+                            .io_fault(io_fault),
+                            .io_wfi(io_wfi),
+                            .io_irq(io_irq),
+                            .io_ibus_valid(io_ibus_valid),
+                            .io_ibus_addr(io_ibus_addr),
+                            .io_ibus_rdata(io_ibus_rdata),
+                            .io_ibus_fault_valid(io_ibus_fault_valid),
+                            .io_ibus_fault_bits_epc(io_ibus_fault_bits_epc),
+                            .io_dbus_valid(io_dbus_valid),
+                            .io_dbus_write(io_dbus_write),
+                            .io_dbus_addr(io_dbus_addr),
+                            .io_dbus_wdata(io_dbus_wdata),
+                            .io_dbus_wmask(io_dbus_wmask),
+                            .io_dbus_rdata(io_dbus_rdata),
+                            .io_ebus_dbus_valid(io_ebus_dbus_valid),
+                            .io_ebus_dbus_ready(io_ebus_dbus_ready),
+                            .io_ebus_dbus_write(io_ebus_dbus_write),
+                            .io_ebus_dbus_pc(io_ebus_dbus_pc),
+                            .io_ebus_dbus_addr(io_ebus_dbus_addr),
+                            .io_ebus_dbus_size(io_ebus_dbus_size),
+                            .io_ebus_dbus_wdata(io_ebus_dbus_wdata),
+                            .io_ebus_dbus_wmask(io_ebus_dbus_wmask),
+                            .io_ebus_dbus_rdata(io_ebus_dbus_rdata),
+                            .io_ebus_fault_valid(io_ebus_fault_valid),
+                            .io_ebus_fault_bits_write(io_ebus_fault_bits_write),
+                            .io_ebus_fault_bits_addr(io_ebus_fault_bits_addr),
+                            .io_ebus_fault_bits_epc(io_ebus_fault_bits_epc),
                             // DEBUG
                             .io_slog_valid(),
                             .io_slog_addr(),
@@ -269,6 +205,38 @@ module chip_console60k_rvvCoreMini(
  // =========================================================================
  // --- FINAL OUTPUT ASSIGNMENT ------------------------------------------
  // =========================================================================
-
+ assign o_pmod1[0] = 
+                  (|io_csr_out_value_0)^
+                  (|io_csr_out_value_1)^
+                  (|io_csr_out_value_2);
+ assign o_pmod1[1] = 
+                    (|io_csr_out_value_3)^
+                    (|io_csr_out_value_4);
+ assign o_pmod1[2] = 
+                    (|io_csr_out_value_5)^
+                    (|io_csr_out_value_6)^
+                    (|io_csr_out_value_7);
+ assign o_pmod1[3] = 
+                    (|io_halted)^
+                    (|io_fault)^
+                    (|io_wfi)^
+                    (|io_ibus_valid);
+ assign o_pmod1[4] = 
+                    (|io_ibus_addr)^
+                    (|io_dbus_valid)^
+                    (|io_dbus_write)^
+                    (|io_dbus_addr);
+ assign o_pmod1[5] = 
+                    (|io_dbus_wdata)^
+                    (|io_dbus_wmask)^
+                    (|io_ebus_dbus_valid);
+ assign o_pmod1[6] = 
+                    (|io_ebus_dbus_write)^
+                    (|io_ebus_dbus_pc)^
+                    (|io_ebus_dbus_addr);
+ assign o_pmod1[7] = 
+                    (|io_ebus_dbus_size)^
+                    (|io_ebus_dbus_wdata)^
+                    (|io_ebus_dbus_wmask);
 
 endmodule
