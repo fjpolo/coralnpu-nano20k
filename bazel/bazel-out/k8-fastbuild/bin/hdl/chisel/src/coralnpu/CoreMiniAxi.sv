@@ -2693,7 +2693,23 @@ module CircularBufferMulti(
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 // =============================================================================
-`ifdef  FORMAL
+//
+// If all those formal properties pass under exhaustive model checking for all reachable states (bounded or inductive), then:
+// 		A. FIFO semantics are guaranteed
+// 			No matter how enqueue/dequeue interleave, the element order and count are correct. That means the model will never:
+// 				- dequeue before enqueue,
+// 				- skip or duplicate entries,
+// 				- overflow or underflow.
+// 		B. Pointer arithmetic correctness
+// 			The buffer’s internal modular arithmetic is consistent:
+// 				(enqPtr - deqPtr) mod DEPTH == nEnqueued always holds.
+// 			That ensures no aliasing or misalignment in memory accesses, which in turn means you never overwrite unread data or read uninitialized space.
+// 		C. Deadlock freedom
+// 			As long as io_enqValid and io_deqReady follow the assumed handshake rules (no illegal simultaneous flush or over-enqueue), the buffer cannot lock up — i.e. all pending enqueued elements will eventually be readable.
+// 		D. Combinational data path integrity
+// 			Formal tools will symbolically check that outputs (io_dataOut_*) always correspond to the stored entries at those indices.
+// 			This ensures that the massive combinational rotation network preserves correct ordering and data mapping.
+// =============================================================================`ifdef  FORMAL
 // Change direction of assumes
 `define ASSERT  assert
 `ifdef  CircularBufferMulti
