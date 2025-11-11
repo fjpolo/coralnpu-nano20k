@@ -1,0 +1,26 @@
+[tasks]
+bound
+prf
+cvr
+
+[options]
+bound:  mode bmc
+bound:  depth 16
+prf:    mode prove
+prf:    depth 8
+cvr:    mode cover
+cvr:    depth 64
+cvr:    append 20
+
+
+[engines]
+bound:  smtbmc
+prf:    smtbmc yices
+cvr:    smtbmc
+
+[script]
+read_verilog -sv -DCIRCULARBUFFERMULTI -formal template_formal.v
+prep -top CircularBufferMulti
+
+[files]
+template_formal.v
