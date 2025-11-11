@@ -2667,7 +2667,7 @@ module CircularBufferMulti(
   assign io_dataOut_3_brchFwd = rdata_3[0];
 
 // =============================================================================
-// File        : Formal Properties for CircularBufferMulti.v
+// File        : Formal Properties for CircularBufferMulti
 // Author      : @fjpolo
 // email       : fjpolo@gmail.com
 // Description : Formal verification of FIFO order integrity and pointer movement.
