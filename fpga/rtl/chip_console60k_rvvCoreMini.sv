@@ -13,6 +13,7 @@
 // limitations under the License.
 
 `define SYNTHESIS
+// `define FULL_RVVCOREMINI
 `define FULL_RVVCOREMINI
 
 // Assuming prim_mubi_pkg and Gowin_PLL are available globally or included elsewhere.
@@ -49,54 +50,54 @@ module chip_console60k_rvvCoreMini(
  // =========================================================================
  // --- RVV CORE MINI INPUT LOGIC -----------------------------------------
  // =========================================================================
-  wire io_irq = o_pmod0[0];
-  wire io_ibus_fault_valid = o_pmod0[2];
-  wire io_ebus_dbus_ready = o_pmod0[3];
-  wire io_ebus_fault_valid = o_pmod0[4];
-  wire io_ebus_fault_bits_write = o_pmod0[5];
-  wire io_ebus_fault_bits_epc = o_pmod0[6];
-  wire [31:0]  io_csr_in_value_0 = {{4{o_pmod0[7:0]}}};
-  wire [31:0]  io_ibus_fault_bits_epc = {{4{o_pmod0[7:0]}}};
-  wire [31:0]  io_ebus_fault_bits_addr = {{4{o_pmod0[7:0]}}};
-  wire [127:0] io_ibus_rdata = {{16{o_pmod0[7:0]}}};
-  wire [127:0] io_dbus_rdata = {{16{o_pmod0[7:0]}}};
-  wire [127:0] io_ebus_dbus_rdata = {{16{o_pmod0[7:0]}}};
+  wire io_irq = o_pmod0[0] /* synthesis syn_keep=1 */;
+  wire io_ibus_fault_valid = o_pmod0[2] /* synthesis syn_keep=1 */;
+  wire io_ebus_dbus_ready = o_pmod0[3] /* synthesis syn_keep=1 */;
+  wire io_ebus_fault_valid = o_pmod0[4] /* synthesis syn_keep=1 */;
+  wire io_ebus_fault_bits_write = o_pmod0[5] /* synthesis syn_keep=1 */;
+  wire io_ebus_fault_bits_epc = o_pmod0[6] /* synthesis syn_keep=1 */;
+  wire [31:0]  io_csr_in_value_0 = {{4{o_pmod0[7:0]}}} /* synthesis syn_keep=1 */;
+  wire [31:0]  io_ibus_fault_bits_epc = {{4{o_pmod0[7:0]}}} /* synthesis syn_keep=1 */;
+  wire [31:0]  io_ebus_fault_bits_addr = {{4{o_pmod0[7:0]}}} /* synthesis syn_keep=1 */;
+  wire [127:0] io_ibus_rdata = {{16{o_pmod0[7:0]}}} /* synthesis syn_keep=1 */;
+  wire [127:0] io_dbus_rdata = {{16{o_pmod0[7:0]}}} /* synthesis syn_keep=1 */;
+  wire [127:0] io_ebus_dbus_rdata = {{16{o_pmod0[7:0]}}} /* synthesis syn_keep=1 */;
 
  // =========================================================================
  // --- RVV CORE MINI OUTPUT LOGIC -----------------------------------------
  // =========================================================================
- wire [31:0]  io_csr_out_value_0;
- wire           io_csr_out_value_1;
- wire           io_csr_out_value_2;
- wire           io_csr_out_value_3;
- wire           io_csr_out_value_4;
- wire           io_csr_out_value_5;
- wire           io_csr_out_value_6;
- wire           io_csr_out_value_7;
- wire          io_halted;
- wire           io_fault;
- wire           io_wfi;
- wire          io_ibus_valid;
- wire [31:0]   io_ibus_addr;
- wire         io_dbus_valid;
- wire           io_dbus_write;
- wire [31:0]  io_dbus_addr;
- wire [127:0] io_dbus_wdata;
- wire [15:0]  io_dbus_wmask;
- wire         io_ebus_dbus_valid;
- wire         io_ebus_dbus_write;
- wire [31:0]  io_ebus_dbus_pc;
- wire           io_ebus_dbus_addr;
- wire [4:0]   io_ebus_dbus_size;
- wire [127:0] io_ebus_dbus_wdata;
- wire [15:0]  io_ebus_dbus_wmask;
+ wire [31:0]    io_csr_out_value_0 /* synthesis syn_keep=1 */;
+ wire           io_csr_out_value_1 /* synthesis syn_keep=1 */;
+ wire           io_csr_out_value_2 /* synthesis syn_keep=1 */;
+ wire           io_csr_out_value_3 /* synthesis syn_keep=1 */;
+ wire           io_csr_out_value_4 /* synthesis syn_keep=1 */;
+ wire           io_csr_out_value_5 /* synthesis syn_keep=1 */;
+ wire           io_csr_out_value_6 /* synthesis syn_keep=1 */;
+ wire           io_csr_out_value_7 /* synthesis syn_keep=1 */;
+ wire           io_halted /* synthesis syn_keep=1 */;
+ wire           io_fault /* synthesis syn_keep=1 */;
+ wire           io_wfi /* synthesis syn_keep=1 */;
+ wire           io_ibus_valid /* synthesis syn_keep=1 */;
+ wire [31:0]    io_ibus_addr /* synthesis syn_keep=1 */;
+ wire           io_dbus_valid /* synthesis syn_keep=1 */;
+ wire           io_dbus_write /* synthesis syn_keep=1 */;
+ wire [31:0]    io_dbus_addr /* synthesis syn_keep=1 */;
+ wire [127:0]   io_dbus_wdata /* synthesis syn_keep=1 */;
+ wire [15:0]    io_dbus_wmask /* synthesis syn_keep=1 */;
+ wire           io_ebus_dbus_valid /* synthesis syn_keep=1 */;
+ wire           io_ebus_dbus_write /* synthesis syn_keep=1 */;
+ wire [31:0]    io_ebus_dbus_pc /* synthesis syn_keep=1 */;
+ wire           io_ebus_dbus_addr /* synthesis syn_keep=1 */;
+ wire [4:0]     io_ebus_dbus_size /* synthesis syn_keep=1 */;
+ wire [127:0]   io_ebus_dbus_wdata /* synthesis syn_keep=1 */;
+ wire [15:0]    io_ebus_dbus_wmask /* synthesis syn_keep=1 */;
 
 
  // =========================================================================
  // --- RvvCoreMini INSTANTIATION -----------------------------------------
  // =========================================================================
-
- RvvCoreMini i_RvvCoreMini(
+`ifdef FULL_RVVCOREMINI
+/* synthesis syn_keep=1 */RvvCoreMini i_RvvCoreMini(
                             .clock(sys_clk),
                             .reset(sys_rst),
                             .io_csr_in_value_0(io_csr_in_value_0),
@@ -200,7 +201,7 @@ module chip_console60k_rvvCoreMini(
                             .io_debug_float_writeData_1_valid(),
                             .io_debug_float_writeData_1_bits_addr(),
                             .io_debug_float_writeData_1_bits_data()
-);
+) /* synthesis syn_keep=1 */;
 
  // =========================================================================
  // --- FINAL OUTPUT ASSIGNMENT ------------------------------------------
@@ -238,5 +239,271 @@ module chip_console60k_rvvCoreMini(
                     (|io_ebus_dbus_size)^
                     (|io_ebus_dbus_wdata)^
                     (|io_ebus_dbus_wmask);
+
+`else
+ // =========================================================================
+ // --- INPUT LOGIC -----------------------------------------
+ // =========================================================================
+  wire          io_inst_0_valid = o_pmod0[0] /* synthesis syn_keep=1 */;
+  wire          io_inst_1_valid = o_pmod0[1] /* synthesis syn_keep=1 */;
+  wire          io_inst_2_valid = o_pmod0[2] /* synthesis syn_keep=1 */;
+  wire          io_inst_3_valid = o_pmod0[3] /* synthesis syn_keep=1 */;
+  wire          io_rs_0_valid = o_pmod0[4] /* synthesis syn_keep=1 */;
+  wire          io_rs_1_valid = o_pmod0[5] /* synthesis syn_keep=1 */;
+  wire          io_rs_2_valid = o_pmod0[6] /* synthesis syn_keep=1 */;
+  wire          io_rs_3_valid = o_pmod0[7] /* synthesis syn_keep=1 */;
+  wire          io_rs_4_valid = o_pmod0[6] /* synthesis syn_keep=1 */;
+  wire          io_rs_5_valid = o_pmod0[5] /* synthesis syn_keep=1 */;
+  wire          io_rs_6_valid = o_pmod0[4] /* synthesis syn_keep=1 */;
+  wire          io_rs_7_valid = o_pmod0[3] /* synthesis syn_keep=1 */;
+  wire          io_async_rd_ready = o_pmod0[2] /* synthesis syn_keep=1 */;
+  wire          io_csr_vstart_write_valid = o_pmod0[1] /* synthesis syn_keep=1 */;
+  wire          io_csr_vxrm_write_valid = o_pmod0[0] /* synthesis syn_keep=1 */;
+  wire          io_csr_vxsat_write_valid = o_pmod0[1] /* synthesis syn_keep=1 */;
+  wire          io_csr_vxsat_write_bits = o_pmod0[2] /* synthesis syn_keep=1 */;
+  wire          io_rvv2lsu_0_ready = o_pmod0[3] /* synthesis syn_keep=1 */;
+  wire          io_lsu2rvv_0_valid = o_pmod0[4] /* synthesis syn_keep=1 */;
+  wire          io_lsu2rvv_0_bits_last = o_pmod0[5] /* synthesis syn_keep=1 */;
+  wire  [1:0]   io_inst_0_bits_opcode = o_pmod0[1:0] /* synthesis syn_keep=1 */;
+  wire  [1:0]   io_inst_1_bits_opcode = o_pmod0[1:0] /* synthesis syn_keep=1 */;
+  wire  [1:0]   io_inst_2_bits_opcode = o_pmod0[1:0] /* synthesis syn_keep=1 */;
+  wire  [1:0]   io_inst_3_bits_opcode = o_pmod0[1:0] /* synthesis syn_keep=1 */;
+  wire  [1:0]   io_csr_vxrm_write_bits = o_pmod0[1:0] /* synthesis syn_keep=1 */;
+  wire  [4:0]   io_lsu2rvv_0_bits_addr = o_pmod0[4:0] /* synthesis syn_keep=1 */;
+  wire  [6:0]   io_csr_vstart_write_bits = o_pmod0[6:0] /* synthesis syn_keep=1 */;
+  wire  [24:0]  io_inst_0_bits_bits = {17'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [24:0]  io_inst_1_bits_bits = {17'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [24:0]  io_inst_2_bits_bits = {17'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [24:0]  io_inst_3_bits_bits = {17'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_inst_0_bits_pc = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_inst_1_bits_pc = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_inst_2_bits_pc = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_inst_3_bits_pc = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_rs_0_data = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_rs_1_data = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_rs_2_data = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_rs_3_data = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_rs_4_data = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_rs_5_data = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_rs_6_data = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [31:0]  io_rs_7_data = {24'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+  wire  [127:0] io_lsu2rvv_0_bits_data = {120'h0, o_pmod0[7:0]} /* synthesis syn_keep=1 */;
+
+  wire         io_inst_0_ready /* synthesis syn_keep=1 */;
+  wire         io_inst_1_ready /* synthesis syn_keep=1 */;
+  wire         io_inst_2_ready /* synthesis syn_keep=1 */;
+  wire         io_inst_3_ready /* synthesis syn_keep=1 */;
+  wire         io_rd_0_valid /* synthesis syn_keep=1 */;
+  wire [4:0]   io_rd_0_bits_addr /* synthesis syn_keep=1 */;
+  wire [31:0]  io_rd_0_bits_data /* synthesis syn_keep=1 */;
+  wire         io_rd_1_valid /* synthesis syn_keep=1 */;
+  wire [4:0]   io_rd_1_bits_addr /* synthesis syn_keep=1 */;
+  wire [31:0]  io_rd_1_bits_data /* synthesis syn_keep=1 */;
+  wire         io_rd_2_valid /* synthesis syn_keep=1 */;
+  wire [4:0]   io_rd_2_bits_addr /* synthesis syn_keep=1 */;
+  wire [31:0]  io_rd_2_bits_data /* synthesis syn_keep=1 */;
+  wire         io_rd_3_valid /* synthesis syn_keep=1 */;
+  wire [4:0]   io_rd_3_bits_addr /* synthesis syn_keep=1 */;
+  wire [31:0]  io_rd_3_bits_data /* synthesis syn_keep=1 */;
+  wire         io_rvv2lsu_0_valid /* synthesis syn_keep=1 */;
+  wire         io_rvv2lsu_0_bits_idx_valid /* synthesis syn_keep=1 */;
+  wire [127:0] io_rvv2lsu_0_bits_idx_bits_data /* synthesis syn_keep=1 */;
+  wire         io_rvv2lsu_0_bits_vregfile_valid /* synthesis syn_keep=1 */;
+  wire [127:0] io_rvv2lsu_0_bits_vregfile_bits_data /* synthesis syn_keep=1 */;
+  wire         io_rvv2lsu_0_bits_mask_valid /* synthesis syn_keep=1 */;
+  wire [15:0]  io_rvv2lsu_0_bits_mask_bits /* synthesis syn_keep=1 */;
+  wire         io_lsu2rvv_0_ready /* synthesis syn_keep=1 */;
+  wire         io_configState_valid /* synthesis syn_keep=1 */;
+  wire [7:0]   io_configState_bits_vl /* synthesis syn_keep=1 */;
+  wire [6:0]   io_configState_bits_vstart /* synthesis syn_keep=1 */;
+  wire         io_configState_bits_ma /* synthesis syn_keep=1 */;
+  wire         io_configState_bits_ta /* synthesis syn_keep=1 */;
+  wire [2:0]   io_configState_bits_sew /* synthesis syn_keep=1 */;
+  wire [2:0]   io_configState_bits_lmul /* synthesis syn_keep=1 */;
+  wire         io_configState_bits_vill /* synthesis syn_keep=1 */;
+  wire         io_async_rd_valid /* synthesis syn_keep=1 */;
+  wire [4:0]   io_async_rd_bits_addr /* synthesis syn_keep=1 */;
+  wire [31:0]  io_async_rd_bits_data /* synthesis syn_keep=1 */;
+  wire [31:0]  io_trap_valid /* synthesis syn_keep=1 */;
+  wire [31:0]  io_trap_bits_pc /* synthesis syn_keep=1 */;
+  wire [1:0]   io_trap_bits_opcode /* synthesis syn_keep=1 */;
+  wire [24:0]  io_trap_bits_bits /* synthesis syn_keep=1 */;
+  wire [6:0]   io_csr_vstart /* synthesis syn_keep=1 */;
+  wire [1:0]   io_csr_vxrm /* synthesis syn_keep=1 */;
+  wire         io_csr_vxsat /* synthesis syn_keep=1 */;
+  wire         io_rvv_idle /* synthesis syn_keep=1 */;
+  wire [3:0]   io_queue_capacity /* synthesis syn_keep=1 */;
+ // =========================================================================
+ // --- OUTPUT LOGIC -----------------------------------------
+ // =========================================================================
+
+ // =========================================================================
+ // --- INSTANTIATIONS -----------------------------------------
+ // =========================================================================
+ // Inside RvvCoreMini, score() and rvvCore() are instantiated
+ // score has been optimized before, so we'll just check rvvCore() here
+
+`ifdef FULL_RVVCOREMINI
+  /* synthesis syn_keep=1 */ RvvCoreShim i_rvvCore (
+    .clock                                (sys_clk),
+    .reset                                (sys_rst),
+    .io_inst_0_ready                      (io_inst_0_ready),
+    .io_inst_0_valid                      (io_inst_0_valid),
+    .io_inst_0_bits_pc                    (io_inst_0_bits_pc),
+    .io_inst_0_bits_opcode                (io_inst_0_bits_opcode),
+    .io_inst_0_bits_bits                  (io_inst_0_bits_bits),
+    .io_inst_1_ready                      (_io_inst_1_ready),
+    .io_inst_1_valid                      (io_inst_1_valid),
+    .io_inst_1_bits_pc                    (io_inst_1_bits_pc),
+    .io_inst_1_bits_opcode                (io_inst_1_bits_opcode),
+    .io_inst_1_bits_bits                  (io_inst_1_bits_bits),
+    .io_inst_2_ready                      (io_inst_2_ready),
+    .io_inst_2_valid                      (io_inst_2_valid),
+    .io_inst_2_bits_pc                    (io_inst_2_bits_pc),
+    .io_inst_2_bits_opcode                (io_inst_2_bits_opcode),
+    .io_inst_2_bits_bits                  (io_inst_2_bits_bits),
+    .io_inst_3_ready                      (io_inst_3_ready),
+    .io_inst_3_valid                      (io_inst_3_valid),
+    .io_inst_3_bits_pc                    (io_inst_3_bits_pc),
+    .io_inst_3_bits_opcode                (io_inst_3_bits_opcode),
+    .io_inst_3_bits_bits                  (io_inst_3_bits_bits),
+    .io_rs_0_valid                        (io_rs_0_valid),
+    .io_rs_0_data                         (io_rs_0_data),
+    .io_rs_1_valid                        (io_rs_1_valid),
+    .io_rs_1_data                         (io_rs_1_data),
+    .io_rs_2_valid                        (io_rs_2_valid),
+    .io_rs_2_data                         (io_rs_2_data),
+    .io_rs_3_valid                        (io_rs_3_valid),
+    .io_rs_3_data                         (io_rs_3_data),
+    .io_rs_4_valid                        (io_rs_4_valid),
+    .io_rs_4_data                         (io_rs_4_data),
+    .io_rs_5_valid                        (io_rs_5_valid),
+    .io_rs_5_data                         (io_rs_5_data),
+    .io_rs_6_valid                        (io_rs_6_valid),
+    .io_rs_6_data                         (io_rs_6_data),
+    .io_rs_7_valid                        (io_rs_7_valid),
+    .io_rs_7_data                         (io_rs_7_data),
+    .io_rd_0_valid                        (io_rd_0_valid),
+    .io_rd_0_bits_addr                    (io_rd_0_bits_addr),
+    .io_rd_0_bits_data                    (io_rd_0_bits_data),
+    .io_rd_1_valid                        (io_rd_1_valid),
+    .io_rd_1_bits_addr                    (io_rd_1_bits_addr),
+    .io_rd_1_bits_data                    (io_rd_1_bits_data),
+    .io_rd_2_valid                        (io_rd_2_valid),
+    .io_rd_2_bits_addr                    (io_rd_2_bits_addr),
+    .io_rd_2_bits_data                    (io_rd_2_bits_data),
+    .io_rd_3_valid                        (io_rd_3_valid),
+    .io_rd_3_bits_addr                    (io_rd_3_bits_addr),
+    .io_rd_3_bits_data                    (io_rd_3_bits_data),
+    .io_rvv2lsu_0_ready                   (io_rvv2lsu_0_ready),
+    .io_rvv2lsu_0_valid                   (io_rvv2lsu_0_valid),
+    .io_rvv2lsu_0_bits_idx_valid          (io_rvv2lsu_0_bits_idx_valid),
+    .io_rvv2lsu_0_bits_idx_bits_data      (io_rvv2lsu_0_bits_idx_bits_data),
+    .io_rvv2lsu_0_bits_vregfile_valid     (io_rvv2lsu_0_bits_vregfile_valid),
+    .io_rvv2lsu_0_bits_vregfile_bits_data (io_rvv2lsu_0_bits_vregfile_bits_data),
+    .io_rvv2lsu_0_bits_mask_valid         (io_rvv2lsu_0_bits_mask_valid),
+    .io_rvv2lsu_0_bits_mask_bits          (io_rvv2lsu_0_bits_mask_bits),
+    .io_lsu2rvv_0_ready                   (io_lsu2rvv_0_ready),
+    .io_lsu2rvv_0_valid                   (io_lsu2rvv_0_valid),
+    .io_lsu2rvv_0_bits_addr               (io_lsu2rvv_0_bits_addr),
+    .io_lsu2rvv_0_bits_data               (io_lsu2rvv_0_bits_data),
+    .io_lsu2rvv_0_bits_last               (io_lsu2rvv_0_bits_last),
+    .io_configState_valid                 (io_configState_valid),
+    .io_configState_bits_vl               (io_configState_bits_vl),
+    .io_configState_bits_vstart           (io_configState_bits_vstart),
+    .io_configState_bits_ma               (io_configState_bits_ma),
+    .io_configState_bits_ta               (io_configState_bits_ta),
+    .io_configState_bits_sew              (io_configState_bits_sew),
+    .io_configState_bits_lmul             (io_configState_bits_lmul),
+    .io_configState_bits_vill             (io_configState_bits_vill),
+    .io_async_rd_ready                    (io_async_rd_ready),
+    .io_async_rd_valid                    (io_async_rd_valid),
+    .io_async_rd_bits_addr                (io_async_rd_bits_addr),
+    .io_async_rd_bits_data                (io_async_rd_bits_data),
+    .io_trap_valid                        (io_trap_valid),
+    .io_trap_bits_pc                      (io_trap_bits_pc),
+    .io_trap_bits_opcode                  (io_trap_bits_opcode),
+    .io_trap_bits_bits                    (io_trap_bits_bits),
+    .io_csr_vstart                        (io_csr_vstart),
+    .io_csr_vxrm                          (io_csr_vxrm),
+    .io_csr_vxsat                         (io_csr_vxsat),
+    .io_csr_vstart_write_valid            (io_csr_vstart_write_valid),
+    .io_csr_vstart_write_bits             (io_csr_vstart_write_bits),
+    .io_csr_vxrm_write_valid              (io_csr_vxrm_write_valid),
+    .io_csr_vxrm_write_bits               (io_csr_vxrm_write_bits),
+    .io_csr_vxsat_write_valid             (io_csr_vxsat_write_valid),
+    .io_csr_vxsat_write_bits              (io_csr_vxsat_write_bits),
+    .io_rvv_idle                          (io_rvv_idle),
+    .io_queue_capacity                    (io_queue_capacity)
+  ) /* synthesis syn_keep=1 */;
+ `else
+
+ `endif
+
+ // =========================================================================
+ // --- FINAL OUTPUT ASSIGNMENT ------------------------------------------
+ // =========================================================================
+
+ assign o_pmod1[0] = 
+  (|io_inst_0_ready)^
+  (|io_inst_1_ready)^
+  (|io_inst_2_ready)^
+  (|io_inst_3_ready)^
+  (|io_rd_0_valid);
+  
+ assign o_pmod1[1] = 
+  (|io_rd_1_valid)^
+  (|io_rd_2_valid)^
+  (|io_rd_3_valid)^
+  (|io_rvv2lsu_0_valid)^
+  (|io_rvv2lsu_0_bits_idx_valid);
+  
+ assign o_pmod1[2] = 
+  (|io_rvv2lsu_0_bits_vregfile_valid)^
+  (|io_rvv2lsu_0_bits_mask_valid)^
+  (|io_lsu2rvv_0_ready)^
+  (|io_configState_valid)^
+  (|io_configState_bits_ma);
+  
+ assign o_pmod1[3] = 
+  (|io_configState_bits_ta)^
+  (|io_configState_bits_vill)^
+  (|io_async_rd_valid)^
+  (|io_csr_vxsat)^
+  (|io_trap_bits_bits)^
+  (|io_rvv_idle);
+  
+ assign o_pmod1[4] = 
+  (|io_rd_0_bits_addr)^
+  (|io_rd_0_bits_data)^
+  (|io_rd_1_bits_addr)^
+  (|io_rd_1_bits_data)^
+  (|io_csr_vstart)^
+  (|io_rd_2_bits_addr);
+  
+ assign o_pmod1[5] = 
+  (|io_rd_2_bits_data)^
+  (|io_rd_3_bits_addr)^
+  (|io_rd_3_bits_data)^
+  (|io_rvv2lsu_0_bits_idx_bits_data)^
+  (|io_csr_vxrm)^
+  (|io_rvv2lsu_0_bits_vregfile_bits_data);
+  
+ assign o_pmod1[6] = 
+  (|io_rvv2lsu_0_bits_mask_bits)^
+  (|io_configState_bits_vl)^
+  (|io_configState_bits_vstart)^
+  (|io_configState_bits_sew)^
+  (|io_queue_capacity)^
+  (|io_configState_bits_lmul);
+  
+ assign o_pmod1[7] = 
+  (|io_async_rd_bits_addr)^
+  (|io_async_rd_bits_data)^
+  (|io_trap_valid)^
+  (|io_trap_bits_pc)^
+  (|io_trap_bits_opcode);
+  
+`endif // FULL_RVVCOREMINI
 
 endmodule
